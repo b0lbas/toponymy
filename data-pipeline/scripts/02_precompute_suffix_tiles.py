@@ -85,7 +85,19 @@ def suffixes(s: str, min_len: int, max_len: int):
         yield "-" + s[-k:]
 
 def main():
+    import argparse
+
     cfg = json.loads(CFG.read_text(encoding="utf-8"))
+
+    parser = argparse.ArgumentParser(description="Precompute suffix tiles (optionally filter by country id or slug)")
+    parser.add_argument("-c", "--country", help="comma-separated list of country ids or geofabrik slugs to process (e.g. 8 or 250,8)", default=None)
+    args = parser.parse_args()
+
+    targets = []
+    if args.country:
+        targets = [t.strip() for t in args.country.split(",") if t.strip()]
+        print(f"[filter] processing only: {targets}")
+
     OUT.mkdir(parents=True, exist_ok=True)
 
     z = int(cfg.get("zoom", 7))
@@ -102,6 +114,18 @@ def main():
     for c in cfg["countries"]:
         cid = str(c["id"])
         slug = c["geofabrik_slug"]
+
+        # If targets specified, skip countries not in the target list
+        if targets:
+            match = False
+            for t in targets:
+                if t == cid or t.lower() == slug.lower() or t.lower() == c["name"].lower():
+                    match = True
+                    break
+            if not match:
+                print(f"[skip] {c['name']} ({cid})")
+                continue
+
         csv = INP / f"{cid}_{slug}_places.csv"
         if not csv.exists():
             print(f"[missing] {csv} — run 01_extract_places.py")
@@ -159,20 +183,23 @@ def main():
         points_q = {pat: [] for pat in chosen_patterns}
         points_seen = {pat: 0 for pat in chosen_patterns}
 
-        def _reservoir_add(pat, lon_q, lat_q):
+        def _reservoir_add(pat, lon_q, lat_q, name):
             # Reservoir sampling (uniform), capped by max_points
             points_seen[pat] += 1
             arr = points_q[pat]
             if len(arr) < max_points:
-                arr.append([lon_q, lat_q])
+                arr.append([lon_q, lat_q, name])
             else:
                 j = random.randint(0, points_seen[pat] - 1)
                 if j < max_points:
-                    arr[j] = [lon_q, lat_q]
+                    arr[j] = [lon_q, lat_q, name]
 
         if export_points and chosen_patterns:
-            for lon, lat, nm in tqdm(list(zip(lons, lats, names)), desc="collect points (selected patterns)"):
-                nm2 = tail_token(nm) if analyze_tail_only else (nm or "").strip()
+            # prefer original name if available, otherwise fall back to name_norm
+            names_norm = df["name_norm"].astype(str).tolist()
+            names_raw = df["name"].astype(str).tolist() if "name" in df.columns else names_norm
+            for lon, lat, nm_raw, nm_norm in tqdm(list(zip(lons, lats, names_raw, names_norm)), desc="collect points (selected patterns)"):
+                nm2 = tail_token(nm_norm) if analyze_tail_only else (nm_norm or "").strip()
                 if not nm2:
                     continue
 
@@ -182,7 +209,7 @@ def main():
 
                 for suf in suffixes(nm2, min_len, max_len):
                     if suf in chosen_set:
-                        _reservoir_add(suf, lon_q, lat_q)
+                        _reservoir_add(suf, lon_q, lat_q, nm_raw)
 
         print("[top]")
         for d in chosen[:10]:
@@ -207,9 +234,12 @@ def main():
 
             if export_points:
                 pts = points_q.get(pat, [])
-                payload["points_q"] = pts
+                # pts now holds [lon_q, lat_q, name] tuples; keep backward-compatible points_q as coords-only
+                payload["points_q"] = [[lon_q, lat_q] for lon_q, lat_q, *_ in pts]
+                payload["points_named"] = pts
                 payload["points_scale"] = points_scale
                 payload["points_sampled"] = bool(points_seen.get(pat, 0) > len(pts))
+                payload["points_named_sampled"] = payload["points_sampled"]
 
             fname = f"{slugify(pat)}_z{z}.json.gz"
             with gzip.open(c_out / fname, "wb") as fz:

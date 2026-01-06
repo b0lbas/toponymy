@@ -44,8 +44,10 @@ export type PatternPointsPayload = {
   zoom: number; // kept for metadata/compat; not used for point rendering
   total_places: number;
   points_q: [number, number][]; // [lon_q, lat_q]
+  points_named?: [number, number, string][]; // [lon_q, lat_q, name]
   points_scale: number; // divide quantized ints by this
   points_sampled?: boolean;
+  points_named_sampled?: boolean;
 };
 
 export type PatternPayload = PatternCellsPayload | PatternPointsPayload;
