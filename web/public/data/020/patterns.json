@@ -1,0 +1,38 @@
+{
+  "country_id": "020",
+  "country_name": "Andorra",
+  "modes": [
+    "suffix"
+  ],
+  "default_mode": "suffix",
+  "default_zoom": 7,
+  "patterns": [
+    {
+      "pattern": "-es",
+      "title": "-es",
+      "mode": "suffix",
+      "zoom": 7,
+      "places": 16,
+      "file": "-es_z7.json.gz",
+      "tiles": 1,
+      "score": 2.833213344056216,
+      "entropy": 0.0,
+      "hotspots": [
+        [
+          64,
+          47,
+          16
+        ]
+      ],
+      "points": 16,
+      "points_sampled": false
+    }
+  ],
+  "selection_mode": "score",
+  "min_places_for_candidate": 10,
+  "analyze_tail_token_only": true,
+  "suffix_len": [
+    2,
+    10
+  ]
+}
