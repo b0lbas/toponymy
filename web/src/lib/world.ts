@@ -41,7 +41,7 @@ function filterToEuropeGeom(geom: GeoJSON.Polygon | GeoJSON.MultiPolygon): GeoJS
 const EUROPE_NUM_IDS = new Set<number>([
   8, 20, 40, 56, 70, 100, 112, 191, 196, 203, 208, 233, 246, 250, 276, 300, 348, 352, 372, 380,
   428, 438, 440, 442, 470, 492, 498, 499, 528, 578, 616, 620, 642, 674, 688, 703, 705, 724, 752, 756,
-  804, 807, 826, 336, 991
+  804, 807, 826, 336, 991,
   // Add other purely-European microstates if present in the dataset:
   674, 438, 470, 492
 ]);
