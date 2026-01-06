@@ -1,0 +1,138 @@
+{
+  "country_id": "470",
+  "country_name": "Malta",
+  "modes": [
+    "suffix"
+  ],
+  "default_mode": "suffix",
+  "default_zoom": 7,
+  "patterns": [
+    {
+      "pattern": "-ja",
+      "title": "-ja",
+      "mode": "suffix",
+      "zoom": 7,
+      "places": 22,
+      "file": "-ja_z7.json.gz",
+      "tiles": 1,
+      "score": 3.1354942159291497,
+      "entropy": 0.0,
+      "hotspots": [
+        [
+          69,
+          50,
+          22
+        ]
+      ],
+      "points": 22,
+      "points_sampled": false
+    },
+    {
+      "pattern": "-ra",
+      "title": "-ra",
+      "mode": "suffix",
+      "zoom": 7,
+      "places": 21,
+      "file": "-ra_z7.json.gz",
+      "tiles": 1,
+      "score": 3.091042453358316,
+      "entropy": 0.0,
+      "hotspots": [
+        [
+          69,
+          50,
+          21
+        ]
+      ],
+      "points": 21,
+      "points_sampled": false
+    },
+    {
+      "pattern": "-ija",
+      "title": "-ija",
+      "mode": "suffix",
+      "zoom": 7,
+      "places": 17,
+      "file": "-ija_z7.json.gz",
+      "tiles": 1,
+      "score": 2.8903717578961645,
+      "entropy": 0.0,
+      "hotspots": [
+        [
+          69,
+          50,
+          17
+        ]
+      ],
+      "points": 17,
+      "points_sampled": false
+    },
+    {
+      "pattern": "-ar",
+      "title": "-ar",
+      "mode": "suffix",
+      "zoom": 7,
+      "places": 14,
+      "file": "-ar_z7.json.gz",
+      "tiles": 1,
+      "score": 2.70805020110221,
+      "entropy": 0.0,
+      "hotspots": [
+        [
+          69,
+          50,
+          14
+        ]
+      ],
+      "points": 14,
+      "points_sampled": false
+    },
+    {
+      "pattern": "-la",
+      "title": "-la",
+      "mode": "suffix",
+      "zoom": 7,
+      "places": 14,
+      "file": "-la_z7.json.gz",
+      "tiles": 1,
+      "score": 2.70805020110221,
+      "entropy": 0.0,
+      "hotspots": [
+        [
+          69,
+          50,
+          14
+        ]
+      ],
+      "points": 14,
+      "points_sampled": false
+    },
+    {
+      "pattern": "-na",
+      "title": "-na",
+      "mode": "suffix",
+      "zoom": 7,
+      "places": 14,
+      "file": "-na_z7.json.gz",
+      "tiles": 1,
+      "score": 2.70805020110221,
+      "entropy": 0.0,
+      "hotspots": [
+        [
+          69,
+          50,
+          14
+        ]
+      ],
+      "points": 14,
+      "points_sampled": false
+    }
+  ],
+  "selection_mode": "score",
+  "min_places_for_candidate": 10,
+  "analyze_tail_token_only": true,
+  "suffix_len": [
+    2,
+    10
+  ]
+}
