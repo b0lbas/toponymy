@@ -46,10 +46,6 @@ const EUROPE_NUM_IDS = new Set<number>([
   674, 438, 470, 492
 ]);
 
-const EUROPE_NAME_FALLBACK = new Set<string>([
-  "Kosovo",
-]);
-
 function normIsoId(idLike: unknown): number | null {
   if (idLike === null || idLike === undefined) return null;
   const s = idLike.toString().trim();
@@ -72,7 +68,7 @@ export async function loadEuropeCountries(): Promise<CountryFeature[]> {
   for (const f of geo.features) {
     const name = (f.properties?.name ?? "Unknown").toString();
     const idNum = normIsoId(f.id);
-    const include = (idNum !== null && EUROPE_NUM_IDS.has(idNum)) || EUROPE_NAME_FALLBACK.has(name);
+    const include = (idNum !== null && EUROPE_NUM_IDS.has(idNum));
     if (!include) continue;
 
     const stableId = idNum !== null ? String(idNum) : name;
