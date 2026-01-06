@@ -24,12 +24,43 @@ function tileBoundsLonLat(x: number, y: number, z: number) {
   return { west, south, east, north };
 }
 
+function keepLargestPolygonOnly(feature: any) {
+  const g = feature?.geometry;
+  if (!g || g.type !== "MultiPolygon") return feature;
+
+  let bestIdx = 0;
+  let bestArea = -Infinity;
+
+  g.coordinates.forEach((coords: any, i: number) => {
+    const poly: GeoJSON.Polygon = { type: "Polygon", coordinates: coords };
+    const a = d3.geoArea(poly as any);
+    if (a > bestArea) {
+      bestArea = a;
+      bestIdx = i;
+    }
+  });
+
+  return {
+    ...feature,
+    geometry: {
+      type: "Polygon",
+      coordinates: g.coordinates[bestIdx],
+    },
+  };
+}
+
 export default function TileSVG({ country, payload, variant = "mini" }: Props) {
   const [hover, setHover] = useState<{ count: number; x: number; y: number } | null>(null);
 
   const width = variant === "large" ? 980 : 520;
   const height = variant === "large" ? 620 : 320;
   const pad = 10;
+
+  // Only for South Africa (ISO numeric id = "710"): drop distant islands by keeping the largest polygon
+  const countryForView = useMemo(() => {
+    if ((country as any).id === "710") return keepLargestPolygonOnly(country as any);
+    return country;
+  }, [country]);
 
   const { path, projection } = useMemo(() => {
     const proj = d3.geoMercator();
@@ -38,11 +69,11 @@ export default function TileSVG({ country, payload, variant = "mini" }: Props) {
         [pad, pad],
         [width - pad, height - pad],
       ],
-      country as any
+      countryForView as any
     );
     const p = d3.geoPath(proj);
     return { path: p, projection: proj };
-  }, [country, width, height]);
+  }, [countryForView, width, height]);
 
   const cells = useMemo(() => {
     if (!("cells" in payload)) return [];
@@ -104,12 +135,12 @@ export default function TileSVG({ country, payload, variant = "mini" }: Props) {
       <svg viewBox={`0 0 ${width} ${height}`} className="block h-auto w-full">
         <defs>
           <clipPath id={clipId}>
-            <path d={path(country as any) ?? ""} />
+            <path d={path(countryForView as any) ?? ""} />
           </clipPath>
         </defs>
 
         {/* base country outline */}
-        <path d={path(country as any) ?? ""} fill="none" stroke="#3f3f46" strokeWidth={1.2} />
+        <path d={path(countryForView as any) ?? ""} fill="none" stroke="#3f3f46" strokeWidth={1.2} />
 
         {/* data */}
         <g clipPath={`url(#${clipId})`}>

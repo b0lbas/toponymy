@@ -43,7 +43,9 @@ const EUROPE_NUM_IDS = new Set<number>([
   428, 438, 440, 442, 470, 492, 498, 499, 528, 578, 616, 620, 642, 674, 688, 703, 705, 724, 752, 756, 792,
   804, 807, 826, 336, 991,
   // Add other purely-European microstates if present in the dataset:
-  674, 438, 470, 492
+  674, 438, 470, 492,
+
+  484, 604, 710, // non-European countries sometimes included
 ]);
 
 function normIsoId(idLike: unknown): number | null {
