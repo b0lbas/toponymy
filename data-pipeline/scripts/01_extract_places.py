@@ -9,7 +9,7 @@ CFG = ROOT / "config" / "europe.json"
 RAW = ROOT / "raw"
 OUT = ROOT / "intermediate"
 
-PLACE_TAGS = set(["city","town","village","hamlet","isolated_dwelling","suburb","neighbourhood","locality"])
+PLACE_TAGS = set(["city","town","village","hamlet"])
 
 def normalize_name(name: str, strip_diacritics: bool = True) -> str:
     s = name.strip().lower()

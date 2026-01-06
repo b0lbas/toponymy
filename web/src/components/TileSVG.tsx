@@ -7,6 +7,9 @@ type Props = {
   country: CountryFeature;
   payload: PatternPayload;
   variant?: "mini" | "large";
+  viewScale?: number;
+  onPointClick?: (pt: { x: number; y: number; name: string } | null) => void;
+  onPointHover?: (pt: { x: number; y: number; name: string } | null) => void;
 };
 
 function tileBoundsLonLat(x: number, y: number, z: number) {
@@ -24,12 +27,43 @@ function tileBoundsLonLat(x: number, y: number, z: number) {
   return { west, south, east, north };
 }
 
-export default function TileSVG({ country, payload, variant = "mini" }: Props) {
+function keepLargestPolygonOnly(feature: any) {
+  const g = feature?.geometry;
+  if (!g || g.type !== "MultiPolygon") return feature;
+
+  let bestIdx = 0;
+  let bestArea = -Infinity;
+
+  g.coordinates.forEach((coords: any, i: number) => {
+    const poly: GeoJSON.Polygon = { type: "Polygon", coordinates: coords };
+    const a = d3.geoArea(poly as any);
+    if (a > bestArea) {
+      bestArea = a;
+      bestIdx = i;
+    }
+  });
+
+  return {
+    ...feature,
+    geometry: {
+      type: "Polygon",
+      coordinates: g.coordinates[bestIdx],
+    },
+  };
+}
+
+export default function TileSVG({ country, payload, variant = "mini", viewScale = 1, onPointClick }: Props) {
   const [hover, setHover] = useState<{ count: number; x: number; y: number } | null>(null);
 
   const width = variant === "large" ? 980 : 520;
   const height = variant === "large" ? 620 : 320;
   const pad = 10;
+
+  // Only for South Africa (ISO numeric id = "710"): drop distant islands by keeping the largest polygon
+  const countryForView = useMemo(() => {
+    if ((country as any).id === "710") return keepLargestPolygonOnly(country as any);
+    return country;
+  }, [country]);
 
   const { path, projection } = useMemo(() => {
     const proj = d3.geoMercator();
@@ -38,11 +72,11 @@ export default function TileSVG({ country, payload, variant = "mini" }: Props) {
         [pad, pad],
         [width - pad, height - pad],
       ],
-      country as any
+      countryForView as any
     );
     const p = d3.geoPath(proj);
     return { path: p, projection: proj };
-  }, [country, width, height]);
+  }, [countryForView, width, height]);
 
   const cells = useMemo(() => {
     if (!("cells" in payload)) return [];
@@ -85,6 +119,29 @@ export default function TileSVG({ country, payload, variant = "mini" }: Props) {
     return out;
   }, [payload, variant]);
 
+  // If named points are present, decode them similarly (and respect maxRender)
+  const decodedNamedPoints = useMemo(() => {
+    if (!("points_named" in (payload as any))) return [] as [number, number, string][];
+    const scale = (payload as any).points_scale ?? 10000;
+    const pts = (payload as any).points_named as [number, number, string][];
+    const maxRender = variant === "large" ? 20000 : 5000;
+
+    if (pts.length <= maxRender) {
+      return pts.map(([lonq, latq, name]) => [lonq / scale, latq / scale, name] as [number, number, string]);
+    }
+
+    const step = pts.length / maxRender;
+    const out: [number, number, string][] = [];
+    for (let i = 0; i < maxRender; i++) {
+      const idx = Math.floor(i * step);
+      const [lonq, latq, name] = pts[idx];
+      out.push([lonq / scale, latq / scale, name]);
+    }
+    return out;
+  }, [payload, variant]);
+
+
+
   const maxC = useMemo(() => d3.max(cells, (d) => d.c) ?? 1, [cells]);
 
   const color = useMemo(() => {
@@ -99,21 +156,86 @@ export default function TileSVG({ country, payload, variant = "mini" }: Props) {
     return `clip-${safeUid}-${country.id}-${safePattern}-${variant}`;
   }, [uid, country.id, payload.pattern, variant]);
 
+  // Labels are rendered by the parent overlay (`SmallMultiple`). No local label state is kept here.
+
   return (
     <div className="relative">
       <svg viewBox={`0 0 ${width} ${height}`} className="block h-auto w-full">
         <defs>
           <clipPath id={clipId}>
-            <path d={path(country as any) ?? ""} />
+            <path d={path(countryForView as any) ?? ""} />
           </clipPath>
         </defs>
 
         {/* base country outline */}
-        <path d={path(country as any) ?? ""} fill="none" stroke="#3f3f46" strokeWidth={1.2} />
+        <path d={path(countryForView as any) ?? ""} fill="none" stroke="#3f3f46" strokeWidth={1.2} />
 
         {/* data */}
-        <g clipPath={`url(#${clipId})`}>
-          {"points_q" in (payload as any) ? (
+        <g clipPath={`url(#${clipId})`} onClick={() => onPointClick?.(null)}>
+          {"points_named" in (payload as any) ? (
+            decodedNamedPoints.map((pt, i) => {
+              const [lon, lat, name] = pt;
+              const p = projection([lon, lat] as any);
+              if (!p) return null;
+
+              const visibleR = Math.max(0.35, (variant === "large" ? 2.6 : 1.4) / (viewScale ?? 1));
+              const hitR = Math.max(visibleR, (12 / (viewScale ?? 1)));
+
+              // For mini variants we render a simple marker without interactive hit targets
+              if (variant !== "large") {
+                return (
+                  <circle
+                    key={i}
+                    cx={p[0]}
+                    cy={p[1]}
+                    r={visibleR}
+                    fill="#93c5fd"
+                    fillOpacity={0.38}
+                  />
+                );
+              }
+
+              return (
+                <g key={i} style={{ cursor: "pointer" }}>
+                  <circle
+                    cx={p[0]}
+                    cy={p[1]}
+                    r={visibleR}
+                    fill="#93c5fd"
+                    fillOpacity={0.5}
+                    onMouseEnter={(e) => {
+                      e.stopPropagation();
+                      onPointHover?.({ x: p[0], y: p[1], name });
+                    }}
+                    onMouseLeave={(e) => {
+                      e.stopPropagation();
+                      onPointHover?.(null);
+                    }}
+                  />
+                  {/* invisible but pointer-enabled hit target to improve hover & click reliability */}
+                  <circle
+                    cx={p[0]}
+                    cy={p[1]}
+                    r={hitR}
+                    fill="rgba(0,0,0,0.0001)"
+                    onPointerDown={(e) => e.stopPropagation()}
+                    onPointerEnter={(e) => {
+                      e.stopPropagation();
+                      onPointHover?.({ x: p[0], y: p[1], name });
+                    }}
+                    onPointerLeave={(e) => {
+                      e.stopPropagation();
+                      onPointHover?.(null);
+                    }}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      onPointClick?.({ x: p[0], y: p[1], name });
+                    }}
+                  />
+                </g>
+              );
+            })
+          ) : "points_q" in (payload as any) ? (
             decodedPoints.map((pt, i) => {
               const p = projection(pt as any);
               if (!p) return null;
@@ -122,9 +244,9 @@ export default function TileSVG({ country, payload, variant = "mini" }: Props) {
                   key={i}
                   cx={p[0]}
                   cy={p[1]}
-                  r={variant === "large" ? 2.8 : 1.7}
+                  r={Math.max(0.35, (variant === "large" ? 2.6 : 1.4) / (viewScale ?? 1))}
                   fill="#93c5fd"
-                  fillOpacity={variant === "large" ? 0.45 : 0.35}
+                  fillOpacity={variant === "large" ? 0.5 : 0.38}
                 />
               );
             })
@@ -146,7 +268,11 @@ export default function TileSVG({ country, payload, variant = "mini" }: Props) {
               );
             })
           )}
+
+
         </g>
+
+
       </svg>
 
       {hover && !("points_q" in (payload as any)) && (

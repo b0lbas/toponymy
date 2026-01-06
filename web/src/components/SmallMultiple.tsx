@@ -17,7 +17,7 @@ function clamp(v: number, min: number, max: number) {
 }
 
 const MIN_ZOOM = 1.0;
-const MAX_ZOOM = 10.0;
+const MAX_ZOOM = 16.0;
 
 // how much “empty space” beyond edges we allow while panning (px)
 const PAN_PAD = 80;
@@ -36,6 +36,7 @@ export default function SmallMultiple({ country, entry }: Props) {
 
   // For displaying zoom in header (UI state).
   const [zoomUI, setZoomUI] = useState(1);
+  const [selectedLabel, setSelectedLabel] = useState<{ name: string } | null>(null);
 
   // Modal refs
   const viewportRef = useRef<HTMLDivElement | null>(null); // visible viewport
@@ -103,6 +104,24 @@ export default function SmallMultiple({ country, entry }: Props) {
     const places = entry.places.toLocaleString();
     return `${places} places • z${entry.zoom}`;
   }, [entry.places, entry.zoom]);
+
+  const decodedNamedPoints = useMemo(() => {
+    if (!payload) return [];
+    const scale = (payload as any).points_scale ?? 10000;
+
+    if ("points_named" in (payload as any) && Array.isArray((payload as any).points_named)) {
+      const pts = (payload as any).points_named as [number, number, string][];
+      return pts.map(([lonq, latq, name]) => ({ lon: lonq / scale, lat: latq / scale, name }));
+    }
+
+    // Fallback: if only quantized coords are available, show them (names unavailable)
+    if ("points_q" in (payload as any) && Array.isArray((payload as any).points_q)) {
+      const pts = (payload as any).points_q as [number, number][];
+      return pts.map(([lonq, latq]) => ({ lon: lonq / scale, lat: latq / scale, name: null }));
+    }
+
+    return [];
+  }, [payload]);
 
   const applyTransform = () => {
     const stage = stageRef.current;
@@ -229,11 +248,30 @@ export default function SmallMultiple({ country, entry }: Props) {
       applyTransform();
     });
     ro.observe(vp);
-    return () => ro.disconnect();
+
+    // Add native wheel listener with passive:false to avoid "Unable to preventDefault" warnings
+    const wheelHandler = (e: WheelEvent) => {
+      // call our existing handler which expects an event-like object
+      onWheel(e as any);
+    };
+    vp.addEventListener("wheel", wheelHandler, { passive: false });
+
+    return () => {
+      ro.disconnect();
+      vp.removeEventListener("wheel", wheelHandler);
+    };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [open, payload]);
 
-  const onWheel = (e: WheelEvent<HTMLDivElement>) => {
+  // Clear selection when payload or zoom changes
+  useEffect(() => {
+    setSelectedLabel(null);
+  }, [payload, zoomUI]);
+
+  const onWheel = (e: WheelEvent<HTMLDivElement> | WheelEvent) => {
+    // clear any selected label when zooming
+    setSelectedLabel(null);
+
     e.preventDefault();
     e.stopPropagation();
 
@@ -244,13 +282,13 @@ export default function SmallMultiple({ country, entry }: Props) {
     stopInertia();
 
     const rect = vp.getBoundingClientRect();
-    const mx = e.clientX - rect.left;
-    const my = e.clientY - rect.top;
+    const mx = (e as WheelEvent).clientX - rect.left;
+    const my = (e as WheelEvent).clientY - rect.top;
 
     const { scale, tx, ty } = viewRef.current;
 
     // Smooth exponential zoom (trackpad friendly)
-    const factor = Math.exp(-e.deltaY * 0.0015);
+    const factor = Math.exp(-((e as WheelEvent).deltaY) * 0.0015);
     const nextScale = clamp(scale * factor, MIN_ZOOM, MAX_ZOOM);
     if (nextScale === scale) return;
 
@@ -268,6 +306,9 @@ export default function SmallMultiple({ country, entry }: Props) {
   };
 
   const onPointerDown = (e: PointerEvent<HTMLDivElement>) => {
+    // clear any selected label when starting a drag/interaction
+    setSelectedLabel(null);
+
     if (e.button !== 0) return;
     const vp = viewportRef.current;
     if (!vp) return;
@@ -291,8 +332,11 @@ export default function SmallMultiple({ country, entry }: Props) {
   };
 
   const onPointerMove = (e: PointerEvent<HTMLDivElement>) => {
+    // Only clear selected label when actively dragging (so hover can work)
     if (!dragRef.current.active) return;
     if (dragRef.current.pointerId !== e.pointerId) return;
+
+    setSelectedLabel(null);
 
     const now = performance.now();
     const dtMs = Math.max(1, now - dragRef.current.lastT);
@@ -403,32 +447,78 @@ export default function SmallMultiple({ country, entry }: Props) {
               </div>
             </div>
 
-            <div className="flex-1 p-3 overflow-hidden">
-              <div
-                ref={viewportRef}
-                className="h-full w-full overflow-hidden rounded-xl border border-zinc-800 bg-black/20 cursor-grab active:cursor-grabbing"
-                onWheel={onWheel}
-                onPointerDown={onPointerDown}
-                onPointerMove={onPointerMove}
-                onPointerUp={onPointerUp}
-                onPointerCancel={onPointerCancel}
-                style={{ touchAction: "none" }}
-                title="Wheel to zoom, drag to pan"
-              >
-                {/* NOTE: no will-change here => less chance of bitmap caching */}
+            <div className="flex-1 p-3 overflow-hidden flex gap-3">
+              <div className="flex-1 h-full">
                 <div
-                  ref={stageRef}
+                  ref={viewportRef}
+                  className="h-full w-full overflow-hidden rounded-xl border border-zinc-800 bg-black/20 cursor-grab active:cursor-grabbing"
+                  onWheel={onWheel}
+                  onPointerDown={onPointerDown}
+                  onPointerMove={onPointerMove}
+                  onPointerUp={onPointerUp}
+                  onPointerCancel={onPointerCancel}
+                  style={{ touchAction: "none" }}
+                  title="Wheel to zoom, drag to pan"
+                >
+                  {/* NOTE: no will-change here => less chance of bitmap caching */}
+                  <div
+                    ref={stageRef}
                   style={{
                     transformOrigin: "0 0",
                   }}
                 >
                   <div ref={sheetRef} style={{ width: 1100 }} className="select-none">
-                    <TileSVG country={country} payload={payload} variant="large" />
+                    <TileSVG country={country} payload={payload} variant="large" viewScale={zoomUI}
+                      onPointClick={(pt) => {
+                        if (!pt) {
+                          setSelectedLabel(null);
+                          return;
+                        }
+                        setSelectedLabel({ name: pt.name });
+                      }}
+                      onPointHover={(pt) => {
+                        if (!pt) {
+                          setSelectedLabel(null);
+                          return;
+                        }
+                        setSelectedLabel({ name: pt.name });
+                      }}
+                    />
                   </div>
                 </div>
+
+              </div>
               </div>
 
-              <div className="mt-2 text-[11px] text-zinc-500">Wheel to zoom · Drag to pan</div>
+              <aside className="w-80 max-w-[28rem] border-l border-zinc-800 pl-3 overflow-auto">
+                {selectedLabel ? (
+                  <div className="mb-3">
+                    <div className="text-3xl font-extrabold text-zinc-50 leading-tight">{selectedLabel.name}</div>
+                    <div className="text-xs text-zinc-400 mb-2">Selected city</div>
+                  </div>
+                ) : null}
+
+                {decodedNamedPoints.length > 0 ? (
+                  <div>
+                    <div className="text-sm font-semibold text-zinc-100 mb-2">Cities ({(payload as any).points ?? decodedNamedPoints.length})</div>
+                    {(payload as any).points_sampled && <div className="text-xs text-zinc-400 mb-2">Sampled (not all cities)</div>}
+                    {!("points_named" in (payload as any)) && (
+                      <div className="text-xs text-zinc-500 mb-2">Names not exported for this pattern — showing coordinates only.</div>
+                    )}
+                    <ul className="divide-y divide-zinc-800 text-sm">
+                      {decodedNamedPoints.slice(0, 2000).map((p, i) => (
+                        <li key={i} className="py-2">
+                          <div className="font-medium text-zinc-100">{p.name ?? `(${p.lat.toFixed(4)}, ${p.lon.toFixed(4)})`}</div>
+                          <div className="text-[11px] text-zinc-400">{p.lat.toFixed(5)}, {p.lon.toFixed(5)}</div>
+                        </li>
+                      ))}
+                    </ul>
+                    {decodedNamedPoints.length > 2000 && <div className="text-xs text-zinc-400 mt-2">Showing first 2000 of {decodedNamedPoints.length}</div>}
+                  </div>
+                ) : (
+                  <div className="text-sm text-zinc-400">No city list available for this pattern.</div>
+                )}
+              </aside>
             </div>
           </motion.div>
         </motion.div>
@@ -455,7 +545,7 @@ export default function SmallMultiple({ country, entry }: Props) {
             className="block w-full cursor-zoom-in text-left"
             title="Open larger view"
           >
-            <TileSVG country={country} payload={payload} variant="mini" />
+            <TileSVG country={country} payload={payload} variant="mini" viewScale={1} />
           </button>
         )}
       </div>
