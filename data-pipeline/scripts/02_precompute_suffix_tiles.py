@@ -4,17 +4,6 @@ import pandas as pd
 from tqdm import tqdm
 import orjson
 
-"""
-Fast precompute for suffix maps (square slippy-tile grid).
-
-Key change vs the earlier naive version:
-- We compute suffix frequencies AND tile distributions in ONE PASS over places:
-    for each place: generate suffixes (len range) and increment tile counters for each suffix.
-This makes exporting hundreds/thousands of suffix patterns practical.
-
-Config: data-pipeline/config/europe.json
-"""
-
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 CFG = ROOT / "config" / "europe.json"
 INP = ROOT / "intermediate"
@@ -57,11 +46,9 @@ _SPLIT_TAIL_RE = re.compile(r"[\s\-]+")
 def sanitize_token(token: str) -> str:
     """Strip weird leading/trailing punctuation from the final token (e.g. 'aj)' -> 'aj')."""
     t = (token or "").strip().lower()
-    # remove bracketed junk that could become the tail token
     t = re.sub(r"\([^\)]*\)", " ", t)
     t = re.sub(r"\[[^\]]*\]", " ", t)
     t = t.strip()
-    # strip non-alnum at both edges
     t = re.sub(r"^[^0-9a-z]+", "", t)
     t = re.sub(r"[^0-9a-z]+$", "", t)
     return t
@@ -72,7 +59,6 @@ def tail_token(name_norm: str) -> str:
     s = (name_norm or "").strip()
     if not s:
         return s
-    # remove parenthetical / bracketed parts before tokenizing so "Foo (Bar)" ends as "foo" not "bar)"
     s = re.sub(r"\([^\)]*\)", " ", s)
     s = re.sub(r"\[[^\]]*\]", " ", s)
     parts = [p for p in _SPLIT_TAIL_RE.split(s) if p]
@@ -87,11 +73,13 @@ def suffixes(s: str, min_len: int, max_len: int):
 def main():
     import argparse
 
-    cfg = json.loads(CFG.read_text(encoding="utf-8"))
-
     parser = argparse.ArgumentParser(description="Precompute suffix tiles (optionally filter by country id or slug)")
     parser.add_argument("-c", "--country", help="comma-separated list of country ids or geofabrik slugs to process (e.g. 8 or 250,8)", default=None)
+    parser.add_argument("--config", help="path to config json to use (default: data-pipeline/config/europe.json)", default=None)
     args = parser.parse_args()
+
+    cfg_path = pathlib.Path(args.config) if args.config else CFG
+    cfg = json.loads(cfg_path.read_text(encoding="utf-8"))
 
     targets = []
     if args.country:
@@ -105,7 +93,7 @@ def main():
     max_len = int(cfg.get("suffix_max_len", 8))
     min_places = int(cfg.get("min_places_for_candidate", 50))
     top_export = int(cfg.get("top_patterns_to_export", 16))
-    selection_mode = str(cfg.get("selection_mode", "score")).lower()  # freq | score | hybrid
+    selection_mode = str(cfg.get("selection_mode", "score")).lower()
     analyze_tail_only = bool(cfg.get("analyze_tail_token_only", True))
     export_points = bool(cfg.get("export_points", True))
     points_scale = int(cfg.get("points_quant", 10000))
@@ -115,7 +103,6 @@ def main():
         cid = str(c["id"])
         slug = c["geofabrik_slug"]
 
-        # If targets specified, skip countries not in the target list
         if targets:
             match = False
             for t in targets:
@@ -178,13 +165,10 @@ def main():
         chosen_patterns = [d["pattern"] for d in chosen]
         chosen_set = set(chosen_patterns)
 
-        # Optional: collect per-pattern point samples (lon/lat) so the UI can render true place locations.
-        # We do this in a second pass, but only for the selected patterns (chosen_set) to keep it fast.
         points_q = {pat: [] for pat in chosen_patterns}
         points_seen = {pat: 0 for pat in chosen_patterns}
 
         def _reservoir_add(pat, lon_q, lat_q, name):
-            # Reservoir sampling (uniform), capped by max_points
             points_seen[pat] += 1
             arr = points_q[pat]
             if len(arr) < max_points:
@@ -195,7 +179,6 @@ def main():
                     arr[j] = [lon_q, lat_q, name]
 
         if export_points and chosen_patterns:
-            # prefer original name if available, otherwise fall back to name_norm
             names_norm = df["name_norm"].astype(str).tolist()
             names_raw = df["name"].astype(str).tolist() if "name" in df.columns else names_norm
             for lon, lat, nm_raw, nm_norm in tqdm(list(zip(lons, lats, names_raw, names_norm)), desc="collect points (selected patterns)"):
@@ -203,7 +186,6 @@ def main():
                 if not nm2:
                     continue
 
-                # quantize for smaller payloads
                 lon_q = int(round(float(lon) * points_scale))
                 lat_q = int(round(float(lat) * points_scale))
 
@@ -234,7 +216,6 @@ def main():
 
             if export_points:
                 pts = points_q.get(pat, [])
-                # pts now holds [lon_q, lat_q, name] tuples; keep backward-compatible points_q as coords-only
                 payload["points_q"] = [[lon_q, lat_q] for lon_q, lat_q, *_ in pts]
                 payload["points_named"] = pts
                 payload["points_scale"] = points_scale

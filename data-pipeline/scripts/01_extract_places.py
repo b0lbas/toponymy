@@ -60,8 +60,14 @@ class PlaceExtractor(osmium.SimpleHandler):
             return
 
 def main():
+    import argparse
+    parser = argparse.ArgumentParser(description="Extract place nodes from PBFs for countries listed in a config")
+    parser.add_argument("--config", help="path to config json (default: data-pipeline/config/europe.json)", default=None)
+    args = parser.parse_args()
+
     OUT.mkdir(parents=True, exist_ok=True)
-    cfg = json.loads(CFG.read_text(encoding="utf-8"))
+    cfg_path = pathlib.Path(args.config) if args.config else CFG
+    cfg = json.loads(cfg_path.read_text(encoding="utf-8"))
     for c in cfg["countries"]:
         slug = c["geofabrik_slug"]
         pbf = RAW / f"{slug}-latest.osm.pbf"

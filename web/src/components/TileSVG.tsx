@@ -12,6 +12,8 @@ type Props = {
   onPointHover?: (pt: { x: number; y: number; name: string } | null) => void;
 };
 
+type Position = number[];
+
 function tileBoundsLonLat(x: number, y: number, z: number) {
   const n = 2 ** z;
   const lon1 = (x / n) * 360 - 180;
@@ -31,42 +33,198 @@ function keepLargestPolygonOnly(feature: any) {
   const g = feature?.geometry;
   if (!g || g.type !== "MultiPolygon") return feature;
 
+  // Prefer the polygon whose centroid is closest to the country's overall centroid.
+  // This avoids selecting a distant island / Far-East fragment for large countries.
+  const overallCentroid = d3.geoCentroid(feature as any);
   let bestIdx = 0;
-  let bestArea = -Infinity;
+  let bestScore = Infinity;
 
   g.coordinates.forEach((coords: any, i: number) => {
-    const poly: GeoJSON.Polygon = { type: "Polygon", coordinates: coords };
-    const a = d3.geoArea(poly as any);
-    if (a > bestArea) {
-      bestArea = a;
+    const polyFeat: GeoJSON.Feature<GeoJSON.Polygon> = {
+      type: "Feature",
+      geometry: { type: "Polygon", coordinates: coords },
+      properties: {},
+    } as any;
+
+    let c: any;
+    try {
+      c = d3.geoCentroid(polyFeat as any);
+    } catch {
+      c = null;
+    }
+
+    let score = Infinity;
+    if (c && overallCentroid) {
+      const dist = d3.geoDistance(overallCentroid as any, c as any);
+      score = Number.isFinite(dist) ? dist : Infinity;
+    }
+
+    if (score < bestScore) {
+      bestScore = score;
       bestIdx = i;
     }
   });
 
+  if (!Number.isFinite(bestScore)) {
+    // Fallback: choose the largest polygon by area
+    let bestArea = -Infinity;
+    g.coordinates.forEach((coords: any, i: number) => {
+      const poly: GeoJSON.Polygon = { type: "Polygon", coordinates: coords };
+      const a = d3.geoArea(poly as any);
+      if (a > bestArea) {
+        bestArea = a;
+        bestIdx = i;
+      }
+    });
+  }
+
   return {
     ...feature,
-    geometry: {
-      type: "Polygon",
-      coordinates: g.coordinates[bestIdx],
-    },
+    geometry: { type: "Polygon", coordinates: g.coordinates[bestIdx] },
   };
 }
 
-export default function TileSVG({ country, payload, variant = "mini", viewScale = 1, onPointClick }: Props) {
+function geomCrossesAntimeridian(geom: GeoJSON.Polygon | GeoJSON.MultiPolygon): boolean {
+  // Any adjacent lon jump > 180° OR total lon span > 180°.
+  let minLon = Infinity;
+  let maxLon = -Infinity;
+  let crosses = false;
+
+  const visitRing = (ring: number[][]) => {
+    let prevLon: number | null = null;
+    for (const pos of ring) {
+      const lon = Number(pos?.[0]);
+      if (!Number.isFinite(lon)) continue;
+      minLon = Math.min(minLon, lon);
+      maxLon = Math.max(maxLon, lon);
+      if (prevLon != null && Math.abs(lon - prevLon) > 180) crosses = true;
+      prevLon = lon;
+    }
+  };
+
+  if (geom.type === "Polygon") {
+    for (const ring of geom.coordinates as any) visitRing(ring);
+  } else {
+    for (const poly of geom.coordinates as any) for (const ring of poly) visitRing(ring);
+  }
+
+  if (!Number.isFinite(minLon) || !Number.isFinite(maxLon)) return false;
+  return crosses || maxLon - minLon > 180;
+}
+
+function wrap360(lon: number) {
+  const x = lon % 360;
+  return x < 0 ? x + 360 : x;
+}
+
+function wrap180(lon: number) {
+  let x = lon % 360;
+  if (x <= -180) x += 360;
+  if (x > 180) x -= 360;
+  return x;
+}
+
+function sampleLongitudes(
+  geom: GeoJSON.Polygon | GeoJSON.MultiPolygon,
+  maxSamples = 8000
+): number[] {
+  const out: number[] = [];
+
+  const pushRing = (ring: Position[]) => {
+    for (const p of ring) {
+      const lon = Number(p?.[0]);
+      if (Number.isFinite(lon)) out.push(lon);
+      if (out.length >= maxSamples) return;
+    }
+  };
+
+  if (geom.type === "Polygon") {
+    for (const ring of geom.coordinates as any) {
+      pushRing(ring);
+      if (out.length >= maxSamples) break;
+    }
+  } else {
+    for (const poly of geom.coordinates as any) {
+      for (const ring of poly) {
+        pushRing(ring);
+        if (out.length >= maxSamples) break;
+      }
+      if (out.length >= maxSamples) break;
+    }
+  }
+
+  return out;
+}
+
+/**
+ * Choose a “safe” central meridian so the projection seam falls into the largest longitude gap
+ * of the country (important for Russia and other dateline-crossing geometries).
+ */
+function computeSafeCentralMeridian(geom: GeoJSON.Polygon | GeoJSON.MultiPolygon): number | null {
+  if (!geomCrossesAntimeridian(geom)) return null;
+
+  const lons = sampleLongitudes(geom, 8000);
+  if (lons.length < 2) return null;
+
+  const a = lons.map(wrap360).sort((x, y) => x - y);
+  const n = a.length;
+  if (n < 2) return null;
+
+  let bestGap = -Infinity;
+  let bestI = 0;
+  let bestNext = 0;
+
+  for (let i = 0; i < n; i++) {
+    const next = i === n - 1 ? a[0] + 360 : a[i + 1]; // ✅ important: wrap-around gap uses +360
+    const gap = next - a[i];
+    if (gap > bestGap) {
+      bestGap = gap;
+      bestI = i;
+      bestNext = next;
+    }
+  }
+
+  // Empty gap is (a[bestI] .. bestNext). Country occupies the complement arc:
+  // [bestNext .. a[bestI]+360]. Take its midpoint.
+  const mid = (bestNext + (a[bestI] + 360)) / 2;
+
+  return wrap180(mid);
+}
+
+export default function TileSVG({
+  country,
+  payload,
+  variant = "mini",
+  viewScale = 1,
+  onPointClick,
+  onPointHover,
+}: Props) {
   const [hover, setHover] = useState<{ count: number; x: number; y: number } | null>(null);
 
   const width = variant === "large" ? 980 : 520;
   const height = variant === "large" ? 620 : 320;
   const pad = 10;
 
-  // Only for South Africa (ISO numeric id = "710"): drop distant islands by keeping the largest polygon
+  // Keep-largest only where it реально нужно (ЮАР). Россию не режем, а чиним шов проекцией.
   const countryForView = useMemo(() => {
-    if ((country as any).id === "710") return keepLargestPolygonOnly(country as any);
+    if (String((country as any).id) === "710") return keepLargestPolygonOnly(country as any);
     return country;
   }, [country]);
 
   const { path, projection } = useMemo(() => {
     const proj = d3.geoMercator();
+
+    // ✅ Robust dateline fix: choose a safe central meridian (seam goes into the biggest gap).
+    try {
+      const g = (countryForView as any)?.geometry as GeoJSON.Polygon | GeoJSON.MultiPolygon | undefined;
+      if (g) {
+        const cm = computeSafeCentralMeridian(g);
+        if (cm != null) proj.rotate([-cm, 0]);
+      }
+    } catch {
+      // best effort
+    }
+
     proj.fitExtent(
       [
         [pad, pad],
@@ -74,6 +232,7 @@ export default function TileSVG({ country, payload, variant = "mini", viewScale 
       ],
       countryForView as any
     );
+
     const p = d3.geoPath(proj);
     return { path: p, projection: proj };
   }, [countryForView, width, height]);
@@ -119,7 +278,6 @@ export default function TileSVG({ country, payload, variant = "mini", viewScale 
     return out;
   }, [payload, variant]);
 
-  // If named points are present, decode them similarly (and respect maxRender)
   const decodedNamedPoints = useMemo(() => {
     if (!("points_named" in (payload as any))) return [] as [number, number, string][];
     const scale = (payload as any).points_scale ?? 10000;
@@ -140,8 +298,6 @@ export default function TileSVG({ country, payload, variant = "mini", viewScale 
     return out;
   }, [payload, variant]);
 
-
-
   const maxC = useMemo(() => d3.max(cells, (d) => d.c) ?? 1, [cells]);
 
   const color = useMemo(() => {
@@ -155,8 +311,6 @@ export default function TileSVG({ country, payload, variant = "mini", viewScale 
     const safePattern = (payload.pattern ?? "pat").toString().replace(/\W+/g, "_");
     return `clip-${safeUid}-${country.id}-${safePattern}-${variant}`;
   }, [uid, country.id, payload.pattern, variant]);
-
-  // Labels are rendered by the parent overlay (`SmallMultiple`). No local label state is kept here.
 
   return (
     <div className="relative">
@@ -179,19 +333,11 @@ export default function TileSVG({ country, payload, variant = "mini", viewScale 
               if (!p) return null;
 
               const visibleR = Math.max(0.35, (variant === "large" ? 2.6 : 1.4) / (viewScale ?? 1));
-              const hitR = Math.max(visibleR, (12 / (viewScale ?? 1)));
+              const hitR = Math.max(visibleR, 12 / (viewScale ?? 1));
 
-              // For mini variants we render a simple marker without interactive hit targets
               if (variant !== "large") {
                 return (
-                  <circle
-                    key={i}
-                    cx={p[0]}
-                    cy={p[1]}
-                    r={visibleR}
-                    fill="#93c5fd"
-                    fillOpacity={0.38}
-                  />
+                  <circle key={i} cx={p[0]} cy={p[1]} r={visibleR} fill="#93c5fd" fillOpacity={0.38} />
                 );
               }
 
@@ -212,7 +358,6 @@ export default function TileSVG({ country, payload, variant = "mini", viewScale 
                       onPointHover?.(null);
                     }}
                   />
-                  {/* invisible but pointer-enabled hit target to improve hover & click reliability */}
                   <circle
                     cx={p[0]}
                     cy={p[1]}
@@ -268,11 +413,7 @@ export default function TileSVG({ country, payload, variant = "mini", viewScale 
               );
             })
           )}
-
-
         </g>
-
-
       </svg>
 
       {hover && !("points_q" in (payload as any)) && (

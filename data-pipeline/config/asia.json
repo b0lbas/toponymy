@@ -1,0 +1,27 @@
+{
+  "note": "Asian countries for suffix exports (Kazakhstan, Mongolia). Similar settings to Europe config.",
+  "zoom": 7,
+  "suffix_min_len": 2,
+  "suffix_max_len": 10,
+  "min_places_for_candidate": 10,
+  "top_patterns_to_export": 1000000,
+  "selection_mode": "score",
+  "analyze_tail_token_only": true,
+  "countries": [
+    {
+      "id": "398",
+      "name": "Kazakhstan",
+      "geofabrik_slug": "kazakhstan"
+    },
+    {
+      "id": "496",
+      "name": "Mongolia",
+      "geofabrik_slug": "mongolia"
+    }
+  ],
+  "export_points": true,
+  "points_quant": 10000,
+  "max_points_per_pattern": 50000,
+  "max_render_points_mini": 5000,
+  "max_render_points_large": 25000
+}
