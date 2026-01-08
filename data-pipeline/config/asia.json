@@ -1,5 +1,5 @@
 {
-  "note": "Asian countries for suffix exports (Kazakhstan, Mongolia). Similar settings to Europe config.",
+  "note": "Asian countries for suffix exports (Kazakhstan, Mongolia, + Central/Southeast Asia). Similar settings to Europe config.",
   "zoom": 7,
   "suffix_min_len": 2,
   "suffix_max_len": 10,
@@ -9,6 +9,11 @@
   "analyze_tail_token_only": true,
   "countries": [
     {
+      "id": "417",
+      "name": "Kyrgyzstan",
+      "geofabrik_slug": "kyrgyzstan"
+    },
+    {
       "id": "398",
       "name": "Kazakhstan",
       "geofabrik_slug": "kazakhstan"
@@ -17,6 +22,51 @@
       "id": "496",
       "name": "Mongolia",
       "geofabrik_slug": "mongolia"
+    },
+    {
+      "id": "764",
+      "name": "Thailand",
+      "geofabrik_slug": "thailand"
+    },
+    {
+      "id": "704",
+      "name": "Vietnam",
+      "geofabrik_slug": "vietnam"
+    },
+    {
+      "id": "116",
+      "name": "Cambodia",
+      "geofabrik_slug": "cambodia"
+    },
+    {
+      "id": "608",
+      "name": "Philippines",
+      "geofabrik_slug": "philippines"
+    },
+    {
+      "id": "458",
+      "name": "Malaysia",
+      "geofabrik_slug": "malaysia-singapore-brunei"
+    },
+    {
+      "id": "702",
+      "name": "Singapore",
+      "geofabrik_slug": "malaysia-singapore-brunei"
+    },
+    {
+      "id": "096",
+      "name": "Brunei",
+      "geofabrik_slug": "malaysia-singapore-brunei"
+    },
+    {
+      "id": "360",
+      "name": "Indonesia",
+      "geofabrik_slug": "indonesia"
+    },
+    {
+      "id": "626",
+      "name": "Timor-Leste",
+      "geofabrik_slug": "east-timor"
     }
   ],
   "export_points": true,

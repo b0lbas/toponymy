@@ -16,15 +16,71 @@ function clamp(v: number, min: number, max: number) {
   return Math.max(min, Math.min(max, v));
 }
 
+function normalizeId(idLike: unknown): string {
+  const s = (idLike ?? "").toString();
+  const n = Number.parseInt(s, 10);
+  if (Number.isFinite(n) && /^\d+$/.test(s)) return String(n);
+  return s;
+}
+
+function uniqueStrings(arr: string[]) {
+  return Array.from(new Set(arr.filter(Boolean)));
+}
+
+function buildDataKeyCandidates(country: CountryFeature): string[] {
+  const p: any = (country as any)?.properties ?? {};
+  const raw = [
+    // то, что раньше у тебя использовалось
+    (country as any)?.id?.toString?.() ?? "",
+    p?.id?.toString?.() ?? "",
+    p?.ID?.toString?.() ?? "",
+    // Natural Earth
+    p?.ISO_N3?.toString?.() ?? "",
+    p?.iso_n3?.toString?.() ?? "",
+    p?.ADM0_A3?.toString?.() ?? "",
+    p?.ISO_A3?.toString?.() ?? "",
+    p?.adm0_a3?.toString?.() ?? "",
+    p?.iso_a3?.toString?.() ?? "",
+  ];
+
+  const out: string[] = [];
+  for (const k of raw) {
+    if (!k) continue;
+    out.push(k);
+    out.push(normalizeId(k));
+  }
+  return uniqueStrings(out);
+}
+
+function sanitizeFile(file: string): string {
+  // entry.file должен быть относительным файлом без ведущего "/"
+  const f = (file ?? "").toString().replace(/^\/+/, "");
+  // encodeURI сохраняет "/" (если вдруг), но кодирует пробелы и т.п.
+  return encodeURI(f);
+}
+
+function buildUrlCandidates(country: CountryFeature, entryFile: string): string[] {
+  const keys = buildDataKeyCandidates(country);
+  const file = sanitizeFile(entryFile);
+
+  const prefixes = ["/data", "data"]; // basePath-safe
+  const urls: string[] = [];
+
+  for (const pref of prefixes) {
+    for (const key of keys) {
+      // key — это сегмент пути => encodeURIComponent
+      urls.push(`${pref}/${encodeURIComponent(key)}/${file}`);
+    }
+  }
+  return uniqueStrings(urls);
+}
+
 const MIN_ZOOM = 1.0;
 const MAX_ZOOM = 16.0;
-
-// how much “empty space” beyond edges we allow while panning (px)
 const PAN_PAD = 80;
 
-// inertia tuning
-const INERTIA_FRICTION = 0.92; // per frame-ish (dt adjusted)
-const INERTIA_STOP_SPEED = 10; // px/sec
+const INERTIA_FRICTION = 0.92;
+const INERTIA_STOP_SPEED = 10;
 
 export default function SmallMultiple({ country, entry }: Props) {
   const rootRef = useRef<HTMLDivElement | null>(null);
@@ -34,23 +90,19 @@ export default function SmallMultiple({ country, entry }: Props) {
   const [open, setOpen] = useState(false);
   const [err, setErr] = useState<string | null>(null);
 
-  // For displaying zoom in header (UI state).
   const [zoomUI, setZoomUI] = useState(1);
   const [selectedLabel, setSelectedLabel] = useState<{ name: string } | null>(null);
 
-  // Modal refs
-  const viewportRef = useRef<HTMLDivElement | null>(null); // visible viewport
-  const stageRef = useRef<HTMLDivElement | null>(null); // transformed wrapper
-  const sheetRef = useRef<HTMLDivElement | null>(null); // untransformed content (fixed size)
+  const viewportRef = useRef<HTMLDivElement | null>(null);
+  const stageRef = useRef<HTMLDivElement | null>(null);
+  const sheetRef = useRef<HTMLDivElement | null>(null);
 
-  // Transform state kept in refs for smooth updates without rerender spam
   const viewRef = useRef({
     scale: 1,
     tx: 0,
     ty: 0,
   });
 
-  // Drag state
   const dragRef = useRef({
     active: false,
     pointerId: -1,
@@ -61,14 +113,14 @@ export default function SmallMultiple({ country, entry }: Props) {
     lastX: 0,
     lastY: 0,
     lastT: 0,
-    vx: 0, // px/sec
+    vx: 0,
     vy: 0,
   });
 
-  // Inertia RAF
   const rafRef = useRef<number | null>(null);
   const rafLastTRef = useRef<number>(0);
 
+  // IntersectionObserver -> load only when near viewport
   useEffect(() => {
     const el = rootRef.current;
     if (!el) return;
@@ -87,18 +139,46 @@ export default function SmallMultiple({ country, entry }: Props) {
     return () => obs.disconnect();
   }, []);
 
+  // ✅ Robust payload loader (tries multiple URLs)
   useEffect(() => {
     if (!visible) return;
+
+    let cancelled = false;
+
     setPayload(null);
     setErr(null);
 
-    fetchJsonGz<PatternPayload>(`/data/${country.id}/${entry.file}`)
-      .then(setPayload)
-      .catch((e) => {
-        console.error(e);
-        setErr("Failed to load pattern data.");
-      });
-  }, [visible, country.id, entry.file]);
+    const urls = buildUrlCandidates(country, entry.file);
+
+    (async () => {
+      let lastErr: any = null;
+
+      for (const url of urls) {
+        try {
+          const data = await fetchJsonGz<PatternPayload>(url);
+          if (cancelled) return;
+
+          if (process.env.NODE_ENV !== "production") {
+            console.info("[SmallMultiple] payload loaded:", url);
+          }
+
+          setPayload(data);
+          return;
+        } catch (e) {
+          lastErr = e;
+        }
+      }
+
+      if (cancelled) return;
+
+      console.error("[SmallMultiple] Failed to load payload. Tried:", urls, "Last error:", lastErr);
+      setErr("Failed to load pattern data.");
+    })();
+
+    return () => {
+      cancelled = true;
+    };
+  }, [visible, country, entry.file]);
 
   const subtitle = useMemo(() => {
     const places = entry.places.toLocaleString();
@@ -114,7 +194,6 @@ export default function SmallMultiple({ country, entry }: Props) {
       return pts.map(([lonq, latq, name]) => ({ lon: lonq / scale, lat: latq / scale, name }));
     }
 
-    // Fallback: if only quantized coords are available, show them (names unavailable)
     if ("points_q" in (payload as any) && Array.isArray((payload as any).points_q)) {
       const pts = (payload as any).points_q as [number, number][];
       return pts.map(([lonq, latq]) => ({ lon: lonq / scale, lat: latq / scale, name: null }));
@@ -127,7 +206,6 @@ export default function SmallMultiple({ country, entry }: Props) {
     const stage = stageRef.current;
     if (!stage) return;
     const { scale, tx, ty } = viewRef.current;
-    // ✅ 2D transform only (no translate3d) to reduce GPU bitmap caching
     stage.style.transform = `translate(${tx}px, ${ty}px) scale(${scale})`;
   };
 
@@ -137,29 +215,24 @@ export default function SmallMultiple({ country, entry }: Props) {
     if (!vp || !sheet) return;
 
     const { scale } = viewRef.current;
-
     const vw = vp.clientWidth;
     const vh = vp.clientHeight;
 
-    // untransformed layout size of the content
     const sw = sheet.offsetWidth;
     const sh = sheet.offsetHeight;
 
     const W = sw * scale;
     const H = sh * scale;
 
-    // When content smaller than viewport: center it.
-    if (W <= vw) {
-      viewRef.current.tx = (vw - W) / 2;
-    } else {
+    if (W <= vw) viewRef.current.tx = (vw - W) / 2;
+    else {
       const minTx = vw - W - PAN_PAD;
       const maxTx = PAN_PAD;
       viewRef.current.tx = clamp(viewRef.current.tx, minTx, maxTx);
     }
 
-    if (H <= vh) {
-      viewRef.current.ty = (vh - H) / 2;
-    } else {
+    if (H <= vh) viewRef.current.ty = (vh - H) / 2;
+    else {
       const minTy = vh - H - PAN_PAD;
       const maxTy = PAN_PAD;
       viewRef.current.ty = clamp(viewRef.current.ty, minTy, maxTy);
@@ -197,7 +270,6 @@ export default function SmallMultiple({ country, entry }: Props) {
       const dt = dtMs / 1000;
       rafLastTRef.current = ts;
 
-      // dt-adjusted friction (stable across refresh rates)
       const friction = Math.pow(INERTIA_FRICTION, dtMs / 16);
 
       dragRef.current.vx *= friction;
@@ -249,11 +321,7 @@ export default function SmallMultiple({ country, entry }: Props) {
     });
     ro.observe(vp);
 
-    // Add native wheel listener with passive:false to avoid "Unable to preventDefault" warnings
-    const wheelHandler = (e: WheelEvent) => {
-      // call our existing handler which expects an event-like object
-      onWheel(e as any);
-    };
+    const wheelHandler = (e: globalThis.WheelEvent) => onWheel(e as any);
     vp.addEventListener("wheel", wheelHandler, { passive: false });
 
     return () => {
@@ -263,13 +331,11 @@ export default function SmallMultiple({ country, entry }: Props) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [open, payload]);
 
-  // Clear selection when payload or zoom changes
   useEffect(() => {
     setSelectedLabel(null);
   }, [payload, zoomUI]);
 
-  const onWheel = (e: WheelEvent<HTMLDivElement> | WheelEvent) => {
-    // clear any selected label when zooming
+  const onWheel = (e: WheelEvent<HTMLDivElement> | globalThis.WheelEvent) => {
     setSelectedLabel(null);
 
     e.preventDefault();
@@ -282,17 +348,15 @@ export default function SmallMultiple({ country, entry }: Props) {
     stopInertia();
 
     const rect = vp.getBoundingClientRect();
-    const mx = (e as WheelEvent).clientX - rect.left;
-    const my = (e as WheelEvent).clientY - rect.top;
+    const mx = (e as any).clientX - rect.left;
+    const my = (e as any).clientY - rect.top;
 
     const { scale, tx, ty } = viewRef.current;
 
-    // Smooth exponential zoom (trackpad friendly)
-    const factor = Math.exp(-((e as WheelEvent).deltaY) * 0.0015);
+    const factor = Math.exp(-((e as any).deltaY) * 0.0015);
     const nextScale = clamp(scale * factor, MIN_ZOOM, MAX_ZOOM);
     if (nextScale === scale) return;
 
-    // Keep the point under mouse fixed:
     const cx = (mx - tx) / scale;
     const cy = (my - ty) / scale;
 
@@ -306,12 +370,8 @@ export default function SmallMultiple({ country, entry }: Props) {
   };
 
   const onPointerDown = (e: PointerEvent<HTMLDivElement>) => {
-    // clear any selected label when starting a drag/interaction
     setSelectedLabel(null);
-
     if (e.button !== 0) return;
-    const vp = viewportRef.current;
-    if (!vp) return;
 
     stopInertia();
 
@@ -332,7 +392,6 @@ export default function SmallMultiple({ country, entry }: Props) {
   };
 
   const onPointerMove = (e: PointerEvent<HTMLDivElement>) => {
-    // Only clear selected label when actively dragging (so hover can work)
     if (!dragRef.current.active) return;
     if (dragRef.current.pointerId !== e.pointerId) return;
 
@@ -348,7 +407,6 @@ export default function SmallMultiple({ country, entry }: Props) {
     viewRef.current.tx = dragRef.current.startTx + dx;
     viewRef.current.ty = dragRef.current.startTy + dy;
 
-    // Velocity for inertia (px/sec)
     const ddx = e.clientX - dragRef.current.lastX;
     const ddy = e.clientY - dragRef.current.lastY;
     const vx = ddx / dt;
@@ -376,9 +434,7 @@ export default function SmallMultiple({ country, entry }: Props) {
 
     try {
       (e.currentTarget as HTMLDivElement).releasePointerCapture(e.pointerId);
-    } catch {
-      // ignore
-    }
+    } catch {}
 
     const speed = Math.hypot(dragRef.current.vx, dragRef.current.vy);
     if (speed > INERTIA_STOP_SPEED) startInertia();
@@ -460,34 +516,31 @@ export default function SmallMultiple({ country, entry }: Props) {
                   style={{ touchAction: "none" }}
                   title="Wheel to zoom, drag to pan"
                 >
-                  {/* NOTE: no will-change here => less chance of bitmap caching */}
-                  <div
-                    ref={stageRef}
-                  style={{
-                    transformOrigin: "0 0",
-                  }}
-                >
-                  <div ref={sheetRef} style={{ width: 1100 }} className="select-none">
-                    <TileSVG country={country} payload={payload} variant="large" viewScale={zoomUI}
-                      onPointClick={(pt) => {
-                        if (!pt) {
-                          setSelectedLabel(null);
-                          return;
-                        }
-                        setSelectedLabel({ name: pt.name });
-                      }}
-                      onPointHover={(pt) => {
-                        if (!pt) {
-                          setSelectedLabel(null);
-                          return;
-                        }
-                        setSelectedLabel({ name: pt.name });
-                      }}
-                    />
+                  <div ref={stageRef} style={{ transformOrigin: "0 0" }}>
+                    <div ref={sheetRef} style={{ width: 1100 }} className="select-none">
+                      <TileSVG
+                        country={country}
+                        payload={payload}
+                        variant="large"
+                        viewScale={zoomUI}
+                        onPointClick={(pt) => {
+                          if (!pt) {
+                            setSelectedLabel(null);
+                            return;
+                          }
+                          setSelectedLabel({ name: pt.name });
+                        }}
+                        onPointHover={(pt) => {
+                          if (!pt) {
+                            setSelectedLabel(null);
+                            return;
+                          }
+                          setSelectedLabel({ name: pt.name });
+                        }}
+                      />
+                    </div>
                   </div>
                 </div>
-
-              </div>
               </div>
 
               <aside className="w-80 max-w-[28rem] border-l border-zinc-800 pl-3 overflow-auto">
@@ -500,20 +553,34 @@ export default function SmallMultiple({ country, entry }: Props) {
 
                 {decodedNamedPoints.length > 0 ? (
                   <div>
-                    <div className="text-sm font-semibold text-zinc-100 mb-2">Cities ({(payload as any).points ?? decodedNamedPoints.length})</div>
-                    {(payload as any).points_sampled && <div className="text-xs text-zinc-400 mb-2">Sampled (not all cities)</div>}
+                    <div className="text-sm font-semibold text-zinc-100 mb-2">
+                      Cities ({(payload as any).points ?? decodedNamedPoints.length})
+                    </div>
+                    {(payload as any).points_sampled && (
+                      <div className="text-xs text-zinc-400 mb-2">Sampled (not all cities)</div>
+                    )}
                     {!("points_named" in (payload as any)) && (
-                      <div className="text-xs text-zinc-500 mb-2">Names not exported for this pattern — showing coordinates only.</div>
+                      <div className="text-xs text-zinc-500 mb-2">
+                        Names not exported for this pattern — showing coordinates only.
+                      </div>
                     )}
                     <ul className="divide-y divide-zinc-800 text-sm">
                       {decodedNamedPoints.slice(0, 2000).map((p, i) => (
                         <li key={i} className="py-2">
-                          <div className="font-medium text-zinc-100">{p.name ?? `(${p.lat.toFixed(4)}, ${p.lon.toFixed(4)})`}</div>
-                          <div className="text-[11px] text-zinc-400">{p.lat.toFixed(5)}, {p.lon.toFixed(5)}</div>
+                          <div className="font-medium text-zinc-100">
+                            {p.name ?? `(${p.lat.toFixed(4)}, ${p.lon.toFixed(4)})`}
+                          </div>
+                          <div className="text-[11px] text-zinc-400">
+                            {p.lat.toFixed(5)}, {p.lon.toFixed(5)}
+                          </div>
                         </li>
                       ))}
                     </ul>
-                    {decodedNamedPoints.length > 2000 && <div className="text-xs text-zinc-400 mt-2">Showing first 2000 of {decodedNamedPoints.length}</div>}
+                    {decodedNamedPoints.length > 2000 && (
+                      <div className="text-xs text-zinc-400 mt-2">
+                        Showing first 2000 of {decodedNamedPoints.length}
+                      </div>
+                    )}
                   </div>
                 ) : (
                   <div className="text-sm text-zinc-400">No city list available for this pattern.</div>

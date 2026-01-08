@@ -5,7 +5,7 @@ from tqdm import tqdm
 import orjson
 
 ROOT = pathlib.Path(__file__).resolve().parents[1]
-CFG = ROOT / "config" / "europe.json"
+CFG = ROOT / "config" / "asia.json"
 INP = ROOT / "intermediate"
 OUT = ROOT / "export"
 

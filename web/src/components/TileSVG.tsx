@@ -1,5 +1,8 @@
-import { useId, useMemo, useState } from "react";
+import { useEffect, useId, useMemo, useState } from "react";
 import * as d3 from "d3";
+import { mesh } from "topojson-client";
+import type { Topology } from "topojson-specification";
+
 import type { CountryFeature } from "./MapView";
 import type { PatternPayload } from "../lib/data";
 
@@ -22,19 +25,13 @@ function tileBoundsLonLat(x: number, y: number, z: number) {
   const lat1 = (Math.atan(Math.sinh(Math.PI * (1 - (2 * y) / n))) * 180) / Math.PI;
   const lat2 = (Math.atan(Math.sinh(Math.PI * (1 - (2 * (y + 1)) / n))) * 180) / Math.PI;
 
-  const west = lon1;
-  const east = lon2;
-  const south = lat2;
-  const north = lat1;
-  return { west, south, east, north };
+  return { west: lon1, east: lon2, south: lat2, north: lat1 };
 }
 
 function keepLargestPolygonOnly(feature: any) {
   const g = feature?.geometry;
   if (!g || g.type !== "MultiPolygon") return feature;
 
-  // Prefer the polygon whose centroid is closest to the country's overall centroid.
-  // This avoids selecting a distant island / Far-East fragment for large countries.
   const overallCentroid = d3.geoCentroid(feature as any);
   let bestIdx = 0;
   let bestScore = Infinity;
@@ -66,7 +63,6 @@ function keepLargestPolygonOnly(feature: any) {
   });
 
   if (!Number.isFinite(bestScore)) {
-    // Fallback: choose the largest polygon by area
     let bestArea = -Infinity;
     g.coordinates.forEach((coords: any, i: number) => {
       const poly: GeoJSON.Polygon = { type: "Polygon", coordinates: coords };
@@ -85,7 +81,6 @@ function keepLargestPolygonOnly(feature: any) {
 }
 
 function geomCrossesAntimeridian(geom: GeoJSON.Polygon | GeoJSON.MultiPolygon): boolean {
-  // Any adjacent lon jump > 180° OR total lon span > 180°.
   let minLon = Infinity;
   let maxLon = -Infinity;
   let crosses = false;
@@ -124,10 +119,7 @@ function wrap180(lon: number) {
   return x;
 }
 
-function sampleLongitudes(
-  geom: GeoJSON.Polygon | GeoJSON.MultiPolygon,
-  maxSamples = 8000
-): number[] {
+function sampleLongitudes(geom: GeoJSON.Polygon | GeoJSON.MultiPolygon, maxSamples = 8000): number[] {
   const out: number[] = [];
 
   const pushRing = (ring: Position[]) => {
@@ -156,10 +148,6 @@ function sampleLongitudes(
   return out;
 }
 
-/**
- * Choose a “safe” central meridian so the projection seam falls into the largest longitude gap
- * of the country (important for Russia and other dateline-crossing geometries).
- */
 function computeSafeCentralMeridian(geom: GeoJSON.Polygon | GeoJSON.MultiPolygon): number | null {
   if (!geomCrossesAntimeridian(geom)) return null;
 
@@ -172,25 +160,167 @@ function computeSafeCentralMeridian(geom: GeoJSON.Polygon | GeoJSON.MultiPolygon
 
   let bestGap = -Infinity;
   let bestI = 0;
-  let bestNext = 0;
 
   for (let i = 0; i < n; i++) {
-    const next = i === n - 1 ? a[0] + 360 : a[i + 1]; // ✅ important: wrap-around gap uses +360
+    const next = i === n - 1 ? a[0] + 360 : a[i + 1];
     const gap = next - a[i];
     if (gap > bestGap) {
       bestGap = gap;
       bestI = i;
-      bestNext = next;
     }
   }
 
-  // Empty gap is (a[bestI] .. bestNext). Country occupies the complement arc:
-  // [bestNext .. a[bestI]+360]. Take its midpoint.
-  const mid = (bestNext + (a[bestI] + 360)) / 2;
-
+  const next = bestI === n - 1 ? a[0] + 360 : a[bestI + 1];
+  const mid = (next + (a[bestI] + 360)) / 2;
   return wrap180(mid);
 }
 
+/** ----------------- topo loader ----------------- */
+const _topoCache = new Map<string, Promise<any>>();
+function loadTopo(url: string) {
+  if (!_topoCache.has(url)) {
+    _topoCache.set(
+      url,
+      fetch(url).then((r) => {
+        if (!r.ok) throw new Error(`Failed to load ${url}: ${r.status}`);
+        return r.json();
+      })
+    );
+  }
+  return _topoCache.get(url)!;
+}
+
+const ADMIN1_URL = "/geo/ne_10m_admin1.json";
+
+/** ----------------- ISO3 resolving ----------------- */
+function isValidA3(v: any): v is string {
+  return typeof v === "string" && v.length === 3 && v !== "-99";
+}
+
+function getISO3FromCountryProps(country: any): string | null {
+  const p = country?.properties ?? {};
+  const v =
+    p.ADM0_A3 ??
+    p.ISO_A3 ??
+    p.adm0_a3 ??
+    p.iso_a3 ??
+    p.SOV_A3 ??
+    p.sov_a3 ??
+    null;
+
+  return isValidA3(v) ? v : null;
+}
+
+function getCountryName(country: any): string | null {
+  const p = country?.properties ?? {};
+  const v = p.name ?? p.NAME ?? p.admin ?? p.ADMIN ?? null;
+  if (typeof v === "string" && v.trim()) return v.trim();
+  return null;
+}
+
+function normName(s: string) {
+  return s
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, " ")
+    .trim();
+}
+
+let _admin1NameToA3Promise: Promise<Map<string, string>> | null = null;
+
+function loadAdmin1NameToA3(): Promise<Map<string, string>> {
+  if (_admin1NameToA3Promise) return _admin1NameToA3Promise;
+
+  _admin1NameToA3Promise = loadTopo(ADMIN1_URL).then((topo: Topology<any>) => {
+    const obj = (topo as any).objects?.admin1;
+    const geoms = obj?.geometries;
+    const m = new Map<string, string>();
+
+    if (!Array.isArray(geoms)) return m;
+
+    for (const g of geoms) {
+      const p = g?.properties ?? {};
+      const a3 = p.adm0_a3 ?? p.ADM0_A3 ?? null;
+      if (!isValidA3(a3)) continue;
+
+      const admin = p.admin ?? p.ADMIN ?? null;
+      const geonunit = p.geonunit ?? p.GEONUNIT ?? null;
+
+      if (typeof admin === "string" && admin.trim()) m.set(normName(admin), a3);
+      if (typeof geonunit === "string" && geonunit.trim()) m.set(normName(geonunit), a3);
+    }
+
+    return m;
+  });
+
+  return _admin1NameToA3Promise;
+}
+
+const _warnedNoIso = new Set<string>();
+
+async function resolveISO3(country: any): Promise<string | null> {
+  const direct = getISO3FromCountryProps(country);
+  if (direct) return direct;
+
+  const nm = getCountryName(country);
+  if (!nm) return null;
+
+  const map = await loadAdmin1NameToA3();
+  const k = normName(nm);
+
+  const v = map.get(k);
+  if (v) return v;
+
+  // маленькие эвристики (на всякий)
+  if (k.startsWith("the ")) {
+    const v2 = map.get(k.slice(4));
+    if (v2) return v2;
+  }
+
+  return null;
+}
+
+/** ----------------- admin1 mesh cache ----------------- */
+function getA3FromAdmin1Props(p: any): string | null {
+  const v = p?.adm0_a3 ?? p?.ADM0_A3 ?? p?.sov_a3 ?? p?.SOV_A3 ?? p?.gu_a3 ?? p?.GU_A3 ?? null;
+  return isValidA3(v) ? v : null;
+}
+
+const _admin1MeshCache = new Map<string, Promise<GeoJSON.MultiLineString | GeoJSON.LineString | null>>();
+
+function loadAdmin1MeshForISO3(iso3: string) {
+  const key = `${ADMIN1_URL}::${iso3}`;
+  if (_admin1MeshCache.has(key)) return _admin1MeshCache.get(key)!;
+
+  const p = loadTopo(ADMIN1_URL)
+    .then((topo: Topology<any>) => {
+      const obj = (topo as any).objects?.admin1;
+      if (!obj) return null;
+
+      // Включаем дуги:
+      // - внутренние (оба региона в iso3)
+      // - внешняя граница (b == null, но a в iso3)
+      // - границы с соседями (одна сторона iso3)
+      const m = mesh(
+        topo as any,
+        obj as any,
+        (a: any, b: any) => {
+          const a0 = getA3FromAdmin1Props(a?.properties);
+          const b0 = b ? getA3FromAdmin1Props(b?.properties) : null;
+          return a0 === iso3 || b0 === iso3;
+        }
+      ) as any;
+
+      return m ?? null;
+    })
+    .catch(() => null);
+
+  _admin1MeshCache.set(key, p);
+  return p;
+}
+
+/** ----------------- component ----------------- */
 export default function TileSVG({
   country,
   payload,
@@ -205,7 +335,6 @@ export default function TileSVG({
   const height = variant === "large" ? 620 : 320;
   const pad = 10;
 
-  // Keep-largest only where it реально нужно (ЮАР). Россию не режем, а чиним шов проекцией.
   const countryForView = useMemo(() => {
     if (String((country as any).id) === "710") return keepLargestPolygonOnly(country as any);
     return country;
@@ -214,16 +343,13 @@ export default function TileSVG({
   const { path, projection } = useMemo(() => {
     const proj = d3.geoMercator();
 
-    // ✅ Robust dateline fix: choose a safe central meridian (seam goes into the biggest gap).
     try {
       const g = (countryForView as any)?.geometry as GeoJSON.Polygon | GeoJSON.MultiPolygon | undefined;
       if (g) {
         const cm = computeSafeCentralMeridian(g);
         if (cm != null) proj.rotate([-cm, 0]);
       }
-    } catch {
-      // best effort
-    }
+    } catch {}
 
     proj.fitExtent(
       [
@@ -233,9 +359,71 @@ export default function TileSVG({
       countryForView as any
     );
 
-    const p = d3.geoPath(proj);
-    return { path: p, projection: proj };
+    return { path: d3.geoPath(proj), projection: proj };
   }, [countryForView, width, height]);
+
+  const [iso3, setIso3] = useState<string | null>(() => getISO3FromCountryProps(countryForView as any));
+
+  useEffect(() => {
+    let cancelled = false;
+
+    const direct = getISO3FromCountryProps(countryForView as any);
+    if (direct) {
+      setIso3(direct);
+      return;
+    }
+
+    resolveISO3(countryForView as any)
+      .then((v) => {
+        if (cancelled) return;
+        setIso3(v);
+
+        if (!v) {
+          const id = String((countryForView as any)?.id ?? "");
+          if (!_warnedNoIso.has(id)) {
+            _warnedNoIso.add(id);
+            console.warn(
+              "[TileSVG] cannot resolve iso3 for country.id=",
+              (countryForView as any)?.id,
+              "propsKeys=",
+              Object.keys((countryForView as any)?.properties ?? {}),
+              "name=",
+              getCountryName(countryForView as any)
+            );
+          }
+        }
+      })
+      .catch(() => {
+        if (!cancelled) setIso3(null);
+      });
+
+    return () => {
+      cancelled = true;
+    };
+  }, [countryForView]);
+
+  const [admin1Mesh, setAdmin1Mesh] = useState<GeoJSON.MultiLineString | GeoJSON.LineString | null>(null);
+
+  useEffect(() => {
+    let cancelled = false;
+    if (!iso3) {
+      setAdmin1Mesh(null);
+      return;
+    }
+
+    loadAdmin1MeshForISO3(iso3).then((m) => {
+      if (!cancelled) setAdmin1Mesh(m);
+    });
+
+    return () => {
+      cancelled = true;
+    };
+  }, [iso3]);
+
+  const admin1PathD = useMemo(() => {
+    if (!admin1Mesh) return "";
+    return path({ type: "Feature", geometry: admin1Mesh, properties: {} } as any) ?? "";
+  }, [admin1Mesh, path]);
 
   const cells = useMemo(() => {
     if (!("cells" in payload)) return [];
@@ -285,7 +473,7 @@ export default function TileSVG({
     const maxRender = variant === "large" ? 20000 : 5000;
 
     if (pts.length <= maxRender) {
-      return pts.map(([lonq, latq, name]) => [lonq / scale, latq / scale, name] as [number, number, string]);
+      return pts.map(([lonq, latq, name]) => [lonq / scale, latq / scale, name] as any);
     }
 
     const step = pts.length / maxRender;
@@ -312,6 +500,12 @@ export default function TileSVG({
     return `clip-${safeUid}-${country.id}-${safePattern}-${variant}`;
   }, [uid, country.id, payload.pattern, variant]);
 
+  const borderStrokeWidth = useMemo(() => {
+    const base = variant === "large" ? 1.05 : 0.85;
+    const s = Math.max(1e-6, viewScale ?? 1);
+    return Math.max(0.35, base / s);
+  }, [variant, viewScale]);
+
   return (
     <div className="relative">
       <svg viewBox={`0 0 ${width} ${height}`} className="block h-auto w-full">
@@ -321,10 +515,7 @@ export default function TileSVG({
           </clipPath>
         </defs>
 
-        {/* base country outline */}
-        <path d={path(countryForView as any) ?? ""} fill="none" stroke="#3f3f46" strokeWidth={1.2} />
-
-        {/* data */}
+        {/* data (clipped) */}
         <g clipPath={`url(#${clipId})`} onClick={() => onPointClick?.(null)}>
           {"points_named" in (payload as any) ? (
             decodedNamedPoints.map((pt, i) => {
@@ -336,9 +527,7 @@ export default function TileSVG({
               const hitR = Math.max(visibleR, 12 / (viewScale ?? 1));
 
               if (variant !== "large") {
-                return (
-                  <circle key={i} cx={p[0]} cy={p[1]} r={visibleR} fill="#93c5fd" fillOpacity={0.38} />
-                );
+                return <circle key={i} cx={p[0]} cy={p[1]} r={visibleR} fill="#93c5fd" fillOpacity={0.38} />;
               }
 
               return (
@@ -414,6 +603,20 @@ export default function TileSVG({
             })
           )}
         </g>
+
+        {/* ✅ borders from admin1 (НЕ клипать) */}
+        {admin1PathD && (
+          <path
+            d={admin1PathD}
+            fill="none"
+            stroke="#71717a"
+            strokeOpacity={variant === "large" ? 0.35 : 0.28}
+            strokeWidth={borderStrokeWidth}
+            strokeLinejoin="round"
+            strokeLinecap="round"
+            pointerEvents="none"
+          />
+        )}
       </svg>
 
       {hover && !("points_q" in (payload as any)) && (
