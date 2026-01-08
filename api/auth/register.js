@@ -3,11 +3,10 @@ import { hashSync } from "bcrypt";
 import { createClient } from "@supabase/supabase-js";
 
 const JWT_SECRET = process.env.JWT_SECRET || "dev-secret-key-change-in-production";
+const SUPABASE_URL = process.env.SUPABASE_URL;
+const SUPABASE_KEY = process.env.SUPABASE_ANON_KEY;
 
-const supabase = createClient(
-  process.env.SUPABASE_URL || "",
-  process.env.SUPABASE_SECRET_KEY || ""
-);
+const supabase = createClient(SUPABASE_URL || "", SUPABASE_KEY || "");
 
 function sign(userId) {
   return jwt.sign({ userId }, JWT_SECRET, { expiresIn: "30d" });
