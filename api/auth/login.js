@@ -1,30 +1,13 @@
 import jwt from "jsonwebtoken";
-import fs from "fs";
-import path from "path";
-import { fileURLToPath } from "url";
 import { compareSync } from "bcrypt";
+import { createClient } from "@supabase/supabase-js";
 
-const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const JWT_SECRET = process.env.JWT_SECRET || "dev-secret-key-change-in-production";
 
-const dataDir = process.env.VERCEL ? "/tmp" : path.join(__dirname, "../../server/data");
-const usersFile = path.join(dataDir, "users.json");
-
-function ensureDir() {
-  if (!fs.existsSync(dataDir)) {
-    fs.mkdirSync(dataDir, { recursive: true });
-  }
-}
-
-function readUsers() {
-  try {
-    ensureDir();
-    if (!fs.existsSync(usersFile)) return {};
-    return JSON.parse(fs.readFileSync(usersFile, "utf-8"));
-  } catch {
-    return {};
-  }
-}
+const supabase = createClient(
+  process.env.SUPABASE_URL || "",
+  process.env.SUPABASE_SECRET_KEY || ""
+);
 
 function sign(userId) {
   return jwt.sign({ userId }, JWT_SECRET, { expiresIn: "30d" });
@@ -52,23 +35,35 @@ export default async function handler(req, res) {
     return res.status(400).json({ error: "Password required" });
   }
 
-  const users = readUsers();
-  let foundUser = null;
-  let foundUsername = null;
+  try {
+    // Get all users (inefficient but works for MVP)
+    const { data: users, error } = await supabase
+      .from("users")
+      .select("id, username, hash");
 
-  for (const [uid, userData] of Object.entries(users)) {
-    const match = compareSync(password, userData.hash);
-    if (match) {
-      foundUser = uid;
-      foundUsername = userData.username;
-      break;
+    if (error) {
+      return res.status(400).json({ error: error.message });
     }
-  }
 
-  if (!foundUser) {
-    return res.status(401).json({ error: "Password not found" });
-  }
+    let foundUser = null;
+    let foundUsername = null;
 
-  const token = sign(foundUser);
-  return res.json({ success: true, userId: foundUser, username: foundUsername, token });
+    for (const userData of users || []) {
+      const match = compareSync(password, userData.hash);
+      if (match) {
+        foundUser = userData.id;
+        foundUsername = userData.username;
+        break;
+      }
+    }
+
+    if (!foundUser) {
+      return res.status(401).json({ error: "Password not found" });
+    }
+
+    const token = sign(foundUser);
+    return res.json({ success: true, userId: foundUser, username: foundUsername, token });
+  } catch (e) {
+    return res.status(500).json({ error: e.message });
+  }
 }

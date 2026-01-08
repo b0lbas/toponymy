@@ -1,34 +1,12 @@
 import jwt from "jsonwebtoken";
-import fs from "fs";
-import path from "path";
-import { fileURLToPath } from "url";
+import { createClient } from "@supabase/supabase-js";
 
-const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const JWT_SECRET = process.env.JWT_SECRET || "dev-secret-key-change-in-production";
 
-const dataDir = process.env.VERCEL ? "/tmp" : path.join(__dirname, "../../server/data");
-const likesFile = path.join(dataDir, "likes.json");
-
-function ensureDir() {
-  if (!fs.existsSync(dataDir)) {
-    fs.mkdirSync(dataDir, { recursive: true });
-  }
-}
-
-function readLikes() {
-  try {
-    ensureDir();
-    if (!fs.existsSync(likesFile)) return {};
-    return JSON.parse(fs.readFileSync(likesFile, "utf-8"));
-  } catch {
-    return {};
-  }
-}
-
-function writeLikes(likes) {
-  ensureDir();
-  fs.writeFileSync(likesFile, JSON.stringify(likes, null, 2));
-}
+const supabase = createClient(
+  process.env.SUPABASE_URL || "",
+  process.env.SUPABASE_SECRET_KEY || ""
+);
 
 function verify(token) {
   try {
@@ -46,7 +24,7 @@ function corsHeaders(origin = "*") {
   };
 }
 
-export default function handler(req, res) {
+export default async function handler(req, res) {
   const corsOrigin = process.env.CORS_ORIGIN || "*";
   Object.entries(corsHeaders(corsOrigin)).forEach(([k, v]) => res.setHeader(k, v));
 
@@ -65,16 +43,44 @@ export default function handler(req, res) {
     return res.status(400).json({ error: "patternKey required" });
   }
 
-  const likes = readLikes();
-  const arr = new Set(likes[patternKey] ?? []);
-  const userId = payload.userId;
+  try {
+    const userId = payload.userId;
 
-  const isLiked = arr.has(userId);
-  if (isLiked) arr.delete(userId);
-  else arr.add(userId);
+    // Check if already liked
+    const { data: existing } = await supabase
+      .from("likes")
+      .select("id")
+      .eq("pattern_key", patternKey)
+      .eq("user_id", userId)
+      .single();
 
-  likes[patternKey] = Array.from(arr);
-  writeLikes(likes);
+    let liked = false;
+    if (existing) {
+      // Delete like
+      await supabase
+        .from("likes")
+        .delete()
+        .eq("pattern_key", patternKey)
+        .eq("user_id", userId);
+      liked = false;
+    } else {
+      // Add like
+      await supabase.from("likes").insert({
+        pattern_key: patternKey,
+        user_id: userId,
+        created_at: Date.now(),
+      });
+      liked = true;
+    }
 
-  return res.json({ success: true, liked: !isLiked, count: arr.size });
+    // Get updated count
+    const { count } = await supabase
+      .from("likes")
+      .select("id", { count: "exact" })
+      .eq("pattern_key", patternKey);
+
+    return res.json({ success: true, liked, count: count || 0 });
+  } catch (e) {
+    return res.status(500).json({ error: e.message });
+  }
 }

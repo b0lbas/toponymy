@@ -1,25 +1,18 @@
-import fs from "fs";
-import path from "path";
-import { fileURLToPath } from "url";
+import jwt from "jsonwebtoken";
+import { createClient } from "@supabase/supabase-js";
 
-const __dirname = path.dirname(fileURLToPath(import.meta.url));
+const JWT_SECRET = process.env.JWT_SECRET || "dev-secret-key-change-in-production";
 
-const dataDir = process.env.VERCEL ? "/tmp" : path.join(__dirname, "../../server/data");
-const likesFile = path.join(dataDir, "likes.json");
+const supabase = createClient(
+  process.env.SUPABASE_URL || "",
+  process.env.SUPABASE_SECRET_KEY || ""
+);
 
-function ensureDir() {
-  if (!fs.existsSync(dataDir)) {
-    fs.mkdirSync(dataDir, { recursive: true });
-  }
-}
-
-function readLikes() {
+function verify(token) {
   try {
-    ensureDir();
-    if (!fs.existsSync(likesFile)) return {};
-    return JSON.parse(fs.readFileSync(likesFile, "utf-8"));
+    return jwt.verify(token, JWT_SECRET);
   } catch {
-    return {};
+    return null;
   }
 }
 
@@ -31,7 +24,7 @@ function corsHeaders(origin = "*") {
   };
 }
 
-export default function handler(req, res) {
+export default async function handler(req, res) {
   const corsOrigin = process.env.CORS_ORIGIN || "*";
   Object.entries(corsHeaders(corsOrigin)).forEach(([k, v]) => res.setHeader(k, v));
 
@@ -40,13 +33,34 @@ export default function handler(req, res) {
   }
 
   const { patternKey } = req.query;
-  if (!patternKey) {
-    return res.status(400).json({ error: "patternKey required" });
+  if (!patternKey || typeof patternKey !== "string") {
+    return res.status(400).json({ error: "Invalid patternKey" });
   }
 
-  const likes = readLikes();
-  const users = likes[patternKey] ?? [];
-  const count = users.length;
+  const token = req.headers.authorization?.split(" ")[1];
+  if (!token) return res.status(401).json({ error: "No token" });
+
+  const payload = verify(token);
+  if (!payload) return res.status(401).json({ error: "Invalid token" });
+
+  try {
+    const userId = payload.userId;
+
+    const { data } = await supabase
+      .from("likes")
+      .select("id")
+      .eq("pattern_key", patternKey)
+      .eq("user_id", userId)
+      .single();
+
+    return res.json({ liked: !!data });
+  } catch (e) {
+    if (e.code === "PGRST116") {
+      return res.json({ liked: false });
+    }
+    return res.status(500).json({ error: e.message });
+  }
+}
 
   return res.json({ count, users });
 }

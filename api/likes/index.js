@@ -1,27 +1,9 @@
-import fs from "fs";
-import path from "path";
-import { fileURLToPath } from "url";
+import { createClient } from "@supabase/supabase-js";
 
-const __dirname = path.dirname(fileURLToPath(import.meta.url));
-
-const dataDir = process.env.VERCEL ? "/tmp" : path.join(__dirname, "../../server/data");
-const likesFile = path.join(dataDir, "likes.json");
-
-function ensureDir() {
-  if (!fs.existsSync(dataDir)) {
-    fs.mkdirSync(dataDir, { recursive: true });
-  }
-}
-
-function readLikes() {
-  try {
-    ensureDir();
-    if (!fs.existsSync(likesFile)) return {};
-    return JSON.parse(fs.readFileSync(likesFile, "utf-8"));
-  } catch {
-    return {};
-  }
-}
+const supabase = createClient(
+  process.env.SUPABASE_URL || "",
+  process.env.SUPABASE_SECRET_KEY || ""
+);
 
 function corsHeaders(origin = "*") {
   return {
@@ -31,7 +13,7 @@ function corsHeaders(origin = "*") {
   };
 }
 
-export default function handler(req, res) {
+export default async function handler(req, res) {
   const corsOrigin = process.env.CORS_ORIGIN || "*";
   Object.entries(corsHeaders(corsOrigin)).forEach(([k, v]) => res.setHeader(k, v));
 
@@ -39,6 +21,21 @@ export default function handler(req, res) {
     return res.status(200).end();
   }
 
-  const likes = readLikes();
-  return res.json(likes);
+  try {
+    const { data } = await supabase
+      .from("likes")
+      .select("pattern_key, user_id");
+
+    const likes = {};
+    if (data) {
+      data.forEach(({ pattern_key, user_id }) => {
+        if (!likes[pattern_key]) likes[pattern_key] = [];
+        likes[pattern_key].push(user_id);
+      });
+    }
+
+    return res.json(likes);
+  } catch (e) {
+    return res.status(500).json({ error: e.message });
+  }
 }

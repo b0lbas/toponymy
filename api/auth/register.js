@@ -1,47 +1,16 @@
 import jwt from "jsonwebtoken";
-import fs from "fs";
-import path from "path";
-import { fileURLToPath } from "url";
-import { hashSync, compareSync } from "bcrypt";
+import { hashSync } from "bcrypt";
+import { createClient } from "@supabase/supabase-js";
 
-const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const JWT_SECRET = process.env.JWT_SECRET || "dev-secret-key-change-in-production";
 
-// Use /tmp for Vercel serverless (or current dir for local)
-const dataDir = process.env.VERCEL ? "/tmp" : path.join(__dirname, "../server/data");
-const usersFile = path.join(dataDir, "users.json");
-
-function ensureDir() {
-  if (!fs.existsSync(dataDir)) {
-    fs.mkdirSync(dataDir, { recursive: true });
-  }
-}
-
-function readUsers() {
-  try {
-    ensureDir();
-    if (!fs.existsSync(usersFile)) return {};
-    return JSON.parse(fs.readFileSync(usersFile, "utf-8"));
-  } catch {
-    return {};
-  }
-}
-
-function writeUsers(users) {
-  ensureDir();
-  fs.writeFileSync(usersFile, JSON.stringify(users, null, 2));
-}
+const supabase = createClient(
+  process.env.SUPABASE_URL || "",
+  process.env.SUPABASE_SECRET_KEY || ""
+);
 
 function sign(userId) {
   return jwt.sign({ userId }, JWT_SECRET, { expiresIn: "30d" });
-}
-
-function verify(token) {
-  try {
-    return jwt.verify(token, JWT_SECRET);
-  } catch {
-    return null;
-  }
 }
 
 function corsHeaders(origin = "*") {
@@ -70,21 +39,37 @@ export default async function handler(req, res) {
     return res.status(400).json({ error: "Password required" });
   }
 
-  const users = readUsers();
-  
-  // Check if username already exists
-  for (const userData of Object.values(users)) {
-    if (userData.username === username) {
+  try {
+    // Check if username exists
+    const { data: existing } = await supabase
+      .from("users")
+      .select("id")
+      .eq("username", username)
+      .single();
+
+    if (existing) {
       return res.status(409).json({ error: "Username already taken" });
     }
+
+    const hashed = hashSync(password, 10);
+    const userId = `user_${Date.now()}`;
+    const createdAt = Date.now();
+
+    // Insert user
+    const { error } = await supabase.from("users").insert({
+      id: userId,
+      username,
+      hash: hashed,
+      created_at: createdAt,
+    });
+
+    if (error) {
+      return res.status(400).json({ error: error.message });
+    }
+
+    const token = sign(userId);
+    return res.json({ success: true, userId, username, token });
+  } catch (e) {
+    return res.status(500).json({ error: e.message });
   }
-
-  const hashed = hashSync(password, 10);
-  const userId = `user_${Date.now()}`;
-
-  users[userId] = { username, hash: hashed, createdAt: Date.now() };
-  writeUsers(users);
-
-  const token = sign(userId);
-  return res.json({ success: true, userId, username, token });
 }
