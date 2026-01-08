@@ -54,11 +54,13 @@ export default async function handler(req, res) {
 
   const users = readUsers();
   let foundUser = null;
+  let foundUsername = null;
 
   for (const [uid, userData] of Object.entries(users)) {
     const match = compareSync(password, userData.hash);
     if (match) {
       foundUser = uid;
+      foundUsername = userData.username;
       break;
     }
   }
@@ -68,5 +70,5 @@ export default async function handler(req, res) {
   }
 
   const token = sign(foundUser);
-  return res.json({ success: true, userId: foundUser, token });
+  return res.json({ success: true, userId: foundUser, username: foundUsername, token });
 }

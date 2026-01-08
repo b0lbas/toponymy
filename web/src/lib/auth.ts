@@ -11,20 +11,21 @@ const getApiBase = () => {
 
 const API_BASE = getApiBase();
 
-export async function register(password: string): Promise<{ success: boolean; error?: string; userId?: string; token?: string }> {
-  if (!password) return { success: false, error: "Password required" };
+export async function register(username: string, password: string): Promise<{ success: boolean; error?: string; userId?: string; token?: string }> {
+  if (!username || !password) return { success: false, error: "Username and password required" };
   try {
     const res = await fetch(`${API_BASE}/auth/register`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ password }),
+      body: JSON.stringify({ username, password }),
     });
     const data = await res.json();
     if (!data.success) return { success: false, error: data.error };
     // Store token in localStorage
     if (data.token) localStorage.setItem("tm_token", data.token);
     if (data.userId) localStorage.setItem("tm_user_id", data.userId);
-    window.dispatchEvent(new CustomEvent("tm_auth_changed", { detail: { userId: data.userId } }));
+    if (data.username) localStorage.setItem("tm_username", data.username);
+    window.dispatchEvent(new CustomEvent("tm_auth_changed", { detail: { userId: data.userId, username: data.username } }));
     return { success: true, userId: data.userId, token: data.token };
   } catch (e: any) {
     return { success: false, error: e.message ?? "Register failed" };
@@ -44,7 +45,8 @@ export async function login(password: string): Promise<{ success: boolean; error
     // Store token in localStorage
     if (data.token) localStorage.setItem("tm_token", data.token);
     if (data.userId) localStorage.setItem("tm_user_id", data.userId);
-    window.dispatchEvent(new CustomEvent("tm_auth_changed", { detail: { userId: data.userId } }));
+    if (data.username) localStorage.setItem("tm_username", data.username);
+    window.dispatchEvent(new CustomEvent("tm_auth_changed", { detail: { userId: data.userId, username: data.username } }));
     return { success: true, userId: data.userId, token: data.token };
   } catch (e: any) {
     return { success: false, error: e.message ?? "Login failed" };
@@ -54,11 +56,16 @@ export async function login(password: string): Promise<{ success: boolean; error
 export function logout() {
   localStorage.removeItem("tm_token");
   localStorage.removeItem("tm_user_id");
-  window.dispatchEvent(new CustomEvent("tm_auth_changed", { detail: { userId: null } }));
+  localStorage.removeItem("tm_username");
+  window.dispatchEvent(new CustomEvent("tm_auth_changed", { detail: { userId: null, username: null } }));
 }
 
 export function getCurrentUser(): string | null {
   return localStorage.getItem("tm_user_id");
+}
+
+export function getUsername(): string | null {
+  return localStorage.getItem("tm_username");
 }
 
 export function getToken(): string | null {
@@ -71,10 +78,10 @@ export function showAuth() {
 }
 
 // small helper that listens for auth changes
-export function onAuthChange(cb: (userId: string | null) => void) {
-  const handler = (e: Event) => cb((e as CustomEvent).detail?.userId ?? null);
+export function onAuthChange(cb: (userId: string | null, username?: string | null) => void) {
+  const handler = (e: Event) => cb((e as CustomEvent).detail?.userId ?? null, (e as CustomEvent).detail?.username ?? null);
   window.addEventListener("tm_auth_changed", handler as EventListener);
   return () => window.removeEventListener("tm_auth_changed", handler as EventListener);
 }
 
-export default { register, login, logout, getCurrentUser, getToken, showAuth, onAuthChange };
+export default { register, login, logout, getCurrentUser, getUsername, getToken, showAuth, onAuthChange };

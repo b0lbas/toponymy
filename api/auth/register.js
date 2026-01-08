@@ -60,26 +60,31 @@ export default async function handler(req, res) {
     return res.status(200).end();
   }
 
-  const { password } = req.body;
+  const { username, password } = req.body;
+
+  if (!username || typeof username !== "string") {
+    return res.status(400).json({ error: "Username required" });
+  }
 
   if (!password || typeof password !== "string") {
     return res.status(400).json({ error: "Password required" });
   }
 
   const users = readUsers();
-  const hashed = hashSync(password, 10);
-  const userId = `user_${Date.now()}`;
-
-  // Check if this password hash already exists
-  for (const u of Object.values(users)) {
-    if (u.hash === hashed) {
-      return res.status(409).json({ error: "Password already registered" });
+  
+  // Check if username already exists
+  for (const userData of Object.values(users)) {
+    if (userData.username === username) {
+      return res.status(409).json({ error: "Username already taken" });
     }
   }
 
-  users[userId] = { hash: hashed, createdAt: Date.now() };
+  const hashed = hashSync(password, 10);
+  const userId = `user_${Date.now()}`;
+
+  users[userId] = { username, hash: hashed, createdAt: Date.now() };
   writeUsers(users);
 
   const token = sign(userId);
-  return res.json({ success: true, userId, token });
+  return res.json({ success: true, userId, username, token });
 }

@@ -4,12 +4,17 @@ import { AnimatePresence, motion } from "framer-motion";
 
 export default function AuthControl() {
   const [userId, setUserId] = useState<string | null>(() => auth.getCurrentUser());
+  const [username, setUsername] = useState<string>(() => auth.getUsername() || "");
   const [open, setOpen] = useState(false);
+  const [usernameInput, setUsernameInput] = useState("");
   const [password, setPassword] = useState("");
   const [msg, setMsg] = useState<string | null>(null);
 
   useEffect(() => {
-    return auth.onAuthChange((u) => setUserId(u));
+    return auth.onAuthChange((u, name) => {
+      setUserId(u);
+      setUsername(name || "");
+    });
   }, []);
 
   useEffect(() => {
@@ -20,10 +25,15 @@ export default function AuthControl() {
 
   const doRegister = async () => {
     setMsg(null);
-    const r = await auth.register(password);
+    if (!usernameInput.trim()) {
+      setMsg("Username required");
+      return;
+    }
+    const r = await auth.register(usernameInput.trim(), password);
     if (!r.success) setMsg(r.error ?? "Register failed");
     else {
       setMsg("Registered — signed in");
+      setUsernameInput("");
       setPassword("");
       setOpen(false);
     }
@@ -49,8 +59,7 @@ export default function AuthControl() {
     <div className="flex items-center gap-2">
       {userId ? (
         <div className="flex items-center gap-2">
-          <div className="text-[12px] text-zinc-300">User</div>
-          <div className="font-mono text-[12px] text-zinc-200">{userId.slice(0, 6)}</div>
+          <div className="text-[12px] text-zinc-300">{username || userId?.slice(0, 6) || "User"}</div>
           <button
             onClick={doLogout}
             className="rounded-xl border border-zinc-800 bg-zinc-950/60 px-3 py-1.5 text-xs text-zinc-300 hover:bg-zinc-950"
@@ -85,8 +94,15 @@ export default function AuthControl() {
               onClick={(e) => e.stopPropagation()}
             >
               <div className="mb-3 text-sm font-semibold text-zinc-100">Sign in or Register</div>
-              <div className="text-xs text-zinc-400 mb-3">Enter a password to create or sign in to an account.</div>
+              <div className="text-xs text-zinc-400 mb-3">Enter a username and password.</div>
 
+              <input
+                value={usernameInput}
+                onChange={(e) => setUsernameInput(e.target.value)}
+                className="w-full rounded-xl border border-zinc-800 bg-zinc-900/30 px-3 py-2 text-sm text-zinc-100 outline-none mb-2"
+                placeholder="Username"
+                type="text"
+              />
               <input
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
