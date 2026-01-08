@@ -598,6 +598,7 @@ export default function SmallMultiple({ country, entry }: Props) {
   const [liked, setLiked] = useState<boolean>(false);
   const [currentUser, setCurrentUser] = useState<string | null>(() => auth.getCurrentUser());
   const [liking, setLiking] = useState(false);
+  const justToggledRef = useRef(false);
 
   const patternKey = `${country.id}|${entry.file ?? `${entry.pattern}|${entry.mode}|${entry.zoom}`}`;
 
@@ -616,6 +617,11 @@ export default function SmallMultiple({ country, entry }: Props) {
       if (u) likes.hasLiked(patternKey, u).then(setLiked);
     });
     const offLikes = likes.onLikesChange((key) => {
+      // Ignore events immediately after our own toggle to prevent race condition
+      if (justToggledRef.current) {
+        justToggledRef.current = false;
+        return;
+      }
       if (!key || key === patternKey) {
         likes.getCount(patternKey).then(setLikeCount);
         const u = auth.getCurrentUser();
@@ -635,11 +641,15 @@ export default function SmallMultiple({ country, entry }: Props) {
       return;
     }
     setLiking(true);
+    justToggledRef.current = true; // Mark that we're toggling
     const r = await likes.toggleLike(patternKey, user);
     setLiking(false);
     if (r.ok) {
       setLikeCount(r.count ?? 0);
       setLiked(r.liked ?? false);
+      // justToggledRef will be cleared by the event listener
+    } else {
+      justToggledRef.current = false; // Reset if failed
     }
   };
 

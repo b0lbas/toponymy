@@ -73,9 +73,9 @@ export async function toggleLike(patternKey: string, userId: string | null): Pro
     const data = await res.json();
     if (!data.success) return { ok: false, error: data.error };
     
-    // NOTE: We don't dispatch an event here because the component
-    // will update its own state immediately with server response.
-    // Only dispatch for external changes (from other tabs/components)
+    // Dispatch event for CountryPanel to update sorting
+    // SmallMultiple will ignore this since it updates state directly from response
+    window.dispatchEvent(new CustomEvent("tm_likes_changed", { detail: { patternKey } }));
     
     return { ok: true, liked: data.liked, count: data.count };
   } catch (e: any) {
