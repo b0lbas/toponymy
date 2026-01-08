@@ -40,12 +40,23 @@ export default async function handler(req, res) {
   }
 
   try {
+    if (!SUPABASE_URL || !SUPABASE_KEY) {
+      return res.status(500).json({ 
+        error: "Server configuration error: Missing Supabase credentials",
+        debug: { hasUrl: !!SUPABASE_URL, hasKey: !!SUPABASE_KEY }
+      });
+    }
+
     // Check if username exists
-    const { data: existing } = await supabase
+    const { data: existing, error: checkError } = await supabase
       .from("users")
       .select("id")
       .eq("username", username)
       .single();
+
+    if (checkError && checkError.code !== 'PGRST116') {
+      return res.status(500).json({ error: `Database error: ${checkError.message}` });
+    }
 
     if (existing) {
       return res.status(409).json({ error: "Username already taken" });
@@ -56,20 +67,20 @@ export default async function handler(req, res) {
     const createdAt = Date.now();
 
     // Insert user
-    const { error } = await supabase.from("users").insert({
+    const { data: inserted, error: insertError } = await supabase.from("users").insert({
       id: userId,
       username,
       hash: hashed,
       created_at: createdAt,
     });
 
-    if (error) {
-      return res.status(400).json({ error: error.message });
+    if (insertError) {
+      return res.status(400).json({ error: `Failed to create user: ${insertError.message}` });
     }
 
     const token = sign(userId);
     return res.json({ success: true, userId, username, token });
   } catch (e) {
-    return res.status(500).json({ error: e.message });
+    return res.status(500).json({ error: `Exception: ${e.message}` });
   }
 }
