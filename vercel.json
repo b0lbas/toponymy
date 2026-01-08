@@ -1,6 +1,6 @@
 {
-  "installCommand": "npm install --prefix web && npm install --prefix api",
-  "buildCommand": "npm run build --prefix web",
+  "installCommand": "if [ -f ./package.json ]; then npm install; fi; if [ -f ./web/package.json ]; then npm install --prefix web; fi; if [ -f ./api/package.json ]; then npm install --prefix api; fi",
+  "buildCommand": "if [ -f ./web/package.json ]; then npm run build --prefix web; else npm run build; fi",
   "outputDirectory": "web/dist",
   "functions": {
     "api/**/*.js": {
