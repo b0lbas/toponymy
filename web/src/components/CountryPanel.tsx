@@ -70,9 +70,12 @@ export default function CountryPanel({ country, onClose }: Props) {
     // Load all likes on mount and subscribe to changes
     likes.getAllLikes().then(setAllLikesCache);
     const off = likes.onLikesChange((key) => {
-      // Refetch all likes on any change (simple approach)
-      likes.getAllLikes().then(setAllLikesCache);
-      setLikesTick((t) => t + 1);
+      // Refetch all likes on any change
+      // Small delay (100ms) to ensure server has fully processed the like/unlike
+      setTimeout(() => {
+        likes.getAllLikes().then(setAllLikesCache);
+        setLikesTick((t) => t + 1);
+      }, 100);
     });
     return off;
   }, []);
