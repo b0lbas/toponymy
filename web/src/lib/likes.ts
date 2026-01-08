@@ -73,8 +73,9 @@ export async function toggleLike(patternKey: string, userId: string | null): Pro
     const data = await res.json();
     if (!data.success) return { ok: false, error: data.error };
     
-    // Dispatch event to notify other components
-    window.dispatchEvent(new CustomEvent("tm_likes_changed", { detail: { patternKey } }));
+    // NOTE: We don't dispatch an event here because the component
+    // will update its own state immediately with server response.
+    // Only dispatch for external changes (from other tabs/components)
     
     return { ok: true, liked: data.liked, count: data.count };
   } catch (e: any) {
