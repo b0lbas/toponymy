@@ -2,6 +2,7 @@ import { useEffect, useMemo, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import MapView, { CountryFeature } from "./components/MapView";
 import CountryPanel from "./components/CountryPanel";
+import AuthControl from "./components/AuthControl";
 import { loadEuropeCountries } from "./lib/world";
 
 export default function App() {
@@ -28,6 +29,7 @@ export default function App() {
           <div className="text-xs text-zinc-400">{subtitle}</div>
         </div>
         <div className="hidden md:flex items-center gap-2 text-xs text-zinc-400">
+          <AuthControl />
         </div>
       </header>
 

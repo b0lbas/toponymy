@@ -3,13 +3,14 @@ import type { CountryFeature } from "./MapView";
 import type { CountryPatternsIndex, PatternIndexEntry } from "../lib/data";
 import { fetchJson } from "../lib/data";
 import SmallMultiple from "./SmallMultiple";
+import likes from "../lib/likes";
 
 type Props = {
   country: CountryFeature;
   onClose: () => void;
 };
 
-type SortMode = "localized" | "common" | "az";
+type SortMode = "localized" | "common" | "az" | "popularity";
 
 const PAGE_SIZE = 40;
 
@@ -62,6 +63,22 @@ export default function CountryPanel({ country, onClose }: Props) {
     return wm;
   }, [index]);
 
+  const [likesTick, setLikesTick] = useState(0);
+  const [allLikesCache, setAllLikesCache] = useState<Record<string, string[]>>({});
+
+  useEffect(() => {
+    // Load all likes on mount and subscribe to changes
+    likes.getAllLikes().then(setAllLikesCache);
+    const off = likes.onLikesChange((key) => {
+      // Refetch all likes on any change (simple approach)
+      likes.getAllLikes().then(setAllLikesCache);
+      setLikesTick((t) => t + 1);
+    });
+    return off;
+  }, []);
+
+  const patternKeyFor = (p: PatternIndexEntry) => `${country.id}|${p.file ?? `${p.pattern}|${p.mode}|${p.zoom}`}`;
+
   const baseSorted: PatternIndexEntry[] = useMemo(() => {
     const all = index?.patterns ?? [];
     const sorted = [...all];
@@ -70,6 +87,8 @@ export default function CountryPanel({ country, onClose }: Props) {
       sorted.sort((a, b) => a.pattern.localeCompare(b.pattern));
     } else if (sort === "common") {
       sorted.sort((a, b) => (b.places ?? 0) - (a.places ?? 0) || a.pattern.localeCompare(b.pattern));
+    } else if (sort === "popularity") {
+      sorted.sort((a, b) => (allLikesCache[patternKeyFor(b)]?.length ?? 0) - (allLikesCache[patternKeyFor(a)]?.length ?? 0) || (b.places ?? 0) - (a.places ?? 0) || a.pattern.localeCompare(b.pattern));
     } else {
       // localized (score desc, then places desc)
       sorted.sort(
@@ -81,7 +100,7 @@ export default function CountryPanel({ country, onClose }: Props) {
     }
 
     return sorted;
-  }, [index, sort]);
+  }, [index, sort, likesTick, country.id, allLikesCache]);
 
   const filteredSorted: PatternIndexEntry[] = useMemo(() => {
     const q = deferredQuery.trim().toLowerCase();
@@ -166,6 +185,7 @@ export default function CountryPanel({ country, onClose }: Props) {
           >
             <option value="localized">Most localized</option>
             <option value="common">Most common</option>
+            <option value="popularity">By popularity</option>
             <option value="az">A–Z</option>
           </select>
         </div>

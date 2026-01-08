@@ -18,6 +18,17 @@ node_modules/
 web/node_modules/
 web/dist/
 web/.vite/
+
+# Environment variables (keep .env.example in repo)
+.env
+.env.local
+.env.*.local
+server/.env
+server/data/
+
+# Build outputs
+dist/
+build/
 web/.cache/
 
 dist/

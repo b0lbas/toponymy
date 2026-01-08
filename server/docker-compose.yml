@@ -1,0 +1,25 @@
+version: '3.8'
+
+services:
+  server:
+    build: .
+    ports:
+      - "3001:3001"
+    environment:
+      PORT: 3001
+      JWT_SECRET: ${JWT_SECRET:-dev-secret-key}
+      CORS_ORIGIN: ${CORS_ORIGIN:-*}
+    volumes:
+      - ./data:/app/data
+    restart: unless-stopped
+
+  # Optional: nginx reverse proxy for production
+  # nginx:
+  #   image: nginx:alpine
+  #   ports:
+  #     - "80:80"
+  #     - "443:443"
+  #   volumes:
+  #     - ./nginx.conf:/etc/nginx/nginx.conf:ro
+  #   depends_on:
+  #     - server

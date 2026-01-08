@@ -1,0 +1,14 @@
+{
+  "buildCommand": "cd web && npm run build",
+  "outputDirectory": "web/dist",
+  "env": {
+    "JWT_SECRET": "@jwt_secret",
+    "CORS_ORIGIN": "@cors_origin"
+  },
+  "functions": {
+    "api/**/*.js": {
+      "memory": 128,
+      "maxDuration": 10
+    }
+  }
+}

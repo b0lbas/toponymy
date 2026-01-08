@@ -6,6 +6,8 @@ import type { PatternPayload, PatternIndexEntry } from "../lib/data";
 import { fetchJsonGz } from "../lib/data";
 import TileSVG from "./TileSVG";
 import { AnimatePresence, motion } from "framer-motion";
+import likes from "../lib/likes";
+import auth from "../lib/auth";
 
 type Props = {
   country: CountryFeature;
@@ -158,7 +160,7 @@ export default function SmallMultiple({ country, entry }: Props) {
           const data = await fetchJsonGz<PatternPayload>(url);
           if (cancelled) return;
 
-          if (process.env.NODE_ENV !== "production") {
+          if ((import.meta as any).env?.MODE !== "production") {
             console.info("[SmallMultiple] payload loaded:", url);
           }
 
@@ -592,10 +594,70 @@ export default function SmallMultiple({ country, entry }: Props) {
       </AnimatePresence>
     ) : null;
 
+  const [likeCount, setLikeCount] = useState<number>(0);
+  const [liked, setLiked] = useState<boolean>(false);
+  const [currentUser, setCurrentUser] = useState<string | null>(() => auth.getCurrentUser());
+  const [liking, setLiking] = useState(false);
+
+  const patternKey = `${country.id}|${entry.file ?? `${entry.pattern}|${entry.mode}|${entry.zoom}`}`;
+
+  // Load initial like count
+  useEffect(() => {
+    likes.getCount(patternKey).then(setLikeCount);
+    const user = auth.getCurrentUser();
+    setCurrentUser(user);
+    if (user) likes.hasLiked(patternKey, user).then(setLiked);
+  }, [patternKey]);
+
+  // Subscribe to auth and likes changes
+  useEffect(() => {
+    const offAuth = auth.onAuthChange((u) => {
+      setCurrentUser(u);
+      if (u) likes.hasLiked(patternKey, u).then(setLiked);
+    });
+    const offLikes = likes.onLikesChange((key) => {
+      if (!key || key === patternKey) {
+        likes.getCount(patternKey).then(setLikeCount);
+        const u = auth.getCurrentUser();
+        if (u) likes.hasLiked(patternKey, u).then(setLiked);
+      }
+    });
+    return () => {
+      offAuth();
+      offLikes();
+    };
+  }, [patternKey]);
+
+  const onToggleLike = async () => {
+    const user = auth.getCurrentUser();
+    if (!user) {
+      auth.showAuth();
+      return;
+    }
+    setLiking(true);
+    const r = await likes.toggleLike(patternKey, user);
+    setLiking(false);
+    if (r.ok) {
+      setLikeCount(r.count ?? 0);
+      setLiked(r.liked ?? false);
+    }
+  };
+
   return (
     <div ref={rootRef} className="flex flex-col gap-2">
       <div className="flex items-baseline justify-between gap-2">
-        <div className="text-sm font-semibold">{entry.title}</div>
+        <div className="flex items-center gap-3">
+          <div className="text-sm font-semibold">{entry.title}</div>
+          <button
+            onClick={onToggleLike}
+            disabled={liking}
+            className={`flex items-center gap-2 rounded-full border border-zinc-800 bg-zinc-950/40 px-2 py-0.5 text-xs disabled:opacity-50 ${liked ? "text-pink-400" : "text-zinc-300"}`}
+            title={liked ? "Unlike" : "Like"}
+          >
+            <span aria-hidden>{liked ? "♥" : "♡"}</span>
+            <span className="font-mono text-[11px]">{likeCount}</span>
+          </button>
+        </div>
         <div className="text-[11px] text-zinc-400">{subtitle}</div>
       </div>
 

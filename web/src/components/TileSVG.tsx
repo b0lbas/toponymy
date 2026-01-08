@@ -446,15 +446,40 @@ export default function TileSVG({
     return polys;
   }, [payload]);
 
+  const cellsPath = useMemo(() => {
+    if (variant === "large") return "";
+    if ((import.meta as any).env?.MODE !== "production") console.time(`cellsPath:${payload.pattern ?? "pat"}:${variant}`);
+    const s = cells
+      .map((d: any) => path({ type: "Feature", geometry: d.poly, properties: {} } as any) ?? "")
+      .filter(Boolean)
+      .join(" ");
+    if ((import.meta as any).env?.MODE !== "production") console.timeEnd(`cellsPath:${payload.pattern ?? "pat"}:${variant}`);
+    return s;
+  }, [cells, path, variant, payload.pattern]);
+
+  // instrumentation: log counts in dev for diagnostics
+  if ((import.meta as any).env?.MODE !== "production" && variant !== "large") {
+    // a small timeout so logs are grouped after initial render
+    setTimeout(() => {
+      try {
+        console.info(`[TileSVG] mini summary for pattern=${payload.pattern ?? "?"}: cells=${cells.length} pts=${("points_q" in (payload as any) ? (payload as any).points_q.length : 0)} named=${("points_named" in (payload as any) ? (payload as any).points_named.length : 0)}`);
+      } catch {}
+    }, 50);
+  }
+
   const decodedPoints = useMemo(() => {
     if (!("points_q" in (payload as any))) return [];
     const scale = (payload as any).points_scale ?? 10000;
     const pts = (payload as any).points_q as [number, number][];
-    const maxRender = variant === "large" ? 20000 : 5000;
+    // reduce mini rendering to keep DOM size manageable
+    const maxRender = variant === "large" ? 20000 : 700;
 
     if (pts.length <= maxRender) {
+      if ((import.meta as any).env?.MODE !== "production") console.info(`[TileSVG] decodedPoints: using full ${pts.length} points (limit ${maxRender})`);
       return pts.map(([lonq, latq]) => [lonq / scale, latq / scale] as [number, number]);
     }
+
+    if ((import.meta as any).env?.MODE !== "production") console.info(`[TileSVG] decodedPoints: downsampling ${pts.length} → ${maxRender}`);
 
     const step = pts.length / maxRender;
     const out: [number, number][] = [];
@@ -470,11 +495,15 @@ export default function TileSVG({
     if (!("points_named" in (payload as any))) return [] as [number, number, string][];
     const scale = (payload as any).points_scale ?? 10000;
     const pts = (payload as any).points_named as [number, number, string][];
-    const maxRender = variant === "large" ? 20000 : 5000;
+    // smaller cap for mini variant
+    const maxRender = variant === "large" ? 20000 : 700;
 
     if (pts.length <= maxRender) {
+      if ((import.meta as any).env?.MODE !== "production") console.info(`[TileSVG] decodedNamedPoints: using full ${pts.length} points (limit ${maxRender})`);
       return pts.map(([lonq, latq, name]) => [lonq / scale, latq / scale, name] as any);
     }
+
+    if ((import.meta as any).env?.MODE !== "production") console.info(`[TileSVG] decodedNamedPoints: downsampling ${pts.length} → ${maxRender}`);
 
     const step = pts.length / maxRender;
     const out: [number, number, string][] = [];
@@ -486,7 +515,7 @@ export default function TileSVG({
     return out;
   }, [payload, variant]);
 
-  const maxC = useMemo(() => d3.max(cells, (d) => d.c) ?? 1, [cells]);
+  const maxC = useMemo(() => d3.max(cells, (d: any) => d.c) ?? 1, [cells]);
 
   const color = useMemo(() => {
     const scale = d3.scaleSequential(d3.interpolateYlGnBu).domain([0, Math.sqrt(maxC)]);
@@ -527,6 +556,7 @@ export default function TileSVG({
               const hitR = Math.max(visibleR, 12 / (viewScale ?? 1));
 
               if (variant !== "large") {
+                // mini variant: simpler circles (fewer due to cap)
                 return <circle key={i} cx={p[0]} cy={p[1]} r={visibleR} fill="#93c5fd" fillOpacity={0.38} />;
               }
 
@@ -570,37 +600,59 @@ export default function TileSVG({
               );
             })
           ) : "points_q" in (payload as any) ? (
-            decodedPoints.map((pt, i) => {
-              const p = projection(pt as any);
-              if (!p) return null;
-              return (
-                <circle
-                  key={i}
-                  cx={p[0]}
-                  cy={p[1]}
-                  r={Math.max(0.35, (variant === "large" ? 2.6 : 1.4) / (viewScale ?? 1))}
-                  fill="#93c5fd"
-                  fillOpacity={variant === "large" ? 0.5 : 0.38}
-                />
-              );
-            })
+            variant === "large" ? (
+              decodedPoints.map((pt, i) => {
+                const p = projection(pt as any);
+                if (!p) return null;
+                return (
+                  <circle
+                    key={i}
+                    cx={p[0]}
+                    cy={p[1]}
+                    r={Math.max(0.35, (variant === "large" ? 2.6 : 1.4) / (viewScale ?? 1))}
+                    fill="#93c5fd"
+                    fillOpacity={variant === "large" ? 0.5 : 0.38}
+                  />
+                );
+              })
+            ) : (
+              // mini variant: fewer circles (capped earlier)
+              decodedPoints.map((pt, i) => {
+                const p = projection(pt as any);
+                if (!p) return null;
+                return <circle key={i} cx={p[0]} cy={p[1]} r={0.9} fill="#93c5fd" fillOpacity={0.38} />;
+              })
+            )
           ) : (
-            cells.map((d, i) => {
-              const dStr = path({ type: "Feature", geometry: d.poly, properties: {} } as any) ?? "";
-              return (
-                <path
-                  key={i}
-                  d={dStr}
-                  fill={color(d.c)}
-                  fillOpacity={0.85}
-                  stroke="#0a0a0a"
-                  strokeOpacity={0.35}
-                  strokeWidth={0.6}
-                  onMouseEnter={() => setHover({ count: d.c, x: d.x, y: d.y })}
-                  onMouseLeave={() => setHover(null)}
-                />
-              );
-            })
+            variant === "large" ? (
+              cells.map((d: any, i: number) => {
+                const dStr = path({ type: "Feature", geometry: d.poly, properties: {} } as any) ?? "";
+                return (
+                  <path
+                    key={i}
+                    d={dStr}
+                    fill={color(d.c)}
+                    fillOpacity={0.85}
+                    stroke="#0a0a0a"
+                    strokeOpacity={0.35}
+                    strokeWidth={0.6}
+                    onMouseEnter={() => setHover({ count: d.c, x: d.x, y: d.y })}
+                    onMouseLeave={() => setHover(null)}
+                  />
+                );
+              })
+            ) : (
+              // mini variant: combine all tile polygons into a single path to reduce DOM & layout overhead
+              <path
+                d={cellsPath}
+                fill="#93c5fd"
+                fillOpacity={0.85}
+                stroke="#0a0a0a"
+                strokeOpacity={0.35}
+                strokeWidth={0.6}
+                pointerEvents="auto"
+              />
+            )
           )}
         </g>
 
