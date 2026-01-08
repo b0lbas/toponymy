@@ -10,12 +10,32 @@ const getApiBase = () => {
 
 const API_BASE = getApiBase();
 
-export async function getLikes(patternKey: string): Promise<string[]> {
+// Cache for all likes data
+let likesCache: Record<string, string[]> = {};
+
+export async function getAllLikes(): Promise<Record<string, string[]>> {
   try {
     const res = await fetch(`${API_BASE}/likes`);
-    if (!res.ok) return [];
+    if (!res.ok) {
+      console.error("getAllLikes failed:", res.status);
+      return likesCache; // Return cached data on error
+    }
     const data = await res.json();
-    return (data[patternKey] || []) as string[];
+    likesCache = data; // Update cache
+    return data;
+  } catch (e) {
+    console.error("getAllLikes error:", e);
+    return likesCache; // Return cached data on error
+  }
+}
+
+export async function getLikes(patternKey: string): Promise<string[]> {
+  try {
+    // First try to get from cache
+    if (Object.keys(likesCache).length === 0) {
+      await getAllLikes(); // Load cache if empty
+    }
+    return likesCache[patternKey] || [];
   } catch (e) {
     console.error("getLikes error:", e);
     return [];
@@ -34,19 +54,32 @@ export async function getCount(patternKey: string): Promise<number> {
 
 export async function hasLiked(patternKey: string, userId: string | null): Promise<boolean> {
   if (!userId) return false;
-  const token = auth.getToken();
-  if (!token) return false;
-
+  
   try {
+    // Check from cache first for quick response
+    const likes = await getLikes(patternKey);
+    const inCache = likes.includes(userId);
+    
+    // Also verify with server if we have a token
+    const token = auth.getToken();
+    if (!token) return inCache;
+
     const res = await fetch(`${API_BASE}/likes/${encodeURIComponent(patternKey)}`, {
       headers: { "Authorization": `Bearer ${token}` }
     });
-    if (!res.ok) return false;
+    
+    if (!res.ok) {
+      console.error("hasLiked API failed:", res.status);
+      return inCache; // Fallback to cache
+    }
+    
     const data = await res.json();
     return data.liked === true;
   } catch (e) {
     console.error("hasLiked error:", e);
-    return false;
+    // Fallback: check cache
+    const likes = await getLikes(patternKey);
+    return likes.includes(userId || "");
   }
 }
 
@@ -73,26 +106,27 @@ export async function toggleLike(patternKey: string, userId: string | null): Pro
     const data = await res.json();
     if (!data.success) return { ok: false, error: data.error };
     
+    // Update cache locally
+    if (data.liked) {
+      // Add to cache
+      if (!likesCache[patternKey]) likesCache[patternKey] = [];
+      if (!likesCache[patternKey].includes(userId)) {
+        likesCache[patternKey].push(userId);
+      }
+    } else {
+      // Remove from cache
+      if (likesCache[patternKey]) {
+        likesCache[patternKey] = likesCache[patternKey].filter(id => id !== userId);
+      }
+    }
+    
     // Dispatch event for CountryPanel to update sorting
-    // SmallMultiple will ignore this since it updates state directly from response
     window.dispatchEvent(new CustomEvent("tm_likes_changed", { detail: { patternKey } }));
     
     return { ok: true, liked: data.liked, count: data.count };
   } catch (e: any) {
     console.error("toggleLike error:", e);
     return { ok: false, error: e.message ?? "Toggle failed" };
-  }
-}
-
-export async function getAllLikes(): Promise<Record<string, string[]>> {
-  try {
-    const res = await fetch(`${API_BASE}/likes`);
-    if (!res.ok) return {};
-    const data = await res.json();
-    return data;
-  } catch (e) {
-    console.error("getAllLikes error:", e);
-    return {};
   }
 }
 
