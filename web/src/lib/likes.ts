@@ -12,23 +12,42 @@ const API_BASE = getApiBase();
 
 export async function getLikes(patternKey: string): Promise<string[]> {
   try {
-    const res = await fetch(`${API_BASE}/likes/${encodeURIComponent(patternKey)}`);
+    const res = await fetch(`${API_BASE}/likes`);
+    if (!res.ok) return [];
     const data = await res.json();
-    return data.users ?? [];
-  } catch {
+    return (data[patternKey] || []) as string[];
+  } catch (e) {
+    console.error("getLikes error:", e);
     return [];
   }
 }
 
 export async function getCount(patternKey: string): Promise<number> {
-  const arr = await getLikes(patternKey);
-  return arr.length;
+  try {
+    const arr = await getLikes(patternKey);
+    return arr.length;
+  } catch (e) {
+    console.error("getCount error:", e);
+    return 0;
+  }
 }
 
 export async function hasLiked(patternKey: string, userId: string | null): Promise<boolean> {
   if (!userId) return false;
-  const arr = await getLikes(patternKey);
-  return arr.includes(userId);
+  const token = auth.getToken();
+  if (!token) return false;
+
+  try {
+    const res = await fetch(`${API_BASE}/likes/${encodeURIComponent(patternKey)}`, {
+      headers: { "Authorization": `Bearer ${token}` }
+    });
+    if (!res.ok) return false;
+    const data = await res.json();
+    return data.liked === true;
+  } catch (e) {
+    console.error("hasLiked error:", e);
+    return false;
+  }
 }
 
 export async function toggleLike(patternKey: string, userId: string | null): Promise<{ ok: boolean; liked?: boolean; count?: number; error?: string }> {
@@ -45,11 +64,21 @@ export async function toggleLike(patternKey: string, userId: string | null): Pro
       },
       body: JSON.stringify({ patternKey }),
     });
+    
+    if (!res.ok) {
+      const errData = await res.json();
+      return { ok: false, error: errData.error || "Toggle failed" };
+    }
+
     const data = await res.json();
     if (!data.success) return { ok: false, error: data.error };
+    
+    // Dispatch event to notify other components
     window.dispatchEvent(new CustomEvent("tm_likes_changed", { detail: { patternKey } }));
+    
     return { ok: true, liked: data.liked, count: data.count };
   } catch (e: any) {
+    console.error("toggleLike error:", e);
     return { ok: false, error: e.message ?? "Toggle failed" };
   }
 }
@@ -57,9 +86,11 @@ export async function toggleLike(patternKey: string, userId: string | null): Pro
 export async function getAllLikes(): Promise<Record<string, string[]>> {
   try {
     const res = await fetch(`${API_BASE}/likes`);
+    if (!res.ok) return {};
     const data = await res.json();
     return data;
-  } catch {
+  } catch (e) {
+    console.error("getAllLikes error:", e);
     return {};
   }
 }

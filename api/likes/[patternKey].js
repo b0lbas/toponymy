@@ -45,19 +45,22 @@ export default async function handler(req, res) {
   try {
     const userId = payload.userId;
 
-    const { data } = await supabase
+    const { data, error } = await supabase
       .from("likes")
       .select("id")
       .eq("pattern_key", patternKey)
-      .eq("user_id", userId)
-      .single();
+      .eq("user_id", userId);
 
-    return res.json({ liked: !!data });
-  } catch (e) {
-    if (e.code === "PGRST116") {
-      return res.json({ liked: false });
+    if (error) {
+      console.error("Query error:", error);
+      return res.status(500).json({ error: `Database error: ${error.message}` });
     }
-    return res.status(500).json({ error: e.message });
+
+    const liked = data && data.length > 0;
+    return res.json({ liked });
+  } catch (e) {
+    console.error("Exception:", e);
+    return res.status(500).json({ error: `Exception: ${e.message}` });
   }
 }
 

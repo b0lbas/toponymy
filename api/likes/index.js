@@ -22,20 +22,29 @@ export default async function handler(req, res) {
   }
 
   try {
-    const { data } = await supabase
+    const { data, error } = await supabase
       .from("likes")
       .select("pattern_key, user_id");
 
+    if (error) {
+      console.error("Query error:", error);
+      return res.status(500).json({ error: `Database error: ${error.message}` });
+    }
+
+    // Group by pattern_key
     const likes = {};
-    if (data) {
+    if (data && Array.isArray(data)) {
       data.forEach(({ pattern_key, user_id }) => {
-        if (!likes[pattern_key]) likes[pattern_key] = [];
+        if (!likes[pattern_key]) {
+          likes[pattern_key] = [];
+        }
         likes[pattern_key].push(user_id);
       });
     }
 
     return res.json(likes);
   } catch (e) {
-    return res.status(500).json({ error: e.message });
+    console.error("Exception:", e);
+    return res.status(500).json({ error: `Exception: ${e.message}` });
   }
 }

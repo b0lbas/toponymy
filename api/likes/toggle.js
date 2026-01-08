@@ -45,41 +45,62 @@ export default async function handler(req, res) {
   try {
     const userId = payload.userId;
 
-    // Check if already liked
-    const { data: existing } = await supabase
+    // Check if already liked - use .not.is(null) to avoid single() errors
+    const { data: existing, error: selectError } = await supabase
       .from("likes")
       .select("id")
       .eq("pattern_key", patternKey)
-      .eq("user_id", userId)
-      .single();
+      .eq("user_id", userId);
 
     let liked = false;
-    if (existing) {
-      // Delete like
-      await supabase
+    
+    if (selectError) {
+      console.error("Select error:", selectError);
+      return res.status(500).json({ error: `Database error: ${selectError.message}` });
+    }
+
+    if (existing && existing.length > 0) {
+      // Delete like - remove all duplicates if somehow they exist
+      const { error: deleteError } = await supabase
         .from("likes")
         .delete()
         .eq("pattern_key", patternKey)
         .eq("user_id", userId);
+      
+      if (deleteError) {
+        console.error("Delete error:", deleteError);
+        return res.status(500).json({ error: `Failed to delete like: ${deleteError.message}` });
+      }
       liked = false;
     } else {
       // Add like
-      await supabase.from("likes").insert({
+      const { error: insertError } = await supabase.from("likes").insert({
         pattern_key: patternKey,
         user_id: userId,
         created_at: Date.now(),
       });
+      
+      if (insertError) {
+        console.error("Insert error:", insertError);
+        return res.status(500).json({ error: `Failed to add like: ${insertError.message}` });
+      }
       liked = true;
     }
 
     // Get updated count
-    const { count } = await supabase
+    const { count, error: countError } = await supabase
       .from("likes")
-      .select("id", { count: "exact" })
+      .select("id", { count: "exact", head: true })
       .eq("pattern_key", patternKey);
+
+    if (countError) {
+      console.error("Count error:", countError);
+      return res.status(500).json({ error: `Failed to count likes: ${countError.message}` });
+    }
 
     return res.json({ success: true, liked, count: count || 0 });
   } catch (e) {
-    return res.status(500).json({ error: e.message });
+    console.error("Exception:", e);
+    return res.status(500).json({ error: `Exception: ${e.message}` });
   }
 }
