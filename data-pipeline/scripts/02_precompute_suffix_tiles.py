@@ -5,7 +5,7 @@ from tqdm import tqdm
 import orjson
 
 ROOT = pathlib.Path(__file__).resolve().parents[1]
-CFG = ROOT / "config" / "asia.json"
+CFG = ROOT / "config" / "north-america.json"
 INP = ROOT / "intermediate"
 OUT = ROOT / "export"
 
@@ -69,6 +69,21 @@ def suffixes(s: str, min_len: int, max_len: int):
     L = len(s)
     for k in range(min_len, min(max_len, L) + 1):
         yield "-" + s[-k:]
+
+# Blacklist: non-city suffixes (geographic features, infrastructure, etc.)
+SUFFIX_BLACKLIST = {
+    'road', 'mountain', 'creek', 'island', 'islands', 'lake', 'river',
+    'colony', 'falls', 'beach', 'bay', 'harbour', 'harbor', 'inlet',
+    'point', 'ridge', 'valley', 'brook', 'stream', 'fork', 'forks',
+    'hill', 'hills', 'park', 'ranch', 'station', 'junction', 'crossing',
+    'portage', 'narrows', 'pond', 'cove', 'corner', 'corners', 'landing',
+    'settlement', 'reserve', 'rapids', 'bridge', 'branch'
+}
+
+def is_valid_city_suffix(pattern: str) -> bool:
+    """Filter out patterns that are clearly non-city geographic features."""
+    pat = pattern.lower().lstrip('-')
+    return not any(bad in pat for bad in SUFFIX_BLACKLIST)
 
 def main():
     import argparse
@@ -139,6 +154,10 @@ def main():
 
         candidates = [s for s, f in freq.items() if f >= min_places]
         print(f"[candidates] {len(candidates):,} (min_places={min_places})")
+
+        # Filter out non-city suffixes (roads, mountains, etc.)
+        candidates = [s for s in candidates if is_valid_city_suffix(s)]
+        print(f"[filtered] {len(candidates):,} after removing non-city patterns")
 
         scored = []
         for pat in candidates:

@@ -55,8 +55,9 @@ const EUROPE_NUM_IDS = new Set<number>([
   417, 398, 496, 764, 704, 116, 608, 458, 360
 ]);
 
-// оставляем как у тебя
-const EXTRA_INCLUDED_IDS = new Set<number>([643, 398, 496]);
+// Дополнительно включаем вне Европы: Россия уже была, добавим Канаду (124), Гренландию (304), Мексику (484), США (840)
+// Эти страны будут отображаться целиком (без обрезки по bbox Европы).
+const EXTRA_INCLUDED_IDS = new Set<number>([643, 398, 496, 124, 304, 484, 840]);
 
 function normIsoId(idLike: unknown): number | null {
   if (idLike === null || idLike === undefined) return null;

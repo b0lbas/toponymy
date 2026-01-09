@@ -5,11 +5,21 @@ import osmium
 from unidecode import unidecode
 
 ROOT = pathlib.Path(__file__).resolve().parents[1]
-CFG = ROOT / "config" / "asia.json"
+CFG = ROOT / "config" / "north-america.json"
 RAW = ROOT / "raw"
 OUT = ROOT / "intermediate"
 
-PLACE_TAGS = set(["city","town","village","hamlet"])
+PLACE_TAGS = set(["city","town","village"])
+TOWNSHIP_RE = re.compile(r"\btownship\b", re.IGNORECASE)
+CHARTER_RE = re.compile(r"\bcharter\b", re.IGNORECASE)
+
+def clean_place_name(name: str, country_id: str) -> str:
+    # For USA, strip noisy words like "township" and "charter" but keep the place itself
+    if country_id == "840":
+        name = TOWNSHIP_RE.sub(" ", name)
+        name = CHARTER_RE.sub(" ", name)
+    # normalize whitespace
+    return re.sub(r"\s+", " ", name).strip()
 
 def normalize_name(name: str, strip_diacritics: bool = True) -> str:
     s = name.strip().lower()
@@ -41,6 +51,9 @@ class PlaceExtractor(osmium.SimpleHandler):
             if place not in PLACE_TAGS:
                 return
             name = n.tags.get("name")
+            if not name:
+                return
+            name = clean_place_name(name, self.country_id)
             if not name:
                 return
             lon = n.location.lon
@@ -103,7 +116,9 @@ def main():
         print(f"[parse] {c['name']} ({pbf.name})")
         h = PlaceExtractor(country_id=str(c["id"]), strip_diacritics=True)
         print(f"[apply] starting apply_file for {pbf.name}")
-        h.apply_file(str(pbf), locations=True)
+        # We only process nodes, so no need to resolve way node locations.
+        # Disabling location indexing drastically reduces memory usage on large PBFs.
+        h.apply_file(str(pbf), locations=False)
         print(f"[apply] finished apply_file for {pbf.name}; collected rows={len(h.rows)}")
         df = pd.DataFrame(h.rows)
         df.to_csv(out_csv, index=False)

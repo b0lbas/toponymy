@@ -96,16 +96,83 @@ function emptyFC(): GeoJSON.FeatureCollection {
   return { type: "FeatureCollection", features: [] };
 }
 
+// ---- Alaska transform: move down and shrink to reduce visual clutter ----
+const AK_ANCHOR: [number, number] = [-152, 63];
+const AK_SCALE = 0.5; // shrink width/height by 2x
+const AK_SHIFT: [number, number] = [30, -25]; // move east a bit and lower vertically
+
+function isAlaskaCoord(lon: number, lat: number): boolean {
+  return lon < -124 && lat > 50;
+}
+
+function transformAkCoord([lon, lat]: [number, number]): [number, number] {
+  const dLon = lon - AK_ANCHOR[0];
+  const dLat = lat - AK_ANCHOR[1];
+  const lon2 = AK_ANCHOR[0] + dLon * AK_SCALE + AK_SHIFT[0];
+  const lat2 = AK_ANCHOR[1] + dLat * AK_SCALE + AK_SHIFT[1];
+  return [lon2, lat2];
+}
+
+function transformAkPolygon(coords: number[][]): number[][] {
+  const shouldTransform = coords.some(([lon, lat]) => isAlaskaCoord(lon, lat));
+  if (!shouldTransform) return coords;
+  return coords.map((pt) => transformAkCoord(pt as [number, number]));
+}
+
+function transformAkGeometry(g: GeoJSON.Geometry): GeoJSON.Geometry {
+  if (!g) return g;
+  if (g.type === "Polygon") {
+    return {
+      type: "Polygon",
+      coordinates: (g.coordinates as any).map((ring: number[][]) => transformAkPolygon(ring)),
+    } as GeoJSON.Polygon;
+  }
+  if (g.type === "MultiPolygon") {
+    return {
+      type: "MultiPolygon",
+      coordinates: (g.coordinates as any).map((poly: number[][][]) =>
+        poly.map((ring: number[][]) => transformAkPolygon(ring))
+      ),
+    } as GeoJSON.MultiPolygon;
+  }
+  if (g.type === "LineString") {
+    const coords = g.coordinates as any;
+    const shouldTransform = Array.isArray(coords) && coords.some(([lon, lat]: any) => isAlaskaCoord(lon, lat));
+    if (!shouldTransform) return g;
+    return {
+      type: "LineString",
+      coordinates: coords.map((pt: any) => transformAkCoord(pt as [number, number])),
+    } as GeoJSON.LineString;
+  }
+  if (g.type === "MultiLineString") {
+    const coords = g.coordinates as any;
+    const shouldTransform =
+      Array.isArray(coords) && coords.some((line: any) => Array.isArray(line) && line.some(([lon, lat]: any) => isAlaskaCoord(lon, lat)));
+    if (!shouldTransform) return g;
+    return {
+      type: "MultiLineString",
+      coordinates: coords.map((line: any) => line.map((pt: any) => transformAkCoord(pt as [number, number]))),
+    } as GeoJSON.MultiLineString;
+  }
+  return g;
+}
+
+function maybeTransformGeometry(f: any): GeoJSON.Geometry {
+  return f.geometry as GeoJSON.Geometry;
+}
+
 function withAreaAndIds(features: any[]): CountryFeature[] {
   return features.map((f) => {
     const id = getStableIdFromAdmin0(f);
     const name = getName(f);
+    const geometry = maybeTransformGeometry(f);
     const a =
       Number(f?.properties?.area) ||
-      (f?.geometry ? Number(geoArea(f as any)) : 0);
+      (geometry ? Number(geoArea({ ...f, geometry } as any)) : 0);
 
     return {
       ...f,
+      geometry,
       id,
       properties: {
         ...(f?.properties ?? {}),
@@ -113,6 +180,21 @@ function withAreaAndIds(features: any[]): CountryFeature[] {
         name,
         area: a,
       },
+    } as CountryFeature;
+  });
+}
+
+function transformFallbackCountries(features: CountryFeature[]): CountryFeature[] {
+  return (features ?? []).map((f) => {
+    const id = normalizeId((f as any)?.id ?? (f as any)?.properties?.id ?? "");
+    const name = (f as any)?.properties?.name ?? getName(f as any);
+    const geometry = maybeTransformGeometry(f as any);
+    const area = Number((f as any)?.properties?.area) || (geometry ? Number(geoArea({ ...f, geometry } as any)) : 0);
+    return {
+      ...f,
+      id,
+      geometry,
+      properties: { ...(f as any)?.properties, id, name, area },
     } as CountryFeature;
   });
 }
@@ -283,10 +365,12 @@ function buildAdmin1InternalBordersFC(topo: Topology<any>, iso3: string): GeoJSO
     }
   ) as any;
 
-  if (!isEmptyLineGeom(m)) {
+  const geometry = m as any;
+
+  if (!isEmptyLineGeom(geometry)) {
     return {
       type: "FeatureCollection",
-      features: [{ type: "Feature", properties: {}, geometry: m as any }],
+      features: [{ type: "Feature", properties: {}, geometry }],
     };
   }
 
@@ -336,7 +420,8 @@ export default function MapView({ countries, selectedId, onSelect }: Props) {
   }, []);
 
   const dataCountries = useMemo(() => {
-    return (neCountries && neCountries.length ? neCountries : countries) ?? [];
+    if (neCountries && neCountries.length) return neCountries;
+    return transformFallbackCountries(countries ?? []);
   }, [neCountries, countries]);
 
   const countriesFC = useMemo(() => toFeatureCollection(dataCountries), [dataCountries]);

@@ -78,7 +78,7 @@ function buildUrlCandidates(country: CountryFeature, entryFile: string): string[
 }
 
 const MIN_ZOOM = 1.0;
-const MAX_ZOOM = 16.0;
+const MAX_ZOOM = 26.0;
 const PAN_PAD = 80;
 
 const INERTIA_FRICTION = 0.92;
