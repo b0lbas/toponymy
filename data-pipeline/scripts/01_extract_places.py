@@ -1,13 +1,16 @@
-import json, os, pathlib, re
+import json, os, pathlib, re, sys
 import pandas as pd
 from tqdm import tqdm
 import osmium
 from unidecode import unidecode
 
 ROOT = pathlib.Path(__file__).resolve().parents[1]
-CFG = ROOT / "config" / "north-america.json"
+CFG_NAME = sys.argv[1] if len(sys.argv) > 1 else "north-america.json"
+CFG = ROOT / "config" / CFG_NAME
 RAW = ROOT / "raw"
 OUT = ROOT / "intermediate"
+
+print(f"[info] Using config: {CFG.name}")
 
 PLACE_TAGS = set(["city","town","village"])
 TOWNSHIP_RE = re.compile(r"\btownship\b", re.IGNORECASE)

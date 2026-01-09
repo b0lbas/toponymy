@@ -4,7 +4,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import maplibregl, { GeoJSONSource } from "maplibre-gl";
 import "maplibre-gl/dist/maplibre-gl.css";
 import style from "../map/style.json";
-import { CountryFeature } from "../lib/world";
+import { CountryFeature, loadEuropeCountries } from "../lib/world";
 import { geoArea } from "d3-geo";
 import { mesh, feature as topoFeature } from "topojson-client";
 import type { Topology } from "topojson-specification";
@@ -18,14 +18,10 @@ type Props = {
 };
 
 const ADMIN0_URL_CANDIDATES = [
-  "/geo/ne_50m_admin0.geojson",
-  "/geo/ne_50m_admin0.json",
-  "/geo/ne_10m_admin0.geojson",
-  "/geo/ne_10m_admin0.json",
-  "geo/ne_50m_admin0.geojson",
-  "geo/ne_50m_admin0.json",
-  "geo/ne_10m_admin0.geojson",
+  "/geo/ne_10m_admin0.json",  // Try 10m first (better Caribbean detail)
+  "/geo/ne_50m_admin0.json",  // Then 50m
   "geo/ne_10m_admin0.json",
+  "geo/ne_50m_admin0.json",
 ];
 
 const ADMIN1_URL_CANDIDATES = [
@@ -393,12 +389,28 @@ export default function MapView({ countries, selectedId, onSelect }: Props) {
 
   useEffect(() => {
     let cancelled = false;
-    loadNaturalEarthAdmin0()
-      .then((arr) => !cancelled && setNeCountries(arr))
-      .catch((e) => {
-        console.warn("[MapView] Natural Earth admin0 not loaded, fallback to provided countries:", e);
-        !cancelled && setNeCountries(null);
-      });
+    
+    async function loadCountriesWithFallback() {
+      try {
+        const arr = await loadNaturalEarthAdmin0();
+        if (!cancelled) setNeCountries(arr);
+      } catch (e) {
+        console.warn("[MapView] Natural Earth admin0 not loaded, trying world-atlas fallback:", e);
+        try {
+          // Load world-atlas as complete fallback with proper geometries
+          const atlasCountries = await loadEuropeCountries();
+          if (!cancelled) {
+            // Merge: use Natural Earth as base, augment with world-atlas for missing countries
+            setNeCountries(atlasCountries);
+          }
+        } catch (e2) {
+          console.warn("[MapView] world-atlas also failed, will use minimal fallback", e2);
+          if (!cancelled) setNeCountries(null);
+        }
+      }
+    }
+    
+    loadCountriesWithFallback();
     return () => {
       cancelled = true;
     };
@@ -419,10 +431,52 @@ export default function MapView({ countries, selectedId, onSelect }: Props) {
     };
   }, []);
 
+  const [atlasCountries, setAtlasCountries] = useState<CountryFeature[] | null>(null);
+
+  // Load world-atlas geometries as supplement for missing Natural Earth data
+  useEffect(() => {
+    let cancelled = false;
+    loadEuropeCountries()
+      .then((atlas) => !cancelled && setAtlasCountries(atlas))
+      .catch((e) => {
+        console.warn("[MapView] Failed to load world-atlas for geometry supplement:", e);
+        !cancelled && setAtlasCountries(null);
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+
   const dataCountries = useMemo(() => {
-    if (neCountries && neCountries.length) return neCountries;
-    return transformFallbackCountries(countries ?? []);
-  }, [neCountries, countries]);
+    const source = neCountries?.length ? neCountries : transformFallbackCountries(countries ?? []);
+    
+    // If we have both Natural Earth and world-atlas, merge geometries for countries with missing data
+    if (source?.length && atlasCountries?.length) {
+      return source.map((country) => {
+        const hasGeometry = country.geometry && 
+                           JSON.stringify(country.geometry).length > 50;
+        
+        if (!hasGeometry) {
+          // Try to find this country in world-atlas and use its geometry
+          const atlasMatch = atlasCountries.find(
+            (ac) => normalizeId(ac.id) === normalizeId(country.id)
+          );
+          
+          if (atlasMatch?.geometry) {
+            console.debug(`[MapView] Using world-atlas geometry for country ${normalizeId(country.id)} (was missing in Natural Earth)`);
+            return {
+              ...country,
+              geometry: atlasMatch.geometry,
+            };
+          }
+        }
+        
+        return country;
+      });
+    }
+    
+    return source;
+  }, [neCountries, atlasCountries, countries]);
 
   const countriesFC = useMemo(() => toFeatureCollection(dataCountries), [dataCountries]);
 
