@@ -1,0 +1,38 @@
+{
+  "country_id": "630",
+  "country_name": "Puerto Rico",
+  "modes": [
+    "suffix"
+  ],
+  "default_mode": "suffix",
+  "default_zoom": 7,
+  "patterns": [
+    {
+      "pattern": "-as",
+      "title": "-as",
+      "mode": "suffix",
+      "zoom": 7,
+      "places": 13,
+      "file": "-as_z7.json.gz",
+      "tiles": 1,
+      "score": 2.6390573296152584,
+      "entropy": 0.0,
+      "hotspots": [
+        [
+          40,
+          57,
+          13
+        ]
+      ],
+      "points": 13,
+      "points_sampled": false
+    }
+  ],
+  "selection_mode": "score",
+  "min_places_for_candidate": 10,
+  "analyze_tail_token_only": true,
+  "suffix_len": [
+    2,
+    10
+  ]
+}

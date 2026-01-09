@@ -1,0 +1,294 @@
+{
+  "note": "African countries and territories from Geofabrik. Export includes suffix patterns and point samples (lon/lat) per pattern.",
+  "zoom": 7,
+  "suffix_min_len": 2,
+  "suffix_max_len": 10,
+  "min_places_for_candidate": 10,
+  "top_patterns_to_export": 1000000,
+  "selection_mode": "score",
+  "analyze_tail_token_only": true,
+  "countries": [
+    {
+      "id": "012",
+      "name": "Algeria",
+      "geofabrik_slug": "algeria"
+    },
+    {
+      "id": "024",
+      "name": "Angola",
+      "geofabrik_slug": "angola"
+    },
+    {
+      "id": "204",
+      "name": "Benin",
+      "geofabrik_slug": "benin"
+    },
+    {
+      "id": "072",
+      "name": "Botswana",
+      "geofabrik_slug": "botswana"
+    },
+    {
+      "id": "854",
+      "name": "Burkina Faso",
+      "geofabrik_slug": "burkina-faso"
+    },
+    {
+      "id": "108",
+      "name": "Burundi",
+      "geofabrik_slug": "burundi"
+    },
+    {
+      "id": "120",
+      "name": "Cameroon",
+      "geofabrik_slug": "cameroon"
+    },
+    {
+      "id": "724",
+      "name": "Canary Islands",
+      "geofabrik_slug": "canary-islands"
+    },
+    {
+      "id": "132",
+      "name": "Cape Verde",
+      "geofabrik_slug": "cape-verde"
+    },
+    {
+      "id": "140",
+      "name": "Central African Republic",
+      "geofabrik_slug": "central-african-republic"
+    },
+    {
+      "id": "148",
+      "name": "Chad",
+      "geofabrik_slug": "chad"
+    },
+    {
+      "id": "174",
+      "name": "Comoros",
+      "geofabrik_slug": "comores"
+    },
+    {
+      "id": "178",
+      "name": "Congo",
+      "geofabrik_slug": "congo-brazzaville"
+    },
+    {
+      "id": "180",
+      "name": "Democratic Republic of the Congo",
+      "geofabrik_slug": "congo-democratic-republic"
+    },
+    {
+      "id": "262",
+      "name": "Djibouti",
+      "geofabrik_slug": "djibouti"
+    },
+    {
+      "id": "818",
+      "name": "Egypt",
+      "geofabrik_slug": "egypt"
+    },
+    {
+      "id": "226",
+      "name": "Equatorial Guinea",
+      "geofabrik_slug": "equatorial-guinea"
+    },
+    {
+      "id": "232",
+      "name": "Eritrea",
+      "geofabrik_slug": "eritrea"
+    },
+    {
+      "id": "231",
+      "name": "Ethiopia",
+      "geofabrik_slug": "ethiopia"
+    },
+    {
+      "id": "266",
+      "name": "Gabon",
+      "geofabrik_slug": "gabon"
+    },
+    {
+      "id": "288",
+      "name": "Ghana",
+      "geofabrik_slug": "ghana"
+    },
+    {
+      "id": "324",
+      "name": "Guinea",
+      "geofabrik_slug": "guinea"
+    },
+    {
+      "id": "334",
+      "name": "Guinea-Bissau",
+      "geofabrik_slug": "guinea-bissau"
+    },
+    {
+      "id": "384",
+      "name": "Ivory Coast",
+      "geofabrik_slug": "ivory-coast"
+    },
+    {
+      "id": "404",
+      "name": "Kenya",
+      "geofabrik_slug": "kenya"
+    },
+    {
+      "id": "426",
+      "name": "Lesotho",
+      "geofabrik_slug": "lesotho"
+    },
+    {
+      "id": "430",
+      "name": "Liberia",
+      "geofabrik_slug": "liberia"
+    },
+    {
+      "id": "434",
+      "name": "Libya",
+      "geofabrik_slug": "libya"
+    },
+    {
+      "id": "450",
+      "name": "Madagascar",
+      "geofabrik_slug": "madagascar"
+    },
+    {
+      "id": "454",
+      "name": "Malawi",
+      "geofabrik_slug": "malawi"
+    },
+    {
+      "id": "466",
+      "name": "Mali",
+      "geofabrik_slug": "mali"
+    },
+    {
+      "id": "478",
+      "name": "Mauritania",
+      "geofabrik_slug": "mauritania"
+    },
+    {
+      "id": "480",
+      "name": "Mauritius",
+      "geofabrik_slug": "mauritius"
+    },
+    {
+      "id": "504",
+      "name": "Morocco",
+      "geofabrik_slug": "morocco"
+    },
+    {
+      "id": "508",
+      "name": "Mozambique",
+      "geofabrik_slug": "mozambique"
+    },
+    {
+      "id": "516",
+      "name": "Namibia",
+      "geofabrik_slug": "namibia"
+    },
+    {
+      "id": "562",
+      "name": "Niger",
+      "geofabrik_slug": "niger"
+    },
+    {
+      "id": "566",
+      "name": "Nigeria",
+      "geofabrik_slug": "nigeria"
+    },
+    {
+      "id": "646",
+      "name": "Rwanda",
+      "geofabrik_slug": "rwanda"
+    },
+    {
+      "id": "654",
+      "name": "Saint Helena, Ascension and Tristan da Cunha",
+      "geofabrik_slug": "saint-helena-ascension-and-tristan-da-cunha"
+    },
+    {
+      "id": "678",
+      "name": "São Tomé and Príncipe",
+      "geofabrik_slug": "sao-tome-and-principe"
+    },
+    {
+      "id": "270",
+      "name": "Gambia",
+      "geofabrik_slug": "senegal-and-gambia",
+      "country_id": "270"
+    },
+    {
+      "id": "686",
+      "name": "Senegal",
+      "geofabrik_slug": "senegal-and-gambia",
+      "country_id": "686"
+    },
+    {
+      "id": "690",
+      "name": "Seychelles",
+      "geofabrik_slug": "seychelles"
+    },
+    {
+      "id": "694",
+      "name": "Sierra Leone",
+      "geofabrik_slug": "sierra-leone"
+    },
+    {
+      "id": "706",
+      "name": "Somalia",
+      "geofabrik_slug": "somalia"
+    },
+    {
+      "id": "710",
+      "name": "South Africa",
+      "geofabrik_slug": "south-africa"
+    },
+    {
+      "id": "728",
+      "name": "South Sudan",
+      "geofabrik_slug": "south-sudan"
+    },
+    {
+      "id": "729",
+      "name": "Sudan",
+      "geofabrik_slug": "sudan"
+    },
+    {
+      "id": "748",
+      "name": "Eswatini",
+      "geofabrik_slug": "swaziland"
+    },
+    {
+      "id": "834",
+      "name": "Tanzania",
+      "geofabrik_slug": "tanzania"
+    },
+    {
+      "id": "768",
+      "name": "Togo",
+      "geofabrik_slug": "togo"
+    },
+    {
+      "id": "788",
+      "name": "Tunisia",
+      "geofabrik_slug": "tunisia"
+    },
+    {
+      "id": "800",
+      "name": "Uganda",
+      "geofabrik_slug": "uganda"
+    },
+    {
+      "id": "894",
+      "name": "Zambia",
+      "geofabrik_slug": "zambia"
+    },
+    {
+      "id": "716",
+      "name": "Zimbabwe",
+      "geofabrik_slug": "zimbabwe"
+    }
+  ]
+}

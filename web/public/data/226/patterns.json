@@ -1,0 +1,43 @@
+{
+  "country_id": "226",
+  "country_name": "Equatorial Guinea",
+  "modes": [
+    "suffix"
+  ],
+  "default_mode": "suffix",
+  "default_zoom": 7,
+  "patterns": [
+    {
+      "pattern": "-ng",
+      "title": "-ng",
+      "mode": "suffix",
+      "zoom": 7,
+      "places": 17,
+      "file": "-ng_z7.json.gz",
+      "tiles": 2,
+      "score": 0.9471898056407724,
+      "entropy": 0.672294817075638,
+      "hotspots": [
+        [
+          67,
+          63,
+          14
+        ],
+        [
+          68,
+          63,
+          3
+        ]
+      ],
+      "points": 17,
+      "points_sampled": false
+    }
+  ],
+  "selection_mode": "score",
+  "min_places_for_candidate": 10,
+  "analyze_tail_token_only": true,
+  "suffix_len": [
+    2,
+    10
+  ]
+}

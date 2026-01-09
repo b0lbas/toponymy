@@ -1,0 +1,63 @@
+{
+  "country_id": "480",
+  "country_name": "Mauritius",
+  "modes": [
+    "suffix"
+  ],
+  "default_mode": "suffix",
+  "default_zoom": 7,
+  "patterns": [
+    {
+      "pattern": "-re",
+      "title": "-re",
+      "mode": "suffix",
+      "zoom": 7,
+      "places": 12,
+      "file": "-re_z7.json.gz",
+      "tiles": 1,
+      "score": 2.5649493574615367,
+      "entropy": 0.0,
+      "hotspots": [
+        [
+          84,
+          71,
+          12
+        ]
+      ],
+      "points": 12,
+      "points_sampled": false
+    },
+    {
+      "pattern": "-es",
+      "title": "-es",
+      "mode": "suffix",
+      "zoom": 7,
+      "places": 19,
+      "file": "-es_z7.json.gz",
+      "tiles": 2,
+      "score": 1.5414218050433859,
+      "entropy": 0.4854607607459134,
+      "hotspots": [
+        [
+          84,
+          71,
+          17
+        ],
+        [
+          86,
+          71,
+          2
+        ]
+      ],
+      "points": 19,
+      "points_sampled": false
+    }
+  ],
+  "selection_mode": "score",
+  "min_places_for_candidate": 10,
+  "analyze_tail_token_only": true,
+  "suffix_len": [
+    2,
+    10
+  ]
+}

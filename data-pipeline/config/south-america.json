@@ -1,0 +1,77 @@
+{
+  "note": "South American countries from Geofabrik. Export includes suffix patterns and point samples (lon/lat) per pattern.",
+  "zoom": 7,
+  "suffix_min_len": 2,
+  "suffix_max_len": 10,
+  "min_places_for_candidate": 10,
+  "top_patterns_to_export": 1000000,
+  "selection_mode": "score",
+  "analyze_tail_token_only": true,
+  "countries": [
+    {
+      "id": "032",
+      "name": "Argentina",
+      "geofabrik_slug": "argentina"
+    },
+    {
+      "id": "068",
+      "name": "Bolivia",
+      "geofabrik_slug": "bolivia"
+    },
+    {
+      "id": "076",
+      "name": "Brazil",
+      "geofabrik_slug": "brazil"
+    },
+    {
+      "id": "152",
+      "name": "Chile",
+      "geofabrik_slug": "chile"
+    },
+    {
+      "id": "170",
+      "name": "Colombia",
+      "geofabrik_slug": "colombia"
+    },
+    {
+      "id": "218",
+      "name": "Ecuador",
+      "geofabrik_slug": "ecuador"
+    },
+    {
+      "id": "254",
+      "name": "French Guiana",
+      "geofabrik_slug": "guyane"
+    },
+    {
+      "id": "328",
+      "name": "Guyana",
+      "geofabrik_slug": "guyana"
+    },
+    {
+      "id": "600",
+      "name": "Paraguay",
+      "geofabrik_slug": "paraguay"
+    },
+    {
+      "id": "604",
+      "name": "Peru",
+      "geofabrik_slug": "peru"
+    },
+    {
+      "id": "740",
+      "name": "Suriname",
+      "geofabrik_slug": "suriname"
+    },
+    {
+      "id": "858",
+      "name": "Uruguay",
+      "geofabrik_slug": "uruguay"
+    },
+    {
+      "id": "862",
+      "name": "Venezuela",
+      "geofabrik_slug": "venezuela"
+    }
+  ]
+}

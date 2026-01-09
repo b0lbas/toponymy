@@ -1,0 +1,138 @@
+{
+  "country_id": "044",
+  "country_name": "Bahamas",
+  "modes": [
+    "suffix"
+  ],
+  "default_mode": "suffix",
+  "default_zoom": 7,
+  "patterns": [
+    {
+      "pattern": "-own",
+      "title": "-own",
+      "mode": "suffix",
+      "zoom": 7,
+      "places": 20,
+      "file": "-own_z7.json.gz",
+      "tiles": 5,
+      "score": 0.6591259402684309,
+      "entropy": 0.7835043249800123,
+      "hotspots": [
+        [
+          36,
+          54,
+          11
+        ],
+        [
+          37,
+          55,
+          4
+        ],
+        [
+          35,
+          54,
+          2
+        ],
+        [
+          36,
+          55,
+          2
+        ],
+        [
+          37,
+          56,
+          1
+        ]
+      ],
+      "points": 20,
+      "points_sampled": false
+    },
+    {
+      "pattern": "-town",
+      "title": "-town",
+      "mode": "suffix",
+      "zoom": 7,
+      "places": 20,
+      "file": "-town_z7.json.gz",
+      "tiles": 5,
+      "score": 0.6591259402684309,
+      "entropy": 0.7835043249800123,
+      "hotspots": [
+        [
+          36,
+          54,
+          11
+        ],
+        [
+          37,
+          55,
+          4
+        ],
+        [
+          35,
+          54,
+          2
+        ],
+        [
+          36,
+          55,
+          2
+        ],
+        [
+          37,
+          56,
+          1
+        ]
+      ],
+      "points": 20,
+      "points_sampled": false
+    },
+    {
+      "pattern": "-wn",
+      "title": "-wn",
+      "mode": "suffix",
+      "zoom": 7,
+      "places": 20,
+      "file": "-wn_z7.json.gz",
+      "tiles": 5,
+      "score": 0.6591259402684309,
+      "entropy": 0.7835043249800123,
+      "hotspots": [
+        [
+          36,
+          54,
+          11
+        ],
+        [
+          37,
+          55,
+          4
+        ],
+        [
+          35,
+          54,
+          2
+        ],
+        [
+          36,
+          55,
+          2
+        ],
+        [
+          37,
+          56,
+          1
+        ]
+      ],
+      "points": 20,
+      "points_sampled": false
+    }
+  ],
+  "selection_mode": "score",
+  "min_places_for_candidate": 10,
+  "analyze_tail_token_only": true,
+  "suffix_len": [
+    2,
+    10
+  ]
+}

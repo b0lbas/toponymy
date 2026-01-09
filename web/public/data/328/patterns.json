@@ -1,0 +1,48 @@
+{
+  "country_id": "328",
+  "country_name": "Guyana",
+  "modes": [
+    "suffix"
+  ],
+  "default_mode": "suffix",
+  "default_zoom": 7,
+  "patterns": [
+    {
+      "pattern": "-ng",
+      "title": "-ng",
+      "mode": "suffix",
+      "zoom": 7,
+      "places": 12,
+      "file": "-ng_z7.json.gz",
+      "tiles": 3,
+      "score": 0.20360610137978474,
+      "entropy": 0.920619835714305,
+      "hotspots": [
+        [
+          42,
+          62,
+          6
+        ],
+        [
+          42,
+          61,
+          4
+        ],
+        [
+          43,
+          61,
+          2
+        ]
+      ],
+      "points": 12,
+      "points_sampled": false
+    }
+  ],
+  "selection_mode": "score",
+  "min_places_for_candidate": 10,
+  "analyze_tail_token_only": true,
+  "suffix_len": [
+    2,
+    10
+  ]
+}

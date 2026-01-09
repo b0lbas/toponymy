@@ -1,0 +1,1623 @@
+{
+  "country_id": "728",
+  "country_name": "South Sudan",
+  "modes": [
+    "suffix"
+  ],
+  "default_mode": "suffix",
+  "default_zoom": 7,
+  "patterns": [
+    {
+      "pattern": "-est",
+      "title": "-est",
+      "mode": "suffix",
+      "zoom": 7,
+      "places": 19,
+      "file": "-est_z7.json.gz",
+      "tiles": 1,
+      "score": 2.995732273553991,
+      "entropy": 0.0,
+      "hotspots": [
+        [
+          75,
+          62,
+          19
+        ]
+      ],
+      "points": 19,
+      "points_sampled": false
+    },
+    {
+      "pattern": "-west",
+      "title": "-west",
+      "mode": "suffix",
+      "zoom": 7,
+      "places": 19,
+      "file": "-west_z7.json.gz",
+      "tiles": 1,
+      "score": 2.995732273553991,
+      "entropy": 0.0,
+      "hotspots": [
+        [
+          75,
+          62,
+          19
+        ]
+      ],
+      "points": 19,
+      "points_sampled": false
+    },
+    {
+      "pattern": "-st",
+      "title": "-st",
+      "mode": "suffix",
+      "zoom": 7,
+      "places": 36,
+      "file": "-st_z7.json.gz",
+      "tiles": 3,
+      "score": 2.7791364268596457,
+      "entropy": 0.2303518124496706,
+      "hotspots": [
+        [
+          75,
+          62,
+          34
+        ],
+        [
+          74,
+          61,
+          1
+        ],
+        [
+          75,
+          60,
+          1
+        ]
+      ],
+      "points": 36,
+      "points_sampled": false
+    },
+    {
+      "pattern": "-ast",
+      "title": "-ast",
+      "mode": "suffix",
+      "zoom": 7,
+      "places": 17,
+      "file": "-ast_z7.json.gz",
+      "tiles": 3,
+      "score": 1.7228775153720732,
+      "entropy": 0.4039252872349831,
+      "hotspots": [
+        [
+          75,
+          62,
+          15
+        ],
+        [
+          74,
+          61,
+          1
+        ],
+        [
+          75,
+          60,
+          1
+        ]
+      ],
+      "points": 17,
+      "points_sampled": false
+    },
+    {
+      "pattern": "-east",
+      "title": "-east",
+      "mode": "suffix",
+      "zoom": 7,
+      "places": 17,
+      "file": "-east_z7.json.gz",
+      "tiles": 3,
+      "score": 1.7228775153720732,
+      "entropy": 0.4039252872349831,
+      "hotspots": [
+        [
+          75,
+          62,
+          15
+        ],
+        [
+          74,
+          61,
+          1
+        ],
+        [
+          75,
+          60,
+          1
+        ]
+      ],
+      "points": 17,
+      "points_sampled": false
+    },
+    {
+      "pattern": "-and",
+      "title": "-and",
+      "mode": "suffix",
+      "zoom": 7,
+      "places": 12,
+      "file": "-and_z7.json.gz",
+      "tiles": 2,
+      "score": 1.5035300931684743,
+      "entropy": 0.4138168503036338,
+      "hotspots": [
+        [
+          75,
+          62,
+          11
+        ],
+        [
+          75,
+          60,
+          1
+        ]
+      ],
+      "points": 12,
+      "points_sampled": false
+    },
+    {
+      "pattern": "-land",
+      "title": "-land",
+      "mode": "suffix",
+      "zoom": 7,
+      "places": 12,
+      "file": "-land_z7.json.gz",
+      "tiles": 2,
+      "score": 1.5035300931684743,
+      "entropy": 0.4138168503036338,
+      "hotspots": [
+        [
+          75,
+          62,
+          11
+        ],
+        [
+          75,
+          60,
+          1
+        ]
+      ],
+      "points": 12,
+      "points_sampled": false
+    },
+    {
+      "pattern": "-nd",
+      "title": "-nd",
+      "mode": "suffix",
+      "zoom": 7,
+      "places": 12,
+      "file": "-nd_z7.json.gz",
+      "tiles": 2,
+      "score": 1.5035300931684743,
+      "entropy": 0.4138168503036338,
+      "hotspots": [
+        [
+          75,
+          62,
+          11
+        ],
+        [
+          75,
+          60,
+          1
+        ]
+      ],
+      "points": 12,
+      "points_sampled": false
+    },
+    {
+      "pattern": "-le",
+      "title": "-le",
+      "mode": "suffix",
+      "zoom": 7,
+      "places": 12,
+      "file": "-le_z7.json.gz",
+      "tiles": 3,
+      "score": 1.2432990651887892,
+      "entropy": 0.5152734452350943,
+      "hotspots": [
+        [
+          75,
+          62,
+          10
+        ],
+        [
+          74,
+          62,
+          1
+        ],
+        [
+          75,
+          61,
+          1
+        ]
+      ],
+      "points": 12,
+      "points_sampled": false
+    },
+    {
+      "pattern": "-ro",
+      "title": "-ro",
+      "mode": "suffix",
+      "zoom": 7,
+      "places": 19,
+      "file": "-ro_z7.json.gz",
+      "tiles": 7,
+      "score": 0.9912063525210273,
+      "entropy": 0.6691271909471709,
+      "hotspots": [
+        [
+          75,
+          62,
+          12
+        ],
+        [
+          75,
+          61,
+          2
+        ],
+        [
+          73,
+          61,
+          1
+        ],
+        [
+          73,
+          62,
+          1
+        ],
+        [
+          74,
+          62,
+          1
+        ]
+      ],
+      "points": 19,
+      "points_sampled": false
+    },
+    {
+      "pattern": "-th",
+      "title": "-th",
+      "mode": "suffix",
+      "zoom": 7,
+      "places": 27,
+      "file": "-th_z7.json.gz",
+      "tiles": 7,
+      "score": 0.968026992573117,
+      "entropy": 0.7094935230964503,
+      "hotspots": [
+        [
+          75,
+          62,
+          15
+        ],
+        [
+          73,
+          60,
+          4
+        ],
+        [
+          75,
+          60,
+          4
+        ],
+        [
+          74,
+          60,
+          1
+        ],
+        [
+          74,
+          61,
+          1
+        ]
+      ],
+      "points": 27,
+      "points_sampled": false
+    },
+    {
+      "pattern": "-ri",
+      "title": "-ri",
+      "mode": "suffix",
+      "zoom": 7,
+      "places": 27,
+      "file": "-ri_z7.json.gz",
+      "tiles": 9,
+      "score": 0.9269724488312364,
+      "entropy": 0.7218140585307301,
+      "hotspots": [
+        [
+          75,
+          62,
+          15
+        ],
+        [
+          73,
+          62,
+          2
+        ],
+        [
+          74,
+          61,
+          2
+        ],
+        [
+          74,
+          62,
+          2
+        ],
+        [
+          75,
+          61,
+          2
+        ]
+      ],
+      "points": 27,
+      "points_sampled": false
+    },
+    {
+      "pattern": "-ng",
+      "title": "-ng",
+      "mode": "suffix",
+      "zoom": 7,
+      "places": 65,
+      "file": "-ng_z7.json.gz",
+      "tiles": 7,
+      "score": 0.8996669395396313,
+      "entropy": 0.7852646590385903,
+      "hotspots": [
+        [
+          75,
+          60,
+          29
+        ],
+        [
+          74,
+          61,
+          13
+        ],
+        [
+          75,
+          61,
+          11
+        ],
+        [
+          75,
+          62,
+          5
+        ],
+        [
+          73,
+          60,
+          3
+        ]
+      ],
+      "points": 65,
+      "points_sampled": false
+    },
+    {
+      "pattern": "-re",
+      "title": "-re",
+      "mode": "suffix",
+      "zoom": 7,
+      "places": 17,
+      "file": "-re_z7.json.gz",
+      "tiles": 4,
+      "score": 0.8983002966689365,
+      "entropy": 0.6892094263601618,
+      "hotspots": [
+        [
+          75,
+          62,
+          11
+        ],
+        [
+          74,
+          62,
+          4
+        ],
+        [
+          72,
+          60,
+          1
+        ],
+        [
+          75,
+          59,
+          1
+        ]
+      ],
+      "points": 17,
+      "points_sampled": false
+    },
+    {
+      "pattern": "-ia",
+      "title": "-ia",
+      "mode": "suffix",
+      "zoom": 7,
+      "places": 12,
+      "file": "-ia_z7.json.gz",
+      "tiles": 3,
+      "score": 0.8805354484771003,
+      "entropy": 0.6567045482143385,
+      "hotspots": [
+        [
+          75,
+          62,
+          9
+        ],
+        [
+          73,
+          61,
+          2
+        ],
+        [
+          75,
+          61,
+          1
+        ]
+      ],
+      "points": 12,
+      "points_sampled": false
+    },
+    {
+      "pattern": "-go",
+      "title": "-go",
+      "mode": "suffix",
+      "zoom": 7,
+      "places": 17,
+      "file": "-go_z7.json.gz",
+      "tiles": 5,
+      "score": 0.7413882159201526,
+      "entropy": 0.7434972806197802,
+      "hotspots": [
+        [
+          75,
+          62,
+          9
+        ],
+        [
+          75,
+          60,
+          5
+        ],
+        [
+          72,
+          60,
+          1
+        ],
+        [
+          74,
+          62,
+          1
+        ],
+        [
+          75,
+          61,
+          1
+        ]
+      ],
+      "points": 17,
+      "points_sampled": false
+    },
+    {
+      "pattern": "-ra",
+      "title": "-ra",
+      "mode": "suffix",
+      "zoom": 7,
+      "places": 30,
+      "file": "-ra_z7.json.gz",
+      "tiles": 11,
+      "score": 0.7342833341897128,
+      "entropy": 0.7861717908469018,
+      "hotspots": [
+        [
+          75,
+          62,
+          13
+        ],
+        [
+          74,
+          62,
+          4
+        ],
+        [
+          75,
+          59,
+          3
+        ],
+        [
+          75,
+          61,
+          3
+        ],
+        [
+          73,
+          60,
+          1
+        ]
+      ],
+      "points": 30,
+      "points_sampled": false
+    },
+    {
+      "pattern": "-ang",
+      "title": "-ang",
+      "mode": "suffix",
+      "zoom": 7,
+      "places": 34,
+      "file": "-ang_z7.json.gz",
+      "tiles": 7,
+      "score": 0.7112815042844909,
+      "entropy": 0.7999404019007581,
+      "hotspots": [
+        [
+          75,
+          60,
+          15
+        ],
+        [
+          74,
+          61,
+          7
+        ],
+        [
+          75,
+          61,
+          5
+        ],
+        [
+          74,
+          60,
+          3
+        ],
+        [
+          75,
+          62,
+          2
+        ]
+      ],
+      "points": 34,
+      "points_sampled": false
+    },
+    {
+      "pattern": "-ak",
+      "title": "-ak",
+      "mode": "suffix",
+      "zoom": 7,
+      "places": 29,
+      "file": "-ak_z7.json.gz",
+      "tiles": 9,
+      "score": 0.6904622722038211,
+      "entropy": 0.796994353833592,
+      "hotspots": [
+        [
+          75,
+          60,
+          13
+        ],
+        [
+          74,
+          60,
+          4
+        ],
+        [
+          75,
+          61,
+          3
+        ],
+        [
+          75,
+          62,
+          3
+        ],
+        [
+          74,
+          61,
+          2
+        ]
+      ],
+      "points": 29,
+      "points_sampled": false
+    },
+    {
+      "pattern": "-ga",
+      "title": "-ga",
+      "mode": "suffix",
+      "zoom": 7,
+      "places": 15,
+      "file": "-ga_z7.json.gz",
+      "tiles": 7,
+      "score": 0.6259487284232463,
+      "entropy": 0.7742367184132575,
+      "hotspots": [
+        [
+          75,
+          62,
+          8
+        ],
+        [
+          74,
+          62,
+          2
+        ],
+        [
+          73,
+          60,
+          1
+        ],
+        [
+          73,
+          62,
+          1
+        ],
+        [
+          75,
+          60,
+          1
+        ]
+      ],
+      "points": 15,
+      "points_sampled": false
+    },
+    {
+      "pattern": "-er",
+      "title": "-er",
+      "mode": "suffix",
+      "zoom": 7,
+      "places": 20,
+      "file": "-er_z7.json.gz",
+      "tiles": 6,
+      "score": 0.5609393500161423,
+      "entropy": 0.8157545685767417,
+      "hotspots": [
+        [
+          74,
+          61,
+          8
+        ],
+        [
+          75,
+          60,
+          6
+        ],
+        [
+          75,
+          61,
+          3
+        ],
+        [
+          74,
+          60,
+          1
+        ],
+        [
+          75,
+          59,
+          1
+        ]
+      ],
+      "points": 20,
+      "points_sampled": false
+    },
+    {
+      "pattern": "-al",
+      "title": "-al",
+      "mode": "suffix",
+      "zoom": 7,
+      "places": 27,
+      "file": "-al_z7.json.gz",
+      "tiles": 7,
+      "score": 0.5258632568859102,
+      "entropy": 0.8421875802400073,
+      "hotspots": [
+        [
+          75,
+          60,
+          9
+        ],
+        [
+          74,
+          61,
+          7
+        ],
+        [
+          75,
+          61,
+          5
+        ],
+        [
+          75,
+          62,
+          3
+        ],
+        [
+          73,
+          60,
+          1
+        ]
+      ],
+      "points": 27,
+      "points_sampled": false
+    },
+    {
+      "pattern": "-el",
+      "title": "-el",
+      "mode": "suffix",
+      "zoom": 7,
+      "places": 15,
+      "file": "-el_z7.json.gz",
+      "tiles": 7,
+      "score": 0.5210225550123033,
+      "entropy": 0.8120808359231132,
+      "hotspots": [
+        [
+          75,
+          60,
+          7
+        ],
+        [
+          75,
+          61,
+          3
+        ],
+        [
+          73,
+          60,
+          1
+        ],
+        [
+          74,
+          60,
+          1
+        ],
+        [
+          74,
+          61,
+          1
+        ]
+      ],
+      "points": 15,
+      "points_sampled": false
+    },
+    {
+      "pattern": "-la",
+      "title": "-la",
+      "mode": "suffix",
+      "zoom": 7,
+      "places": 15,
+      "file": "-la_z7.json.gz",
+      "tiles": 5,
+      "score": 0.49559169913181383,
+      "entropy": 0.8212530783391992,
+      "hotspots": [
+        [
+          75,
+          62,
+          8
+        ],
+        [
+          73,
+          61,
+          2
+        ],
+        [
+          75,
+          59,
+          2
+        ],
+        [
+          75,
+          61,
+          2
+        ],
+        [
+          76,
+          61,
+          1
+        ]
+      ],
+      "points": 15,
+      "points_sampled": false
+    },
+    {
+      "pattern": "-ba",
+      "title": "-ba",
+      "mode": "suffix",
+      "zoom": 7,
+      "places": 15,
+      "file": "-ba_z7.json.gz",
+      "tiles": 5,
+      "score": 0.4678477945904538,
+      "entropy": 0.8312595767133785,
+      "hotspots": [
+        [
+          75,
+          62,
+          7
+        ],
+        [
+          74,
+          62,
+          4
+        ],
+        [
+          74,
+          61,
+          2
+        ],
+        [
+          72,
+          60,
+          1
+        ],
+        [
+          73,
+          62,
+          1
+        ]
+      ],
+      "points": 15,
+      "points_sampled": false
+    },
+    {
+      "pattern": "-nga",
+      "title": "-nga",
+      "mode": "suffix",
+      "zoom": 7,
+      "places": 12,
+      "file": "-nga_z7.json.gz",
+      "tiles": 6,
+      "score": 0.45559312927374407,
+      "entropy": 0.822377339362118,
+      "hotspots": [
+        [
+          75,
+          62,
+          6
+        ],
+        [
+          74,
+          62,
+          2
+        ],
+        [
+          73,
+          62,
+          1
+        ],
+        [
+          75,
+          60,
+          1
+        ],
+        [
+          76,
+          60,
+          1
+        ]
+      ],
+      "points": 12,
+      "points_sampled": false
+    },
+    {
+      "pattern": "-ai",
+      "title": "-ai",
+      "mode": "suffix",
+      "zoom": 7,
+      "places": 17,
+      "file": "-ai_z7.json.gz",
+      "tiles": 9,
+      "score": 0.4319484249449062,
+      "entropy": 0.8505561010396422,
+      "hotspots": [
+        [
+          75,
+          61,
+          7
+        ],
+        [
+          73,
+          60,
+          2
+        ],
+        [
+          75,
+          60,
+          2
+        ],
+        [
+          73,
+          61,
+          1
+        ],
+        [
+          73,
+          62,
+          1
+        ]
+      ],
+      "points": 17,
+      "points_sampled": false
+    },
+    {
+      "pattern": "-or",
+      "title": "-or",
+      "mode": "suffix",
+      "zoom": 7,
+      "places": 24,
+      "file": "-or_z7.json.gz",
+      "tiles": 9,
+      "score": 0.42120743937349137,
+      "entropy": 0.869144551610425,
+      "hotspots": [
+        [
+          75,
+          60,
+          7
+        ],
+        [
+          75,
+          61,
+          6
+        ],
+        [
+          74,
+          60,
+          3
+        ],
+        [
+          74,
+          61,
+          2
+        ],
+        [
+          76,
+          62,
+          2
+        ]
+      ],
+      "points": 24,
+      "points_sampled": false
+    },
+    {
+      "pattern": "-ok",
+      "title": "-ok",
+      "mode": "suffix",
+      "zoom": 7,
+      "places": 32,
+      "file": "-ok_z7.json.gz",
+      "tiles": 8,
+      "score": 0.3922972193762201,
+      "entropy": 0.8878031256961774,
+      "hotspots": [
+        [
+          75,
+          61,
+          8
+        ],
+        [
+          75,
+          62,
+          7
+        ],
+        [
+          74,
+          61,
+          6
+        ],
+        [
+          75,
+          60,
+          5
+        ],
+        [
+          73,
+          61,
+          2
+        ]
+      ],
+      "points": 32,
+      "points_sampled": false
+    },
+    {
+      "pattern": "-ch",
+      "title": "-ch",
+      "mode": "suffix",
+      "zoom": 7,
+      "places": 18,
+      "file": "-ch_z7.json.gz",
+      "tiles": 5,
+      "score": 0.35230083113711474,
+      "entropy": 0.8803504390378469,
+      "hotspots": [
+        [
+          75,
+          60,
+          8
+        ],
+        [
+          73,
+          60,
+          3
+        ],
+        [
+          74,
+          61,
+          3
+        ],
+        [
+          75,
+          61,
+          3
+        ],
+        [
+          74,
+          60,
+          1
+        ]
+      ],
+      "points": 18,
+      "points_sampled": false
+    },
+    {
+      "pattern": "-li",
+      "title": "-li",
+      "mode": "suffix",
+      "zoom": 7,
+      "places": 10,
+      "file": "-li_z7.json.gz",
+      "tiles": 4,
+      "score": 0.3333936533838152,
+      "entropy": 0.8609640474436813,
+      "hotspots": [
+        [
+          74,
+          62,
+          4
+        ],
+        [
+          75,
+          62,
+          4
+        ],
+        [
+          74,
+          61,
+          1
+        ],
+        [
+          75,
+          60,
+          1
+        ]
+      ],
+      "points": 10,
+      "points_sampled": false
+    },
+    {
+      "pattern": "-ir",
+      "title": "-ir",
+      "mode": "suffix",
+      "zoom": 7,
+      "places": 13,
+      "file": "-ir_z7.json.gz",
+      "tiles": 8,
+      "score": 0.3047721541028284,
+      "entropy": 0.8845147656768562,
+      "hotspots": [
+        [
+          75,
+          60,
+          5
+        ],
+        [
+          74,
+          60,
+          2
+        ],
+        [
+          72,
+          60,
+          1
+        ],
+        [
+          73,
+          60,
+          1
+        ],
+        [
+          73,
+          61,
+          1
+        ]
+      ],
+      "points": 13,
+      "points_sampled": false
+    },
+    {
+      "pattern": "-ol",
+      "title": "-ol",
+      "mode": "suffix",
+      "zoom": 7,
+      "places": 21,
+      "file": "-ol_z7.json.gz",
+      "tiles": 6,
+      "score": 0.2884158770298627,
+      "entropy": 0.9066930068474122,
+      "hotspots": [
+        [
+          75,
+          60,
+          6
+        ],
+        [
+          75,
+          61,
+          6
+        ],
+        [
+          74,
+          61,
+          4
+        ],
+        [
+          73,
+          60,
+          2
+        ],
+        [
+          75,
+          62,
+          2
+        ]
+      ],
+      "points": 21,
+      "points_sampled": false
+    },
+    {
+      "pattern": "-en",
+      "title": "-en",
+      "mode": "suffix",
+      "zoom": 7,
+      "places": 10,
+      "file": "-en_z7.json.gz",
+      "tiles": 5,
+      "score": 0.28450199354039635,
+      "entropy": 0.881353453268883,
+      "hotspots": [
+        [
+          75,
+          61,
+          4
+        ],
+        [
+          75,
+          60,
+          3
+        ],
+        [
+          74,
+          60,
+          1
+        ],
+        [
+          74,
+          61,
+          1
+        ],
+        [
+          75,
+          59,
+          1
+        ]
+      ],
+      "points": 10,
+      "points_sampled": false
+    },
+    {
+      "pattern": "-iang",
+      "title": "-iang",
+      "mode": "suffix",
+      "zoom": 7,
+      "places": 11,
+      "file": "-iang_z7.json.gz",
+      "tiles": 4,
+      "score": 0.26100331884464884,
+      "entropy": 0.8949645376549995,
+      "hotspots": [
+        [
+          75,
+          60,
+          5
+        ],
+        [
+          75,
+          61,
+          3
+        ],
+        [
+          74,
+          60,
+          2
+        ],
+        [
+          73,
+          60,
+          1
+        ]
+      ],
+      "points": 11,
+      "points_sampled": false
+    },
+    {
+      "pattern": "-ar",
+      "title": "-ar",
+      "mode": "suffix",
+      "zoom": 7,
+      "places": 22,
+      "file": "-ar_z7.json.gz",
+      "tiles": 8,
+      "score": 0.23335936598854748,
+      "entropy": 0.9255749333540405,
+      "hotspots": [
+        [
+          75,
+          60,
+          6
+        ],
+        [
+          74,
+          60,
+          4
+        ],
+        [
+          73,
+          60,
+          3
+        ],
+        [
+          74,
+          61,
+          3
+        ],
+        [
+          75,
+          59,
+          2
+        ]
+      ],
+      "points": 22,
+      "points_sampled": false
+    },
+    {
+      "pattern": "-ny",
+      "title": "-ny",
+      "mode": "suffix",
+      "zoom": 7,
+      "places": 10,
+      "file": "-ny_z7.json.gz",
+      "tiles": 4,
+      "score": 0.18411118475059574,
+      "entropy": 0.9232196723355078,
+      "hotspots": [
+        [
+          75,
+          60,
+          4
+        ],
+        [
+          75,
+          61,
+          3
+        ],
+        [
+          74,
+          61,
+          2
+        ],
+        [
+          74,
+          60,
+          1
+        ]
+      ],
+      "points": 10,
+      "points_sampled": false
+    },
+    {
+      "pattern": "-yang",
+      "title": "-yang",
+      "mode": "suffix",
+      "zoom": 7,
+      "places": 10,
+      "file": "-yang_z7.json.gz",
+      "tiles": 5,
+      "score": 0.1559170739970877,
+      "entropy": 0.9349775297671233,
+      "hotspots": [
+        [
+          74,
+          61,
+          3
+        ],
+        [
+          75,
+          60,
+          3
+        ],
+        [
+          75,
+          61,
+          2
+        ],
+        [
+          74,
+          60,
+          1
+        ],
+        [
+          75,
+          62,
+          1
+        ]
+      ],
+      "points": 10,
+      "points_sampled": false
+    },
+    {
+      "pattern": "-it",
+      "title": "-it",
+      "mode": "suffix",
+      "zoom": 7,
+      "places": 15,
+      "file": "-it_z7.json.gz",
+      "tiles": 7,
+      "score": 0.14892277907309928,
+      "entropy": 0.9462874612889592,
+      "hotspots": [
+        [
+          75,
+          61,
+          4
+        ],
+        [
+          74,
+          61,
+          3
+        ],
+        [
+          74,
+          60,
+          2
+        ],
+        [
+          75,
+          60,
+          2
+        ],
+        [
+          75,
+          62,
+          2
+        ]
+      ],
+      "points": 15,
+      "points_sampled": false
+    },
+    {
+      "pattern": "-an",
+      "title": "-an",
+      "mode": "suffix",
+      "zoom": 7,
+      "places": 10,
+      "file": "-an_z7.json.gz",
+      "tiles": 6,
+      "score": 0.12849858401159617,
+      "entropy": 0.9464119282150146,
+      "hotspots": [
+        [
+          75,
+          60,
+          3
+        ],
+        [
+          73,
+          60,
+          2
+        ],
+        [
+          75,
+          62,
+          2
+        ],
+        [
+          74,
+          60,
+          1
+        ],
+        [
+          74,
+          61,
+          1
+        ]
+      ],
+      "points": 10,
+      "points_sampled": false
+    },
+    {
+      "pattern": "-ong",
+      "title": "-ong",
+      "mode": "suffix",
+      "zoom": 7,
+      "places": 16,
+      "file": "-ong_z7.json.gz",
+      "tiles": 5,
+      "score": 0.11556634088384289,
+      "entropy": 0.9592101522724051,
+      "hotspots": [
+        [
+          75,
+          60,
+          5
+        ],
+        [
+          74,
+          61,
+          4
+        ],
+        [
+          75,
+          62,
+          3
+        ],
+        [
+          73,
+          60,
+          2
+        ],
+        [
+          75,
+          61,
+          2
+        ]
+      ],
+      "points": 16,
+      "points_sampled": false
+    },
+    {
+      "pattern": "-ek",
+      "title": "-ek",
+      "mode": "suffix",
+      "zoom": 7,
+      "places": 11,
+      "file": "-ek_z7.json.gz",
+      "tiles": 6,
+      "score": 0.09925152188248892,
+      "entropy": 0.960058249314534,
+      "hotspots": [
+        [
+          75,
+          60,
+          3
+        ],
+        [
+          74,
+          60,
+          2
+        ],
+        [
+          75,
+          59,
+          2
+        ],
+        [
+          75,
+          61,
+          2
+        ],
+        [
+          74,
+          61,
+          1
+        ]
+      ],
+      "points": 11,
+      "points_sampled": false
+    },
+    {
+      "pattern": "-et",
+      "title": "-et",
+      "mode": "suffix",
+      "zoom": 7,
+      "places": 11,
+      "file": "-et_z7.json.gz",
+      "tiles": 5,
+      "score": 0.09702120865098907,
+      "entropy": 0.9609557933859341,
+      "hotspots": [
+        [
+          74,
+          60,
+          3
+        ],
+        [
+          75,
+          61,
+          3
+        ],
+        [
+          74,
+          61,
+          2
+        ],
+        [
+          75,
+          60,
+          2
+        ],
+        [
+          73,
+          60,
+          1
+        ]
+      ],
+      "points": 11,
+      "points_sampled": false
+    },
+    {
+      "pattern": "-ur",
+      "title": "-ur",
+      "mode": "suffix",
+      "zoom": 7,
+      "places": 11,
+      "file": "-ur_z7.json.gz",
+      "tiles": 5,
+      "score": 0.023578131984026307,
+      "entropy": 0.9905114616736054,
+      "hotspots": [
+        [
+          75,
+          62,
+          3
+        ],
+        [
+          74,
+          60,
+          2
+        ],
+        [
+          74,
+          61,
+          2
+        ],
+        [
+          75,
+          60,
+          2
+        ],
+        [
+          75,
+          61,
+          2
+        ]
+      ],
+      "points": 11,
+      "points_sampled": false
+    }
+  ],
+  "selection_mode": "score",
+  "min_places_for_candidate": 10,
+  "analyze_tail_token_only": true,
+  "suffix_len": [
+    2,
+    10
+  ]
+}

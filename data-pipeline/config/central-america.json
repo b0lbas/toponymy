@@ -1,0 +1,67 @@
+{
+  "note": "Central American countries from Geofabrik. Export includes suffix patterns and point samples (lon/lat) per pattern.",
+  "zoom": 7,
+  "suffix_min_len": 2,
+  "suffix_max_len": 10,
+  "min_places_for_candidate": 10,
+  "top_patterns_to_export": 1000000,
+  "selection_mode": "score",
+  "analyze_tail_token_only": true,
+  "countries": [
+    {
+      "id": "084",
+      "name": "Belize",
+      "geofabrik_slug": "belize"
+    },
+    {
+      "id": "188",
+      "name": "Costa Rica",
+      "geofabrik_slug": "costa-rica"
+    },
+    {
+      "id": "192",
+      "name": "Cuba",
+      "geofabrik_slug": "cuba"
+    },
+    {
+      "id": "222",
+      "name": "El Salvador",
+      "geofabrik_slug": "el-salvador"
+    },
+    {
+      "id": "320",
+      "name": "Guatemala",
+      "geofabrik_slug": "guatemala"
+    },
+    {
+      "id": "332",
+      "name": "Haiti",
+      "geofabrik_slug": "haiti-and-domrep"
+    },
+    {
+      "id": "340",
+      "name": "Honduras",
+      "geofabrik_slug": "honduras"
+    },
+    {
+      "id": "388",
+      "name": "Jamaica",
+      "geofabrik_slug": "jamaica"
+    },
+    {
+      "id": "558",
+      "name": "Nicaragua",
+      "geofabrik_slug": "nicaragua"
+    },
+    {
+      "id": "591",
+      "name": "Panama",
+      "geofabrik_slug": "panama"
+    },
+    {
+      "id": "630",
+      "name": "Puerto Rico",
+      "geofabrik_slug": "puerto-rico"
+    }
+  ]
+}

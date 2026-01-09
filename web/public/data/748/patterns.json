@@ -1,0 +1,68 @@
+{
+  "country_id": "748",
+  "country_name": "Eswatini",
+  "modes": [
+    "suffix"
+  ],
+  "default_mode": "suffix",
+  "default_zoom": 7,
+  "patterns": [
+    {
+      "pattern": "-eni",
+      "title": "-eni",
+      "mode": "suffix",
+      "zoom": 7,
+      "places": 17,
+      "file": "-eni_z7.json.gz",
+      "tiles": 2,
+      "score": 0.1830548107747162,
+      "entropy": 0.9366673818775625,
+      "hotspots": [
+        [
+          75,
+          73,
+          11
+        ],
+        [
+          75,
+          74,
+          6
+        ]
+      ],
+      "points": 17,
+      "points_sampled": false
+    },
+    {
+      "pattern": "-ni",
+      "title": "-ni",
+      "mode": "suffix",
+      "zoom": 7,
+      "places": 22,
+      "file": "-ni_z7.json.gz",
+      "tiles": 2,
+      "score": 0.07518711875582396,
+      "entropy": 0.976020648236615,
+      "hotspots": [
+        [
+          75,
+          73,
+          13
+        ],
+        [
+          75,
+          74,
+          9
+        ]
+      ],
+      "points": 22,
+      "points_sampled": false
+    }
+  ],
+  "selection_mode": "score",
+  "min_places_for_candidate": 10,
+  "analyze_tail_token_only": true,
+  "suffix_len": [
+    2,
+    10
+  ]
+}
