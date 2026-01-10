@@ -124,6 +124,93 @@ function transformAkGeometry(g: GeoJSON.Geometry): GeoJSON.Geometry {
     } as GeoJSON.Polygon;
   }
   if (g.type === "MultiPolygon") {
+
+  type OverrideSpec = {
+    sourceIso3: string;
+    targetIso3: string;
+    targetIsoN3: string;
+    targetName?: string;
+  };
+
+  const DISPUTE_OVERRIDES: OverrideSpec[] = [
+    // Treat Somaliland as part of Somalia
+    { sourceIso3: "SOL", targetIso3: "SOM", targetIsoN3: "706", targetName: "Somalia" },
+    // Treat Western Sahara as part of Morocco
+    { sourceIso3: "SAH", targetIso3: "MAR", targetIsoN3: "504", targetName: "Morocco" },
+  ];
+
+  function applyDisputeOverrides(features: CountryFeature[], admin1?: Admin1Loaded | null): CountryFeature[] {
+    const patched = (features ?? []).map((f) => {
+      const iso3 = getISO3(f);
+      const override = DISPUTE_OVERRIDES.find((o) => o.sourceIso3 === iso3);
+      if (!override) return f;
+
+      const name = override.targetName ?? getName(f);
+      const geometry = maybeTransformGeometry(f as any);
+      return {
+        ...f,
+        id: normalizeId(override.targetIsoN3),
+        geometry,
+        properties: {
+          ...(f as any)?.properties,
+          name,
+          ADM0_A3: override.targetIso3,
+          ISO_A3: override.targetIso3,
+          ISO_N3: override.targetIsoN3,
+          id: normalizeId(override.targetIsoN3),
+        },
+      } as CountryFeature;
+    });
+
+    // Append Crimea (UA-43) as Ukraine so it renders with Ukraine color.
+    if (admin1?.topo) {
+      try {
+        const obj =
+          pickTopoObjectRobust(admin1.topo as any, [
+            "admin1",
+            "admin_1",
+            "states_provinces",
+            "ne_10m_admin_1_states_provinces_lakes",
+            "ne_50m_admin_1_states_provinces_lakes",
+            "ne_10m_admin_1_states_provinces",
+            "ne_50m_admin_1_states_provinces",
+          ]) ?? null;
+
+        const geoms: any[] = (obj as any)?.geometries ?? [];
+        const crimeaGeom = geoms.find((g: any) => {
+          const p = g?.properties ?? {};
+          const n = (p.name_en ?? p.name ?? "").toString().toLowerCase();
+          const iso2 = (p.iso_3166_2 ?? "").toString().toUpperCase();
+          return n.includes("crimea") || iso2 === "UA-43";
+        });
+
+        if (crimeaGeom) {
+          const fc = topoFeature(admin1.topo as any, { ...(obj as any), geometries: [crimeaGeom] } as any) as any;
+          const feat = (fc?.type === "FeatureCollection" ? fc.features?.[0] : fc) as any;
+          if (feat?.geometry) {
+            const geometry = maybeTransformGeometry(feat as any);
+            patched.push({
+              type: "Feature",
+              geometry,
+              properties: {
+                ...(feat?.properties ?? {}),
+                name: "Crimea",
+                ADM0_A3: "UKR",
+                ISO_A3: "UKR",
+                ISO_N3: "804",
+                id: "804",
+              },
+              id: "804",
+            } as CountryFeature);
+          }
+        }
+      } catch (e) {
+        console.warn("[MapView] Crimea override failed", e);
+      }
+    }
+
+    return patched;
+  }
     return {
       type: "MultiPolygon",
       coordinates: (g.coordinates as any).map((poly: number[][][]) =>
@@ -449,19 +536,17 @@ export default function MapView({ countries, selectedId, onSelect }: Props) {
 
   const dataCountries = useMemo(() => {
     const source = neCountries?.length ? neCountries : transformFallbackCountries(countries ?? []);
-    
+    let merged = source;
+
     // If we have both Natural Earth and world-atlas, merge geometries for countries with missing data
     if (source?.length && atlasCountries?.length) {
-      return source.map((country) => {
-        const hasGeometry = country.geometry && 
-                           JSON.stringify(country.geometry).length > 50;
-        
+      merged = source.map((country) => {
+        const hasGeometry = country.geometry && JSON.stringify(country.geometry).length > 50;
+
         if (!hasGeometry) {
           // Try to find this country in world-atlas and use its geometry
-          const atlasMatch = atlasCountries.find(
-            (ac) => normalizeId(ac.id) === normalizeId(country.id)
-          );
-          
+          const atlasMatch = atlasCountries.find((ac) => normalizeId(ac.id) === normalizeId(country.id));
+
           if (atlasMatch?.geometry) {
             console.debug(`[MapView] Using world-atlas geometry for country ${normalizeId(country.id)} (was missing in Natural Earth)`);
             return {
@@ -470,13 +555,13 @@ export default function MapView({ countries, selectedId, onSelect }: Props) {
             };
           }
         }
-        
+
         return country;
       });
     }
-    
-    return source;
-  }, [neCountries, atlasCountries, countries]);
+
+    return applyDisputeOverrides(merged, admin1Loaded);
+  }, [neCountries, atlasCountries, countries, admin1Loaded]);
 
   const countriesFC = useMemo(() => toFeatureCollection(dataCountries), [dataCountries]);
 
