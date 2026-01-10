@@ -7,11 +7,6 @@ const SUPABASE_KEY = process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.SUPABA
 
 const supabase = createClient(SUPABASE_URL || "", SUPABASE_KEY || "");
 
-function looksLikeUuid(v) {
-  if (!v || typeof v !== "string") return false;
-  return /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(v);
-}
-
 function verify(token) {
   try {
     return jwt.verify(token, JWT_SECRET);
@@ -55,12 +50,11 @@ export default async function handler(req, res) {
 
   try {
     const userId = payload.userId;
-    const userIdUuid = looksLikeUuid(userId) ? userId : undefined;
 
     const buildCandidate = () => ({
       country_id: countryId,
       pattern,
-      user_id: userIdUuid,
+      user_id: userId,
       // optional fields (may not exist in schema)
       note: note || undefined,
       reason: note || undefined,
