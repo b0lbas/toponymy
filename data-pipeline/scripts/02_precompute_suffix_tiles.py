@@ -138,6 +138,16 @@ def main():
 
         print(f"\n[country] {c['name']} ({cid})")
         df = pd.read_csv(csv)
+        total_places = int(len(df))
+
+        # For very small countries, a fixed min_places threshold can result in zero candidates.
+        # Adapt it downward so we still export some patterns.
+        eff_min_places = int(min_places)
+        if total_places > 0:
+            adaptive = max(3, total_places // 10)
+            if adaptive < eff_min_places:
+                eff_min_places = adaptive
+                print(f"[min_places] adjusted {min_places} -> {eff_min_places} (total_places={total_places})")
 
         freq = Counter()
         tile_counts = defaultdict(lambda: defaultdict(int))
@@ -155,8 +165,8 @@ def main():
                 freq[suf] += 1
                 tile_counts[suf][(x, y)] += 1
 
-        candidates = [s for s, f in freq.items() if f >= min_places]
-        print(f"[candidates] {len(candidates):,} (min_places={min_places})")
+        candidates = [s for s, f in freq.items() if f >= eff_min_places]
+        print(f"[candidates] {len(candidates):,} (min_places={eff_min_places})")
 
         # Filter out non-city suffixes (roads, mountains, etc.)
         candidates = [s for s in candidates if is_valid_city_suffix(s)]
@@ -271,7 +281,7 @@ def main():
             "default_zoom": z,
             "patterns": patterns_index,
             "selection_mode": selection_mode,
-            "min_places_for_candidate": min_places,
+            "min_places_for_candidate": eff_min_places,
             "analyze_tail_token_only": analyze_tail_only,
             "suffix_len": [min_len, max_len],
         }

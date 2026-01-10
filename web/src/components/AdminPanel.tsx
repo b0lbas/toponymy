@@ -1,9 +1,8 @@
 import { useEffect, useMemo, useState } from "react";
 import auth from "../lib/auth";
 import { API_BASE } from "../lib/likes";
-import type { CountryPatternsIndex, PatternIndexEntry } from "../lib/data";
-import { fetchJson } from "../lib/data";
-import SmallMultiple from "./SmallMultiple";
+import type { CountryPatternsIndex, PatternIndexEntry, PatternPayload } from "../lib/data";
+import { fetchJson, fetchJsonGz } from "../lib/data";
 
 type ReportRow = {
   id?: string;
@@ -29,6 +28,7 @@ export default function AdminPanel() {
   const [error, setError] = useState<string | null>(null);
   const [busyKey, setBusyKey] = useState<string | null>(null);
   const [indexByCountry, setIndexByCountry] = useState<Record<string, CountryPatternsIndex | null>>({});
+  const [payloadByKey, setPayloadByKey] = useState<Record<string, PatternPayload | null>>({});
 
   useEffect(() => {
     return auth.onAuthChange((u) => setUserId(u));
@@ -110,10 +110,72 @@ export default function AdminPanel() {
     };
   }, [reports, indexByCountry]);
 
+  useEffect(() => {
+    if (!reports || reports.length === 0) return;
+
+    const needed: Array<{ countryId: string; pattern: string }> = [];
+    for (const r of reports) {
+      const countryId = (r.country_id || r.countryId || "").toString();
+      const pattern = (r.pattern || "").toString();
+      if (!countryId || !pattern) continue;
+      const key = `${countryId}|${pattern}`;
+      if (payloadByKey[key] !== undefined) continue;
+      needed.push({ countryId, pattern });
+    }
+
+    if (needed.length === 0) return;
+
+    let cancelled = false;
+
+    (async () => {
+      const updates: Record<string, PatternPayload | null> = {};
+
+      await Promise.all(
+        needed.map(async ({ countryId, pattern }) => {
+          const key = `${countryId}|${pattern}`;
+          const entry = getEntryForReport(countryId, pattern);
+          if (!entry?.file) {
+            updates[key] = null;
+            return;
+          }
+
+          const file = entry.file.toString().replace(/^\/+/, "");
+          const url = `/data/${encodeURIComponent(countryId)}/${encodeURI(file)}`;
+
+          try {
+            const payload = await fetchJsonGz<PatternPayload>(url);
+            updates[key] = payload;
+          } catch {
+            updates[key] = null;
+          }
+        })
+      );
+
+      if (cancelled) return;
+      setPayloadByKey((prev) => ({ ...prev, ...updates }));
+    })();
+
+    return () => {
+      cancelled = true;
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [reports, indexByCountry, payloadByKey]);
+
   const getEntryForReport = (countryId: string, pattern: string): PatternIndexEntry | null => {
     const idx = indexByCountry[countryId];
     if (!idx?.patterns?.length) return null;
     return idx.patterns.find((p) => p.pattern === pattern) ?? null;
+  };
+
+  const cityNamesForPayload = (payload: PatternPayload | null): string[] => {
+    if (!payload) return [];
+    const anyPayload = payload as any;
+    if (!Array.isArray(anyPayload.points_named)) return [];
+    const names = (anyPayload.points_named as any[])
+      .map((row) => (Array.isArray(row) ? row[2] : null))
+      .filter((v) => typeof v === "string" && v.trim().length > 0)
+      .map((v) => (v as string).trim());
+    return Array.from(new Set(names));
   };
 
   const accept = async (r: ReportRow) => {
@@ -230,8 +292,9 @@ export default function AdminPanel() {
               const keyBase = `${country_id}|${pattern}|${i}`;
 
               const entry = country_id && pattern ? getEntryForReport(country_id, pattern) : null;
-              // SmallMultiple only needs id + some properties; no geometry required for rendering.
-              const countryForPreview = { id: country_id, properties: { name: country_id, id: country_id, ISO_N3: country_id } } as any;
+              const payloadKey = country_id && pattern ? `${country_id}|${pattern}` : "";
+              const payload = payloadKey ? payloadByKey[payloadKey] ?? null : null;
+              const cityNames = cityNamesForPayload(payload);
 
               return (
                 <div key={keyBase} className="rounded-2xl border border-zinc-800 bg-zinc-900/40 p-4">
@@ -273,16 +336,43 @@ export default function AdminPanel() {
 
                   <div className="mt-3">
                     {!country_id || !pattern ? null : entry ? (
-                      <div className="rounded-2xl border border-zinc-800 bg-zinc-950/30 p-3">
-                        <SmallMultiple country={countryForPreview} entry={entry} />
-                      </div>
+                      payloadByKey[payloadKey] === undefined ? (
+                        <div className="rounded-2xl border border-zinc-800 bg-zinc-950/30 p-3 text-xs text-zinc-400">
+                          Loading cities…
+                        </div>
+                      ) : cityNames.length > 0 ? (
+                        <div className="rounded-2xl border border-zinc-800 bg-zinc-950/30 p-3">
+                          <div className="mb-2 flex items-center justify-between gap-3">
+                            <div className="text-xs text-zinc-400">Cities in sample</div>
+                            <div className="text-xs text-zinc-500">{cityNames.length.toLocaleString()}</div>
+                          </div>
+                          <div className="flex flex-wrap gap-2">
+                            {cityNames.slice(0, 36).map((name) => (
+                              <span
+                                key={name}
+                                className="rounded-full border border-zinc-800 bg-zinc-950/50 px-2 py-0.5 text-xs text-zinc-200"
+                                title={name}
+                              >
+                                {name}
+                              </span>
+                            ))}
+                          </div>
+                          {cityNames.length > 36 ? (
+                            <div className="mt-2 text-xs text-zinc-500">…and {(cityNames.length - 36).toLocaleString()} more</div>
+                          ) : null}
+                        </div>
+                      ) : (
+                        <div className="rounded-2xl border border-zinc-800 bg-zinc-950/30 p-3 text-xs text-zinc-400">
+                          No city names in payload (no points_named).
+                        </div>
+                      )
                     ) : indexByCountry[country_id] === undefined ? (
                       <div className="rounded-2xl border border-zinc-800 bg-zinc-950/30 p-3 text-xs text-zinc-400">
-                        Loading preview…
+                        Loading country patterns…
                       </div>
                     ) : (
                       <div className="rounded-2xl border border-zinc-800 bg-zinc-950/30 p-3 text-xs text-zinc-400">
-                        Preview not found in /data/{country_id}/patterns.json
+                        Pattern not found in /data/{country_id}/patterns.json
                       </div>
                     )}
                   </div>
