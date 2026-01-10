@@ -59,12 +59,12 @@ export default async function handler(req, res) {
     if (reportId) {
       upd = supabase
         .from("pattern_reports")
-        .update({ status: "rejected", decided_at: Date.now(), decided_by: payload.userId })
+        .update({ status: "rejected" })
         .eq("id", reportId);
     } else {
       upd = supabase
         .from("pattern_reports")
-        .update({ status: "rejected", decided_at: Date.now(), decided_by: payload.userId })
+        .update({ status: "rejected" })
         .eq("country_id", countryId)
         .eq("pattern", pattern)
         .eq("status", "pending");

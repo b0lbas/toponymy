@@ -49,18 +49,29 @@ export default async function handler(req, res) {
   const status = (req.query?.status || "pending").toString();
 
   try {
-    let query = supabase.from("pattern_reports").select("*").eq("status", status);
+    // Try ordered query first; some schemas may not have created_at
+    const ordered = await supabase
+      .from("pattern_reports")
+      .select("*")
+      .eq("status", status)
+      .order("created_at", { ascending: false });
 
-    // try to order if column exists
-    query = query.order("created_at", { ascending: false });
-
-    const { data, error } = await query;
-    if (error) {
-      console.error("Query error:", error);
-      return res.status(500).json({ error: `Database error: ${error.message}` });
+    if (!ordered.error) {
+      return res.json({ reports: ordered.data || [] });
     }
 
-    return res.json({ reports: data || [] });
+    const msg = ordered.error.message || "";
+    if (/created_at/i.test(msg)) {
+      const fallback = await supabase.from("pattern_reports").select("*").eq("status", status);
+      if (fallback.error) {
+        console.error("Query error:", fallback.error);
+        return res.status(500).json({ error: `Database error: ${fallback.error.message}` });
+      }
+      return res.json({ reports: fallback.data || [] });
+    }
+
+    console.error("Query error:", ordered.error);
+    return res.status(500).json({ error: `Database error: ${ordered.error.message}` });
   } catch (e) {
     console.error("Exception:", e);
     return res.status(500).json({ error: `Exception: ${e.message}` });

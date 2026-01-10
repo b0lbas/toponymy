@@ -51,21 +51,38 @@ export default async function handler(req, res) {
   try {
     const userId = payload.userId;
 
-    const { error: insertError } = await supabase.from("pattern_reports").insert({
+    const buildCandidate = () => ({
       country_id: countryId,
       pattern,
-      note,
       user_id: userId,
+      // optional fields (may not exist in schema)
+      note: note || undefined,
+      reason: note || undefined,
       status: "pending",
       created_at: Date.now(),
     });
 
-    if (insertError) {
+    let candidate = buildCandidate();
+    // Retry by dropping unknown columns (Supabase schema cache mismatch / older schema)
+    for (let i = 0; i < 6; i++) {
+      const { error: insertError } = await supabase.from("pattern_reports").insert(candidate);
+      if (!insertError) {
+        return res.json({ success: true });
+      }
+
+      const msg = insertError.message || "";
+      const m = msg.match(/Could not find the '([^']+)' column/i);
+      if (m && m[1] && Object.prototype.hasOwnProperty.call(candidate, m[1])) {
+        const col = m[1];
+        delete candidate[col];
+        continue;
+      }
+
       console.error("Insert error:", insertError);
       return res.status(500).json({ error: `Failed to create report: ${insertError.message}` });
     }
 
-    return res.json({ success: true });
+    return res.status(500).json({ error: "Failed to create report: schema mismatch" });
   } catch (e) {
     console.error("Exception:", e);
     return res.status(500).json({ error: `Exception: ${e.message}` });
