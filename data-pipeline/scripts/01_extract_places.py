@@ -5,24 +5,46 @@ import osmium
 from unidecode import unidecode
 
 ROOT = pathlib.Path(__file__).resolve().parents[1]
-CFG_NAME = sys.argv[1] if len(sys.argv) > 1 else "north-america.json"
-CFG = ROOT / "config" / CFG_NAME
 RAW = ROOT / "raw"
 OUT = ROOT / "intermediate"
-
-print(f"[info] Using config: {CFG.name}")
 
 PLACE_TAGS = set(["city","town","village"])
 TOWNSHIP_RE = re.compile(r"\btownship\b", re.IGNORECASE)
 CHARTER_RE = re.compile(r"\bcharter\b", re.IGNORECASE)
 
 def clean_place_name(name: str, country_id: str) -> str:
-    # For USA, strip noisy words like "township" and "charter" but keep the place itself
+    """Clean place name from special characters and unwanted content"""
+    if not name:
+        return ""
+    
+    # For USA, strip noisy words like "township" and "charter"
     if country_id == "840":
         name = TOWNSHIP_RE.sub(" ", name)
         name = CHARTER_RE.sub(" ", name)
-    # normalize whitespace
-    return re.sub(r"\s+", " ", name).strip()
+    
+    # Remove content in parentheses and brackets
+    name = re.sub(r"\([^\)]*\)", " ", name)
+    name = re.sub(r"\[[^\]]*\]", " ", name)
+    name = re.sub(r"\{[^\}]*\}", " ", name)
+    
+    # Remove quotes
+    name = re.sub(r'[""]', " ", name)
+    name = re.sub(r'[«»„"❝❞]', " ", name)
+    
+    # Remove all digits
+    name = re.sub(r"\d+", " ", name)
+    
+    # Normalize quotes and dashes
+    name = re.sub(r"[''`´]", "'", name)
+    name = re.sub(r"[-–—]+", "-", name)
+    
+    # Remove all special characters except letters (any unicode), spaces, hyphens, apostrophes
+    name = re.sub(r"[^\w\s\-']", " ", name, flags=re.UNICODE)
+    
+    # Normalize whitespace
+    name = re.sub(r"\s+", " ", name).strip()
+    
+    return name
 
 def normalize_name(name: str, strip_diacritics: bool = True) -> str:
     s = name.strip().lower()
@@ -76,11 +98,12 @@ def main():
     import argparse
     parser = argparse.ArgumentParser(description="Extract place nodes from PBFs for countries listed in a config")
     parser.add_argument("-c", "--country", help="comma-separated list of country ids or geofabrik slugs to process (e.g. 8 or 250,8)", default=None)
-    parser.add_argument("--config", help="path to config json (default: data-pipeline/config/europe.json)", default=None)
+    parser.add_argument("--config", help="path to config json (default: data-pipeline/config/europe.json)", default="config/europe.json")
     args = parser.parse_args()
 
     OUT.mkdir(parents=True, exist_ok=True)
-    cfg_path = pathlib.Path(args.config) if args.config else CFG
+    cfg_path = ROOT / args.config
+    print(f"[info] Using config: {cfg_path.name}")
     cfg = json.loads(cfg_path.read_text(encoding="utf-8"))
 
     targets = []

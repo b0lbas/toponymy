@@ -1,5 +1,5 @@
 {
-  "note": "Asian countries for suffix exports (Kazakhstan, Mongolia, + Central/Southeast Asia). Similar settings to Europe config.",
+  "note": "All Asian countries for suffix exports. GCC states (Bahrain, Kuwait, Oman, Qatar, Saudi Arabia, UAE) and Israel-Palestine are shared PBF files requiring country_id filtering.",
   "zoom": 7,
   "suffix_min_len": 2,
   "suffix_max_len": 10,
@@ -9,29 +9,41 @@
   "analyze_tail_token_only": true,
   "countries": [
     {
-      "id": "417",
-      "name": "Kyrgyzstan",
-      "geofabrik_slug": "kyrgyzstan"
+      "id": "004",
+      "name": "Afghanistan",
+      "geofabrik_slug": "afghanistan"
     },
     {
-      "id": "398",
-      "name": "Kazakhstan",
-      "geofabrik_slug": "kazakhstan"
+      "id": "051",
+      "name": "Armenia",
+      "geofabrik_slug": "armenia"
     },
     {
-      "id": "496",
-      "name": "Mongolia",
-      "geofabrik_slug": "mongolia"
+      "id": "031",
+      "name": "Azerbaijan",
+      "geofabrik_slug": "azerbaijan"
     },
     {
-      "id": "764",
-      "name": "Thailand",
-      "geofabrik_slug": "thailand"
+      "id": "048",
+      "name": "Bahrain",
+      "geofabrik_slug": "gcc-states",
+      "country_id": "048"
     },
     {
-      "id": "704",
-      "name": "Vietnam",
-      "geofabrik_slug": "vietnam"
+      "id": "050",
+      "name": "Bangladesh",
+      "geofabrik_slug": "bangladesh"
+    },
+    {
+      "id": "064",
+      "name": "Bhutan",
+      "geofabrik_slug": "bhutan"
+    },
+    {
+      "id": "096",
+      "name": "Brunei",
+      "geofabrik_slug": "malaysia-singapore-brunei",
+      "country_id": "096"
     },
     {
       "id": "116",
@@ -39,24 +51,20 @@
       "geofabrik_slug": "cambodia"
     },
     {
-      "id": "608",
-      "name": "Philippines",
-      "geofabrik_slug": "philippines"
+      "id": "156",
+      "name": "China",
+      "geofabrik_slug": "china"
     },
     {
-      "id": "458",
-      "name": "Malaysia",
-      "geofabrik_slug": "malaysia-singapore-brunei"
+      "id": "275",
+      "name": "Palestine",
+      "geofabrik_slug": "israel-and-palestine",
+      "country_id": "275"
     },
     {
-      "id": "702",
-      "name": "Singapore",
-      "geofabrik_slug": "malaysia-singapore-brunei"
-    },
-    {
-      "id": "096",
-      "name": "Brunei",
-      "geofabrik_slug": "malaysia-singapore-brunei"
+      "id": "356",
+      "name": "India",
+      "geofabrik_slug": "india"
     },
     {
       "id": "360",
@@ -64,9 +72,177 @@
       "geofabrik_slug": "indonesia"
     },
     {
+      "id": "364",
+      "name": "Iran",
+      "geofabrik_slug": "iran"
+    },
+    {
+      "id": "368",
+      "name": "Iraq",
+      "geofabrik_slug": "iraq"
+    },
+    {
+      "id": "376",
+      "name": "Israel",
+      "geofabrik_slug": "israel-and-palestine",
+      "country_id": "376"
+    },
+    {
+      "id": "392",
+      "name": "Japan",
+      "geofabrik_slug": "japan"
+    },
+    {
+      "id": "400",
+      "name": "Jordan",
+      "geofabrik_slug": "jordan"
+    },
+    {
+      "id": "398",
+      "name": "Kazakhstan",
+      "geofabrik_slug": "kazakhstan"
+    },
+    {
+      "id": "408",
+      "name": "North Korea",
+      "geofabrik_slug": "north-korea"
+    },
+    {
+      "id": "410",
+      "name": "South Korea",
+      "geofabrik_slug": "south-korea"
+    },
+    {
+      "id": "414",
+      "name": "Kuwait",
+      "geofabrik_slug": "gcc-states",
+      "country_id": "414"
+    },
+    {
+      "id": "417",
+      "name": "Kyrgyzstan",
+      "geofabrik_slug": "kyrgyzstan"
+    },
+    {
+      "id": "418",
+      "name": "Laos",
+      "geofabrik_slug": "laos"
+    },
+    {
+      "id": "422",
+      "name": "Lebanon",
+      "geofabrik_slug": "lebanon"
+    },
+    {
+      "id": "458",
+      "name": "Malaysia",
+      "geofabrik_slug": "malaysia-singapore-brunei",
+      "country_id": "458"
+    },
+    {
+      "id": "496",
+      "name": "Mongolia",
+      "geofabrik_slug": "mongolia"
+    },
+    {
+      "id": "104",
+      "name": "Myanmar",
+      "geofabrik_slug": "myanmar"
+    },
+    {
+      "id": "524",
+      "name": "Nepal",
+      "geofabrik_slug": "nepal"
+    },
+    {
+      "id": "512",
+      "name": "Oman",
+      "geofabrik_slug": "gcc-states",
+      "country_id": "512"
+    },
+    {
+      "id": "586",
+      "name": "Pakistan",
+      "geofabrik_slug": "pakistan"
+    },
+    {
+      "id": "608",
+      "name": "Philippines",
+      "geofabrik_slug": "philippines"
+    },
+    {
+      "id": "634",
+      "name": "Qatar",
+      "geofabrik_slug": "gcc-states",
+      "country_id": "634"
+    },
+    {
+      "id": "682",
+      "name": "Saudi Arabia",
+      "geofabrik_slug": "gcc-states",
+      "country_id": "682"
+    },
+    {
+      "id": "702",
+      "name": "Singapore",
+      "geofabrik_slug": "malaysia-singapore-brunei",
+      "country_id": "702"
+    },
+    {
+      "id": "144",
+      "name": "Sri Lanka",
+      "geofabrik_slug": "sri-lanka"
+    },
+    {
+      "id": "760",
+      "name": "Syria",
+      "geofabrik_slug": "syria"
+    },
+    {
+      "id": "158",
+      "name": "Taiwan",
+      "geofabrik_slug": "taiwan"
+    },
+    {
+      "id": "762",
+      "name": "Tajikistan",
+      "geofabrik_slug": "tajikistan"
+    },
+    {
+      "id": "764",
+      "name": "Thailand",
+      "geofabrik_slug": "thailand"
+    },
+    {
       "id": "626",
       "name": "Timor-Leste",
       "geofabrik_slug": "east-timor"
+    },
+    {
+      "id": "795",
+      "name": "Turkmenistan",
+      "geofabrik_slug": "turkmenistan"
+    },
+    {
+      "id": "784",
+      "name": "United Arab Emirates",
+      "geofabrik_slug": "gcc-states",
+      "country_id": "784"
+    },
+    {
+      "id": "860",
+      "name": "Uzbekistan",
+      "geofabrik_slug": "uzbekistan"
+    },
+    {
+      "id": "704",
+      "name": "Vietnam",
+      "geofabrik_slug": "vietnam"
+    },
+    {
+      "id": "887",
+      "name": "Yemen",
+      "geofabrik_slug": "yemen"
     }
   ],
   "export_points": true,

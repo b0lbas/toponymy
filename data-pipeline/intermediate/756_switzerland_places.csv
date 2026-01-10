@@ -13,9 +13,9 @@ country_id,name,name_norm,place,lon,lat
 756,Gandria,gandria,village,9.0027751,46.005737
 756,Grindelwald,grindelwald,village,8.0367462,46.6242733
 756,Seelisberg,seelisberg,hamlet,8.584449,46.9766102
-756,Seelisberg (Oberdorf),seelisberg,hamlet,8.5848447,46.969429
+756,Seelisberg,seelisberg,hamlet,8.5848447,46.969429
 756,Moosbad,moosbad,hamlet,8.6299478,46.8915696
-756,"Oberdorf, Plätzli",oberdorf platzli,hamlet,8.6133849,46.8808376
+756,Oberdorf Plätzli,oberdorf platzli,hamlet,8.6133849,46.8808376
 756,Unterdorf,unterdorf,hamlet,8.6062648,46.8854374
 756,Schattdorf,schattdorf,village,8.6509309,46.8636973
 756,Eggberge,eggberge,hamlet,8.6449862,46.9041736
@@ -219,12 +219,12 @@ country_id,name,name_norm,place,lon,lat
 756,Lütisburg,lutisburg,village,9.0808205,47.3945011
 756,Jonschwil,jonschwil,village,9.0867304,47.423176
 756,Krummenau,krummenau,village,9.1694948,47.2487748
-756,Neu St. Johann,neu st johann,village,9.1935687,47.2314103
+756,Neu St Johann,neu st johann,village,9.1935687,47.2314103
 756,Nesslau,nesslau,village,9.2020206,47.2226153
 756,Unterwasser,unterwasser,village,9.3089893,47.197779
 756,Wildhaus,wildhaus,village,9.3507024,47.2033184
 756,Gams,gams,village,9.4421264,47.2054106
-756,St. Gallenkappel,st gallenkappel,village,8.9675658,47.2452391
+756,St Gallenkappel,st gallenkappel,village,8.9675658,47.2452391
 756,Gebertingen,gebertingen,village,9.0060472,47.253547
 756,Ricken SG,ricken sg,village,9.0442631,47.2625917
 756,Nuolen,nuolen,village,8.8876137,47.2036583
@@ -303,7 +303,7 @@ country_id,name,name_norm,place,lon,lat
 756,Limpach,limpach,village,7.4945374,47.1087989
 756,Büren zum Hof,buren zum hof,village,7.515298,47.0955021
 756,Lausanne,lausanne,city,6.6327025,46.5218269
-756,Buch b. Frauenfeld,buch b frauenfeld,village,8.8375279,47.5977723
+756,Buch b Frauenfeld,buch b frauenfeld,village,8.8375279,47.5977723
 756,Uerschhausen,uerschhausen,hamlet,8.8171458,47.6090767
 756,Trüttlikon,truttlikon,hamlet,8.8192197,47.5957025
 756,Iselisberg,iselisberg,hamlet,8.8261897,47.5865601
@@ -394,7 +394,7 @@ country_id,name,name_norm,place,lon,lat
 756,Etzwilen,etzwilen,village,8.8186516,47.6606236
 756,Eschenz,eschenz,village,8.8748245,47.6473559
 756,Kalchrain,kalchrain,hamlet,8.8892903,47.6108679
-756,Hard (Buch),hard,hamlet,8.7867486,47.7192109
+756,Hard,hard,hamlet,8.7867486,47.7192109
 756,Wilchingen,wilchingen,village,8.4668988,47.6674274
 756,Osterfingen,osterfingen,village,8.4858732,47.6627939
 756,Bad Osterfingen,bad osterfingen,hamlet,8.4841501,47.6568802
@@ -409,7 +409,7 @@ country_id,name,name_norm,place,lon,lat
 756,Ponte Tresa,ponte tresa,village,8.8590331,45.970147
 756,Vogorno,vogorno,village,8.8598068,46.2226476
 756,Magadino,magadino,village,8.8559472,46.1474272
-756,Vira (Gambarogno),vira,village,8.8418863,46.1438542
+756,Vira,vira,village,8.8418863,46.1438542
 756,San Nazzaro,san nazzaro,village,8.8025219,46.1313122
 756,Ranzo,ranzo,hamlet,8.7717492,46.1134915
 756,Oberwald,oberwald,hamlet,8.8577096,47.6996496
@@ -536,7 +536,7 @@ country_id,name,name_norm,place,lon,lat
 756,Brunni,brunni,village,8.7017635,47.0425291
 756,Zermatt,zermatt,town,7.749254,46.0212076
 756,Dagmersellen,dagmersellen,village,7.9901132,47.2135668
-756,Celerina/Schlarigna,celerina schlarigna,village,9.8586248,46.5132296
+756,Celerina Schlarigna,celerina schlarigna,village,9.8586248,46.5132296
 756,Oberschan,oberschan,village,9.4756141,47.0984435
 756,Gretschins,gretschins,village,9.4859585,47.0979809
 756,Fontnas,fontnas,village,9.4891856,47.0903348
@@ -600,16 +600,16 @@ country_id,name,name_norm,place,lon,lat
 756,Gerlisberg,gerlisberg,hamlet,8.6147074,47.4642144
 756,Oberembrach,oberembrach,village,8.618543,47.4876358
 756,Kyburg,kyburg,village,8.744344,47.4570858
-756,Adlikon b. Andelfingen,adlikon b andelfingen,village,8.6912556,47.5825032
+756,Adlikon b Andelfingen,adlikon b andelfingen,village,8.6912556,47.5825032
 756,Rudolfingen,rudolfingen,village,8.6738748,47.6407539
 756,Ellikon am Rhein,ellikon am rhein,village,8.5981551,47.6053031
 756,Flaach,flaach,village,8.6060755,47.5754461
 756,Berg am Irchel,berg am irchel,village,8.5959486,47.5679698
 756,Volken,volken,village,8.6251185,47.5746457
 756,Humlikon,humlikon,village,8.6695684,47.5762347
-756,Aesch (Neftenbach),aesch,village,8.6795397,47.5413524
+756,Aesch,aesch,village,8.6795397,47.5413524
 756,Neftenbach,neftenbach,village,8.6680365,47.528176
-756,Hünikon (Neftenbach),hunikon,village,8.6683818,47.5515491
+756,Hünikon,hunikon,village,8.6683818,47.5515491
 756,Hüntwangen,huntwangen,village,8.4925331,47.5954244
 756,Wasterkingen,wasterkingen,village,8.4707137,47.590058
 756,Buchenloo,buchenloo,hamlet,8.4934389,47.6138289
@@ -716,7 +716,7 @@ country_id,name,name_norm,place,lon,lat
 756,Eiken,eiken,village,7.9894417,47.5312508
 756,Frick,frick,village,8.0203065,47.5075081
 756,Chastels,chastels,hamlet,7.1812025,46.8234654
-756,St. Wolfgang,st wolfgang,hamlet,7.1871282,46.832549
+756,St Wolfgang,st wolfgang,hamlet,7.1871282,46.832549
 756,Mariahilf,mariahilf,hamlet,7.2023941,46.8287039
 756,Jetschwil,jetschwil,hamlet,7.2007049,46.8364637
 756,Tobel,tobel,hamlet,9.0964259,46.7459755
@@ -750,7 +750,7 @@ country_id,name,name_norm,place,lon,lat
 756,Treyvaux,treyvaux,village,7.1364409,46.7274425
 756,Magnedens,magnedens,village,7.0812001,46.7423467
 756,Posieux,posieux,village,7.09769,46.7643272
-756,Charmey (Gruyère),charmey,village,7.1637241,46.6198181
+756,Charmey,charmey,village,7.1637241,46.6198181
 756,Saint-Pierre-de-Clages,saint-pierre-de-clages,village,7.23703,46.1920795
 756,Sonnenburg,sonnenburg,hamlet,9.164787,47.4582099
 756,Thurhof,thurhof,hamlet,9.1522296,47.4560282
@@ -899,7 +899,7 @@ country_id,name,name_norm,place,lon,lat
 756,Aeugst am Albis,aeugst am albis,village,8.4863301,47.2679489
 756,Mont-la-Ville,mont-la-ville,village,6.4077926,46.645546
 756,Zuzwil SG,zuzwil sg,village,9.1095657,47.4713144
-756,Balm b. Günsberg,balm b gunsberg,village,7.5579507,47.252606
+756,Balm b Günsberg,balm b gunsberg,village,7.5579507,47.252606
 756,Eschenbach SG,eschenbach sg,village,8.9217296,47.2401739
 756,St-Martin VS,st-martin vs,village,7.4421788,46.1733718
 756,Essertines-sur-Yverdon,essertines-sur-yverdon,village,6.6383585,46.7152242
@@ -992,8 +992,8 @@ country_id,name,name_norm,place,lon,lat
 756,Hochwald,hochwald,village,7.6402192,47.4562417
 756,Beinwil SO,beinwil so,village,7.5792172,47.3608078
 756,Perroy,perroy,village,6.3642905,46.4681469
-756,S. Antonio (Val Morobbia),s antonio,village,9.0591975,46.1695596
-756,Mur (Vully) VD,mur vd,village,7.0603683,46.9442044
+756,S Antonio,s antonio,village,9.0591975,46.1695596
+756,Mur VD,mur vd,village,7.0603683,46.9442044
 756,Loveresse,loveresse,village,7.2356474,47.2424177
 756,Roche,roche,village,6.9309298,46.3610602
 756,Saas im Prättigau,saas im prattigau,village,9.8085204,46.9108567
@@ -1057,7 +1057,7 @@ country_id,name,name_norm,place,lon,lat
 756,Mörigen,morigen,village,7.2137984,47.0846116
 756,Hittnau,hittnau,village,8.8233708,47.3682799
 756,Gelterfingen,gelterfingen,village,7.5168205,46.8416185
-756,Granges (Veveyse),granges,village,6.829546,46.5245766
+756,Granges,granges,village,6.829546,46.5245766
 756,Fehraltorf,fehraltorf,village,8.7520123,47.3873705
 756,Massongex,massongex,village,6.9879674,46.2427711
 756,Le Mont-sur-Lausanne,le mont-sur-lausanne,village,6.6354534,46.5530996
@@ -1218,7 +1218,7 @@ country_id,name,name_norm,place,lon,lat
 756,Biglen,biglen,village,7.6278668,46.9263129
 756,Clarmont,clarmont,village,6.4501584,46.5474321
 756,Deitingen,deitingen,village,7.619244,47.21431
-756,Rüti b. Lyssach,ruti b lyssach,village,7.5779172,47.0555395
+756,Rüti b Lyssach,ruti b lyssach,village,7.5779172,47.0555395
 756,Arisdorf,arisdorf,village,7.7654983,47.5123916
 756,Esmonts,esmonts,village,6.8520518,46.6396573
 756,Biel-Benken BL,biel-benken bl,village,7.520962,47.506771
@@ -1259,7 +1259,7 @@ country_id,name,name_norm,place,lon,lat
 756,Bolken,bolken,village,7.66363,47.1925815
 756,Gipf-Oberfrick,gipf-oberfrick,village,8.0029699,47.4975112
 756,Altendorf,altendorf,village,8.8294983,47.1916374
-756,Bergün/Bravuogn,bergun bravuogn,village,9.7452826,46.6290381
+756,Bergün Bravuogn,bergun bravuogn,village,9.7452826,46.6290381
 756,Steinhaus,steinhaus,hamlet,8.1778515,46.422139
 756,Möhlin,mohlin,town,7.8431299,47.560991
 756,Gruben,gruben,village,7.7069255,46.2112722
@@ -1380,7 +1380,7 @@ country_id,name,name_norm,place,lon,lat
 756,Rocourt,rocourt,village,6.9569559,47.3905037
 756,Saint-Léonard,saint-leonard,village,7.420378,46.2546777
 756,Längenbühl,langenbuhl,village,7.5391144,46.7576304
-756,Breil/Brigels,breil brigels,village,9.0622332,46.7674063
+756,Breil Brigels,breil brigels,village,9.0622332,46.7674063
 756,Lupsingen,lupsingen,village,7.6938955,47.4466659
 756,Calonico,calonico,hamlet,8.8416008,46.4507212
 756,Ried-Brig,ried-brig,village,8.0166829,46.3150269
@@ -1417,7 +1417,7 @@ country_id,name,name_norm,place,lon,lat
 756,Blenio,blenio,village,8.9359274,46.5011462
 756,Mürren,murren,village,7.8928785,46.5591404
 756,Torricella-Taverne,torricella-taverne,village,8.924762,46.0656774
-756,Villette (Lavaux),villette,village,6.7094638,46.4944793
+756,Villette,villette,village,6.7094638,46.4944793
 756,Boltigen,boltigen,village,7.3908364,46.6295428
 756,Ennetmoos,ennetmoos,village,8.3374027,46.9569495
 756,Mutrux,mutrux,village,6.7261849,46.8825207
@@ -1480,7 +1480,7 @@ country_id,name,name_norm,place,lon,lat
 756,Sax,sax,village,9.4573009,47.2313591
 756,Ehrendingen,ehrendingen,village,8.3418609,47.4948072
 756,Bünzen,bunzen,village,8.3260392,47.3116613
-756,Wiler (Lötschen),wiler,village,7.7836104,46.4039949
+756,Wiler,wiler,village,7.7836104,46.4039949
 756,Steinen,steinen,village,8.6108291,47.0500549
 756,Servion,servion,village,6.7845039,46.5767948
 756,Bettens,bettens,village,6.5770883,46.6275904
@@ -1517,11 +1517,11 @@ country_id,name,name_norm,place,lon,lat
 756,Trimbach,trimbach,village,7.9023314,47.3631152
 756,Perlen,perlen,village,8.3604016,47.1097866
 756,Villa Luganese,villa luganese,village,8.9928297,46.0516309
-756,Domat/Ems,domat ems,village,9.4506859,46.8351271
+756,Domat Ems,domat ems,village,9.4506859,46.8351271
 756,Riffenmatt,riffenmatt,village,7.3533298,46.7653088
 756,Oberaach,oberaach,village,9.2687693,47.5573067
 756,Rapperswil,rapperswil,town,8.8164042,47.2266532
-756,St. Gallen,st gallen,town,9.3762397,47.425618
+756,St Gallen,st gallen,town,9.3762397,47.425618
 756,Bissegg,bissegg,village,9.0457054,47.5623116
 756,Boudry,boudry,village,6.8358712,46.9487464
 756,Benzenschwil,benzenschwil,village,8.3640314,47.2480066
@@ -1573,7 +1573,7 @@ country_id,name,name_norm,place,lon,lat
 756,Wettswil,wettswil,village,8.4734523,47.3390834
 756,Bäriswil BE,bariswil be,village,7.52538,47.0186014
 756,Nusshof,nusshof,village,7.8047393,47.4918508
-756,Disentis/Mustér,disentis muster,village,8.8549785,46.7041748
+756,Disentis Mustér,disentis muster,village,8.8549785,46.7041748
 756,Röschenz,roschenz,village,7.4759958,47.4239414
 756,Sarzens,sarzens,village,6.8496603,46.6820356
 756,Kottwil,kottwil,village,8.0449827,47.162331
@@ -1583,7 +1583,7 @@ country_id,name,name_norm,place,lon,lat
 756,Vérossaz,verossaz,village,6.98412,46.2128879
 756,Pont-la-Ville,pont-la-ville,village,7.1110228,46.6990292
 756,Hellbühl,hellbuhl,village,8.197178,47.0707581
-756,Campo (Blenio),campo,village,8.9353766,46.5570568
+756,Campo,campo,village,8.9353766,46.5570568
 756,Effretikon,effretikon,town,8.6869714,47.4283137
 756,Genolier,genolier,village,6.2178235,46.4350251
 756,La Lécherette,la lecherette,hamlet,7.106108,46.4203898
@@ -1683,7 +1683,7 @@ country_id,name,name_norm,place,lon,lat
 756,Cortébert,cortebert,village,7.107598,47.1903025
 756,Wiggiswil,wiggiswil,village,7.4686887,47.0303538
 756,Niederrickenbach,niederrickenbach,hamlet,8.4276322,46.9277169
-756,Montet (Glâne),montet,village,6.8140532,46.6438707
+756,Montet,montet,village,6.8140532,46.6438707
 756,Wynigen,wynigen,village,7.6685431,47.1075375
 756,Fescoggia,fescoggia,village,8.8769981,46.0405096
 756,Uhwiesen,uhwiesen,village,8.6350982,47.6709937
@@ -1776,7 +1776,7 @@ country_id,name,name_norm,place,lon,lat
 756,Flurlingen,flurlingen,village,8.6272354,47.6860764
 756,Les Planchettes,les planchettes,village,6.7707244,47.1067134
 756,Gingins,gingins,village,6.1779167,46.4094508
-756,Gsteig b. Gstaad,gsteig b gstaad,village,7.2673253,46.3855821
+756,Gsteig b Gstaad,gsteig b gstaad,village,7.2673253,46.3855821
 756,Unterlunkhofen,unterlunkhofen,village,8.3805098,47.3222122
 756,Clugin,clugin,village,9.426261,46.6167168
 756,Riemenstalden,riemenstalden,village,8.6645678,46.9469935
@@ -1896,7 +1896,7 @@ country_id,name,name_norm,place,lon,lat
 756,Saint-Blaise,saint-blaise,village,6.9879483,47.0130836
 756,Reisiswil,reisiswil,village,7.8452952,47.1643499
 756,Zuzgen,zuzgen,village,7.900246,47.52544
-756,Forel (Lavaux),forel,village,6.77037,46.5419511
+756,Forel,forel,village,6.77037,46.5419511
 756,Longirod,longirod,village,6.2581282,46.4943826
 756,Hornussen,hornussen,village,8.0633909,47.5005311
 756,Serneus,serneus,village,9.838838,46.8897289
@@ -1930,7 +1930,7 @@ country_id,name,name_norm,place,lon,lat
 756,Tschlin,tschlin,village,10.4252588,46.8692093
 756,Oberschrot,oberschrot,village,7.2833892,46.7442608
 756,Hellsau,hellsau,village,7.6487623,47.1462586
-756,Bosco/Gurin,bosco gurin,village,8.4918978,46.3167843
+756,Bosco Gurin,bosco gurin,village,8.4918978,46.3167843
 756,Im Fang,im fang,village,7.2366231,46.5981509
 756,Corcelles-sur-Chavornay,corcelles-sur-chavornay,village,6.6011825,46.7036344
 756,Champoz,champoz,village,7.2991767,47.2553622
@@ -1942,7 +1942,7 @@ country_id,name,name_norm,place,lon,lat
 756,Sankt Ursen,sankt ursen,village,7.2183078,46.7899498
 756,Affoltern im Emmental,affoltern im emmental,village,7.7341485,47.0653533
 756,Lignières,lignieres,village,7.0661591,47.0828386
-756,Sâles (Gruyère),sales,village,6.9743823,46.6366262
+756,Sâles,sales,village,6.9743823,46.6366262
 756,Mund,mund,village,7.9411034,46.315287
 756,Wolfisberg,wolfisberg,village,7.6612053,47.2729722
 756,Reute,reute,village,9.5726679,47.4195905
@@ -1954,7 +1954,7 @@ country_id,name,name_norm,place,lon,lat
 756,Nugerol,nugerol,hamlet,7.0640689,47.0584532
 756,Morgarten,morgarten,hamlet,8.6415298,47.104509
 756,Salmsach,salmsach,village,9.3718492,47.5536187
-756,Brienz/Brinzauls,brienz brinzauls,village,9.5957146,46.6687918
+756,Brienz Brinzauls,brienz brinzauls,village,9.5957146,46.6687918
 756,Vernamiège,vernamiege,village,7.4313684,46.2109663
 756,Rechthalten,rechthalten,village,7.2400909,46.7675326
 756,Cavagnago,cavagnago,hamlet,8.8817499,46.4132693
@@ -2054,7 +2054,7 @@ country_id,name,name_norm,place,lon,lat
 756,Mastrils,mastrils,village,9.5424803,46.9668439
 756,Les Cullayes,les cullayes,village,6.7537317,46.5730628
 756,Amsoldingen,amsoldingen,village,7.5814651,46.7280729
-756,Biel/Bienne,biel bienne,town,7.2439029,47.1402077
+756,Biel Bienne,biel bienne,town,7.2439029,47.1402077
 756,Stein SG,stein sg,village,9.2283386,47.1991701
 756,Barbengo,barbengo,village,8.9138165,45.9599995
 756,Brenzikofen,brenzikofen,village,7.616377,46.815044
@@ -2065,7 +2065,7 @@ country_id,name,name_norm,place,lon,lat
 756,Bruson,bruson,village,7.2186328,46.0662119
 756,Erlen,erlen,village,9.2254631,47.5504462
 756,Sévery,severy,village,6.4388219,46.5758446
-756,La Chaux (Cossonay),la chaux,village,6.472555,46.61604
+756,La Chaux,la chaux,village,6.472555,46.61604
 756,Bourrignon,bourrignon,village,7.245026,47.3966596
 756,Fleurier,fleurier,village,6.58004,46.904275
 756,Ascharina,ascharina,village,9.8104829,46.9603674
@@ -2168,7 +2168,7 @@ country_id,name,name_norm,place,lon,lat
 756,Belp,belp,town,7.498388,46.88978
 756,Mutten,mutten,village,9.500036,46.6781362
 756,Echandens,echandens,village,6.5410474,46.534381
-756,Chapelle (Glâne),chapelle,village,6.8365374,46.5859079
+756,Chapelle,chapelle,village,6.8365374,46.5859079
 756,Fieschertal,fieschertal,village,8.1427862,46.4245701
 756,Zäziwil,zaziwil,village,7.6611309,46.9010154
 756,Kriens,kriens,town,8.2807994,47.034146
@@ -2244,7 +2244,7 @@ country_id,name,name_norm,place,lon,lat
 756,Corcelles-Cormondrèche,corcelles-cormondreche,village,6.8688571,46.9852153
 756,Portein,portein,hamlet,9.40725,46.7119436
 756,Oberkirch,oberkirch,village,8.1151451,47.1556654
-756,St. Martin (Lugnez),st martin,hamlet,9.1803603,46.674519
+756,St Martin,st martin,hamlet,9.1803603,46.674519
 756,Saint-Brais,saint-brais,village,7.1125855,47.3053022
 756,Urnerboden,urnerboden,village,8.9017644,46.8894938
 756,Chésopelloz,chesopelloz,village,7.0792605,46.8070066
@@ -2258,7 +2258,7 @@ country_id,name,name_norm,place,lon,lat
 756,Novalles,novalles,village,6.5956886,46.8284542
 756,Klosters Dorf,klosters dorf,village,9.8750678,46.8829097
 756,Gurmels,gurmels,village,7.1757732,46.8928043
-756,Allmendingen b. Bern,allmendingen b bern,village,7.523976,46.9137006
+756,Allmendingen b Bern,allmendingen b bern,village,7.523976,46.9137006
 756,Rehetobel,rehetobel,village,9.4804482,47.4266831
 756,Mairengo,mairengo,village,8.790975,46.4882081
 756,Galgenen,galgenen,village,8.8742411,47.1815904
@@ -2311,7 +2311,7 @@ country_id,name,name_norm,place,lon,lat
 756,Lengnau BE,lengnau be,village,7.3661348,47.1820974
 756,Susten,susten,village,7.6406395,46.310925
 756,Noiraigue,noiraigue,village,6.7249296,46.954554
-756,St. Peter,st peter,village,9.6468813,46.8333959
+756,St Peter,st peter,village,9.6468813,46.8333959
 756,Opfikon,opfikon,town,8.5779983,47.4322671
 756,Bursins,bursins,village,6.2906369,46.4515535
 756,Rüschegg,ruschegg,village,7.4036704,46.7712929
@@ -2339,7 +2339,7 @@ country_id,name,name_norm,place,lon,lat
 756,Böckten,bockten,village,7.8387155,47.4634028
 756,Lengnau AG,lengnau ag,village,8.3301378,47.521079
 756,Aesch LU,aesch lu,village,8.2406691,47.2570523
-756,Blatten (Lötschen),blatten,village,7.8192935,46.4205806
+756,Blatten,blatten,village,7.8192935,46.4205806
 756,Lajoux JU,lajoux ju,village,7.1359592,47.2790114
 756,Pleujouse,pleujouse,village,7.2119036,47.4122188
 756,Oberwil BL,oberwil bl,town,7.5527853,47.5136942
@@ -2367,7 +2367,7 @@ country_id,name,name_norm,place,lon,lat
 756,Peney-le-Jorat,peney-le-jorat,village,6.7280379,46.6309179
 756,Walterswil BE,walterswil be,village,7.7768008,47.1126558
 756,Le Cerneux-Péquignot,le cerneux-pequignot,village,6.6654117,47.0163481
-756,Waltensburg/Vuorz,waltensburg vuorz,village,9.1160541,46.7766791
+756,Waltensburg Vuorz,waltensburg vuorz,village,9.1160541,46.7766791
 756,Melchnau,melchnau,village,7.8518093,47.1824376
 756,Belpberg,belpberg,village,7.5220542,46.8668005
 756,Vico Morcote,vico morcote,village,8.9242053,45.9312629
@@ -2395,7 +2395,7 @@ country_id,name,name_norm,place,lon,lat
 756,Villars-Tiercelin,villars-tiercelin,village,6.7045253,46.6253713
 756,Wolfenschiessen,wolfenschiessen,village,8.3954757,46.9080603
 756,Cressier FR,cressier fr,village,7.1417574,46.8986683
-756,Rüthi (Rheintal),ruthi,village,9.537187,47.2955927
+756,Rüthi,ruthi,village,9.537187,47.2955927
 756,Gänsbrunnen,gansbrunnen,village,7.4679582,47.2622928
 756,Bennwil,bennwil,village,7.7801695,47.4041393
 756,Tschugg,tschugg,village,7.0764462,47.0263361
@@ -2474,7 +2474,7 @@ country_id,name,name_norm,place,lon,lat
 756,Kirchberg SG,kirchberg sg,village,9.0398483,47.4116926
 756,Islisberg,islisberg,village,8.4393127,47.3229472
 756,Valeyres-sous-Rances,valeyres-sous-rances,village,6.5249548,46.7528278
-756,St. Margrethen SG,st margrethen sg,village,9.6410249,47.4510277
+756,St Margrethen SG,st margrethen sg,village,9.6410249,47.4510277
 756,Bedigliora,bedigliora,village,8.840805,46.0025871
 756,Zeiningen,zeiningen,village,7.8716277,47.5414438
 756,Rodersdorf,rodersdorf,village,7.4566901,47.4806046
@@ -2522,7 +2522,7 @@ country_id,name,name_norm,place,lon,lat
 756,Ecublens FR,ecublens fr,village,6.8089033,46.6107303
 756,Felben-Wellhausen,felben-wellhausen,village,8.939863,47.575645
 756,Forel-sur-Lucens,forel-sur-lucens,village,6.8222876,46.7282576
-756,Essert/Wallenried,essert wallenried,village,7.1158753,46.8736522
+756,Essert Wallenried,essert wallenried,village,7.1158753,46.8736522
 756,Aeschi bei Spiez,aeschi bei spiez,village,7.6965086,46.6583588
 756,Tecknau,tecknau,village,7.8832932,47.4501064
 756,Les Mosses,les mosses,hamlet,7.1018391,46.3960939
@@ -2650,7 +2650,7 @@ country_id,name,name_norm,place,lon,lat
 756,Andeer,andeer,village,9.4269682,46.6022665
 756,Zillis,zillis,village,9.4431371,46.6337474
 756,Tschuggen,tschuggen,hamlet,7.9750682,46.3624901
-756,Blatten b. Naters,blatten b naters,village,7.9841891,46.3586432
+756,Blatten b Naters,blatten b naters,village,7.9841891,46.3586432
 756,Gächliwil,gachliwil,hamlet,7.4478826,47.1298121
 756,Solalex,solalex,hamlet,7.1370265,46.2884199
 756,Brittern,brittern,village,7.4910557,47.1211203
@@ -2774,10 +2774,10 @@ country_id,name,name_norm,place,lon,lat
 756,Péry,pery,village,7.2462466,47.1917831
 756,Hard,hard,hamlet,7.4017103,47.0441649
 756,Grasswil,grasswil,village,7.6671445,47.1423921
-756,St. Niklaus,st niklaus,hamlet,7.6137149,47.1310009
+756,St Niklaus,st niklaus,hamlet,7.6137149,47.1310009
 756,Les Diablerets,les diablerets,village,7.1566435,46.3511021
 756,Hopsche,hopsche,hamlet,8.0207648,46.2510721
-756,Langnau b. Reiden,langnau b reiden,village,7.9620803,47.2318707
+756,Langnau b Reiden,langnau b reiden,village,7.9620803,47.2318707
 756,Reidermoos,reidermoos,hamlet,7.9908564,47.2533978
 756,Kirchrued,kirchrued,hamlet,8.0992606,47.2847315
 756,Taveyanne,taveyanne,hamlet,7.122549,46.3032563
@@ -2810,7 +2810,7 @@ country_id,name,name_norm,place,lon,lat
 756,Mase,mase,village,7.4313991,46.1946906
 756,Vex,vex,village,7.3983622,46.2113825
 756,Hérémence,heremence,village,7.4057866,46.1807413
-756,Suen (St-Martin),suen,village,7.4372006,46.1803848
+756,Suen,suen,village,7.4372006,46.1803848
 756,Bramois,bramois,village,7.4038983,46.2321819
 756,Gaicht,gaicht,village,7.16732,47.1088718
 756,Diesse,diesse,village,7.1166912,47.1137482
@@ -2839,7 +2839,7 @@ country_id,name,name_norm,place,lon,lat
 756,Vermes,vermes,village,7.4741581,47.3288598
 756,Dürrboden,durrboden,hamlet,9.9219624,46.7209731
 756,Burgiwil,burgiwil,hamlet,7.5119788,46.7935121
-756,Liez (St-Martin),liez,hamlet,7.4512969,46.1619787
+756,Liez,liez,hamlet,7.4512969,46.1619787
 756,La Villette,la villette,hamlet,7.4678912,46.1399405
 756,Praz-Jean,praz-jean,hamlet,7.4536008,46.1523819
 756,Evolène,evolene,village,7.4958022,46.1129048
@@ -2893,26 +2893,26 @@ country_id,name,name_norm,place,lon,lat
 756,Balliswil,balliswil,hamlet,7.1740518,46.8281599
 756,Luggiwil,luggiwil,hamlet,7.1994277,46.8633193
 756,Pontresina,pontresina,village,9.9042965,46.489993
-756,Eison (St-Martin),eison,village,7.4662005,46.1544699
+756,Eison,eison,village,7.4662005,46.1544699
 756,La Sage,la sage,village,7.5146993,46.0987565
 756,La Forclaz,la forclaz,village,7.5191144,46.085784
 756,Les Haudères,les hauderes,village,7.5075706,46.0827039
-756,Trogne (St-Martin),trogne,village,7.4513221,46.1686148
-756,Ferpècle (Le Salay),ferpecle,hamlet,7.5437277,46.0659514
+756,Trogne,trogne,village,7.4513221,46.1686148
+756,Ferpècle,ferpecle,hamlet,7.5437277,46.0659514
 756,Caprino,caprino,hamlet,8.979226,45.983564
 756,Mezzaselva,mezzaselva,hamlet,9.8423935,46.8951374
 756,Pagrüeg,pagrueg,hamlet,9.8340617,46.9006344
 756,Goumois,goumois,village,6.9507786,47.2616149
 756,Crans,crans,village,7.469015,46.3069171
 756,Arbaz,arbaz,village,7.3834555,46.273328
-756,Luc (Ayent),luc,village,7.4178144,46.2827173
+756,Luc,luc,village,7.4178144,46.2827173
 756,Jakobsbad,jakobsbad,hamlet,9.3272799,47.3203644
 756,Gontenbad,gontenbad,village,9.3721845,47.3319339
 756,Filisur,filisur,village,9.6859723,46.6737785
 756,Feldhof,feldhof,hamlet,9.0780424,47.5753273
 756,Boltshausen,boltshausen,hamlet,9.0833877,47.5808524
 756,Buchs,buchs,village,8.4378662,47.458087
-756,Niederried b. Kallnach,niederried b kallnach,hamlet,7.251159,47.010445
+756,Niederried b Kallnach,niederried b kallnach,hamlet,7.251159,47.010445
 756,Müslen,muslen,hamlet,8.2593223,47.436968
 756,Rütihof,rutihof,village,8.2693234,47.4383008
 756,Langenmoos,langenmoos,hamlet,8.7049625,47.631621
@@ -2982,7 +2982,7 @@ country_id,name,name_norm,place,lon,lat
 756,Neschwil,neschwil,village,8.7879574,47.4295716
 756,Jakobstal,jakobstal,hamlet,8.8245539,47.4860649
 756,Dickbuch,dickbuch,village,8.8303367,47.4962426
-756,Sennhof (Elgg),sennhof,hamlet,8.8619722,47.4762507
+756,Sennhof,sennhof,hamlet,8.8619722,47.4762507
 756,Rumlikon,rumlikon,hamlet,8.7605267,47.4087415
 756,Gutenswil,gutenswil,village,8.7180535,47.3853976
 756,Wohleiberg,wohleiberg,hamlet,7.3594436,46.9549457
@@ -3024,7 +3024,7 @@ country_id,name,name_norm,place,lon,lat
 756,Hugelshofen,hugelshofen,village,9.1152004,47.598643
 756,Dotnacht,dotnacht,village,9.1412792,47.5997962
 756,Alterswilen,alterswilen,village,9.1541254,47.609899
-756,Mühlebach (Goms),muhlebach,hamlet,8.1561267,46.4086401
+756,Mühlebach,muhlebach,hamlet,8.1561267,46.4086401
 756,Niederernen,niederernen,hamlet,8.1358283,46.3927055
 756,La Tuilière,la tuiliere,hamlet,6.8384806,46.9323783
 756,Montévraz,montevraz,village,7.1770092,46.7409445
@@ -3094,7 +3094,7 @@ country_id,name,name_norm,place,lon,lat
 756,Oltigen,oltigen,hamlet,7.2595875,46.9894175
 756,Le Coudray,le coudray,hamlet,6.5762109,46.6681925
 756,Froideville,froideville,hamlet,6.393457,46.5482878
-756,Haag (Rheintal),haag,village,9.4916597,47.2121059
+756,Haag,haag,village,9.4916597,47.2121059
 756,Hofhalden,hofhalden,hamlet,8.8183653,47.3463871
 756,Ober-Balm,ober-balm,hamlet,8.8171006,47.3428197
 756,Adetswil,adetswil,village,8.8435332,47.3396328
@@ -3133,7 +3133,7 @@ country_id,name,name_norm,place,lon,lat
 756,Petit Eysins,petit eysins,hamlet,6.2066677,46.3871936
 756,Verbier,verbier,village,7.2286765,46.0961011
 756,En Marin,en marin,hamlet,6.6830698,46.55764
-756,L’Auberson,l'auberson,village,6.4617052,46.8182795
+756,L Auberson,l'auberson,village,6.4617052,46.8182795
 756,Chavannes-sous-Romont,chavannes-sous-romont,hamlet,6.9238621,46.7013703
 756,Oberlangenhard,oberlangenhard,hamlet,8.8112062,47.4564982
 756,Unterlangenhard,unterlangenhard,hamlet,8.8021583,47.4518384
@@ -3168,10 +3168,10 @@ country_id,name,name_norm,place,lon,lat
 756,Lavey-Village,lavey-village,village,7.0181572,46.2200413
 756,Tann,tann,hamlet,8.1425863,47.1858802
 756,Tannberg,tannberg,hamlet,8.1358578,47.1837749
-756,Rive Haute (Liddes),rive haute,village,7.170436,46.0068183
-756,Fontaine Dessous (Liddes),fontaine dessous,hamlet,7.1685247,46.0101317
+756,Rive Haute,rive haute,village,7.170436,46.0068183
+756,Fontaine Dessous,fontaine dessous,hamlet,7.1685247,46.0101317
 756,Chez Petit,chez petit,hamlet,7.178725,45.9870688
-756,Dranse (Liddes),dranse,village,7.1809788,45.9889114
+756,Dranse,dranse,village,7.1809788,45.9889114
 756,Hinterburg,hinterburg,hamlet,8.8668896,47.351097
 756,Baltenswil,baltenswil,village,8.6409971,47.4316337
 756,Wiler,wiler,village,7.670102,46.3189993
@@ -3336,7 +3336,7 @@ country_id,name,name_norm,place,lon,lat
 756,Pedemonte,pedemonte,village,10.0722098,46.3631327
 756,Pedecosta,pedecosta,village,10.074656,46.3598571
 756,Fronackeren,fronackeren,hamlet,9.2828949,47.4509667
-756,Rutschwil (Dägerlen),rutschwil,village,8.7306209,47.5565086
+756,Rutschwil,rutschwil,village,8.7306209,47.5565086
 756,Chésalles,chesalles,hamlet,7.1359102,46.7690721
 756,Ecuvillens,ecuvillens,village,7.0836514,46.7568444
 756,Farvagny-le-Petit,farvagny-le-petit,village,7.0731029,46.7290562
@@ -3383,7 +3383,7 @@ country_id,name,name_norm,place,lon,lat
 756,Ruppen,ruppen,hamlet,9.5089728,47.3906727
 756,Bach,bach,hamlet,9.4865502,47.4053337
 756,Neuschwendi,neuschwendi,hamlet,9.4732407,47.4049231
-756,St. Anton,st anton,hamlet,9.535363,47.4102041
+756,St Anton,st anton,hamlet,9.535363,47.4102041
 756,Büchel,buchel,village,9.5436881,47.283439
 756,Lögert,logert,hamlet,9.4952571,47.2584128
 756,Äugstisriet,augstisriet,hamlet,9.4958947,47.2564444
@@ -3395,14 +3395,14 @@ country_id,name,name_norm,place,lon,lat
 756,Hueb,hueb,hamlet,9.3039565,47.5234256
 756,Waldhaus,waldhaus,hamlet,7.7066612,47.0096496
 756,Innerarosa,innerarosa,village,9.6594006,46.7743471
-756,St. Jakob,st jakob,hamlet,8.3070641,46.9345741
+756,St Jakob,st jakob,hamlet,8.3070641,46.9345741
 756,Sand,sand,hamlet,8.2926452,46.9094425
-756,Bourguillon/Bürglen,bourguillon burglen,hamlet,7.1752652,46.7995366
+756,Bourguillon Bürglen,bourguillon burglen,hamlet,7.1752652,46.7995366
 756,Maison Rouge,maison rouge,hamlet,7.1862225,46.7829217
 756,Hauteville,hauteville,village,7.1083702,46.6696479
 756,Châtillon-Sud,chatillon-sud,hamlet,7.119601,46.7743195
 756,Châtillon-Nord,chatillon-nord,hamlet,7.1097148,46.7851929
-756,Wiezikon b. Sirnach,wiezikon b sirnach,village,8.9859951,47.4504221
+756,Wiezikon b Sirnach,wiezikon b sirnach,village,8.9859951,47.4504221
 756,Villars-sur-Marly,villars-sur-marly,hamlet,7.1862329,46.7749129
 756,La Schürra,la schurra,hamlet,7.171851,46.7893426
 756,Fromatt,fromatt,hamlet,7.2017191,46.7831093
@@ -3492,7 +3492,7 @@ country_id,name,name_norm,place,lon,lat
 756,Nussberg,nussberg,village,8.806785,47.467555
 756,Oberhofen,oberhofen,village,7.6687101,46.7313738
 756,Pura,pura,village,8.8691189,45.9850955
-756,St. Pelagiberg,st pelagiberg,village,9.2998837,47.4873027
+756,St Pelagiberg,st pelagiberg,village,9.2998837,47.4873027
 756,Lopagno,lopagno,hamlet,8.9776049,46.06847
 756,Treggia,treggia,hamlet,8.9894182,46.0756177
 756,Roveredo,roveredo,hamlet,8.9844713,46.0739185
@@ -3537,7 +3537,7 @@ country_id,name,name_norm,place,lon,lat
 756,Trient,trient,village,6.9953742,46.0559487
 756,Mülberg,mulberg,hamlet,8.6384963,47.4861172
 756,Schwänberg,schwanberg,hamlet,9.2386242,47.3934954
-756,Egg (Flawil),egg,hamlet,9.2262748,47.3909117
+756,Egg,egg,hamlet,9.2262748,47.3909117
 756,Muelt,muelt,hamlet,9.2445976,47.4064756
 756,Birri,birri,village,8.3633662,47.2778436
 756,Schnart,schnart,hamlet,9.226777,47.4488921
@@ -3617,7 +3617,7 @@ country_id,name,name_norm,place,lon,lat
 756,Lantig,lantig,hamlet,8.6958986,47.5220893
 756,Unter Radhof,unter radhof,hamlet,8.6918098,47.5286041
 756,Daro,daro,hamlet,9.031842,46.1947044
-756,Stalden (Sarnen),stalden,village,8.211352,46.8870181
+756,Stalden,stalden,village,8.211352,46.8870181
 756,Giw,giw,hamlet,7.9235331,46.2555511
 756,Vers-chez-les-Blanc,vers-chez-les-blanc,village,6.6929467,46.5533939
 756,La Claie-aux-Moines,la claie-aux-moines,village,6.7043595,46.5411119
@@ -3731,7 +3731,7 @@ country_id,name,name_norm,place,lon,lat
 756,Bewangen,bewangen,hamlet,8.8684865,47.5260784
 756,Oberwil,oberwil,hamlet,8.8696813,47.5459792
 756,Strass,strass,hamlet,8.858302,47.5627179
-756,St. Josefen,st josefen,hamlet,9.3357334,47.4248274
+756,St Josefen,st josefen,hamlet,9.3357334,47.4248274
 756,Widenrain,widenrain,hamlet,8.7064208,47.2571382
 756,Edlischwil,edlischwil,hamlet,9.3049504,47.4734825
 756,Aesch,aesch,village,8.6558208,47.3282912
@@ -3748,7 +3748,7 @@ country_id,name,name_norm,place,lon,lat
 756,Hiltisberg,hiltisberg,hamlet,8.918664,47.2575026
 756,Spittel,spittel,hamlet,8.932203,47.4281153
 756,Cumpadials,cumpadials,village,8.9210025,46.7229486
-756,St. Margarethen TG,st margarethen tg,village,9.0007859,47.4886517
+756,St Margarethen TG,st margarethen tg,village,9.0007859,47.4886517
 756,Le Lavanchy,le lavanchy,hamlet,7.144655,46.3618359
 756,La Ville,la ville,hamlet,7.1300844,46.3642559
 756,La Dia,la dia,hamlet,7.1567127,46.3627848
@@ -3820,7 +3820,7 @@ country_id,name,name_norm,place,lon,lat
 756,Alp Grüm,alp grum,hamlet,10.0337947,46.3750684
 756,Torn,torn,hamlet,10.0789145,46.2781642
 756,Brusio,brusio,village,10.1260849,46.2583616
-756,Oberwil (Dägerlen),oberwil,village,8.7160031,47.5733263
+756,Oberwil,oberwil,village,8.7160031,47.5733263
 756,Alten,alten,village,8.6470682,47.5991435
 756,Pisciadel,pisciadel,hamlet,10.0721619,46.3821378
 756,La Scera,la scera,hamlet,10.0649508,46.3638259
@@ -3867,7 +3867,7 @@ country_id,name,name_norm,place,lon,lat
 756,Langenhart,langenhart,hamlet,9.0140542,47.6158276
 756,Illhart,illhart,village,9.0384775,47.6198033
 756,Rossboden,rossboden,hamlet,8.6679027,47.1235197
-756,2. Altmatt,2 altmatt,hamlet,8.6855258,47.1188652
+756,Altmatt,2 altmatt,hamlet,8.6855258,47.1188652
 756,Wiler,wiler,hamlet,8.6212994,46.727106
 756,Rofels,rofels,hamlet,9.5447545,47.0098255
 756,Menzengrüt,menzengrut,hamlet,8.8214323,47.5493593
@@ -3941,7 +3941,7 @@ country_id,name,name_norm,place,lon,lat
 756,Fillistorf,fillistorf,hamlet,7.228238,46.8638846
 756,La Pousaz,la pousaz,hamlet,7.0131562,46.2901404
 756,Plan d'Essert,plan d'essert,hamlet,6.9995002,46.3031556
-756,St. Leonhard,st leonhard,hamlet,9.4904624,47.0147197
+756,St Leonhard,st leonhard,hamlet,9.4904624,47.0147197
 756,Fluppi,fluppi,hamlet,9.5190809,46.9919385
 756,Lenggenwil,lenggenwil,village,9.1495552,47.475431
 756,Oberheimen,oberheimen,hamlet,9.1410571,47.4891735
@@ -4086,7 +4086,7 @@ country_id,name,name_norm,place,lon,lat
 756,Les Giettes,les giettes,hamlet,6.9623515,46.2253702
 756,Choëx,choex,village,6.951359,46.2395179
 756,Busslingen,busslingen,hamlet,8.3158638,47.410514
-756,St. Martin,st martin,hamlet,9.0618888,46.7417704
+756,St Martin,st martin,hamlet,9.0618888,46.7417704
 756,Getwing,getwing,village,7.7015954,46.3115291
 756,Engersch,engersch,village,7.710138,46.3277369
 756,Lipperswil,lipperswil,hamlet,9.0562291,47.6158599
@@ -4105,7 +4105,7 @@ country_id,name,name_norm,place,lon,lat
 756,Satarma,satarma,hamlet,7.4881295,46.0471766
 756,Mont-Collon,mont-collon,hamlet,7.4822933,46.0237038
 756,Guggeli,guggeli,hamlet,8.7691461,46.9818641
-756,Ried (Muotathal),ried,hamlet,8.7113503,46.9877561
+756,Ried,ried,hamlet,8.7113503,46.9877561
 756,Moosbad,moosbad,hamlet,9.1605882,47.3867196
 756,Vers-l'Eglise,vers-l'eglise,hamlet,7.1316798,46.3539017
 756,Naas,naas,hamlet,8.6232306,47.1131922
@@ -4130,8 +4130,8 @@ country_id,name,name_norm,place,lon,lat
 756,Rosenhuben,rosenhuben,hamlet,8.8612665,47.5483048
 756,Niederwil,niederwil,hamlet,8.8608807,47.5527122
 756,Marthalen,marthalen,village,8.6501583,47.6257747
-756,Chandonne (Liddes),chandonne,village,7.1801044,46.0043277
-756,Fontaine Dessus (Liddes),fontaine dessus,hamlet,7.173821,46.0055433
+756,Chandonne,chandonne,village,7.1801044,46.0043277
+756,Fontaine Dessus,fontaine dessus,hamlet,7.173821,46.0055433
 756,Hasliberg Goldern,hasliberg goldern,village,8.1981956,46.7393088
 756,Gehlismatt,gehlismatt,hamlet,7.307565,46.7620089
 756,Allerheiligen,allerheiligen,hamlet,7.3649083,47.1953881
@@ -4198,8 +4198,8 @@ country_id,name,name_norm,place,lon,lat
 756,Vichères,vicheres,hamlet,7.1664908,45.9967693
 756,Kämmaten,kammaten,hamlet,8.5967797,47.3893055
 756,Ried,ried,village,7.1855758,46.9555986
-756,Chamoille (Sembrancher),chamoille,village,7.1546067,46.0608037
-756,St. Erhard,st erhard,hamlet,8.0732678,47.1829993
+756,Chamoille,chamoille,village,7.1546067,46.0608037
+756,St Erhard,st erhard,hamlet,8.0732678,47.1829993
 756,Kleingümmenen,kleingummenen,hamlet,7.2339354,46.9442991
 756,Hausen,hausen,hamlet,8.3441794,47.3979712
 756,Vogelbuch,vogelbuch,village,7.2239012,46.9465866
@@ -4365,7 +4365,7 @@ country_id,name,name_norm,place,lon,lat
 756,Dègro,degro,hamlet,8.9965947,46.421885
 756,Dandrio,dandrio,hamlet,9.0536098,46.4398162
 756,Pontirone,pontirone,hamlet,9.0206316,46.3818167
-756,Pontironetto / Sant'Anna,pontironetto sant'anna,hamlet,8.9927987,46.3887642
+756,Pontironetto Sant'Anna,pontironetto sant'anna,hamlet,8.9927987,46.3887642
 756,Pied du Château,pied du chateau,village,7.0462576,46.0792947
 756,Brechershäusern,brechershausern,hamlet,7.6869916,47.1192419
 756,Bantigen,bantigen,hamlet,7.5179373,46.9746507
@@ -4564,7 +4564,7 @@ country_id,name,name_norm,place,lon,lat
 756,Schweizersholz,schweizersholz,hamlet,9.1957973,47.499189
 756,Vedlà,vedla,hamlet,8.6669306,46.3870734
 756,Wolfhausen,wolfhausen,village,8.800881,47.2570817
-756,Fornex (Liddes),fornex,hamlet,7.1635339,46.0086118
+756,Fornex,fornex,hamlet,7.1635339,46.0086118
 756,Winterlingen,winterlingen,hamlet,7.2859438,46.8238535
 756,Lippoldswilen,lippoldswilen,hamlet,9.1118206,47.6115292
 756,Schwaderloh,schwaderloh,hamlet,9.1405772,47.6234764
@@ -4823,7 +4823,7 @@ country_id,name,name_norm,place,lon,lat
 756,Guévaux,guevaux,hamlet,7.0579791,46.9385368
 756,Sigigen,sigigen,hamlet,8.1341398,47.0638657
 756,La Corbaz,la corbaz,hamlet,7.1148829,46.8394986
-756,Finsterwald b. Entlebuch,finsterwald b entlebuch,village,8.1052916,46.9745652
+756,Finsterwald b Entlebuch,finsterwald b entlebuch,village,8.1052916,46.9745652
 756,Plaun digls Mats,plaun digls mats,hamlet,9.4643072,46.7880877
 756,Dachsen,dachsen,village,8.6150532,47.6661896
 756,Traselinge,traselinge,hamlet,8.2470226,47.1532077
@@ -4926,16 +4926,16 @@ country_id,name,name_norm,place,lon,lat
 756,Dürrenmoos,durrenmoos,hamlet,8.5913408,47.2230029
 756,Eschtürli,eschturli,hamlet,8.5872192,47.2393566
 756,Tobelmüli,tobelmuli,hamlet,8.5878515,47.2207669
-756,St. Martin im Calfeisental,st martin im calfeisental,hamlet,9.357315,46.9205223
+756,St Martin im Calfeisental,st martin im calfeisental,hamlet,9.357315,46.9205223
 756,Wolsen,wolsen,hamlet,8.4267543,47.2600058
 756,Unterlunnern,unterlunnern,hamlet,8.4109291,47.2625538
 756,Oberlunnern,oberlunnern,hamlet,8.4178808,47.2616836
 756,Toussen,toussen,hamlet,8.431139,47.2643653
 756,Heididorf,heididorf,hamlet,9.5451067,47.0132367
 756,Krattigen,krattigen,village,7.7256121,46.660973
-756,Oertlimatt (Krattigen),oertlimatt,hamlet,7.7431884,46.6587164
+756,Oertlimatt,oertlimatt,hamlet,7.7431884,46.6587164
 756,Stuelegg,stuelegg,hamlet,7.7185676,46.6571662
-756,Montet (Broye),montet,village,6.8710312,46.8152095
+756,Montet,montet,village,6.8710312,46.8152095
 756,Liebetsegg,liebetsegg,hamlet,8.1682151,47.0245366
 756,Lifelen,lifelen,hamlet,8.1893601,47.0156583
 756,La Rocaille,la rocaille,hamlet,7.1284124,46.3589803
@@ -4951,12 +4951,12 @@ country_id,name,name_norm,place,lon,lat
 756,Wilihof,wilihof,hamlet,8.0638657,47.2255667
 756,Buchs LU,buchs lu,hamlet,8.0339752,47.2011534
 756,Kulmerau,kulmerau,hamlet,8.0884328,47.2539501
-756,St. Niklausen,st niklausen,hamlet,8.3399883,47.0187042
+756,St Niklausen,st niklausen,hamlet,8.3399883,47.0187042
 756,Winkel,winkel,hamlet,8.3167357,47.0126143
 756,Sangernboden,sangernboden,hamlet,7.3522401,46.7127406
 756,Bodmen,bodmen,hamlet,7.6118417,46.3599294
 756,Larschy,larschy,hamlet,7.6023628,46.3611041
-756,Baar (Nendaz),baar,hamlet,7.3291669,46.203733
+756,Baar,baar,hamlet,7.3291669,46.203733
 756,Charavex,charavex,hamlet,7.0266843,46.1038294
 756,Sermuz,sermuz,hamlet,6.646569,46.7556005
 756,Epautheyres,epautheyres,village,6.6432671,46.7388257
@@ -4998,7 +4998,7 @@ country_id,name,name_norm,place,lon,lat
 756,Meyriez,meyriez,village,7.1067844,46.9234895
 756,Murten,murten,town,7.1163909,46.9288643
 756,Nant,nant,village,7.1036944,46.9551537
-756,Praz (Vully),praz,village,7.0971525,46.9528148
+756,Praz,praz,village,7.0971525,46.9528148
 756,Sugiez,sugiez,village,7.1126452,46.9617498
 756,Brenles,brenles,village,6.8538119,46.6712187
 756,Moudon,moudon,village,6.8003478,46.6680664
@@ -5011,7 +5011,7 @@ country_id,name,name_norm,place,lon,lat
 756,Domdidier,domdidier,village,7.0133263,46.8672174
 756,Düdingen,dudingen,village,7.1904436,46.849747
 756,Montmagny,montmagny,village,7.0105362,46.9265535
-756,Môtier (Vully),motier,village,7.0841135,46.9478011
+756,Môtier,motier,village,7.0841135,46.9478011
 756,Müntschemier,muntschemier,village,7.1442384,46.9961633
 756,Arconciel,arconciel,village,7.1227813,46.7459947
 756,Ponthaux,ponthaux,village,7.0431899,46.8159375
@@ -5056,7 +5056,7 @@ country_id,name,name_norm,place,lon,lat
 756,Cala,cala,hamlet,8.8084752,46.4175989
 756,Doro,doro,hamlet,8.8207145,46.4249976
 756,Oberi Meiggu,oberi meiggu,hamlet,7.7365969,46.3605555
-756,Stafel (Oberi Fäsilalpu),stafel,hamlet,7.7201679,46.3479193
+756,Stafel,stafel,hamlet,7.7201679,46.3479193
 756,Untere Feselalpe,untere feselalpe,hamlet,7.7247555,46.3402299
 756,Niwenalp,niwenalp,hamlet,7.7018656,46.3373816
 756,Dalpe,dalpe,village,8.7748127,46.4731184
@@ -5091,7 +5091,7 @@ country_id,name,name_norm,place,lon,lat
 756,Schwendi,schwendi,hamlet,8.7857304,47.4476244
 756,Gmünden,gmunden,hamlet,7.8289519,46.9826367
 756,Gohl,gohl,hamlet,7.8079315,46.9542614
-756,Fankhaus (Trub),fankhaus,hamlet,7.9068549,46.9650676
+756,Fankhaus,fankhaus,hamlet,7.9068549,46.9650676
 756,Sandgrabe,sandgrabe,hamlet,7.8896941,46.949415
 756,Estavannens,estavannens,village,7.1024008,46.5625985
 756,Grandvillard,grandvillard,village,7.0849664,46.5392932
@@ -5112,7 +5112,7 @@ country_id,name,name_norm,place,lon,lat
 756,Riddes,riddes,village,7.2227718,46.1718974
 756,Sparsels,sparsels,hamlet,10.2651641,46.7798099
 756,Ober Radhof,ober radhof,hamlet,8.6883718,47.5248436
-756,Riet (Neftenbach),riet,village,8.6869486,47.5363924
+756,Riet,riet,village,8.6869486,47.5363924
 756,Maienfeld,maienfeld,village,9.5309225,47.0077288
 756,Arbon,arbon,town,9.4304026,47.5149257
 756,Le Prédame,le predame,hamlet,7.1076395,47.258291
@@ -5302,7 +5302,7 @@ country_id,name,name_norm,place,lon,lat
 756,Balm,balm,village,8.1661574,46.7263301
 756,Unterbach,unterbach,village,8.1130066,46.7390555
 756,Les Crosets,les crosets,hamlet,6.8356756,46.1851151
-756,St. Albin,st albin,hamlet,9.4529922,46.6847614
+756,St Albin,st albin,hamlet,9.4529922,46.6847614
 756,Elgg,elgg,village,8.8669115,47.4902329
 756,Augio,augio,hamlet,9.12689,46.364975
 756,Boncourt,boncourt,village,7.0127433,47.4979359
@@ -5312,9 +5312,9 @@ country_id,name,name_norm,place,lon,lat
 756,Blindenhusen,blindenhusen,hamlet,8.7852388,47.7256664
 756,Wallisellen,wallisellen,town,8.5919985,47.4166195
 756,Schlattingen,schlattingen,village,8.7693692,47.6661892
-756,Grüt (Gossau ZH),grut,village,8.7821833,47.3109917
+756,Grüt,grut,village,8.7821833,47.3109917
 756,Sulzbach,sulzbach,village,8.7461473,47.3275117
-756,Riedt b. Erlen,riedt b erlen,village,9.2142923,47.5450764
+756,Riedt b Erlen,riedt b erlen,village,9.2142923,47.5450764
 756,Oberstofel,oberstofel,hamlet,9.389313,47.2638778
 756,Trüllikon,trullikon,village,8.6934163,47.6377265
 756,Miécourt,miecourt,village,7.1747627,47.4270918
@@ -5329,7 +5329,7 @@ country_id,name,name_norm,place,lon,lat
 756,Pazzallo,pazzallo,village,8.9420101,45.9838461
 756,Blattig,blattig,hamlet,8.2396124,47.0321789
 756,Dottenberg,dottenberg,hamlet,8.3792795,47.0811067
-756,Ried (Frutigen),ried,hamlet,7.615576,46.5654502
+756,Ried,ried,hamlet,7.615576,46.5654502
 756,Lentigny,lentigny,hamlet,7.0037236,46.7595292
 756,Lovens,lovens,hamlet,7.0209595,46.7729825
 756,Onnens FR,onnens fr,hamlet,7.0369633,46.7750048
@@ -5400,7 +5400,7 @@ country_id,name,name_norm,place,lon,lat
 756,Boscero,boscero,hamlet,8.9464195,46.4422865
 756,Roccabella,roccabella,hamlet,8.9445787,46.4451861
 756,Marogno,marogno,hamlet,8.9649947,46.4325139
-756,Motto (Blenio),motto,hamlet,8.9709651,46.4285896
+756,Motto,motto,hamlet,8.9709651,46.4285896
 756,Orino,orino,hamlet,8.9817748,46.4107391
 756,Ponto Aquilesco,ponto aquilesco,hamlet,8.9469281,46.5117755
 756,Pozzo,pozzo,hamlet,8.9392381,46.4492315
@@ -5489,10 +5489,10 @@ country_id,name,name_norm,place,lon,lat
 756,Eschlikon ZH,eschlikon zh,hamlet,8.7541197,47.5648131
 756,Adlemsried,adlemsried,hamlet,7.3973182,46.6391443
 756,Edikon,edikon,hamlet,8.8433381,47.2859602
-756,Schwarzenbach (Huttwil),schwarzenbach,hamlet,7.8278629,47.1073184
+756,Schwarzenbach,schwarzenbach,hamlet,7.8278629,47.1073184
 756,Mülital,mulital,hamlet,7.2693502,46.8620593
 756,Buttikon,buttikon,village,8.9527546,47.1736797
-756,Wilen b. Wollerau,wilen b wollerau,village,8.7342086,47.1985954
+756,Wilen b Wollerau,wilen b wollerau,village,8.7342086,47.1985954
 756,Murimoos,murimoos,hamlet,8.3396871,47.2959181
 756,Restaurant Rengg,restaurant rengg,hamlet,8.090793,47.0040007
 756,Coltura,coltura,hamlet,9.583504,46.3432068
@@ -5516,7 +5516,7 @@ country_id,name,name_norm,place,lon,lat
 756,Eclagnens,eclagnens,hamlet,6.591764,46.6512472
 756,Andwil SG,andwil sg,village,9.2720175,47.4384918
 756,Rischinen,rischinen,hamlet,7.9901908,46.3668126
-756,Berg (Dägerlen),berg,village,8.7326622,47.5637138
+756,Berg,berg,village,8.7326622,47.5637138
 756,La Solitude,la solitude,hamlet,6.1126185,46.2832989
 756,Saint-Germain,saint-germain,village,7.3502056,46.2507131
 756,Pfyn,pfyn,village,8.9536736,47.5970331
@@ -5592,7 +5592,7 @@ country_id,name,name_norm,place,lon,lat
 756,Vorderfuchsrüti,vorderfuchsruti,hamlet,8.7912543,47.2809526
 756,Haller,haller,hamlet,8.6049879,47.5003791
 756,Gueuroz,gueuroz,hamlet,7.0400663,46.126482
-756,Bertschikon (Gossau ZH),bertschikon,village,8.7576742,47.3206469
+756,Bertschikon,bertschikon,village,8.7576742,47.3206469
 756,Alpiglen,alpiglen,hamlet,8.116055,46.6673907
 756,Hienenboden,hienenboden,hamlet,9.2383698,47.0970977
 756,Alp Panüöl,alp panuol,hamlet,9.2575865,47.0626445
@@ -5677,7 +5677,7 @@ country_id,name,name_norm,place,lon,lat
 756,Le Château-de-Ste-Croix,le chateau-de-ste-croix,hamlet,6.534769,46.8187889
 756,Unter Tützenberg,unter tutzenberg,hamlet,7.2560867,46.8347869
 756,Heitersberg,heitersberg,hamlet,8.3458716,47.4151335
-756,Les Granges (Salvan),les granges,village,7.0220626,46.1283274
+756,Les Granges,les granges,village,7.0220626,46.1283274
 756,Berikon,berikon,village,8.3701013,47.3528355
 756,Widen,widen,village,8.3595132,47.369628
 756,La Sagne,la sagne,hamlet,6.4994643,46.8162235
@@ -5711,7 +5711,7 @@ country_id,name,name_norm,place,lon,lat
 756,Farenschwendi,farenschwendi,hamlet,9.5072981,47.4174017
 756,Il Fuorn,il fuorn,hamlet,10.2109187,46.6646919
 756,Eberswil,eberswil,hamlet,9.2625903,47.5013081
-756,Wilen (Gottshaus),wilen,village,9.2836274,47.4933532
+756,Wilen,wilen,village,9.2836274,47.4933532
 756,Engelmann,engelmann,hamlet,8.7148778,47.7485004
 756,Merzenbrunnen,merzenbrunnen,hamlet,8.709237,47.7489885
 756,Formangueires,formangueires,hamlet,7.1159802,46.8270286
@@ -5817,7 +5817,7 @@ country_id,name,name_norm,place,lon,lat
 756,Vers-chez-Grosjean,vers-chez-grosjean,hamlet,6.282952,46.6278337
 756,Le Séchey,le sechey,hamlet,6.3010194,46.6601248
 756,La Golisse,la golisse,hamlet,6.2376974,46.6139097
-756,Schachen b. Herisau,schachen b herisau,hamlet,9.2416885,47.3834936
+756,Schachen b Herisau,schachen b herisau,hamlet,9.2416885,47.3834936
 756,Kehrhof,kehrhof,hamlet,8.1134731,47.1430586
 756,Haltenbühl,haltenbuhl,hamlet,8.6181334,47.1423434
 756,Hintersennenberg,hintersennenberg,hamlet,8.8998444,47.2971827
@@ -5912,13 +5912,13 @@ country_id,name,name_norm,place,lon,lat
 756,Speck,speck,hamlet,9.5411433,47.4824414
 756,Buriet,buriet,hamlet,9.5782219,47.4769777
 756,Buechen,buechen,hamlet,9.5423074,47.4775397
-756,St. Pantaleon,st pantaleon,village,7.6910021,47.4601498
+756,St Pantaleon,st pantaleon,village,7.6910021,47.4601498
 756,Trans,trans,hamlet,9.4611108,46.7645682
 756,Prés Vannés,pres vannes,hamlet,7.0837519,47.2020948
 756,Viaplana,viaplana,hamlet,9.4625292,46.6971093
 756,Carschenna,carschenna,hamlet,9.454725,46.6883668
 756,Le Borza,le borza,hamlet,7.5135311,46.1053183
-756,Villa (Evolène),villa,village,7.5124009,46.1067884
+756,Villa,villa,village,7.5124009,46.1067884
 756,Ecce Homo,ecce homo,hamlet,8.6170033,47.0693622
 756,Wöschnau,woschnau,hamlet,8.0244603,47.383092
 756,Nessel,nessel,hamlet,7.9673172,46.3426437
@@ -6002,8 +6002,8 @@ country_id,name,name_norm,place,lon,lat
 756,Brand,brand,hamlet,8.1689417,47.165041
 756,Hundgellen,hundgellen,hamlet,8.186681,47.1557146
 756,Vogelsang,vogelsang,hamlet,8.3220202,47.540484
-756,Alt St. Johann,alt st johann,village,9.2840566,47.1940929
-756,Cresta (Avers),cresta,village,9.5122667,46.4729086
+756,Alt St Johann,alt st johann,village,9.2840566,47.1940929
+756,Cresta,cresta,village,9.5122667,46.4729086
 756,Lumino,lumino,village,9.0672648,46.2318743
 756,Vessy,vessy,village,6.1585455,46.1722953
 756,Frience,frience,hamlet,7.1026454,46.2887722
@@ -6160,7 +6160,7 @@ country_id,name,name_norm,place,lon,lat
 756,Villars-sous-Mont,villars-sous-mont,village,7.068997,46.5397261
 756,Nüwchilcha Boda,nuwchilcha boda,hamlet,9.3284668,46.715339
 756,Usser Zalön,usser zalon,hamlet,9.3160467,46.6951395
-756,Bodmen (Fischenthal),bodmen,hamlet,8.9258429,47.3383415
+756,Bodmen,bodmen,hamlet,8.9258429,47.3383415
 756,Schmittenbach,schmittenbach,hamlet,8.9299678,47.3447495
 756,Unterebersol,unterebersol,hamlet,8.3101287,47.1708
 756,Inderbärg,inderbarg,village,9.3351012,46.7428236
@@ -6211,7 +6211,7 @@ country_id,name,name_norm,place,lon,lat
 756,Wasserfluh,wasserfluh,hamlet,9.1131384,47.3255794
 756,Hafen,hafen,village,8.1734421,47.4834504
 756,Ursprung,ursprung,village,8.1569708,47.4833062
-756,Kirchbözberg‎,kirchbozberg,hamlet,8.162384,47.4916318
+756,Kirchbözberg,kirchbozberg,hamlet,8.162384,47.4916318
 756,Oberrohr,oberrohr,hamlet,8.9233419,47.3613298
 756,Vierlinden,vierlinden,hamlet,8.1589102,47.4796833
 756,Lodano,lodano,village,8.6847161,46.2597488
@@ -6244,7 +6244,7 @@ country_id,name,name_norm,place,lon,lat
 756,Mettendorf TG,mettendorf tg,village,8.9701351,47.5773047
 756,Horlachen,horlachen,hamlet,8.5377043,46.9053138
 756,Fahr,fahr,hamlet,8.1524629,47.416019
-756,Hagenwil b. Amriswil,hagenwil b amriswil,village,9.3077649,47.5284469
+756,Hagenwil b Amriswil,hagenwil b amriswil,village,9.3077649,47.5284469
 756,Enggenhütten,enggenhutten,village,9.3618475,47.3531548
 756,Gläng,glang,hamlet,7.9679844,47.1774656
 756,Wallberg,wallberg,hamlet,7.9553627,47.1724848
@@ -6420,7 +6420,7 @@ country_id,name,name_norm,place,lon,lat
 756,Lindenhof,lindenhof,hamlet,9.2164545,47.6326535
 756,Feldhof,feldhof,hamlet,9.2188984,47.6306406
 756,Liebburg,liebburg,hamlet,9.2025316,47.6264866
-756,Dettighofen (Lengwil),dettighofen,village,9.2011369,47.6210632
+756,Dettighofen,dettighofen,village,9.2011369,47.6210632
 756,Ekkharthof,ekkharthof,hamlet,9.2077887,47.6148582
 756,Rüthof,ruthof,hamlet,9.2120567,47.6200501
 756,Happerswil,happerswil,village,9.2232018,47.5774134
@@ -6469,7 +6469,7 @@ country_id,name,name_norm,place,lon,lat
 756,Les Cerniers,les cerniers,hamlet,7.1729913,47.2878295
 756,Schwendi,schwendi,hamlet,9.0780104,47.2162665
 756,Bachmannsberg,bachmannsberg,hamlet,9.0782228,47.2215095
-756,St. Verena,st verena,hamlet,8.5309488,47.1659925
+756,St Verena,st verena,hamlet,8.5309488,47.1659925
 756,Oberfahr,oberfahr,hamlet,7.3409581,47.1380319
 756,Inseli,inseli,hamlet,7.3361232,47.1401907
 756,Zelgli,zelgli,hamlet,7.3392667,47.1392139
@@ -6481,7 +6481,7 @@ country_id,name,name_norm,place,lon,lat
 756,Vadura,vadura,hamlet,9.4854224,46.9571586
 756,Bläs,blas,hamlet,9.4870352,46.9589744
 756,Mullen,mullen,hamlet,7.0881584,47.0316235
-756,St. Johannsen,st johannsen,hamlet,7.0702281,47.0454529
+756,St Johannsen,st johannsen,hamlet,7.0702281,47.0454529
 756,Under Rätenberg,under ratenberg,hamlet,9.2085463,47.4561835
 756,Witzwil,witzwil,hamlet,7.0589815,46.9881137
 756,La Tine - Le Village Derrière,la tine - le village derriere,hamlet,7.0512651,46.4747614
@@ -6572,7 +6572,7 @@ country_id,name,name_norm,place,lon,lat
 756,Maieriesli,maieriesli,hamlet,8.396517,46.9144593
 756,Mattli,mattli,hamlet,8.3841392,46.8867473
 756,Mittler Fallenbach,mittler fallenbach,hamlet,8.3792185,46.8888866
-756,St. Joder,st joder,hamlet,8.3934669,46.8773839
+756,St Joder,st joder,hamlet,8.3934669,46.8773839
 756,Buechstig,buechstig,hamlet,9.548844,47.4736399
 756,Dreiangel,dreiangel,hamlet,9.5619539,47.4945727
 756,Oberegg,oberegg,hamlet,8.9309455,47.3160794
@@ -6778,7 +6778,7 @@ country_id,name,name_norm,place,lon,lat
 756,Blumetshalde,blumetshalde,hamlet,8.6372707,47.5211603
 756,Hinterhueb,hinterhueb,hamlet,8.6441228,47.5327285
 756,Mittlerhueb,mittlerhueb,hamlet,8.6409031,47.5297368
-756,Neumühle/Moulin-Neuf,neumuhle moulin-neuf,hamlet,7.327453,47.4398642
+756,Neumühle Moulin-Neuf,neumuhle moulin-neuf,hamlet,7.327453,47.4398642
 756,Schürhof,schurhof,hamlet,9.0409802,47.5886278
 756,Villa,villa,hamlet,8.7483544,46.2258686
 756,Trois-Chasseurs,trois-chasseurs,hamlet,6.6834257,46.5342512
@@ -6922,7 +6922,7 @@ country_id,name,name_norm,place,lon,lat
 756,Tegia Gronda,tegia gronda,hamlet,9.3084643,46.8551999
 756,Furom,furom,hamlet,10.3800994,46.6063524
 756,Vorder Bergalga,vorder bergalga,hamlet,9.554824,46.4441231
-756,Lantsch/Lenz,lantsch lenz,village,9.5625528,46.685401
+756,Lantsch Lenz,lantsch lenz,village,9.5625528,46.685401
 756,Duvin,duvin,village,9.2118925,46.7145143
 756,Hurnen,hurnen,hamlet,8.9663414,47.4493607
 756,Mörikon,morikon,hamlet,9.0078461,47.4833916
@@ -7058,13 +7058,13 @@ country_id,name,name_norm,place,lon,lat
 756,Le Peupéquignot,le peupequignot,hamlet,6.9531219,47.2092589
 756,Le Creux des Biches,le creux des biches,hamlet,6.9418351,47.2031655
 756,Les Barrières,les barrieres,hamlet,6.9287459,47.2057895
-756,La Place (Ayent),la place,village,7.4116949,46.2747886
-756,Villa (Ayent),villa,hamlet,7.4151426,46.2764824
-756,Botyre (Ayent),botyre,village,7.4049818,46.2765866
-756,St-Romain (Ayent),st-romain,village,7.4119491,46.2835364
-756,Fortunau (Ayent),fortunau,village,7.4167351,46.2860637
-756,Saxonne (Ayent),saxonne,village,7.4063329,46.2795301
-756,Blignou (Ayent),blignou,village,7.3991498,46.2726827
+756,La Place,la place,village,7.4116949,46.2747886
+756,Villa,villa,hamlet,7.4151426,46.2764824
+756,Botyre,botyre,village,7.4049818,46.2765866
+756,St-Romain,st-romain,village,7.4119491,46.2835364
+756,Fortunau,fortunau,village,7.4167351,46.2860637
+756,Saxonne,saxonne,village,7.4063329,46.2795301
+756,Blignou,blignou,village,7.3991498,46.2726827
 756,Ze Binne,ze binne,hamlet,8.1759905,46.3600791
 756,Heiligkreuz,heiligkreuz,hamlet,8.1743517,46.3425273
 756,Fäld,fald,hamlet,8.212706,46.3702825
@@ -7464,7 +7464,7 @@ country_id,name,name_norm,place,lon,lat
 756,Tigias,tigias,hamlet,9.655481,46.5216254
 756,Tga d'Meir,tga d'meir,hamlet,9.6551842,46.5230508
 756,Rotbühl,rotbuhl,hamlet,8.9392638,47.3983315
-756,Stn. Madrisa,stn madrisa,hamlet,9.8646186,46.9022664
+756,Stn Madrisa,stn madrisa,hamlet,9.8646186,46.9022664
 756,Untersäss,untersass,hamlet,9.7948291,46.8711799
 756,Schifer,schifer,hamlet,9.813897,46.8807335
 756,Fatschél,fatschel,village,9.6535358,46.8392396
@@ -7527,7 +7527,7 @@ country_id,name,name_norm,place,lon,lat
 756,Tannalp,tannalp,hamlet,8.3212123,46.7793077
 756,Wyler,wyler,hamlet,8.2420931,46.7079495
 756,Grossteil,grossteil,village,8.1737535,46.8383296
-756,Wilen (Sarnen),wilen,village,8.2245282,46.8813592
+756,Wilen,wilen,village,8.2245282,46.8813592
 756,Schwendi Kaltbad,schwendi kaltbad,hamlet,8.1281537,46.8981823
 756,Lusanico,lusanico,hamlet,9.017844,46.2056621
 756,Zünegg,zunegg,hamlet,7.592746,46.6553034
@@ -7609,7 +7609,7 @@ country_id,name,name_norm,place,lon,lat
 756,Rossura,rossura,hamlet,8.8252655,46.475747
 756,Buchackern,buchackern,village,9.2324365,47.5390203
 756,Champmartin,champmartin,hamlet,6.9991975,46.9413996
-756,Wahlen b. Laufen,wahlen b laufen,village,7.5148706,47.4020625
+756,Wahlen b Laufen,wahlen b laufen,village,7.5148706,47.4020625
 756,Grüneck,gruneck,hamlet,8.9938568,47.5943176
 756,Geissel,geissel,hamlet,8.8910187,47.5845188
 756,Petersberg,petersberg,hamlet,8.2617353,47.46852
@@ -7795,7 +7795,7 @@ country_id,name,name_norm,place,lon,lat
 756,Eien,eien,hamlet,8.4083553,47.1484606
 756,Chelin,chelin,village,7.4452905,46.2673326
 756,Corticiasca,corticiasca,hamlet,9.0183508,46.0875657
-756,Argnou (Ayent),argnou,hamlet,7.3992545,46.2616995
+756,Argnou,argnou,hamlet,7.3992545,46.2616995
 756,Ramsen,ramsen,hamlet,9.2508102,47.3938895
 756,Cara,cara,hamlet,6.2496932,46.2070053
 756,Fregeira Defora,fregeira defora,hamlet,9.2144494,46.4411463
@@ -7883,15 +7883,15 @@ country_id,name,name_norm,place,lon,lat
 756,Corbazzói,corbazzoi,hamlet,8.6960916,46.2725853
 756,Piano Bruciato,piano bruciato,hamlet,8.693185,46.274259
 756,Int in Giovásc'a,int in giovasc'a,hamlet,8.700357,46.2604129
-756,La Cor’ona,la cor'ona,hamlet,8.6998845,46.2621686
+756,La Cor ona,la cor'ona,hamlet,8.6998845,46.2621686
 756,A Talpígn,a talpign,hamlet,8.7172772,46.2629338
 756,Int in Cèir,int in ceir,hamlet,8.719875,46.2643636
 756,A Fóo d Zóra,a foo d zora,hamlet,8.7233805,46.2745062
 756,A Fóo,a foo,hamlet,8.7284393,46.2724112
-756,Indi i C’ignöi,indi i c'ignoi,hamlet,8.7331063,46.2642629
+756,Indi i C ignöi,indi i c'ignoi,hamlet,8.7331063,46.2642629
 756,In Maiásc',in maiasc',hamlet,8.7321371,46.2673324
 756,La Sèla,la sela,hamlet,8.7353877,46.2705145
-756,In Sommai’asc’,in sommai'asc',hamlet,8.7395442,46.2706843
+756,In Sommai asc,in sommai'asc',hamlet,8.7395442,46.2706843
 756,In Poèe,in poee,hamlet,8.7456723,46.2685838
 756,Collo,collo,hamlet,8.7441603,46.2758651
 756,La Piánc'a,la pianc'a,hamlet,8.7549169,46.2753149
@@ -7904,7 +7904,7 @@ country_id,name,name_norm,place,lon,lat
 756,In Scimonsásc,in scimonsasc,hamlet,8.7172923,46.2460941
 756,In Amanzói,in amanzoi,hamlet,8.7192932,46.2476818
 756,In Scirésgia,in sciresgia,hamlet,8.7189459,46.2489316
-756,In Sasc’álp,in sasc'alp,hamlet,8.7212025,46.2456702
+756,In Sasc álp,in sasc'alp,hamlet,8.7212025,46.2456702
 756,Sagmè,sagme,hamlet,8.7060438,46.2715082
 756,Alpe Spluga,alpe spluga,hamlet,8.678999,46.3150771
 756,Berzona,berzona,hamlet,8.6764273,46.2884412
@@ -7920,7 +7920,7 @@ country_id,name,name_norm,place,lon,lat
 756,Collo,collo,hamlet,8.6691241,46.2491598
 756,L'Ör Barèd,l'or bared,hamlet,8.6789429,46.2458639
 756,A Canaa,a canaa,hamlet,8.6821109,46.244946
-756,Al Crest’on,al crest'on,hamlet,8.6888652,46.2449416
+756,Al Crest on,al crest'on,hamlet,8.6888652,46.2449416
 756,Pianel,pianel,hamlet,8.6718687,46.2579899
 756,Monte della Spina,monte della spina,hamlet,8.6657456,46.2556601
 756,Castel,castel,hamlet,8.6627128,46.2560236
@@ -8043,7 +8043,7 @@ country_id,name,name_norm,place,lon,lat
 756,Brägji,bragji,hamlet,7.7901598,46.3175029
 756,Gromo,gromo,hamlet,9.0017577,46.0829744
 756,Wettsteina,wettsteina,hamlet,7.7529515,46.301773
-756,Gampilgaar (Niedergesteln),gampilgaar,hamlet,7.7459036,46.3053869
+756,Gampilgaar,gampilgaar,hamlet,7.7459036,46.3053869
 756,Cavaionc,cavaionc,hamlet,9.1119896,46.328576
 756,Campagna,campagna,hamlet,9.3967089,46.8225207
 756,Chavannes-sous-Orsonnens,chavannes-sous-orsonnens,village,6.9919422,46.7270683
@@ -8056,7 +8056,7 @@ country_id,name,name_norm,place,lon,lat
 756,Morgex,morgex,hamlet,7.0747242,46.3247204
 756,Bretaye,bretaye,hamlet,7.0733557,46.3200336
 756,Chapalettaz,chapalettaz,hamlet,6.8484414,46.7708801
-756,Chapelle (Broye),chapelle,hamlet,6.8519819,46.7701305
+756,Chapelle,chapelle,hamlet,6.8519819,46.7701305
 756,Praratoud,praratoud,hamlet,6.8481946,46.7345228
 756,Hofstetten,hofstetten,village,8.5079525,47.4811306
 756,Hohlen,hohlen,hamlet,7.8125103,46.6903819
@@ -8115,7 +8115,7 @@ country_id,name,name_norm,place,lon,lat
 756,Aitessa,aitessa,hamlet,8.9951399,46.0813166
 756,Hofen,hofen,hamlet,9.0337022,47.3369384
 756,Niederhofen,niederhofen,hamlet,8.9088693,47.4567382
-756,Signèse (Ayent),signese,hamlet,7.4024801,46.2574879
+756,Signèse,signese,hamlet,7.4024801,46.2574879
 756,Campagna,campagna,hamlet,8.8111993,45.9870319
 756,Horgenbach,horgenbach,hamlet,8.843124,47.5694282
 756,Erzenholz,erzenholz,hamlet,8.8491187,47.5682916
@@ -8153,7 +8153,7 @@ country_id,name,name_norm,place,lon,lat
 756,Aclex,aclex,hamlet,6.8404588,46.7761778
 756,Eppenberg,eppenberg,hamlet,9.13735,47.4106491
 756,Fontöbia,fontobia,hamlet,8.8597928,46.2079447
-756,Berzona (Verzasca),berzona,village,8.8600813,46.2135804
+756,Berzona,berzona,village,8.8600813,46.2135804
 756,Borisio,borisio,hamlet,8.9975082,46.0850923
 756,Bardüghèe,bardughee,hamlet,8.8723906,46.2380997
 756,San Bartolomeo,san bartolomeo,village,8.8471457,46.2319206
@@ -8195,7 +8195,7 @@ country_id,name,name_norm,place,lon,lat
 756,Kleinhöchstetten,kleinhochstetten,hamlet,7.5322707,46.9028255
 756,Tutz,tutz,hamlet,9.0912724,47.1436623
 756,Wasserfalle,wasserfalle,hamlet,7.7010284,47.3740199
-756,"Briey, Chippis",briey chippis,hamlet,7.537757,46.2694791
+756,Briey Chippis,briey chippis,hamlet,7.537757,46.2694791
 756,Sagliaz,sagliaz,hamlet,9.7614521,46.6212691
 756,Boden-Berg,boden-berg,hamlet,9.2857635,47.1992436
 756,Halden,halden,hamlet,9.3026521,47.2026254
@@ -8367,7 +8367,7 @@ country_id,name,name_norm,place,lon,lat
 756,Gnäl,gnal,hamlet,8.7370116,47.268094
 756,Les Crosats,les crosats,hamlet,6.8788505,46.3130699
 756,Montmirail,montmirail,hamlet,7.0251226,47.0163317
-756,Produit (Leytron),produit,hamlet,7.1937416,46.1869275
+756,Produit,produit,hamlet,7.1937416,46.1869275
 756,Fiesso,fiesso,village,8.734463,46.4919699
 756,Rodi,rodi,village,8.7406643,46.4893403
 756,Lichtensteig,lichtensteig,village,9.0874862,47.3231436
@@ -8874,7 +8874,7 @@ country_id,name,name_norm,place,lon,lat
 756,Schwendi,schwendi,hamlet,7.6897841,46.7497748
 756,Obersaxen-Pilavarda,obersaxen-pilavarda,hamlet,9.078041,46.7441341
 756,Obersaxen Tusa,obersaxen tusa,hamlet,9.0847439,46.7494475
-756,Obersaxen St. Josef,obersaxen st josef,hamlet,9.0767911,46.7476262
+756,Obersaxen St Josef,obersaxen st josef,hamlet,9.0767911,46.7476262
 756,La Réselle,la reselle,hamlet,7.3507065,47.4110186
 756,Zellersmüli,zellersmuli,hamlet,9.2580788,47.3989932
 756,Zellersmüli,zellersmuli,hamlet,9.2529528,47.3994399
@@ -8973,8 +8973,8 @@ country_id,name,name_norm,place,lon,lat
 756,Eigi,eigi,hamlet,8.4495073,47.252186
 756,Boschetto,boschetto,hamlet,8.605379,46.3058161
 756,Avenex,avenex,hamlet,6.2112273,46.3918995
-756,1. Altmatt,1 altmatt,hamlet,8.6782823,47.1101477
-756,3. Altmatt,3 altmatt,hamlet,8.6964512,47.1317464
+756,Altmatt,1 altmatt,hamlet,8.6782823,47.1101477
+756,Altmatt,3 altmatt,hamlet,8.6964512,47.1317464
 756,Walke,walke,hamlet,7.8014654,47.1380214
 756,Munimatte,munimatte,hamlet,7.804262,47.1369945
 756,Holzacher,holzacher,hamlet,7.8105267,47.1278905
@@ -9451,7 +9451,7 @@ country_id,name,name_norm,place,lon,lat
 756,Gossenrain,gossenrain,hamlet,8.2430365,47.114903
 756,Riedhof,riedhof,hamlet,8.2518063,47.1096109
 756,La Vaux,la vaux,hamlet,6.4005836,46.4879381
-756,Neuhaus (Egg),neuhaus,hamlet,8.6724659,47.3130208
+756,Neuhaus,neuhaus,hamlet,8.6724659,47.3130208
 756,Hinteregg,hinteregg,village,8.6834648,47.3074289
 756,Kreuzstrasse,kreuzstrasse,hamlet,8.6832317,47.574446
 756,Innermoos,innermoos,hamlet,7.9149864,47.0707391
@@ -9488,7 +9488,7 @@ country_id,name,name_norm,place,lon,lat
 756,Uf en Egga,uf en egga,hamlet,8.148345,46.3883798
 756,Châteauneuf,chateauneuf,village,7.3038239,46.2190065
 756,Gere,gere,hamlet,7.7902049,46.1072797
-756,Surrein (Tujetsch),surrein,hamlet,8.7806826,46.6746199
+756,Surrein,surrein,hamlet,8.7806826,46.6746199
 756,Gliz,gliz,hamlet,9.0363552,46.7547594
 756,Capeder,capeder,hamlet,9.0337986,46.753978
 756,Unterbach,unterbach,hamlet,8.8905689,47.2861756
@@ -9515,9 +9515,9 @@ country_id,name,name_norm,place,lon,lat
 756,Les Grillesses,les grillesses,hamlet,7.4111553,46.3097051
 756,In Trièpp,in triepp,hamlet,8.7310254,46.2761275
 756,I Travèrs,i travers,hamlet,8.7033277,46.2623666
-756,A Corlü’ign,a corlu'ign,hamlet,8.7064855,46.2569965
+756,A Corlü ign,a corlu'ign,hamlet,8.7064855,46.2569965
 756,A Talpígn d Zótt,a talpign d zott,hamlet,8.7180538,46.2614007
-756,In Monc’asc’,in monc'asc',hamlet,8.7044496,46.2640967
+756,In Monc asc,in monc'asc',hamlet,8.7044496,46.2640967
 756,Ciòssa,ciossa,hamlet,8.6926814,46.2626988
 756,Pianèzz,pianezz,hamlet,8.6949783,46.2606953
 756,Fontana,fontana,hamlet,8.6970942,46.2677331
@@ -9533,18 +9533,18 @@ country_id,name,name_norm,place,lon,lat
 756,Campiòi,campioi,hamlet,8.7208722,46.2131648
 756,I Pièid,i pieid,hamlet,8.7224143,46.2388323
 756,Valècc,valecc,hamlet,8.7123965,46.2267903
-756,A C’èsg,a c'esg,hamlet,8.7261098,46.2065667
+756,A C èsg,a c'esg,hamlet,8.7261098,46.2065667
 756,Gaggio,gaggio,hamlet,8.7084968,46.2278043
 756,Al Runch di Mött,al runch di mott,hamlet,8.6950122,46.243938
 756,In Crüpp,in crupp,hamlet,8.7181688,46.2404327
 756,Al Lüghétt,al lughett,hamlet,8.7156339,46.2413152
 756,Ghiüla,ghiula,hamlet,8.7292182,46.2053148
 756,Mött,mott,hamlet,8.7231205,46.2166013
-756,A Can’ig,a can'ig,hamlet,8.7124816,46.2256311
+756,A Can ig,a can'ig,hamlet,8.7124816,46.2256311
 756,La Fracorèla,la fracorela,hamlet,8.7158713,46.2485492
 756,Garzèd di Dentro,garzed di dentro,hamlet,8.7176504,46.21049
 756,Praossìgn,praossign,hamlet,8.7235021,46.2137892
-756,Al Sc’opòo,al sc'opoo,hamlet,8.7300787,46.2475937
+756,Al Sc opòo,al sc'opoo,hamlet,8.7300787,46.2475937
 756,Corte,corte,hamlet,8.7436184,46.2508727
 756,Lòbia,lobia,hamlet,8.7226023,46.215074
 756,Prada di Cima,prada di cima,hamlet,8.7212899,46.2071045
@@ -9791,7 +9791,7 @@ country_id,name,name_norm,place,lon,lat
 756,Nuttelen,nuttelen,hamlet,7.9129414,47.2279675
 756,Huprächtigen,huprachtigen,hamlet,8.1469368,47.1177193
 756,Ifflikon,ifflikon,hamlet,8.1124418,47.1400759
-756,Mur (Vully) FR,mur fr,village,7.0622827,46.9444695
+756,Mur FR,mur fr,village,7.0622827,46.9444695
 756,Plamaria,plamaria,hamlet,9.6883769,46.9870516
 756,Pilidetta,pilidetta,hamlet,9.6986837,46.9866407
 756,Höfli,hofli,hamlet,9.7107609,46.9936075
@@ -9800,7 +9800,7 @@ country_id,name,name_norm,place,lon,lat
 756,Essert FR,essert fr,hamlet,7.1621979,46.7369346
 756,Trutigen,trutigen,hamlet,8.2177411,47.1230612
 756,Fennern,fennern,hamlet,8.2085225,47.11917
-756,St. Niklausen OW,st niklausen ow,hamlet,8.28105,46.8753152
+756,St Niklausen OW,st niklausen ow,hamlet,8.28105,46.8753152
 756,Riedmatt,riedmatt,hamlet,8.518195,47.2615869
 756,Oberbargen,oberbargen,hamlet,8.5815561,47.7953588
 756,La Magnena,la magnena,hamlet,6.8029,46.82663
@@ -10023,7 +10023,7 @@ country_id,name,name_norm,place,lon,lat
 756,Gibel,gibel,hamlet,8.9488786,47.2706188
 756,Rossweid,rossweid,hamlet,9.2589622,47.4753234
 756,Riet,riet,hamlet,9.2540574,47.4667032
-756,Niva (Vallemaggia),niva,village,8.5315733,46.2921137
+756,Niva,niva,village,8.5315733,46.2921137
 756,Ca di Giunzi,ca di giunzi,hamlet,8.5429848,46.3082892
 756,Corsopra,corsopra,hamlet,8.5406298,46.3069106
 756,Bebikon,bebikon,hamlet,8.936761,47.270475
@@ -10147,7 +10147,7 @@ country_id,name,name_norm,place,lon,lat
 756,Im Tobel,im tobel,hamlet,8.5431216,47.274374
 756,Tanne,tanne,hamlet,9.3241663,47.2690135
 756,Herzige,herzige,hamlet,8.2602838,47.13818
-756,St. Margrethenberg,st margrethenberg,hamlet,9.5110466,46.9794171
+756,St Margrethenberg,st margrethenberg,hamlet,9.5110466,46.9794171
 756,Rain,rain,hamlet,9.7115996,46.987239
 756,Joder,joder,hamlet,9.6958712,46.980681
 756,Battenweid,battenweid,hamlet,7.7652085,47.262034
@@ -10187,7 +10187,7 @@ country_id,name,name_norm,place,lon,lat
 756,Altegg,altegg,hamlet,9.095736,47.3995625
 756,Rimensberg,rimensberg,hamlet,9.1065383,47.3944328
 756,Dorschnei,dorschnei,hamlet,8.2426162,47.0061095
-756,St.Martin,st martin,hamlet,9.4134708,47.0478147
+756,St Martin,st martin,hamlet,9.4134708,47.0478147
 756,Rüfi,rufi,hamlet,9.4107423,47.0453308
 756,Oberplons,oberplons,hamlet,9.3952967,47.0558055
 756,Breitenau,breitenau,hamlet,9.2239128,47.202801
@@ -10538,7 +10538,7 @@ country_id,name,name_norm,place,lon,lat
 756,Brünnemoos,brunnemoos,hamlet,7.285665,46.9323541
 756,La Motta,la motta,hamlet,10.1144357,46.2738836
 756,Cadro,cadro,village,8.9842863,46.0449147
-756,Ottikon (Gossau ZH),ottikon,village,8.7803938,47.2958438
+756,Ottikon,ottikon,village,8.7803938,47.2958438
 756,Sonnmatt,sonnmatt,hamlet,9.2539427,47.4634459
 756,Spitzigstein,spitzigstein,hamlet,9.3954466,47.2669089
 756,Kreuzrecht,kreuzrecht,hamlet,9.3935725,47.265679
@@ -10547,7 +10547,7 @@ country_id,name,name_norm,place,lon,lat
 756,Blockhaus,blockhaus,hamlet,9.7192677,46.8204925
 756,Sala,sala,hamlet,8.9741951,46.018787
 756,Chénens,chenens,village,6.9997475,46.7421224
-756,Sta. Maria Val Müstair,sta maria val mustair,village,10.4232771,46.60127
+756,Sta Maria Val Müstair,sta maria val mustair,village,10.4232771,46.60127
 756,Lü,lu,village,10.3689748,46.6225889
 756,Büren,buren,hamlet,8.3970764,46.9383029
 756,Weingarten,weingarten,hamlet,9.0858718,47.5342109

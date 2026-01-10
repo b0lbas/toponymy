@@ -1,0 +1,178 @@
+{
+  "country_id": "392",
+  "country_name": "Japan",
+  "modes": [
+    "suffix"
+  ],
+  "default_mode": "suffix",
+  "default_zoom": 7,
+  "patterns": [
+    {
+      "pattern": "-hi",
+      "title": "-hi",
+      "mode": "suffix",
+      "zoom": 7,
+      "places": 792,
+      "file": "-hi_z7.json.gz",
+      "tiles": 24,
+      "score": 1.881857728348948,
+      "entropy": 0.7181085139806775,
+      "hotspots": [
+        [
+          113,
+          50,
+          215
+        ],
+        [
+          112,
+          50,
+          173
+        ],
+        [
+          110,
+          51,
+          96
+        ],
+        [
+          111,
+          50,
+          57
+        ],
+        [
+          113,
+          49,
+          54
+        ]
+      ],
+      "points": 792,
+      "points_sampled": false
+    },
+    {
+      "pattern": "-ng",
+      "title": "-ng",
+      "mode": "suffix",
+      "zoom": 7,
+      "places": 744,
+      "file": "-ng_z7.json.gz",
+      "tiles": 28,
+      "score": 1.1993667749143613,
+      "entropy": 0.8186455322554607,
+      "hotspots": [
+        [
+          113,
+          50,
+          119
+        ],
+        [
+          112,
+          50,
+          97
+        ],
+        [
+          110,
+          51,
+          88
+        ],
+        [
+          113,
+          49,
+          57
+        ],
+        [
+          111,
+          50,
+          55
+        ]
+      ],
+      "points": 744,
+      "points_sampled": false
+    },
+    {
+      "pattern": "-ing",
+      "title": "-ing",
+      "mode": "suffix",
+      "zoom": 7,
+      "places": 743,
+      "file": "-ing_z7.json.gz",
+      "tiles": 28,
+      "score": 1.1987205752229972,
+      "entropy": 0.8187064222820183,
+      "hotspots": [
+        [
+          113,
+          50,
+          119
+        ],
+        [
+          112,
+          50,
+          97
+        ],
+        [
+          110,
+          51,
+          88
+        ],
+        [
+          113,
+          49,
+          56
+        ],
+        [
+          111,
+          50,
+          55
+        ]
+      ],
+      "points": 743,
+      "points_sampled": false
+    },
+    {
+      "pattern": "-un",
+      "title": "-un",
+      "mode": "suffix",
+      "zoom": 7,
+      "places": 184,
+      "file": "-un_z7.json.gz",
+      "tiles": 25,
+      "score": 1.0077171258689477,
+      "entropy": 0.806963900616137,
+      "hotspots": [
+        [
+          113,
+          50,
+          38
+        ],
+        [
+          113,
+          49,
+          30
+        ],
+        [
+          112,
+          50,
+          22
+        ],
+        [
+          109,
+          54,
+          16
+        ],
+        [
+          110,
+          51,
+          14
+        ]
+      ],
+      "points": 184,
+      "points_sampled": false
+    }
+  ],
+  "selection_mode": "score",
+  "min_places_for_candidate": 10,
+  "analyze_tail_token_only": true,
+  "suffix_len": [
+    2,
+    10
+  ]
+}

@@ -538,13 +538,26 @@ export default function TileSVG({
   return (
     <div className="relative">
       <svg viewBox={`0 0 ${width} ${height}`} className="block h-auto w-full">
-        <defs>
-          <clipPath id={clipId}>
-            <path d={path(countryForView as any) ?? ""} />
-          </clipPath>
-        </defs>
+        {/* clipPath больше не нужен, убираем path с countryForView чтобы не было наложения двух границ */}
+        <defs></defs>
 
-        {/* data (clipped) */}
+        {/* ✅ borders from admin1 (drawn first, так что точки сверху) */}
+        {admin1PathD && (
+          <g clipPath={`url(#${clipId})`}>
+            <path
+              d={admin1PathD}
+              fill="none"
+              stroke="#71717a"
+              strokeOpacity={variant === "large" ? 0.35 : 0.28}
+              strokeWidth={borderStrokeWidth}
+              strokeLinejoin="round"
+              strokeLinecap="round"
+              pointerEvents="none"
+            />
+          </g>
+        )}
+
+        {/* data (clipped) - drawn after borders so points are on top */}
         <g clipPath={`url(#${clipId})`} onClick={() => onPointClick?.(null)}>
           {"points_named" in (payload as any) ? (
             decodedNamedPoints.map((pt, i) => {
@@ -633,9 +646,9 @@ export default function TileSVG({
                     d={dStr}
                     fill={color(d.c)}
                     fillOpacity={0.85}
-                    stroke="#0a0a0a"
-                    strokeOpacity={0.35}
-                    strokeWidth={0.6}
+                    /* stroke="#0a0a0a"  Убрана чёрная внешняя граница */
+                    /* strokeOpacity={0.35} */
+                    /* strokeWidth={0.6} */
                     onMouseEnter={() => setHover({ count: d.c, x: d.x, y: d.y })}
                     onMouseLeave={() => setHover(null)}
                   />
@@ -647,28 +660,14 @@ export default function TileSVG({
                 d={cellsPath}
                 fill="#93c5fd"
                 fillOpacity={0.85}
-                stroke="#0a0a0a"
-                strokeOpacity={0.35}
-                strokeWidth={0.6}
+                /* stroke="#0a0a0a"  Убрана чёрная внешняя граница */
+                /* strokeOpacity={0.35} */
+                /* strokeWidth={0.6} */
                 pointerEvents="auto"
               />
             )
           )}
         </g>
-
-        {/* ✅ borders from admin1 (НЕ клипать) */}
-        {admin1PathD && (
-          <path
-            d={admin1PathD}
-            fill="none"
-            stroke="#71717a"
-            strokeOpacity={variant === "large" ? 0.35 : 0.28}
-            strokeWidth={borderStrokeWidth}
-            strokeLinejoin="round"
-            strokeLinecap="round"
-            pointerEvents="none"
-          />
-        )}
       </svg>
 
       {hover && !("points_q" in (payload as any)) && (
