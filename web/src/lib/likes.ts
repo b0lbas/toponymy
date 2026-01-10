@@ -8,7 +8,7 @@ const getApiBase = () => {
   return "/api";
 };
 
-const API_BASE = getApiBase();
+export const API_BASE = getApiBase();
 
 // Cache for all likes data
 let likesCache: Record<string, string[]> = {};

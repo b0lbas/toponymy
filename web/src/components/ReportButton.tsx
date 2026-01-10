@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import auth from '../lib/auth';
+import { API_BASE } from '../lib/likes';
 
 type Props = {
   countryId: string | number;
@@ -20,7 +21,7 @@ export function ReportButton({ countryId, pattern }: Props) {
 
     setSubmitting(true);
     try {
-      const res = await fetch('http://localhost:3000/api/patterns/report', {
+      const res = await fetch(`${API_BASE}/patterns/report`, {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${token}`,

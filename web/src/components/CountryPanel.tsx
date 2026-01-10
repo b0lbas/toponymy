@@ -3,7 +3,7 @@ import type { CountryFeature } from "./MapView";
 import type { CountryPatternsIndex, PatternIndexEntry } from "../lib/data";
 import { fetchJson } from "../lib/data";
 import SmallMultiple from "./SmallMultiple";
-import likes from "../lib/likes";
+import likes, { API_BASE } from "../lib/likes";
 
 type Props = {
   country: CountryFeature;
@@ -56,7 +56,7 @@ export default function CountryPanel({ country, onClose }: Props) {
       });
 
     // Fetch hidden patterns for this country
-    fetch(`http://localhost:3000/api/patterns/hidden?country_id=${country.id}`)
+    fetch(`${API_BASE}/patterns/hidden?country_id=${country.id}`)
       .then(res => res.ok ? res.json() : null)
       .then(data => {
         if (data?.hidden) {

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import auth from '../lib/auth';
+import { API_BASE } from '../lib/likes';
 import { MapView } from './MapView';
 
 export function AdminPanel() {
@@ -19,7 +20,7 @@ export function AdminPanel() {
   const fetchReports = async () => {
     if (!token) return;
     try {
-      const res = await fetch('http://localhost:3000/api/admin/reports', {
+      const res = await fetch(`${API_BASE}/admin/reports`, {
         headers: {
           'Authorization': `Bearer ${token}`
         }
@@ -37,7 +38,7 @@ export function AdminPanel() {
 
   const handleVerdictAccept = async (id, countryId, pattern) => {
     try {
-      const res = await fetch(`http://localhost:3000/api/admin/verdict?id=${id}`, {
+      const res = await fetch(`${API_BASE}/admin/verdict?id=${id}`, {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${token}`,
@@ -57,7 +58,7 @@ export function AdminPanel() {
 
   const handleVerdictReject = async (id) => {
     try {
-      const res = await fetch(`http://localhost:3000/api/admin/verdict?id=${id}`, {
+      const res = await fetch(`${API_BASE}/admin/verdict?id=${id}`, {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${token}`,
@@ -82,7 +83,7 @@ export function AdminPanel() {
 
     setSubmitting(true);
     try {
-      const res = await fetch('http://localhost:3000/api/patterns/report', {
+      const res = await fetch(`${API_BASE}/patterns/report`, {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${token}`,
