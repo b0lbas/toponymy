@@ -52,7 +52,7 @@ export default function CountryPanel({ country, onClose }: Props) {
     fetchJson<CountryPatternsIndex>(url)
       .then((idx) => setIndex(idx))
       .catch(() => {
-        setError("No precomputed data for this country (yet). Run the pipeline to generate it.");
+        setError("None");
       });
 
     // Fetch hidden patterns for this country
