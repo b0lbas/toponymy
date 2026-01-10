@@ -59,7 +59,7 @@ export default async function handler(req, res) {
       note: note || undefined,
       reason: note || undefined,
       status: "pending",
-      created_at: Date.now(),
+      created_at: new Date().toISOString(),
     });
 
     let candidate = buildCandidate();

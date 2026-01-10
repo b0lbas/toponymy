@@ -59,7 +59,7 @@ export default async function handler(req, res) {
       country_id: countryId,
       pattern,
       accepted_by: payload.userId,
-      created_at: Date.now(),
+      created_at: new Date().toISOString(),
     };
 
     for (let i = 0; i < 6; i++) {
