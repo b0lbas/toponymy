@@ -1,6 +1,9 @@
 import { useEffect, useMemo, useState } from "react";
 import auth from "../lib/auth";
 import { API_BASE } from "../lib/likes";
+import type { CountryPatternsIndex, PatternIndexEntry } from "../lib/data";
+import { fetchJson } from "../lib/data";
+import SmallMultiple from "./SmallMultiple";
 
 type ReportRow = {
   id?: string;
@@ -25,6 +28,7 @@ export default function AdminPanel() {
   const [reports, setReports] = useState<ReportRow[] | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [busyKey, setBusyKey] = useState<string | null>(null);
+  const [indexByCountry, setIndexByCountry] = useState<Record<string, CountryPatternsIndex | null>>({});
 
   useEffect(() => {
     return auth.onAuthChange((u) => setUserId(u));
@@ -66,6 +70,51 @@ export default function AdminPanel() {
     return () => window.clearInterval(t);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isAdmin]);
+
+  useEffect(() => {
+    if (!reports || reports.length === 0) return;
+
+    const countries = Array.from(
+      new Set(
+        reports
+          .map((r) => (r.country_id || r.countryId || "").toString())
+          .filter(Boolean)
+      )
+    );
+
+    const missing = countries.filter((c) => !(c in indexByCountry));
+    if (missing.length === 0) return;
+
+    let cancelled = false;
+
+    (async () => {
+      const results: Record<string, CountryPatternsIndex | null> = {};
+      await Promise.all(
+        missing.map(async (countryId) => {
+          try {
+            const url = `/data/${encodeURIComponent(countryId)}/patterns.json`;
+            const idx = await fetchJson<CountryPatternsIndex>(url);
+            results[countryId] = idx;
+          } catch {
+            results[countryId] = null;
+          }
+        })
+      );
+
+      if (cancelled) return;
+      setIndexByCountry((prev) => ({ ...prev, ...results }));
+    })();
+
+    return () => {
+      cancelled = true;
+    };
+  }, [reports, indexByCountry]);
+
+  const getEntryForReport = (countryId: string, pattern: string): PatternIndexEntry | null => {
+    const idx = indexByCountry[countryId];
+    if (!idx?.patterns?.length) return null;
+    return idx.patterns.find((p) => p.pattern === pattern) ?? null;
+  };
 
   const accept = async (r: ReportRow) => {
     const token = auth.getToken();
@@ -180,6 +229,10 @@ export default function AdminPanel() {
               const reporter = (r.user_id || r.userId || "").toString();
               const keyBase = `${country_id}|${pattern}|${i}`;
 
+              const entry = country_id && pattern ? getEntryForReport(country_id, pattern) : null;
+              // SmallMultiple only needs id + some properties; no geometry required for rendering.
+              const countryForPreview = { id: country_id, properties: { name: country_id, id: country_id, ISO_N3: country_id } } as any;
+
               return (
                 <div key={keyBase} className="rounded-2xl border border-zinc-800 bg-zinc-900/40 p-4">
                   <div className="flex flex-wrap items-center justify-between gap-3">
@@ -216,6 +269,22 @@ export default function AdminPanel() {
                         {" "}• note: <span className="text-zinc-300">{(r.note || r.reason) as string}</span>
                       </>
                     ) : null}
+                  </div>
+
+                  <div className="mt-3">
+                    {!country_id || !pattern ? null : entry ? (
+                      <div className="rounded-2xl border border-zinc-800 bg-zinc-950/30 p-3">
+                        <SmallMultiple country={countryForPreview} entry={entry} />
+                      </div>
+                    ) : indexByCountry[country_id] === undefined ? (
+                      <div className="rounded-2xl border border-zinc-800 bg-zinc-950/30 p-3 text-xs text-zinc-400">
+                        Loading preview…
+                      </div>
+                    ) : (
+                      <div className="rounded-2xl border border-zinc-800 bg-zinc-950/30 p-3 text-xs text-zinc-400">
+                        Preview not found in /data/{country_id}/patterns.json
+                      </div>
+                    )}
                   </div>
                 </div>
               );
