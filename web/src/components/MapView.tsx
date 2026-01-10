@@ -92,6 +92,49 @@ function emptyFC(): GeoJSON.FeatureCollection {
   return { type: "FeatureCollection", features: [] };
 }
 
+function pickFirstObject(topo: Topology<any>): any | null {
+  const keys = Object.keys((topo as any)?.objects ?? {});
+  if (!keys.length) return null;
+  return (topo as any).objects[keys[0]] ?? null;
+}
+
+function collectMultiPolygonCoords(g: GeoJSON.Geometry | null | undefined): number[][][] {
+  if (!g) return [];
+  if (g.type === "Polygon") return [g.coordinates as any];
+  if (g.type === "MultiPolygon") return g.coordinates as any;
+  return [];
+}
+
+function mergeById(features: CountryFeature[]): CountryFeature[] {
+  const byId = new Map<string, { proto: CountryFeature; coords: number[][][] }>();
+  for (const f of features) {
+    const id = normalizeId((f as any)?.id ?? (f as any)?.properties?.id ?? getStableIdFromAdmin0(f));
+    const coords = collectMultiPolygonCoords(maybeTransformGeometry(f));
+    const existing = byId.get(id);
+    if (existing) {
+      existing.coords.push(...coords);
+      continue;
+    }
+    byId.set(id, { proto: f, coords: [...coords] });
+  }
+
+  return Array.from(byId.values()).map(({ proto, coords }) => {
+    const geometry: GeoJSON.MultiPolygon = {
+      type: "MultiPolygon",
+      coordinates: coords,
+    } as any;
+    const area = Number(geoArea({ ...(proto as any), geometry } as any));
+    const name = getName(proto as any);
+    const id = normalizeId((proto as any)?.id ?? (proto as any)?.properties?.id ?? getStableIdFromAdmin0(proto));
+    return {
+      ...proto,
+      geometry,
+      id,
+      properties: { ...(proto as any)?.properties, id, name, area },
+    } as CountryFeature;
+  });
+}
+
 // ---- Alaska transform: move down and shrink to reduce visual clutter ----
 const AK_ANCHOR: [number, number] = [-152, 63];
 const AK_SCALE = 0.5; // shrink width/height by 2x
@@ -124,93 +167,6 @@ function transformAkGeometry(g: GeoJSON.Geometry): GeoJSON.Geometry {
     } as GeoJSON.Polygon;
   }
   if (g.type === "MultiPolygon") {
-
-  type OverrideSpec = {
-    sourceIso3: string;
-    targetIso3: string;
-    targetIsoN3: string;
-    targetName?: string;
-  };
-
-  const DISPUTE_OVERRIDES: OverrideSpec[] = [
-    // Treat Somaliland as part of Somalia
-    { sourceIso3: "SOL", targetIso3: "SOM", targetIsoN3: "706", targetName: "Somalia" },
-    // Treat Western Sahara as part of Morocco
-    { sourceIso3: "SAH", targetIso3: "MAR", targetIsoN3: "504", targetName: "Morocco" },
-  ];
-
-  function applyDisputeOverrides(features: CountryFeature[], admin1?: Admin1Loaded | null): CountryFeature[] {
-    const patched = (features ?? []).map((f) => {
-      const iso3 = getISO3(f);
-      const override = DISPUTE_OVERRIDES.find((o) => o.sourceIso3 === iso3);
-      if (!override) return f;
-
-      const name = override.targetName ?? getName(f);
-      const geometry = maybeTransformGeometry(f as any);
-      return {
-        ...f,
-        id: normalizeId(override.targetIsoN3),
-        geometry,
-        properties: {
-          ...(f as any)?.properties,
-          name,
-          ADM0_A3: override.targetIso3,
-          ISO_A3: override.targetIso3,
-          ISO_N3: override.targetIsoN3,
-          id: normalizeId(override.targetIsoN3),
-        },
-      } as CountryFeature;
-    });
-
-    // Append Crimea (UA-43) as Ukraine so it renders with Ukraine color.
-    if (admin1?.topo) {
-      try {
-        const obj =
-          pickTopoObjectRobust(admin1.topo as any, [
-            "admin1",
-            "admin_1",
-            "states_provinces",
-            "ne_10m_admin_1_states_provinces_lakes",
-            "ne_50m_admin_1_states_provinces_lakes",
-            "ne_10m_admin_1_states_provinces",
-            "ne_50m_admin_1_states_provinces",
-          ]) ?? null;
-
-        const geoms: any[] = (obj as any)?.geometries ?? [];
-        const crimeaGeom = geoms.find((g: any) => {
-          const p = g?.properties ?? {};
-          const n = (p.name_en ?? p.name ?? "").toString().toLowerCase();
-          const iso2 = (p.iso_3166_2 ?? "").toString().toUpperCase();
-          return n.includes("crimea") || iso2 === "UA-43";
-        });
-
-        if (crimeaGeom) {
-          const fc = topoFeature(admin1.topo as any, { ...(obj as any), geometries: [crimeaGeom] } as any) as any;
-          const feat = (fc?.type === "FeatureCollection" ? fc.features?.[0] : fc) as any;
-          if (feat?.geometry) {
-            const geometry = maybeTransformGeometry(feat as any);
-            patched.push({
-              type: "Feature",
-              geometry,
-              properties: {
-                ...(feat?.properties ?? {}),
-                name: "Crimea",
-                ADM0_A3: "UKR",
-                ISO_A3: "UKR",
-                ISO_N3: "804",
-                id: "804",
-              },
-              id: "804",
-            } as CountryFeature);
-          }
-        }
-      } catch (e) {
-        console.warn("[MapView] Crimea override failed", e);
-      }
-    }
-
-    return patched;
-  }
     return {
       type: "MultiPolygon",
       coordinates: (g.coordinates as any).map((poly: number[][][]) =>
@@ -381,8 +337,22 @@ async function loadNaturalEarthAdmin0(): Promise<CountryFeature[]> {
         _admin0Cache.set(
           url,
           (async () => {
-            const fc = (await fetchJsonStrict(url)) as GeoJSON.FeatureCollection;
-            return withAreaAndIds((fc.features ?? []) as any[]);
+            const raw = await fetchJsonStrict(url);
+
+            // Accept both GeoJSON FeatureCollection and Topology
+            let feats: any[] | null = null;
+            if (raw && raw.type === "FeatureCollection") {
+              feats = (raw.features ?? []) as any[];
+            } else if (raw && raw.type === "Topology" && (raw as any).objects) {
+              const obj = pickFirstObject(raw as Topology<any>);
+              if (!obj) throw new Error(`No objects in topology ${url}`);
+              feats = (topoFeature(raw as any, obj as any).features ?? []) as any[];
+            } else {
+              throw new Error(`Unsupported admin0 format at ${url}`);
+            }
+
+            const withIds = withAreaAndIds(feats);
+            return mergeById(withIds);
           })()
         );
       }
@@ -536,17 +506,19 @@ export default function MapView({ countries, selectedId, onSelect }: Props) {
 
   const dataCountries = useMemo(() => {
     const source = neCountries?.length ? neCountries : transformFallbackCountries(countries ?? []);
-    let merged = source;
-
+    
     // If we have both Natural Earth and world-atlas, merge geometries for countries with missing data
     if (source?.length && atlasCountries?.length) {
-      merged = source.map((country) => {
-        const hasGeometry = country.geometry && JSON.stringify(country.geometry).length > 50;
-
+      return source.map((country) => {
+        const hasGeometry = country.geometry && 
+                           JSON.stringify(country.geometry).length > 50;
+        
         if (!hasGeometry) {
           // Try to find this country in world-atlas and use its geometry
-          const atlasMatch = atlasCountries.find((ac) => normalizeId(ac.id) === normalizeId(country.id));
-
+          const atlasMatch = atlasCountries.find(
+            (ac) => normalizeId(ac.id) === normalizeId(country.id)
+          );
+          
           if (atlasMatch?.geometry) {
             console.debug(`[MapView] Using world-atlas geometry for country ${normalizeId(country.id)} (was missing in Natural Earth)`);
             return {
@@ -555,13 +527,13 @@ export default function MapView({ countries, selectedId, onSelect }: Props) {
             };
           }
         }
-
+        
         return country;
       });
     }
-
-    return applyDisputeOverrides(merged, admin1Loaded);
-  }, [neCountries, atlasCountries, countries, admin1Loaded]);
+    
+    return source;
+  }, [neCountries, atlasCountries, countries]);
 
   const countriesFC = useMemo(() => toFeatureCollection(dataCountries), [dataCountries]);
 
