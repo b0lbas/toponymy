@@ -1,0 +1,218 @@
+{
+  "country_id": "084",
+  "country_name": "Belize",
+  "modes": [
+    "suffix"
+  ],
+  "default_mode": "suffix",
+  "default_zoom": 7,
+  "patterns": [
+    {
+      "pattern": "-an",
+      "title": "-an",
+      "mode": "suffix",
+      "zoom": 7,
+      "places": 11,
+      "file": "-an_z7.json.gz",
+      "tiles": 2,
+      "score": 0.7851349923579647,
+      "entropy": 0.6840384356390417,
+      "hotspots": [
+        [
+          32,
+          57,
+          9
+        ],
+        [
+          32,
+          58,
+          2
+        ]
+      ],
+      "points": 11,
+      "points_sampled": false
+    },
+    {
+      "pattern": "-le",
+      "title": "-le",
+      "mode": "suffix",
+      "zoom": 7,
+      "places": 14,
+      "file": "-le_z7.json.gz",
+      "tiles": 2,
+      "score": 0.6781086139354124,
+      "entropy": 0.74959525725948,
+      "hotspots": [
+        [
+          32,
+          57,
+          11
+        ],
+        [
+          32,
+          58,
+          3
+        ]
+      ],
+      "points": 14,
+      "points_sampled": false
+    },
+    {
+      "pattern": "-ille",
+      "title": "-ille",
+      "mode": "suffix",
+      "zoom": 7,
+      "places": 12,
+      "file": "-ille_z7.json.gz",
+      "tiles": 2,
+      "score": 0.4840620534074834,
+      "entropy": 0.8112781244591328,
+      "hotspots": [
+        [
+          32,
+          57,
+          9
+        ],
+        [
+          32,
+          58,
+          3
+        ]
+      ],
+      "points": 12,
+      "points_sampled": false
+    },
+    {
+      "pattern": "-lle",
+      "title": "-lle",
+      "mode": "suffix",
+      "zoom": 7,
+      "places": 12,
+      "file": "-lle_z7.json.gz",
+      "tiles": 2,
+      "score": 0.4840620534074834,
+      "entropy": 0.8112781244591328,
+      "hotspots": [
+        [
+          32,
+          57,
+          9
+        ],
+        [
+          32,
+          58,
+          3
+        ]
+      ],
+      "points": 12,
+      "points_sampled": false
+    },
+    {
+      "pattern": "-ville",
+      "title": "-ville",
+      "mode": "suffix",
+      "zoom": 7,
+      "places": 12,
+      "file": "-ville_z7.json.gz",
+      "tiles": 2,
+      "score": 0.4840620534074834,
+      "entropy": 0.8112781244591328,
+      "hotspots": [
+        [
+          32,
+          57,
+          9
+        ],
+        [
+          32,
+          58,
+          3
+        ]
+      ],
+      "points": 12,
+      "points_sampled": false
+    },
+    {
+      "pattern": "-eek",
+      "title": "-eek",
+      "mode": "suffix",
+      "zoom": 7,
+      "places": 14,
+      "file": "-eek_z7.json.gz",
+      "tiles": 2,
+      "score": 0.16170862163062333,
+      "entropy": 0.940285958670631,
+      "hotspots": [
+        [
+          32,
+          57,
+          9
+        ],
+        [
+          32,
+          58,
+          5
+        ]
+      ],
+      "points": 14,
+      "points_sampled": false
+    },
+    {
+      "pattern": "-ek",
+      "title": "-ek",
+      "mode": "suffix",
+      "zoom": 7,
+      "places": 14,
+      "file": "-ek_z7.json.gz",
+      "tiles": 2,
+      "score": 0.16170862163062333,
+      "entropy": 0.940285958670631,
+      "hotspots": [
+        [
+          32,
+          57,
+          9
+        ],
+        [
+          32,
+          58,
+          5
+        ]
+      ],
+      "points": 14,
+      "points_sampled": false
+    },
+    {
+      "pattern": "-reek",
+      "title": "-reek",
+      "mode": "suffix",
+      "zoom": 7,
+      "places": 14,
+      "file": "-reek_z7.json.gz",
+      "tiles": 2,
+      "score": 0.16170862163062333,
+      "entropy": 0.940285958670631,
+      "hotspots": [
+        [
+          32,
+          57,
+          9
+        ],
+        [
+          32,
+          58,
+          5
+        ]
+      ],
+      "points": 14,
+      "points_sampled": false
+    }
+  ],
+  "selection_mode": "score",
+  "min_places_for_candidate": 10,
+  "analyze_tail_token_only": true,
+  "suffix_len": [
+    2,
+    10
+  ]
+}

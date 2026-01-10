@@ -8,6 +8,7 @@ import TileSVG from "./TileSVG";
 import { AnimatePresence, motion } from "framer-motion";
 import likes from "../lib/likes";
 import auth from "../lib/auth";
+import { ReportButton } from "./ReportButton";
 
 type Props = {
   country: CountryFeature;
@@ -667,6 +668,7 @@ export default function SmallMultiple({ country, entry }: Props) {
             <span aria-hidden>{liked ? "♥" : "♡"}</span>
             <span className="font-mono text-[11px]">{likeCount}</span>
           </button>
+          <ReportButton countryId={country.id} pattern={entry.pattern} />
         </div>
         <div className="text-[11px] text-zinc-400">{subtitle}</div>
       </div>

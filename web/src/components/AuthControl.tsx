@@ -60,6 +60,16 @@ export default function AuthControl() {
       {userId ? (
         <div className="flex items-center gap-2">
           <div className="text-[12px] text-zinc-300">{username || userId?.slice(0, 6) || "User"}</div>
+          {process.env.REACT_APP_ADMIN_USER_ID === userId && (
+            <a
+              href="/admin"
+              className="rounded-xl border border-purple-800 bg-purple-950/60 px-3 py-1.5 text-xs text-purple-300 hover:bg-purple-950"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Admin
+            </a>
+          )}
           <button
             onClick={doLogout}
             className="rounded-xl border border-zinc-800 bg-zinc-950/60 px-3 py-1.5 text-xs text-zinc-300 hover:bg-zinc-950"

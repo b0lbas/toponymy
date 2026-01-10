@@ -29,6 +29,7 @@ function fmtCoord(v: number) {
 export default function CountryPanel({ country, onClose }: Props) {
   const [index, setIndex] = useState<CountryPatternsIndex | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const [hiddenPatterns, setHiddenPatterns] = useState<Set<string>>(new Set());
 
   const [query, setQuery] = useState("");
   const deferredQuery = useDeferredValue(query);
@@ -45,12 +46,25 @@ export default function CountryPanel({ country, onClose }: Props) {
     setError(null);
     setQuery("");
     setSort("localized");
+    setHiddenPatterns(new Set());
 
     const url = `/data/${country.id}/patterns.json`;
     fetchJson<CountryPatternsIndex>(url)
       .then((idx) => setIndex(idx))
       .catch(() => {
         setError("No precomputed data for this country (yet). Run the pipeline to generate it.");
+      });
+
+    // Fetch hidden patterns for this country
+    fetch(`http://localhost:3000/api/patterns/hidden?country_id=${country.id}`)
+      .then(res => res.ok ? res.json() : null)
+      .then(data => {
+        if (data?.hidden) {
+          setHiddenPatterns(new Set(data.hidden));
+        }
+      })
+      .catch(() => {
+        // Silently fail, just show all patterns
       });
   }, [country.id]);
 
@@ -107,9 +121,9 @@ export default function CountryPanel({ country, onClose }: Props) {
 
   const filteredSorted: PatternIndexEntry[] = useMemo(() => {
     const q = deferredQuery.trim().toLowerCase();
-    if (!q) return baseSorted;
-    return baseSorted.filter((p) => (searchKeyFor.get(p) ?? "").includes(q));
-  }, [baseSorted, deferredQuery, searchKeyFor]);
+    if (!q) return baseSorted.filter(p => !hiddenPatterns.has(p.pattern));
+    return baseSorted.filter((p) => (searchKeyFor.get(p) ?? "").includes(q) && !hiddenPatterns.has(p.pattern));
+  }, [baseSorted, deferredQuery, searchKeyFor, hiddenPatterns]);
 
   // reset progressive render when user changes country/query/sort
   useEffect(() => {

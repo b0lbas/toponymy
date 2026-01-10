@@ -59,6 +59,30 @@ data-pipeline/tmp/**
 data-pipeline/export/
 data-pipeline/export/**
 
+data-pipeline/intermediate/
+data-pipeline/intermediate/**
+
+# Temporary/helper scripts in data-pipeline
+data-pipeline/analyze_canada_csv.py
+data-pipeline/check_suspicious.py
+data-pipeline/clean_canada_csv.py
+data-pipeline/clean_canada_patterns.py
+data-pipeline/clean_us_township.py
+data-pipeline/find_bad_patterns.py
+data-pipeline/scripts/clean_brazil.py
+data-pipeline/scripts/fix_brazil_names.py
+data-pipeline/verify_clean.py
+data-pipeline/verify_final_canada.py
+
+# Duplicate/nested directories
+data-pipeline/api/
+data-pipeline/server/
+data-pipeline/web/
+data-pipeline/data-pipeline/
+
+# Root level helper scripts
+create_admin0_geojson.py
+
 *.zip
 *.7z
 *.tar
