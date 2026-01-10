@@ -8,6 +8,11 @@ const ADMIN_USER_ID = process.env.ADMIN_USER_ID || "user_1767857068696";
 
 const supabase = createClient(SUPABASE_URL || "", SUPABASE_KEY || "");
 
+function looksLikeUuid(v) {
+  if (!v || typeof v !== "string") return false;
+  return /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(v);
+}
+
 function verify(token) {
   try {
     return jwt.verify(token, JWT_SECRET);
@@ -54,11 +59,13 @@ export default async function handler(req, res) {
   if (!pattern) return res.status(400).json({ error: "pattern required" });
 
   try {
+    const acceptedBy = looksLikeUuid(payload.userId) ? payload.userId : undefined;
+
     // Insert hidden pattern; retry by dropping unknown columns if schema differs.
     let hiddenCandidate = {
       country_id: countryId,
       pattern,
-      accepted_by: payload.userId,
+      accepted_by: acceptedBy,
       created_at: new Date().toISOString(),
     };
 
