@@ -94,6 +94,7 @@ export default function SmallMultiple({ country, entry }: Props) {
 
   const [zoomUI, setZoomUI] = useState(1);
   const [selectedLabel, setSelectedLabel] = useState<{ name: string } | null>(null);
+  const [reporting, setReporting] = useState(false);
 
   const viewportRef = useRef<HTMLDivElement | null>(null);
   const stageRef = useRef<HTMLDivElement | null>(null);
@@ -457,6 +458,54 @@ export default function SmallMultiple({ country, entry }: Props) {
     centerView(1);
   };
 
+  const reportPattern = async () => {
+    const userId = auth.getCurrentUser();
+    if (!userId) {
+      auth.showAuth();
+      return;
+    }
+
+    if (reporting) return;
+
+    const ok = window.confirm(`Report this pattern ("${entry.pattern}")?`);
+    if (!ok) return;
+
+    const token = auth.getToken();
+    if (!token) {
+      auth.showAuth();
+      return;
+    }
+
+    setReporting(true);
+    try {
+      const res = await fetch("/api/patterns/report", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({
+          country_id: country.id,
+          pattern: entry.pattern,
+        }),
+      });
+
+      if (!res.ok) {
+        let msg = "Report failed";
+        try {
+          const data = await res.json();
+          if (data?.error) msg = data.error;
+        } catch {}
+        alert(msg);
+        return;
+      }
+
+      alert("Reported. Thank you!");
+    } finally {
+      setReporting(false);
+    }
+  };
+
   const modal =
     open && payload ? (
       <AnimatePresence>
@@ -494,6 +543,15 @@ export default function SmallMultiple({ country, entry }: Props) {
                   title="Reset zoom & center"
                 >
                   Reset
+                </button>
+                <button
+                  type="button"
+                  onClick={reportPattern}
+                  disabled={reporting}
+                  className="rounded-xl border border-zinc-800 bg-zinc-950/60 px-3 py-1.5 text-xs text-zinc-300 hover:bg-zinc-950 disabled:opacity-60"
+                  title="Report this pattern"
+                >
+                  {reporting ? "Reporting…" : "Report"}
                 </button>
                 <button
                   type="button"

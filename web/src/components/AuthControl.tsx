@@ -55,12 +55,14 @@ export default function AuthControl() {
     setMsg("Signed out");
   };
 
+  const adminUserId = (import.meta as any).env?.VITE_ADMIN_USER_ID || "user_1767857068696";
+
   return (
     <div className="flex items-center gap-2">
       {userId ? (
         <div className="flex items-center gap-2">
           <div className="text-[12px] text-zinc-300">{username || userId?.slice(0, 6) || "User"}</div>
-          {process.env.REACT_APP_ADMIN_USER_ID === userId && (
+          {adminUserId === userId && (
             <a
               href="/admin"
               className="rounded-xl border border-purple-800 bg-purple-950/60 px-3 py-1.5 text-xs text-purple-300 hover:bg-purple-950"

@@ -3,9 +3,16 @@ import { motion, AnimatePresence } from "framer-motion";
 import MapView, { CountryFeature } from "./components/MapView";
 import CountryPanel from "./components/CountryPanel";
 import AuthControl from "./components/AuthControl";
+import AdminPanel from "./components/AdminPanel";
 import { loadEuropeCountries } from "./lib/world";
 
 export default function App() {
+  const isAdminRoute = typeof window !== "undefined" && window.location.pathname === "/admin";
+
+  if (isAdminRoute) {
+    return <AdminPanel />;
+  }
+
   const [countries, setCountries] = useState<CountryFeature[] | null>(null);
   const [selected, setSelected] = useState<CountryFeature | null>(null);
 

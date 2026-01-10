@@ -362,22 +362,40 @@ export default function TileSVG({
     return { path: d3.geoPath(proj), projection: proj };
   }, [countryForView, width, height]);
 
-  const [iso3, setIso3] = useState<string | null>(() => getISO3FromCountryProps(countryForView as any));
+
+
+
+  // соответствие idNum → iso3 для admin0-only стран
+  const ADMIN0_ONLY_IDNUM_TO_ISO3: Record<string, string> = {
+    '214': 'DOM', '180': 'COD', '178': 'COG', '140': 'CAF', '226': 'GNQ', '624': 'GNB', '430': 'LBR', '478': 'MRT', '706': 'SOM', '728': 'SSD', '626': 'TLS', '332': 'HTI', '388': 'JAM', '044': 'BHS', '052': 'BRB', '670': 'VCT', '308': 'GRD', '662': 'LCA', '659': 'KNA', '028': 'ATG', '212': 'DMA', '780': 'TTO', '096': 'BRN', '634': 'QAT', '048': 'BHR', '414': 'KWT', '438': 'LIE', '674': 'SMR', '492': 'MCO', '336': 'VAT', '020': 'AND'
+  };
+
+  const [iso3, setIso3] = useState<string | null>(() => {
+    const direct = getISO3FromCountryProps(countryForView as any);
+    if (direct) return direct;
+    // если не найдено, пробуем по idNum для admin0-only
+    const idNum = String((countryForView as any)?.id ?? "");
+    if (idNum && ADMIN0_ONLY_IDNUM_TO_ISO3[idNum]) return ADMIN0_ONLY_IDNUM_TO_ISO3[idNum];
+    return null;
+  });
 
   useEffect(() => {
     let cancelled = false;
-
     const direct = getISO3FromCountryProps(countryForView as any);
     if (direct) {
       setIso3(direct);
       return;
     }
-
+    // если не найдено, пробуем по idNum для admin0-only
+    const idNum = String((countryForView as any)?.id ?? "");
+    if (idNum && ADMIN0_ONLY_IDNUM_TO_ISO3[idNum]) {
+      setIso3(ADMIN0_ONLY_IDNUM_TO_ISO3[idNum]);
+      return;
+    }
     resolveISO3(countryForView as any)
       .then((v) => {
         if (cancelled) return;
         setIso3(v);
-
         if (!v) {
           const id = String((countryForView as any)?.id ?? "");
           if (!_warnedNoIso.has(id)) {
@@ -396,7 +414,6 @@ export default function TileSVG({
       .catch(() => {
         if (!cancelled) setIso3(null);
       });
-
     return () => {
       cancelled = true;
     };
@@ -535,17 +552,44 @@ export default function TileSVG({
     return Math.max(0.35, base / s);
   }, [variant, viewScale]);
 
+
+  // ISO3-коды стран, где нет admin1-границ (использовать admin0)
+  const ADMIN0_ONLY_ISO3 = new Set([
+    'DOM','COD','COG','CAF','GNQ','GNB','LBR','MRT','SOM','SSD','TLS','HTI','JAM','BHS','BRB','VCT','GRD','LCA','KNA','ATG','DMA','TTO','BRN','QAT','BHR','KWT','LIE','SMR','MCO','VAT','AND'
+  ]);
+
+  // path для admin0 (country.geometry)
+  const admin0PathD = useMemo(() => {
+    if (!countryForView?.geometry) return "";
+    return path({ type: "Feature", geometry: countryForView.geometry, properties: {} } as any) ?? "";
+  }, [countryForView, path]);
+
+  const showAdmin0 = iso3 && ADMIN0_ONLY_ISO3.has(iso3);
+
   return (
     <div className="relative">
       <svg viewBox={`0 0 ${width} ${height}`} className="block h-auto w-full">
-        {/* clipPath больше не нужен, убираем path с countryForView чтобы не было наложения двух границ */}
         <defs></defs>
 
-        {/* ✅ borders from admin1 (drawn first, так что точки сверху) */}
-        {admin1PathD && (
+        {/* ✅ borders: admin1 если есть, иначе admin0 для особых стран */}
+        {admin1PathD && !showAdmin0 && (
           <g clipPath={`url(#${clipId})`}>
             <path
               d={admin1PathD}
+              fill="none"
+              stroke="#71717a"
+              strokeOpacity={variant === "large" ? 0.35 : 0.28}
+              strokeWidth={borderStrokeWidth}
+              strokeLinejoin="round"
+              strokeLinecap="round"
+              pointerEvents="none"
+            />
+          </g>
+        )}
+        {showAdmin0 && admin0PathD && (
+          <g clipPath={`url(#${clipId})`}>
+            <path
+              d={admin0PathD}
               fill="none"
               stroke="#71717a"
               strokeOpacity={variant === "large" ? 0.35 : 0.28}

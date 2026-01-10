@@ -64,7 +64,7 @@ const EXTRA_INCLUDED_IDS = new Set<number>([
   4, 12, 24, 31, 32, 36, 50, 51, 64, 68, 72, 76, 84, 96, 104, 108, 116, 120, 124, 132, 140, 144, 148, 152, 156, 158, 170, 174, 178, 180, 188, 192,
   204, 214, 218, 222, 226, 231, 232, 233, 254, 262, 266, 270, 275, 288, 304, 320, 324, 328, 332, 334, 340, 348, 352, 356, 360, 364, 368, 372, 376,
   384, 388, 392, 398, 400, 404, 408, 410, 414, 418, 422, 426, 430, 434, 438, 442, 450, 454, 458, 466, 470, 478, 480, 484, 496, 498, 499, 504, 508, 512,
-  516, 524, 528, 554, 562, 566, 578, 586, 591, 598, 600, 604, 608, 620, 626, 630, 634, 643, 646, 654, 678, 682, 686, 690, 694, 704, 706, 710, 716, 724, 728,
+  516, 524, 528, 554, 558, 562, 566, 578, 586, 591, 598, 600, 604, 608, 620, 626, 630, 634, 643, 646, 654, 678, 682, 686, 690, 694, 704, 706, 710, 716, 724, 728,
   729, 740, 748, 752, 756, 760, 762, 764, 768, 784, 788, 792, 795, 800, 804, 807, 818, 826, 834, 840, 854, 858, 860, 862, 887, 894
 ]);
 
@@ -163,6 +163,12 @@ function fixAntimeridianGeom<T extends GeoJSON.Polygon | GeoJSON.MultiPolygon>(g
 
 /** ===== конец FIX ===== */
 
+
+// ISO3-коды стран, где нет admin1-границ (использовать admin0)
+const ADMIN0_ONLY_ISO3 = new Set([
+  'DOM','COD','COG','CAF','GNQ','GNB','LBR','MRT','SOM','SSD','TLS','HTI','JAM','BHS','BRB','VCT','GRD','LCA','KNA','ATG','DMA','TTO','BRN','QAT','BHR','KWT','LIE','SMR','MCO','VAT','AND'
+]);
+
 export async function loadEuropeCountries(): Promise<CountryFeature[]> {
   const topo = await d3.json(WORLD_ATLAS_TOPOJSON);
   if (!topo || typeof topo !== "object")
@@ -177,6 +183,7 @@ export async function loadEuropeCountries(): Promise<CountryFeature[]> {
   for (const f of geo.features) {
     const name = (f.properties?.name ?? "Unknown").toString();
     const idNum = normIsoId(f.id);
+    const iso3 = f.properties?.iso_a3 || f.properties?.ISO_A3 || null;
 
     // Для Австралии (id=36) включаем только если name === 'Australia'
     if (idNum === 36 && name !== "Australia") continue;
@@ -187,10 +194,16 @@ export async function loadEuropeCountries(): Promise<CountryFeature[]> {
 
     const stableId = idNum !== null ? String(idNum) : name;
 
-    const keepFull = idNum !== null && EXTRA_INCLUDED_IDS.has(idNum);
-    let geom = keepFull
-      ? (f.geometry as GeoJSON.Polygon | GeoJSON.MultiPolygon)
-      : filterToEuropeGeom(f.geometry as any);
+    // Если страна из списка admin0-only, используем admin0-геометрию
+    let geom: GeoJSON.Polygon | GeoJSON.MultiPolygon;
+    if (iso3 && ADMIN0_ONLY_ISO3.has(iso3)) {
+      geom = f.geometry as GeoJSON.Polygon | GeoJSON.MultiPolygon;
+    } else {
+      const keepFull = idNum !== null && EXTRA_INCLUDED_IDS.has(idNum);
+      geom = keepFull
+        ? (f.geometry as GeoJSON.Polygon | GeoJSON.MultiPolygon)
+        : filterToEuropeGeom(f.geometry as any);
+    }
 
     // Debug logging for Caribbean countries
     if (idNum === 44 || idNum === 214) {
