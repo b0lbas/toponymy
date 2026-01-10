@@ -5,7 +5,7 @@ import maplibregl, { GeoJSONSource } from "maplibre-gl";
 import "maplibre-gl/dist/maplibre-gl.css";
 import style from "../map/style.json";
 import { CountryFeature, loadEuropeCountries } from "../lib/world";
-import { geoArea } from "d3-geo";
+import { geoArea, geoCentroid } from "d3-geo";
 import { mesh, feature as topoFeature } from "topojson-client";
 import type { Topology } from "topojson-specification";
 
@@ -16,6 +16,9 @@ type Props = {
   selectedId: string | null;
   onSelect: (country: CountryFeature) => void;
 };
+
+const EUROPE_BBOX = { lonMin: -25, lonMax: 45, latMin: 34, latMax: 72 };
+const TRIM_TO_EUROPE_IDS = new Set(["250", "528"]); // France, Netherlands
 
 const ADMIN0_URL_CANDIDATES = [
   "/geo/ne_10m_admin0.json",  // Try 10m first (better Caribbean detail)
@@ -105,6 +108,35 @@ function collectMultiPolygonCoords(g: GeoJSON.Geometry | null | undefined): numb
   return [];
 }
 
+function centroidOfPoly(poly: number[][][]): [number, number] | null {
+  try {
+    const f: GeoJSON.Feature<GeoJSON.Polygon> = {
+      type: "Feature",
+      geometry: { type: "Polygon", coordinates: poly as any },
+      properties: {},
+    };
+    const c = geoCentroid(f as any) as [number, number];
+    if (Array.isArray(c) && Number.isFinite(c[0]) && Number.isFinite(c[1])) return c;
+  } catch {
+    return null;
+  }
+  return null;
+}
+
+function inBbox(coord: [number, number], bbox = EUROPE_BBOX): boolean {
+  const [lon, lat] = coord;
+  return lon >= bbox.lonMin && lon <= bbox.lonMax && lat >= bbox.latMin && lat <= bbox.latMax;
+}
+
+function filterPolysToEurope(polys: number[][][], bbox = EUROPE_BBOX): number[][][] {
+  const kept: number[][][] = [];
+  for (const poly of polys) {
+    const c = centroidOfPoly(poly);
+    if (c && inBbox(c, bbox)) kept.push(poly);
+  }
+  return kept;
+}
+
 function mergeById(features: CountryFeature[]): CountryFeature[] {
   const byId = new Map<string, { proto: CountryFeature; coords: number[][][] }>();
   for (const f of features) {
@@ -119,13 +151,20 @@ function mergeById(features: CountryFeature[]): CountryFeature[] {
   }
 
   return Array.from(byId.values()).map(({ proto, coords }) => {
+    const id = normalizeId((proto as any)?.id ?? (proto as any)?.properties?.id ?? getStableIdFromAdmin0(proto));
+
+    let coords2 = coords;
+    if (TRIM_TO_EUROPE_IDS.has(id)) {
+      const trimmed = filterPolysToEurope(coords);
+      if (trimmed.length) coords2 = trimmed;
+    }
+
     const geometry: GeoJSON.MultiPolygon = {
       type: "MultiPolygon",
-      coordinates: coords,
+      coordinates: coords2,
     } as any;
     const area = Number(geoArea({ ...(proto as any), geometry } as any));
     const name = getName(proto as any);
-    const id = normalizeId((proto as any)?.id ?? (proto as any)?.properties?.id ?? getStableIdFromAdmin0(proto));
     return {
       ...proto,
       geometry,
