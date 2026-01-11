@@ -56283,62 +56283,12 @@
       "points_sampled": false
     },
     {
-      "pattern": "-arbayal",
-      "title": "-arbayal",
-      "mode": "suffix",
-      "zoom": 7,
-      "places": 14,
-      "file": "-arbayal_z7.json.gz",
-      "tiles": 2,
-      "score": 0.6781086139354124,
-      "entropy": 0.74959525725948,
-      "hotspots": [
-        [
-          61,
-          46,
-          11
-        ],
-        [
-          62,
-          46,
-          3
-        ]
-      ],
-      "points": 14,
-      "points_sampled": false
-    },
-    {
       "pattern": "-ayal",
       "title": "-ayal",
       "mode": "suffix",
       "zoom": 7,
       "places": 14,
       "file": "-ayal_z7.json.gz",
-      "tiles": 2,
-      "score": 0.6781086139354124,
-      "entropy": 0.74959525725948,
-      "hotspots": [
-        [
-          61,
-          46,
-          11
-        ],
-        [
-          62,
-          46,
-          3
-        ]
-      ],
-      "points": 14,
-      "points_sampled": false
-    },
-    {
-      "pattern": "-bayal",
-      "title": "-bayal",
-      "mode": "suffix",
-      "zoom": 7,
-      "places": 14,
-      "file": "-bayal_z7.json.gz",
       "tiles": 2,
       "score": 0.6781086139354124,
       "entropy": 0.74959525725948,
@@ -56376,31 +56326,6 @@
         [
           61,
           47,
-          3
-        ]
-      ],
-      "points": 14,
-      "points_sampled": false
-    },
-    {
-      "pattern": "-carbayal",
-      "title": "-carbayal",
-      "mode": "suffix",
-      "zoom": 7,
-      "places": 14,
-      "file": "-carbayal_z7.json.gz",
-      "tiles": 2,
-      "score": 0.6781086139354124,
-      "entropy": 0.74959525725948,
-      "hotspots": [
-        [
-          61,
-          46,
-          11
-        ],
-        [
-          62,
-          46,
           3
         ]
       ],
@@ -56501,31 +56426,6 @@
         [
           61,
           47,
-          3
-        ]
-      ],
-      "points": 14,
-      "points_sampled": false
-    },
-    {
-      "pattern": "-rbayal",
-      "title": "-rbayal",
-      "mode": "suffix",
-      "zoom": 7,
-      "places": 14,
-      "file": "-rbayal_z7.json.gz",
-      "tiles": 2,
-      "score": 0.6781086139354124,
-      "entropy": 0.74959525725948,
-      "hotspots": [
-        [
-          61,
-          46,
-          11
-        ],
-        [
-          62,
-          46,
           3
         ]
       ],
@@ -99075,41 +98975,6 @@
         ]
       ],
       "points": 56,
-      "points_sampled": false
-    },
-    {
-      "pattern": "-covela",
-      "title": "-covela",
-      "mode": "suffix",
-      "zoom": 7,
-      "places": 11,
-      "file": "-covela_z7.json.gz",
-      "tiles": 4,
-      "score": 0.39035931679228103,
-      "entropy": 0.8429078545765152,
-      "hotspots": [
-        [
-          61,
-          47,
-          6
-        ],
-        [
-          60,
-          47,
-          2
-        ],
-        [
-          61,
-          46,
-          2
-        ],
-        [
-          60,
-          46,
-          1
-        ]
-      ],
-      "points": 11,
       "points_sampled": false
     },
     {
@@ -143348,36 +143213,6 @@
       "points_sampled": false
     },
     {
-      "pattern": "-covelo",
-      "title": "-covelo",
-      "mode": "suffix",
-      "zoom": 7,
-      "places": 48,
-      "file": "-covelo_z7.json.gz",
-      "tiles": 3,
-      "score": 0.16201933688326117,
-      "entropy": 0.9583692656719229,
-      "hotspots": [
-        [
-          61,
-          47,
-          23
-        ],
-        [
-          61,
-          46,
-          13
-        ],
-        [
-          60,
-          47,
-          12
-        ]
-      ],
-      "points": 48,
-      "points_sampled": false
-    },
-    {
       "pattern": "-ovelo",
       "title": "-ovelo",
       "mode": "suffix",
@@ -161736,7 +161571,7 @@
   "selection_mode": "score",
   "min_places_for_candidate": 10,
   "analyze_tail_token_only": true,
-  "suffix_len": [
+  "pattern_len": [
     2,
     10
   ]

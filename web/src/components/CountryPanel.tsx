@@ -35,6 +35,7 @@ export default function CountryPanel({ country, onClose }: Props) {
   const deferredQuery = useDeferredValue(query);
 
   const [sort, setSort] = useState<SortMode>("localized");
+  const [mode, setMode] = useState<string>("suffix");
 
   // progressive rendering (no “Show more” button, loads automatically while you scroll)
   const [renderLimit, setRenderLimit] = useState(PAGE_SIZE);
@@ -48,10 +49,29 @@ export default function CountryPanel({ country, onClose }: Props) {
     setSort("localized");
     setHiddenPatterns(new Set());
 
-    const url = `/data/${country.id}/patterns.json`;
+    // Подгружаем нужный patterns.json по выбранному режиме
+    const url = `/data/${country.id}/${mode === "prefix" ? "patterns_prefix.json" : "patterns.json"}`;
     fetchJson<CountryPatternsIndex>(url)
-      .then((idx) => setIndex(idx))
+      .then((idx) => {
+        // We explicitly fetch the index file for the selected mode,
+        // so we should not auto-override the user's selection.
+        setIndex(idx);
+      })
       .catch(() => {
+        if (mode === "prefix") {
+          // If prefix data isn't available for this country yet, fall back to suffix.
+          const fallbackUrl = `/data/${country.id}/patterns.json`;
+          fetchJson<CountryPatternsIndex>(fallbackUrl)
+            .then((idx) => {
+              setMode("suffix");
+              setIndex(idx);
+              setError(null);
+            })
+            .catch(() => {
+              setError("None");
+            });
+          return;
+        }
         setError("None");
       });
 
@@ -66,7 +86,7 @@ export default function CountryPanel({ country, onClose }: Props) {
       .catch(() => {
         // Silently fail, just show all patterns
       });
-  }, [country.id]);
+  }, [country.id, mode]);
 
   const searchKeyFor = useMemo(() => {
     const wm = new WeakMap<PatternIndexEntry, string>();
@@ -191,7 +211,7 @@ export default function CountryPanel({ country, onClose }: Props) {
           <input
             value={query}
             onChange={(e) => setQuery(e.target.value)}
-            placeholder="Search suffix…"
+            placeholder={mode === "prefix" ? "Search prefix…" : "Search suffix…"}
             className="w-full flex-1 rounded-xl border border-zinc-800 bg-zinc-950/40 px-3 py-2 text-sm text-zinc-200 placeholder:text-zinc-500 outline-none focus:border-zinc-700 sm:w-auto"
           />
           <select
@@ -205,6 +225,19 @@ export default function CountryPanel({ country, onClose }: Props) {
             <option value="popularity">By popularity</option>
             <option value="az">A–Z</option>
           </select>
+          {/* Mode toggle */}
+          <button
+            type="button"
+            onClick={() => setMode((m) => (m === "suffix" ? "prefix" : "suffix"))}
+            aria-pressed={mode === "prefix"}
+            title="Toggle suffix/prefix"
+            className={
+              "rounded-xl border border-zinc-800 px-3 py-2 text-sm font-medium text-white outline-none focus:border-zinc-700 " +
+              (mode === "suffix" ? "bg-rose-950 hover:bg-rose-900" : "bg-emerald-950 hover:bg-emerald-900")
+            }
+          >
+            {mode}
+          </button>
         </div>
       </div>
 

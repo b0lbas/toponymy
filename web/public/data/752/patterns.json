@@ -92953,46 +92953,6 @@
       "points_sampled": false
     },
     {
-      "pattern": "-station",
-      "title": "-station",
-      "mode": "suffix",
-      "zoom": 7,
-      "places": 15,
-      "file": "-station_z7.json.gz",
-      "tiles": 9,
-      "score": 0.14316873717699802,
-      "entropy": 0.9483627932161024,
-      "hotspots": [
-        [
-          68,
-          38,
-          3
-        ],
-        [
-          69,
-          37,
-          3
-        ],
-        [
-          68,
-          39,
-          2
-        ],
-        [
-          68,
-          40,
-          2
-        ],
-        [
-          69,
-          33,
-          1
-        ]
-      ],
-      "points": 15,
-      "points_sampled": false
-    },
-    {
       "pattern": "-tation",
       "title": "-tation",
       "mode": "suffix",
@@ -105311,7 +105271,7 @@
   "selection_mode": "score",
   "min_places_for_candidate": 10,
   "analyze_tail_token_only": true,
-  "suffix_len": [
+  "pattern_len": [
     2,
     10
   ]

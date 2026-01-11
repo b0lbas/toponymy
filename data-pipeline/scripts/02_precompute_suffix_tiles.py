@@ -62,16 +62,32 @@ def tail_token(name_norm: str) -> str:
     s = (name_norm or "").strip()
     if not s:
         return s
-    s = re.sub(r"\([^\)]*\)", " ", s)
-    s = re.sub(r"\[[^\]]*\]", " ", s)
+    s = re.sub(r"\([^)]+\)", " ", s)
+    s = re.sub(r"\[[^]]+\]", " ", s)
     parts = [p for p in _SPLIT_TAIL_RE.split(s) if p]
     return sanitize_token(parts[-1] if parts else s)
+
+def head_token(name_norm: str) -> str:
+    """Take first token for multiword/hyphen names to avoid prefixes containing spaces."""
+    s = (name_norm or "").strip()
+    if not s:
+        return s
+    s = re.sub(r"\([^)]+\)", " ", s)
+    s = re.sub(r"\[[^]]+\]", " ", s)
+    parts = [p for p in _SPLIT_TAIL_RE.split(s) if p]
+    return sanitize_token(parts[0] if parts else s)
 
 def suffixes(s: str, min_len: int, max_len: int):
     s = (s or "").strip()
     L = len(s)
     for k in range(min_len, min(max_len, L) + 1):
         yield "-" + s[-k:]
+
+def prefixes(s: str, min_len: int, max_len: int):
+    s = (s or "").strip()
+    L = len(s)
+    for k in range(min_len, min(max_len, L) + 1):
+        yield s[:k]
 
 # Blacklist: non-city suffixes (geographic features, infrastructure, etc.)
 SUFFIX_BLACKLIST = {
@@ -94,6 +110,7 @@ def main():
     parser = argparse.ArgumentParser(description="Precompute suffix tiles (optionally filter by country id or slug)")
     parser.add_argument("-c", "--country", help="comma-separated list of country ids or geofabrik slugs to process (e.g. 8 or 250,8)", default=None)
     parser.add_argument("--config", help="path to config json to use (default: data-pipeline/config/europe.json)", default=None)
+    parser.add_argument("--mode", choices=["suffix", "prefix"], default=None, help="pattern mode to compute (default: prefix)")
     args = parser.parse_args()
 
     cfg_path = pathlib.Path(args.config) if args.config else CFG
@@ -116,6 +133,13 @@ def main():
     export_points = bool(cfg.get("export_points", True))
     points_scale = int(cfg.get("points_quant", 10000))
     max_points = int(cfg.get("max_points_per_pattern", 50000))
+
+    # --- MODE SWITCH: 'suffix' or 'prefix' ---
+    mode = (args.mode or str(cfg.get("mode", cfg.get("default_mode", "prefix")))).lower()
+    if mode not in {"suffix", "prefix"}:
+        print(f"[warn] Unknown mode={mode!r}; falling back to 'prefix'")
+        mode = "prefix"
+    print(f"[info] Mode: {mode}")
 
     for c in cfg["countries"]:
         cid = str(c["id"])
@@ -156,21 +180,27 @@ def main():
         lats = df["lat"].astype(float).tolist()
         names = df["name_norm"].astype(str).tolist()
 
-        for lon, lat, nm in tqdm(list(zip(lons, lats, names)), desc="aggregate suffix tiles"):
-            nm2 = tail_token(nm) if analyze_tail_only else (nm or "").strip()
+        for lon, lat, nm in tqdm(list(zip(lons, lats, names)), desc=f"aggregate {mode} tiles"):
+            if mode == 'suffix':
+                nm2 = tail_token(nm) if analyze_tail_only else (nm or "").strip()
+                patterns_gen = suffixes(nm2, min_len, max_len)
+            else:
+                nm2 = head_token(nm) if analyze_tail_only else (nm or "").strip()
+                patterns_gen = prefixes(nm2, min_len, max_len)
             if not nm2:
                 continue
             x, y = lonlat_to_tile(lon, lat, z)
-            for suf in suffixes(nm2, min_len, max_len):
-                freq[suf] += 1
-                tile_counts[suf][(x, y)] += 1
+            for pat in patterns_gen:
+                freq[pat] += 1
+                tile_counts[pat][(x, y)] += 1
 
         candidates = [s for s, f in freq.items() if f >= eff_min_places]
         print(f"[candidates] {len(candidates):,} (min_places={eff_min_places})")
 
-        # Filter out non-city suffixes (roads, mountains, etc.)
-        candidates = [s for s in candidates if is_valid_city_suffix(s)]
-        print(f"[filtered] {len(candidates):,} after removing non-city patterns")
+        if mode == "suffix":
+            # Filter out non-city suffixes (roads, mountains, etc.)
+            candidates = [s for s in candidates if is_valid_city_suffix(s)]
+            print(f"[filtered] {len(candidates):,} after removing non-city patterns")
 
         scored = []
         for pat in candidates:
@@ -214,16 +244,24 @@ def main():
             names_norm = df["name_norm"].astype(str).tolist()
             names_raw = df["name"].astype(str).tolist() if "name" in df.columns else names_norm
             for lon, lat, nm_raw, nm_norm in tqdm(list(zip(lons, lats, names_raw, names_norm)), desc="collect points (selected patterns)"):
-                nm2 = tail_token(nm_norm) if analyze_tail_only else (nm_norm or "").strip()
+                if mode == "suffix":
+                    nm2 = tail_token(nm_norm) if analyze_tail_only else (nm_norm or "").strip()
+                else:
+                    nm2 = head_token(nm_norm) if analyze_tail_only else (nm_norm or "").strip()
                 if not nm2:
                     continue
 
                 lon_q = int(round(float(lon) * points_scale))
                 lat_q = int(round(float(lat) * points_scale))
 
-                for suf in suffixes(nm2, min_len, max_len):
-                    if suf in chosen_set:
-                        _reservoir_add(suf, lon_q, lat_q, nm_raw)
+                if mode == "suffix":
+                    for pat in suffixes(nm2, min_len, max_len):
+                        if pat in chosen_set:
+                            _reservoir_add(pat, lon_q, lat_q, nm_raw)
+                else:
+                    for pat in prefixes(nm2, min_len, max_len):
+                        if pat in chosen_set:
+                            _reservoir_add(pat, lon_q, lat_q, nm_raw)
 
         print("[top]")
         for d in chosen[:10]:
@@ -240,12 +278,11 @@ def main():
             payload = {
                 "country_id": cid,
                 "pattern": pat,
-                "mode": "suffix",
+                "mode": mode,
                 "zoom": z,
                 "cells": cells,
                 "total_places": int(sum(c for _,_,c in cells)),
             }
-
             if export_points:
                 pts = points_q.get(pat, [])
                 payload["points_q"] = [[lon_q, lat_q] for lon_q, lat_q, *_ in pts]
@@ -253,15 +290,13 @@ def main():
                 payload["points_scale"] = points_scale
                 payload["points_sampled"] = bool(points_seen.get(pat, 0) > len(pts))
                 payload["points_named_sampled"] = payload["points_sampled"]
-
             fname = f"{slugify(pat)}_z{z}.json.gz"
             with gzip.open(c_out / fname, "wb") as fz:
                 fz.write(orjson.dumps(payload))
-
             patterns_index.append({
                 "pattern": pat,
                 "title": pat,
-                "mode": "suffix",
+                "mode": mode,
                 "zoom": z,
                 "places": d["places"],
                 "file": fname,
@@ -272,21 +307,22 @@ def main():
                 "points": (len(points_q.get(pat, [])) if export_points else None),
                 "points_sampled": (bool(points_seen.get(pat, 0) > len(points_q.get(pat, []))) if export_points else None),
             })
-
+        # --- Экспорт индекса после цикла ---
         idx_payload = {
             "country_id": cid,
             "country_name": c["name"],
-            "modes": ["suffix"],
-            "default_mode": "suffix",
+            "modes": [mode],
+            "default_mode": mode,
             "default_zoom": z,
             "patterns": patterns_index,
             "selection_mode": selection_mode,
             "min_places_for_candidate": eff_min_places,
             "analyze_tail_token_only": analyze_tail_only,
-            "suffix_len": [min_len, max_len],
+            "pattern_len": [min_len, max_len],
         }
-        (c_out / "patterns.json").write_bytes(orjson.dumps(idx_payload, option=orjson.OPT_INDENT_2))
-        print(f"[export] {c_out}  patterns={len(patterns_index)}")
+        fname = "patterns.json" if mode == "suffix" else "patterns_prefix.json"
+        (c_out / fname).write_bytes(orjson.dumps(idx_payload, option=orjson.OPT_INDENT_2))
+        print(f"[export] {c_out}  {fname} patterns={len(patterns_index)}")
 
     print("\nDone. Copy export/web/public/data into web/public/data before building the frontend.")
 

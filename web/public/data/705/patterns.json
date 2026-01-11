@@ -2063,26 +2063,6 @@
       "points_sampled": false
     },
     {
-      "pattern": "-lake",
-      "title": "-lake",
-      "mode": "suffix",
-      "zoom": 7,
-      "places": 10,
-      "file": "-lake_z7.json.gz",
-      "tiles": 1,
-      "score": 2.3978952727983707,
-      "entropy": 0.0,
-      "hotspots": [
-        [
-          69,
-          45,
-          10
-        ]
-      ],
-      "points": 10,
-      "points_sampled": false
-    },
-    {
       "pattern": "-ndol",
       "title": "-ndol",
       "mode": "suffix",
@@ -10201,7 +10181,7 @@
   "selection_mode": "score",
   "min_places_for_candidate": 10,
   "analyze_tail_token_only": true,
-  "suffix_len": [
+  "pattern_len": [
     2,
     10
   ]

@@ -11853,41 +11853,6 @@
       "points_sampled": false
     },
     {
-      "pattern": "-covelo",
-      "title": "-covelo",
-      "mode": "suffix",
-      "zoom": 7,
-      "places": 18,
-      "file": "-covelo_z7.json.gz",
-      "tiles": 4,
-      "score": 0.7909422265701251,
-      "entropy": 0.7313776131322518,
-      "hotspots": [
-        [
-          61,
-          48,
-          10
-        ],
-        [
-          61,
-          47,
-          6
-        ],
-        [
-          60,
-          47,
-          1
-        ],
-        [
-          60,
-          48,
-          1
-        ]
-      ],
-      "points": 18,
-      "points_sampled": false
-    },
-    {
       "pattern": "-ena",
       "title": "-ena",
       "mode": "suffix",
@@ -29756,36 +29721,6 @@
         [
           61,
           49,
-          1
-        ]
-      ],
-      "points": 10,
-      "points_sampled": false
-    },
-    {
-      "pattern": "-covelas",
-      "title": "-covelas",
-      "mode": "suffix",
-      "zoom": 7,
-      "places": 10,
-      "file": "-covelas_z7.json.gz",
-      "tiles": 3,
-      "score": 0.4379865487898655,
-      "entropy": 0.8173454221465101,
-      "hotspots": [
-        [
-          61,
-          47,
-          6
-        ],
-        [
-          61,
-          48,
-          3
-        ],
-        [
-          60,
-          47,
           1
         ]
       ],
@@ -57896,7 +57831,7 @@
   "selection_mode": "score",
   "min_places_for_candidate": 10,
   "analyze_tail_token_only": true,
-  "suffix_len": [
+  "pattern_len": [
     2,
     10
   ]

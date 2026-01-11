@@ -8418,46 +8418,6 @@
       "points_sampled": false
     },
     {
-      "pattern": "-stationsby",
-      "title": "-stationsby",
-      "mode": "suffix",
-      "zoom": 7,
-      "places": 22,
-      "file": "-stationsby_z7.json.gz",
-      "tiles": 5,
-      "score": 0.6506748122570557,
-      "entropy": 0.7924809400216867,
-      "hotspots": [
-        [
-          67,
-          39,
-          10
-        ],
-        [
-          67,
-          40,
-          7
-        ],
-        [
-          68,
-          40,
-          3
-        ],
-        [
-          67,
-          38,
-          1
-        ],
-        [
-          68,
-          39,
-          1
-        ]
-      ],
-      "points": 22,
-      "points_sampled": false
-    },
-    {
       "pattern": "-tationsby",
       "title": "-tationsby",
       "mode": "suffix",
@@ -19541,7 +19501,7 @@
   "selection_mode": "score",
   "min_places_for_candidate": 10,
   "analyze_tail_token_only": true,
-  "suffix_len": [
+  "pattern_len": [
     2,
     10
   ]

@@ -1,0 +1,78 @@
+{
+  "country_id": "438",
+  "country_name": "Liechtenstein",
+  "modes": [
+    "prefix"
+  ],
+  "default_mode": "prefix",
+  "default_zoom": 7,
+  "patterns": [
+    {
+      "pattern": "ma",
+      "title": "ma",
+      "mode": "prefix",
+      "zoom": 7,
+      "places": 4,
+      "file": "ma_z7.json.gz",
+      "tiles": 1,
+      "score": 1.6094379124341003,
+      "entropy": 0.0,
+      "hotspots": [
+        [
+          67,
+          44,
+          4
+        ]
+      ],
+      "points": 4,
+      "points_sampled": false
+    },
+    {
+      "pattern": "sc",
+      "title": "sc",
+      "mode": "prefix",
+      "zoom": 7,
+      "places": 3,
+      "file": "sc_z7.json.gz",
+      "tiles": 1,
+      "score": 1.3862943611198906,
+      "entropy": 0.0,
+      "hotspots": [
+        [
+          67,
+          44,
+          3
+        ]
+      ],
+      "points": 3,
+      "points_sampled": false
+    },
+    {
+      "pattern": "sch",
+      "title": "sch",
+      "mode": "prefix",
+      "zoom": 7,
+      "places": 3,
+      "file": "sch_z7.json.gz",
+      "tiles": 1,
+      "score": 1.3862943611198906,
+      "entropy": 0.0,
+      "hotspots": [
+        [
+          67,
+          44,
+          3
+        ]
+      ],
+      "points": 3,
+      "points_sampled": false
+    }
+  ],
+  "selection_mode": "score",
+  "min_places_for_candidate": 3,
+  "analyze_tail_token_only": true,
+  "pattern_len": [
+    2,
+    10
+  ]
+}
