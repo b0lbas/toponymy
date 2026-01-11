@@ -14,6 +14,21 @@ type SortMode = "localized" | "common" | "az" | "popularity";
 
 const PAGE_SIZE = 40;
 
+function normalizeIndex(idx: CountryPatternsIndex): CountryPatternsIndex {
+  const seen = new Set<string>();
+  const deduped: PatternIndexEntry[] = [];
+
+  for (const p of idx?.patterns ?? []) {
+    const key = `${p.file ?? ""}|${p.mode ?? ""}|${p.pattern ?? ""}|${p.zoom ?? ""}`;
+    if (seen.has(key)) continue;
+    seen.add(key);
+    deduped.push(p);
+  }
+
+  if (!idx?.patterns || deduped.length === idx.patterns.length) return idx;
+  return { ...idx, patterns: deduped };
+}
+
 function tileCenterLonLat(x: number, y: number, z: number) {
   const n = 2 ** z;
   const lon = ((x + 0.5) / n) * 360 - 180;
@@ -43,49 +58,55 @@ export default function CountryPanel({ country, onClose }: Props) {
   const loadMoreRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
+    let cancelled = false;
+    const guard = <T,>(fn: (value: T) => void) => (value: T) => {
+      if (cancelled) return;
+      fn(value);
+    };
+
     setIndex(null);
     setError(null);
     setQuery("");
     setSort("localized");
     setHiddenPatterns(new Set());
 
-    // Подгружаем нужный patterns.json по выбранному режиме
     const url = `/data/${country.id}/${mode === "prefix" ? "patterns_prefix.json" : "patterns.json"}`;
     fetchJson<CountryPatternsIndex>(url)
-      .then((idx) => {
-        // We explicitly fetch the index file for the selected mode,
-        // so we should not auto-override the user's selection.
-        setIndex(idx);
-      })
+      .then(guard((idx) => {
+        setIndex(normalizeIndex(idx));
+      }))
       .catch(() => {
         if (mode === "prefix") {
-          // If prefix data isn't available for this country yet, fall back to suffix.
           const fallbackUrl = `/data/${country.id}/patterns.json`;
           fetchJson<CountryPatternsIndex>(fallbackUrl)
-            .then((idx) => {
+            .then(guard((idx) => {
               setMode("suffix");
-              setIndex(idx);
+              setIndex(normalizeIndex(idx));
               setError(null);
-            })
+            }))
             .catch(() => {
+              if (cancelled) return;
               setError("None");
             });
           return;
         }
-        setError("None");
+        if (!cancelled) setError("None");
       });
 
-    // Fetch hidden patterns for this country
     fetch(`${API_BASE}/patterns/hidden?country_id=${country.id}`)
       .then(res => res.ok ? res.json() : null)
-      .then(data => {
+      .then(guard((data) => {
         if (data?.hidden) {
           setHiddenPatterns(new Set(data.hidden));
         }
-      })
+      }))
       .catch(() => {
         // Silently fail, just show all patterns
       });
+
+    return () => {
+      cancelled = true;
+    };
   }, [country.id, mode]);
 
   const searchKeyFor = useMemo(() => {
@@ -117,8 +138,17 @@ export default function CountryPanel({ country, onClose }: Props) {
   const patternKeyFor = (p: PatternIndexEntry) => `${country.id}|${p.file ?? `${p.pattern}|${p.mode}|${p.zoom}`}`;
 
   const baseSorted: PatternIndexEntry[] = useMemo(() => {
-    const all = index?.patterns ?? [];
-    const sorted = [...all];
+    // Deduplicate aggressively even if upstream data sneaks duplicates in (seen for France/prefix creac)
+    const deduped: PatternIndexEntry[] = [];
+    const seen = new Set<string>();
+    for (const p of index?.patterns ?? []) {
+      const key = p.file ?? `${p.pattern}|${p.mode}|${p.zoom}`;
+      if (seen.has(key)) continue;
+      seen.add(key);
+      deduped.push(p);
+    }
+
+    const sorted = [...deduped];
 
     if (sort === "az") {
       sorted.sort((a, b) => a.pattern.localeCompare(b.pattern));
@@ -149,7 +179,7 @@ export default function CountryPanel({ country, onClose }: Props) {
   useEffect(() => {
     setRenderLimit(PAGE_SIZE);
     if (scrollRef.current) scrollRef.current.scrollTop = 0;
-  }, [country.id, sort, deferredQuery]);
+  }, [country.id, sort, deferredQuery, mode]);
 
   // auto-load next “page” while scrolling
   useEffect(() => {
