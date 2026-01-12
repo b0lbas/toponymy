@@ -1,7 +1,7 @@
 import { useDeferredValue, useEffect, useMemo, useRef, useState } from "react";
 import type { CountryFeature } from "./MapView";
 import type { CountryPatternsIndex, PatternIndexEntry } from "../lib/data";
-import { fetchJson } from "../lib/data";
+import { fetchJson, toDataCountryId } from "../lib/data";
 import SmallMultiple from "./SmallMultiple";
 import likes, { API_BASE } from "../lib/likes";
 
@@ -70,14 +70,15 @@ export default function CountryPanel({ country, onClose }: Props) {
     setSort("localized");
     setHiddenPatterns(new Set());
 
-    const url = `/data/${country.id}/${mode === "prefix" ? "patterns_prefix.json" : "patterns.json"}`;
+    const cid = toDataCountryId(country.id);
+    const url = `/data/${cid}/${mode === "prefix" ? "patterns_prefix.json" : "patterns.json"}`;
     fetchJson<CountryPatternsIndex>(url)
       .then(guard((idx) => {
         setIndex(normalizeIndex(idx));
       }))
       .catch(() => {
         if (mode === "prefix") {
-          const fallbackUrl = `/data/${country.id}/patterns.json`;
+          const fallbackUrl = `/data/${cid}/patterns.json`;
           fetchJson<CountryPatternsIndex>(fallbackUrl)
             .then(guard((idx) => {
               setMode("suffix");

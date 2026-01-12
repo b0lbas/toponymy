@@ -1,0 +1,63 @@
+{
+  "country_id": "626",
+  "country_name": "Timor-Leste",
+  "modes": [
+    "prefix"
+  ],
+  "default_mode": "prefix",
+  "default_zoom": 7,
+  "patterns": [
+    {
+      "pattern": "ma",
+      "title": "ma",
+      "mode": "prefix",
+      "zoom": 7,
+      "places": 10,
+      "file": "ma_z7.json.gz",
+      "tiles": 1,
+      "score": 2.3978952727983707,
+      "entropy": 0.0,
+      "hotspots": [
+        [
+          108,
+          67,
+          10
+        ]
+      ],
+      "points": 10,
+      "points_sampled": false
+    },
+    {
+      "pattern": "ba",
+      "title": "ba",
+      "mode": "prefix",
+      "zoom": 7,
+      "places": 11,
+      "file": "ba_z7.json.gz",
+      "tiles": 2,
+      "score": 0.7851349923579647,
+      "entropy": 0.6840384356390417,
+      "hotspots": [
+        [
+          108,
+          67,
+          9
+        ],
+        [
+          109,
+          67,
+          2
+        ]
+      ],
+      "points": 11,
+      "points_sampled": false
+    }
+  ],
+  "selection_mode": "score",
+  "min_places_for_candidate": 10,
+  "analyze_tail_token_only": true,
+  "pattern_len": [
+    2,
+    10
+  ]
+}

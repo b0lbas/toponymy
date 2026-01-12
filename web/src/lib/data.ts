@@ -148,3 +148,9 @@ async function fetchJsonGzUncached<T>(url: string): Promise<T> {
 export async function fetchJsonGz<T>(url: string): Promise<T> {
   return cached(url, () => runLimited(() => fetchJsonGzUncached<T>(url)));
 }
+
+export function toDataCountryId(idLike: unknown): string {
+  const s = (idLike ?? "").toString();
+  if (/^\d+$/.test(s)) return s.padStart(3, "0");
+  return s;
+}

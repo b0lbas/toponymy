@@ -1,0 +1,58 @@
+{
+  "country_id": "630",
+  "country_name": "Puerto Rico",
+  "modes": [
+    "prefix"
+  ],
+  "default_mode": "prefix",
+  "default_zoom": 7,
+  "patterns": [
+    {
+      "pattern": "ca",
+      "title": "ca",
+      "mode": "prefix",
+      "zoom": 7,
+      "places": 7,
+      "file": "ca_z7.json.gz",
+      "tiles": 1,
+      "score": 2.0794415416798357,
+      "entropy": 0.0,
+      "hotspots": [
+        [
+          40,
+          57,
+          7
+        ]
+      ],
+      "points": 7,
+      "points_sampled": false
+    },
+    {
+      "pattern": "sa",
+      "title": "sa",
+      "mode": "prefix",
+      "zoom": 7,
+      "places": 7,
+      "file": "sa_z7.json.gz",
+      "tiles": 1,
+      "score": 2.0794415416798357,
+      "entropy": 0.0,
+      "hotspots": [
+        [
+          40,
+          57,
+          7
+        ]
+      ],
+      "points": 7,
+      "points_sampled": false
+    }
+  ],
+  "selection_mode": "score",
+  "min_places_for_candidate": 7,
+  "analyze_tail_token_only": true,
+  "pattern_len": [
+    2,
+    10
+  ]
+}

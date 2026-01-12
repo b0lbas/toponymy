@@ -1,0 +1,153 @@
+{
+  "country_id": "784",
+  "country_name": "United Arab Emirates",
+  "modes": [
+    "prefix"
+  ],
+  "default_mode": "prefix",
+  "default_zoom": 7,
+  "patterns": [
+    {
+      "pattern": "al",
+      "title": "al",
+      "mode": "prefix",
+      "zoom": 7,
+      "places": 14,
+      "file": "al_z7.json.gz",
+      "tiles": 2,
+      "score": 1.7027344242867453,
+      "entropy": 0.3712323266408757,
+      "hotspots": [
+        [
+          83,
+          54,
+          13
+        ],
+        [
+          84,
+          54,
+          1
+        ]
+      ],
+      "points": 14,
+      "points_sampled": false
+    },
+    {
+      "pattern": "lm",
+      "title": "lm",
+      "mode": "prefix",
+      "zoom": 7,
+      "places": 13,
+      "file": "lm_z7.json.gz",
+      "tiles": 2,
+      "score": 1.004472208915082,
+      "entropy": 0.6193821946787638,
+      "hotspots": [
+        [
+          83,
+          55,
+          11
+        ],
+        [
+          83,
+          54,
+          2
+        ]
+      ],
+      "points": 13,
+      "points_sampled": false
+    },
+    {
+      "pattern": "sh",
+      "title": "sh",
+      "mode": "prefix",
+      "zoom": 7,
+      "places": 15,
+      "file": "sh_z7.json.gz",
+      "tiles": 3,
+      "score": 0.9305988716255849,
+      "entropy": 0.6643574057122259,
+      "hotspots": [
+        [
+          83,
+          54,
+          11
+        ],
+        [
+          83,
+          55,
+          3
+        ],
+        [
+          84,
+          54,
+          1
+        ]
+      ],
+      "points": 15,
+      "points_sampled": false
+    },
+    {
+      "pattern": "bw",
+      "title": "bw",
+      "mode": "prefix",
+      "zoom": 7,
+      "places": 10,
+      "file": "bw_z7.json.gz",
+      "tiles": 2,
+      "score": 0.666787306767631,
+      "entropy": 0.7219280948873623,
+      "hotspots": [
+        [
+          83,
+          55,
+          8
+        ],
+        [
+          82,
+          55,
+          2
+        ]
+      ],
+      "points": 10,
+      "points_sampled": false
+    },
+    {
+      "pattern": "ls",
+      "title": "ls",
+      "mode": "prefix",
+      "zoom": 7,
+      "places": 11,
+      "file": "ls_z7.json.gz",
+      "tiles": 3,
+      "score": 0.4119918354679042,
+      "entropy": 0.8342022886441013,
+      "hotspots": [
+        [
+          83,
+          54,
+          6
+        ],
+        [
+          83,
+          55,
+          4
+        ],
+        [
+          82,
+          55,
+          1
+        ]
+      ],
+      "points": 11,
+      "points_sampled": false
+    }
+  ],
+  "selection_mode": "score",
+  "min_places_for_candidate": 10,
+  "analyze_tail_token_only": true,
+  "pattern_len": [
+    2,
+    10
+  ]
+}

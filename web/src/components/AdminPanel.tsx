@@ -2,7 +2,7 @@ import { useEffect, useMemo, useState } from "react";
 import auth from "../lib/auth";
 import { API_BASE } from "../lib/likes";
 import type { CountryPatternsIndex, PatternIndexEntry, PatternPayload } from "../lib/data";
-import { fetchJson, fetchJsonGz } from "../lib/data";
+import { fetchJson, fetchJsonGz, toDataCountryId } from "../lib/data";
 
 type ReportRow = {
   id?: string;
@@ -92,7 +92,8 @@ export default function AdminPanel() {
       await Promise.all(
         missing.map(async (countryId) => {
           try {
-            const url = `/data/${encodeURIComponent(countryId)}/patterns.json`;
+            const cid = toDataCountryId(countryId);
+            const url = `/data/${encodeURIComponent(cid)}/patterns.json`;
             const idx = await fetchJson<CountryPatternsIndex>(url);
             results[countryId] = idx;
           } catch {
@@ -140,7 +141,8 @@ export default function AdminPanel() {
           }
 
           const file = entry.file.toString().replace(/^\/+/, "");
-          const url = `/data/${encodeURIComponent(countryId)}/${encodeURI(file)}`;
+          const cid = toDataCountryId(countryId);
+          const url = `/data/${encodeURIComponent(cid)}/${encodeURI(file)}`;
 
           try {
             const payload = await fetchJsonGz<PatternPayload>(url);
