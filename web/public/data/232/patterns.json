@@ -6,57 +6,11 @@
   ],
   "default_mode": "suffix",
   "default_zoom": 7,
-  "patterns": [
-    {
-      "pattern": "-te",
-      "title": "-te",
-      "mode": "suffix",
-      "zoom": 7,
-      "places": 10,
-      "file": "-te_z7.json.gz",
-      "tiles": 1,
-      "score": 2.3978952727983707,
-      "entropy": 0.0,
-      "hotspots": [
-        [
-          77,
-          58,
-          10
-        ]
-      ],
-      "points": 10,
-      "points_sampled": false
-    },
-    {
-      "pattern": "-aa",
-      "title": "-aa",
-      "mode": "suffix",
-      "zoom": 7,
-      "places": 15,
-      "file": "-aa_z7.json.gz",
-      "tiles": 2,
-      "score": 1.2018908533295725,
-      "entropy": 0.5665095065529053,
-      "hotspots": [
-        [
-          77,
-          58,
-          13
-        ],
-        [
-          78,
-          58,
-          2
-        ]
-      ],
-      "points": 15,
-      "points_sampled": false
-    }
-  ],
+  "patterns": [],
   "selection_mode": "score",
   "min_places_for_candidate": 10,
   "analyze_tail_token_only": true,
-  "suffix_len": [
+  "pattern_len": [
     2,
     10
   ]

@@ -12,6 +12,7 @@ const WORLD_ATLAS_TOPOJSON =
   "https://cdn.jsdelivr.net/npm/world-atlas@2/countries-50m.json";
 
 const EUROPE_BBOX = { lonMin: -25, lonMax: 45, latMin: 34, latMax: 72 };
+const NORWAY_MAINLAND_BBOX = { lonMin: -1, lonMax: 32, latMin: 57, latMax: 72.5 };
 
 function inEuropeBbox([lon, lat]: [number, number]) {
   return (
@@ -37,6 +38,34 @@ function filterToEuropeGeom(
         { type: "Feature", geometry: poly, properties: {} } as any
       ) as [number, number];
       return inEuropeBbox(c);
+    });
+
+  if (polys.length === 0) return geom;
+
+  return {
+    type: "MultiPolygon",
+    coordinates: polys.map((p) => p.coordinates),
+  } as GeoJSON.MultiPolygon;
+}
+
+function filterGeomByBbox(
+  geom: GeoJSON.Polygon | GeoJSON.MultiPolygon,
+  bbox: { lonMin: number; lonMax: number; latMin: number; latMax: number }
+): GeoJSON.Polygon | GeoJSON.MultiPolygon {
+  if (geom.type === "Polygon") return geom;
+
+  const polys = geom.coordinates
+    .map((coords) => ({ type: "Polygon", coordinates: coords } as GeoJSON.Polygon))
+    .filter((poly) => {
+      const c = d3.geoCentroid(
+        { type: "Feature", geometry: poly, properties: {} } as any
+      ) as [number, number];
+      return (
+        c[0] >= bbox.lonMin &&
+        c[0] <= bbox.lonMax &&
+        c[1] >= bbox.latMin &&
+        c[1] <= bbox.latMax
+      );
     });
 
   if (polys.length === 0) return geom;
@@ -213,6 +242,10 @@ export async function loadEuropeCountries(): Promise<CountryFeature[]> {
     // ✅ фикс именно для России (ISO numeric 643)
     if (idNum === 643) {
       geom = fixAntimeridianGeom(geom);
+    }
+
+    if (idNum === 578) {
+      geom = filterGeomByBbox(geom, NORWAY_MAINLAND_BBOX);
     }
 
     const cleaned = { ...(f as any), geometry: geom };

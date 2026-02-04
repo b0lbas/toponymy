@@ -8,172 +8,12 @@
   "default_zoom": 7,
   "patterns": [
     {
-      "pattern": "-ngri",
-      "title": "-ngri",
-      "mode": "suffix",
-      "zoom": 7,
-      "places": 1195,
-      "file": "-ngri_z7.json.gz",
-      "tiles": 8,
-      "score": 1.5666036635038476,
-      "entropy": 0.7789386770075278,
-      "hotspots": [
-        [
-          108,
-          48,
-          392
-        ],
-        [
-          109,
-          48,
-          351
-        ],
-        [
-          108,
-          49,
-          189
-        ],
-        [
-          109,
-          49,
-          104
-        ],
-        [
-          109,
-          47,
-          98
-        ]
-      ],
-      "points": 1195,
-      "points_sampled": false
-    },
-    {
-      "pattern": "-ri",
-      "title": "-ri",
-      "mode": "suffix",
-      "zoom": 7,
-      "places": 3141,
-      "file": "-ri_z7.json.gz",
-      "tiles": 8,
-      "score": 1.545040929083997,
-      "entropy": 0.8081317728653943,
-      "hotspots": [
-        [
-          108,
-          48,
-          961
-        ],
-        [
-          109,
-          48,
-          779
-        ],
-        [
-          108,
-          49,
-          632
-        ],
-        [
-          109,
-          49,
-          345
-        ],
-        [
-          109,
-          47,
-          215
-        ]
-      ],
-      "points": 3141,
-      "points_sampled": false
-    },
-    {
-      "pattern": "-gri",
-      "title": "-gri",
-      "mode": "suffix",
-      "zoom": 7,
-      "places": 1426,
-      "file": "-gri_z7.json.gz",
-      "tiles": 8,
-      "score": 1.5333383050384304,
-      "entropy": 0.788893195573976,
-      "hotspots": [
-        [
-          108,
-          48,
-          466
-        ],
-        [
-          109,
-          48,
-          395
-        ],
-        [
-          108,
-          49,
-          235
-        ],
-        [
-          109,
-          49,
-          137
-        ],
-        [
-          109,
-          47,
-          115
-        ]
-      ],
-      "points": 1426,
-      "points_sampled": false
-    },
-    {
-      "pattern": "-ungri",
-      "title": "-ungri",
-      "mode": "suffix",
-      "zoom": 7,
-      "places": 240,
-      "file": "-ungri_z7.json.gz",
-      "tiles": 7,
-      "score": 1.497472803017126,
-      "entropy": 0.7269775305857862,
-      "hotspots": [
-        [
-          109,
-          48,
-          90
-        ],
-        [
-          108,
-          48,
-          89
-        ],
-        [
-          108,
-          49,
-          22
-        ],
-        [
-          109,
-          47,
-          22
-        ],
-        [
-          109,
-          49,
-          12
-        ]
-      ],
-      "points": 240,
-      "points_sampled": false
-    },
-    {
-      "pattern": "-heungri",
-      "title": "-heungri",
+      "pattern": "-흥리 / -heungri",
+      "title": "-흥리 / -heungri",
       "mode": "suffix",
       "zoom": 7,
       "places": 135,
-      "file": "-heungri_z7.json.gz",
+      "file": "-흥리_z7.json.gz",
       "tiles": 6,
       "score": 1.4872566378005645,
       "entropy": 0.6972601022475993,
@@ -208,212 +48,12 @@
       "points_sampled": false
     },
     {
-      "pattern": "-dong",
-      "title": "-dong",
-      "mode": "suffix",
-      "zoom": 7,
-      "places": 378,
-      "file": "-dong_z7.json.gz",
-      "tiles": 7,
-      "score": 1.4191359496184106,
-      "entropy": 0.7609890869543405,
-      "hotspots": [
-        [
-          108,
-          48,
-          152
-        ],
-        [
-          109,
-          48,
-          106
-        ],
-        [
-          110,
-          47,
-          66
-        ],
-        [
-          109,
-          47,
-          21
-        ],
-        [
-          108,
-          49,
-          20
-        ]
-      ],
-      "points": 378,
-      "points_sampled": false
-    },
-    {
-      "pattern": "-ong",
-      "title": "-ong",
-      "mode": "suffix",
-      "zoom": 7,
-      "places": 380,
-      "file": "-ong_z7.json.gz",
-      "tiles": 7,
-      "score": 1.416342327899706,
-      "entropy": 0.7616708492923826,
-      "hotspots": [
-        [
-          108,
-          48,
-          152
-        ],
-        [
-          109,
-          48,
-          106
-        ],
-        [
-          110,
-          47,
-          68
-        ],
-        [
-          109,
-          47,
-          21
-        ],
-        [
-          108,
-          49,
-          20
-        ]
-      ],
-      "points": 380,
-      "points_sampled": false
-    },
-    {
-      "pattern": "-ongri",
-      "title": "-ongri",
-      "mode": "suffix",
-      "zoom": 7,
-      "places": 654,
-      "file": "-ongri_z7.json.gz",
-      "tiles": 8,
-      "score": 1.3707208063233076,
-      "entropy": 0.7886202143197298,
-      "hotspots": [
-        [
-          108,
-          48,
-          197
-        ],
-        [
-          109,
-          48,
-          187
-        ],
-        [
-          108,
-          49,
-          123
-        ],
-        [
-          109,
-          49,
-          63
-        ],
-        [
-          109,
-          47,
-          53
-        ]
-      ],
-      "points": 654,
-      "points_sampled": false
-    },
-    {
-      "pattern": "-ng",
-      "title": "-ng",
-      "mode": "suffix",
-      "zoom": 7,
-      "places": 387,
-      "file": "-ng_z7.json.gz",
-      "tiles": 7,
-      "score": 1.3656092500566754,
-      "entropy": 0.7709095744338018,
-      "hotspots": [
-        [
-          108,
-          48,
-          152
-        ],
-        [
-          109,
-          48,
-          106
-        ],
-        [
-          110,
-          47,
-          71
-        ],
-        [
-          109,
-          47,
-          24
-        ],
-        [
-          108,
-          49,
-          20
-        ]
-      ],
-      "points": 387,
-      "points_sampled": false
-    },
-    {
-      "pattern": "-ndong",
-      "title": "-ndong",
-      "mode": "suffix",
-      "zoom": 7,
-      "places": 101,
-      "file": "-ndong_z7.json.gz",
-      "tiles": 6,
-      "score": 1.3510513228135173,
-      "entropy": 0.7078790779195709,
-      "hotspots": [
-        [
-          108,
-          48,
-          52
-        ],
-        [
-          109,
-          48,
-          27
-        ],
-        [
-          110,
-          47,
-          13
-        ],
-        [
-          108,
-          49,
-          4
-        ],
-        [
-          109,
-          47,
-          3
-        ]
-      ],
-      "points": 101,
-      "points_sampled": false
-    },
-    {
-      "pattern": "-sangri",
-      "title": "-sangri",
+      "pattern": "-상리 / -sangri",
+      "title": "-상리 / -sangri",
       "mode": "suffix",
       "zoom": 7,
       "places": 71,
-      "file": "-sangri_z7.json.gz",
+      "file": "-상리_z7.json.gz",
       "tiles": 7,
       "score": 1.30337610416675,
       "entropy": 0.6952354783153796,
@@ -448,52 +88,12 @@
       "points_sampled": false
     },
     {
-      "pattern": "-eongri",
-      "title": "-eongri",
-      "mode": "suffix",
-      "zoom": 7,
-      "places": 321,
-      "file": "-eongri_z7.json.gz",
-      "tiles": 8,
-      "score": 1.298843820587669,
-      "entropy": 0.775074512653741,
-      "hotspots": [
-        [
-          109,
-          48,
-          94
-        ],
-        [
-          108,
-          48,
-          91
-        ],
-        [
-          108,
-          49,
-          73
-        ],
-        [
-          109,
-          49,
-          25
-        ],
-        [
-          109,
-          47,
-          24
-        ]
-      ],
-      "points": 321,
-      "points_sampled": false
-    },
-    {
-      "pattern": "-conri",
-      "title": "-conri",
+      "pattern": "-촌리 / -conri",
+      "title": "-촌리 / -conri",
       "mode": "suffix",
       "zoom": 7,
       "places": 26,
-      "file": "-conri_z7.json.gz",
+      "file": "-촌리_z7.json.gz",
       "tiles": 6,
       "score": 1.277761791346654,
       "entropy": 0.6123103650770998,
@@ -528,132 +128,12 @@
       "points_sampled": false
     },
     {
-      "pattern": "-nri",
-      "title": "-nri",
-      "mode": "suffix",
-      "zoom": 7,
-      "places": 687,
-      "file": "-nri_z7.json.gz",
-      "tiles": 8,
-      "score": 1.2696082204546593,
-      "entropy": 0.8056857587616437,
-      "hotspots": [
-        [
-          108,
-          48,
-          206
-        ],
-        [
-          108,
-          49,
-          172
-        ],
-        [
-          109,
-          48,
-          144
-        ],
-        [
-          109,
-          49,
-          82
-        ],
-        [
-          110,
-          47,
-          42
-        ]
-      ],
-      "points": 687,
-      "points_sampled": false
-    },
-    {
-      "pattern": "-gheungri",
-      "title": "-gheungri",
-      "mode": "suffix",
-      "zoom": 7,
-      "places": 54,
-      "file": "-gheungri_z7.json.gz",
-      "tiles": 6,
-      "score": 1.2558762288919565,
-      "entropy": 0.6866054877792496,
-      "hotspots": [
-        [
-          109,
-          48,
-          26
-        ],
-        [
-          108,
-          48,
-          19
-        ],
-        [
-          109,
-          47,
-          4
-        ],
-        [
-          108,
-          49,
-          2
-        ],
-        [
-          109,
-          49,
-          2
-        ]
-      ],
-      "points": 54,
-      "points_sampled": false
-    },
-    {
-      "pattern": "-eungri",
-      "title": "-eungri",
-      "mode": "suffix",
-      "zoom": 7,
-      "places": 155,
-      "file": "-eungri_z7.json.gz",
-      "tiles": 6,
-      "score": 1.2482376162720772,
-      "entropy": 0.7528171863751925,
-      "hotspots": [
-        [
-          109,
-          48,
-          63
-        ],
-        [
-          108,
-          48,
-          57
-        ],
-        [
-          108,
-          49,
-          13
-        ],
-        [
-          109,
-          47,
-          12
-        ],
-        [
-          109,
-          49,
-          8
-        ]
-      ],
-      "points": 155,
-      "points_sampled": false
-    },
-    {
-      "pattern": "-sandong",
-      "title": "-sandong",
+      "pattern": "-산동 / -sandong",
+      "title": "-산동 / -sandong",
       "mode": "suffix",
       "zoom": 7,
       "places": 31,
-      "file": "-sandong_z7.json.gz",
+      "file": "-산동_z7.json.gz",
       "tiles": 4,
       "score": 1.2036339918217835,
       "entropy": 0.6527046417906651,
@@ -683,12 +163,12 @@
       "points_sampled": false
     },
     {
-      "pattern": "-sanri",
-      "title": "-sanri",
+      "pattern": "-산리 / -sanri",
+      "title": "-산리 / -sanri",
       "mode": "suffix",
       "zoom": 7,
       "places": 209,
-      "file": "-sanri_z7.json.gz",
+      "file": "-산리_z7.json.gz",
       "tiles": 8,
       "score": 1.1883713600192736,
       "entropy": 0.77775435537953,
@@ -723,132 +203,12 @@
       "points_sampled": false
     },
     {
-      "pattern": "-ngheungri",
-      "title": "-ngheungri",
-      "mode": "suffix",
-      "zoom": 7,
-      "places": 42,
-      "file": "-ngheungri_z7.json.gz",
-      "tiles": 5,
-      "score": 1.1745576429412803,
-      "entropy": 0.6877173224470422,
-      "hotspots": [
-        [
-          109,
-          48,
-          22
-        ],
-        [
-          108,
-          48,
-          14
-        ],
-        [
-          109,
-          47,
-          4
-        ],
-        [
-          108,
-          49,
-          1
-        ],
-        [
-          109,
-          49,
-          1
-        ]
-      ],
-      "points": 42,
-      "points_sampled": false
-    },
-    {
-      "pattern": "-anri",
-      "title": "-anri",
-      "mode": "suffix",
-      "zoom": 7,
-      "places": 274,
-      "file": "-anri_z7.json.gz",
-      "tiles": 8,
-      "score": 1.1696549812803139,
-      "entropy": 0.7917566942035016,
-      "hotspots": [
-        [
-          108,
-          48,
-          91
-        ],
-        [
-          108,
-          49,
-          69
-        ],
-        [
-          109,
-          48,
-          51
-        ],
-        [
-          109,
-          49,
-          31
-        ],
-        [
-          110,
-          47,
-          19
-        ]
-      ],
-      "points": 274,
-      "points_sampled": false
-    },
-    {
-      "pattern": "-gdong",
-      "title": "-gdong",
-      "mode": "suffix",
-      "zoom": 7,
-      "places": 107,
-      "file": "-gdong_z7.json.gz",
-      "tiles": 7,
-      "score": 1.1646012092517564,
-      "entropy": 0.7512668584543158,
-      "hotspots": [
-        [
-          108,
-          48,
-          41
-        ],
-        [
-          109,
-          48,
-          34
-        ],
-        [
-          110,
-          47,
-          18
-        ],
-        [
-          108,
-          49,
-          5
-        ],
-        [
-          109,
-          47,
-          5
-        ]
-      ],
-      "points": 107,
-      "points_sampled": false
-    },
-    {
-      "pattern": "-jeongri",
-      "title": "-jeongri",
+      "pattern": "-정리 / -jeongri",
+      "title": "-정리 / -jeongri",
       "mode": "suffix",
       "zoom": 7,
       "places": 69,
-      "file": "-jeongri_z7.json.gz",
+      "file": "-정리_z7.json.gz",
       "tiles": 6,
       "score": 1.1629567002344319,
       "entropy": 0.7262662109812196,
@@ -883,127 +243,12 @@
       "points_sampled": false
     },
     {
-      "pattern": "-andong",
-      "title": "-andong",
-      "mode": "suffix",
-      "zoom": 7,
-      "places": 40,
-      "file": "-andong_z7.json.gz",
-      "tiles": 4,
-      "score": 1.1575396185159832,
-      "entropy": 0.6882948283421176,
-      "hotspots": [
-        [
-          108,
-          48,
-          24
-        ],
-        [
-          109,
-          48,
-          12
-        ],
-        [
-          110,
-          47,
-          3
-        ],
-        [
-          108,
-          49,
-          1
-        ]
-      ],
-      "points": 40,
-      "points_sampled": false
-    },
-    {
-      "pattern": "-angri",
-      "title": "-angri",
-      "mode": "suffix",
-      "zoom": 7,
-      "places": 294,
-      "file": "-angri_z7.json.gz",
-      "tiles": 8,
-      "score": 1.1396071774474996,
-      "entropy": 0.7996110223728912,
-      "hotspots": [
-        [
-          108,
-          48,
-          104
-        ],
-        [
-          109,
-          48,
-          74
-        ],
-        [
-          108,
-          49,
-          43
-        ],
-        [
-          109,
-          49,
-          28
-        ],
-        [
-          109,
-          47,
-          22
-        ]
-      ],
-      "points": 294,
-      "points_sampled": false
-    },
-    {
-      "pattern": "-yeongri",
-      "title": "-yeongri",
-      "mode": "suffix",
-      "zoom": 7,
-      "places": 147,
-      "file": "-yeongri_z7.json.gz",
-      "tiles": 8,
-      "score": 1.1316330718989476,
-      "entropy": 0.7735471278976602,
-      "hotspots": [
-        [
-          109,
-          48,
-          56
-        ],
-        [
-          108,
-          48,
-          39
-        ],
-        [
-          108,
-          49,
-          19
-        ],
-        [
-          109,
-          47,
-          13
-        ],
-        [
-          109,
-          49,
-          9
-        ]
-      ],
-      "points": 147,
-      "points_sampled": false
-    },
-    {
-      "pattern": "-agu",
-      "title": "-agu",
+      "pattern": "-동자구 / -dongjagu",
+      "title": "-동자구 / -dongjagu",
       "mode": "suffix",
       "zoom": 7,
       "places": 261,
-      "file": "-agu_z7.json.gz",
+      "file": "-동자구_z7.json.gz",
       "tiles": 7,
       "score": 1.0726796579959537,
       "entropy": 0.8073611183231533,
@@ -1038,12 +283,12 @@
       "points_sampled": false
     },
     {
-      "pattern": "-dongjagu",
-      "title": "-dongjagu",
+      "pattern": "-로동자구 / -rodongjagu",
+      "title": "-로동자구 / -rodongjagu",
       "mode": "suffix",
       "zoom": 7,
       "places": 261,
-      "file": "-dongjagu_z7.json.gz",
+      "file": "-로동자구_z7.json.gz",
       "tiles": 7,
       "score": 1.0726796579959537,
       "entropy": 0.8073611183231533,
@@ -1078,12 +323,12 @@
       "points_sampled": false
     },
     {
-      "pattern": "-gjagu",
-      "title": "-gjagu",
+      "pattern": "-자구 / -jagu",
+      "title": "-자구 / -jagu",
       "mode": "suffix",
       "zoom": 7,
       "places": 261,
-      "file": "-gjagu_z7.json.gz",
+      "file": "-자구_z7.json.gz",
       "tiles": 7,
       "score": 1.0726796579959537,
       "entropy": 0.8073611183231533,
@@ -1118,287 +363,12 @@
       "points_sampled": false
     },
     {
-      "pattern": "-gu",
-      "title": "-gu",
-      "mode": "suffix",
-      "zoom": 7,
-      "places": 261,
-      "file": "-gu_z7.json.gz",
-      "tiles": 7,
-      "score": 1.0726796579959537,
-      "entropy": 0.8073611183231533,
-      "hotspots": [
-        [
-          108,
-          48,
-          86
-        ],
-        [
-          109,
-          48,
-          60
-        ],
-        [
-          109,
-          47,
-          57
-        ],
-        [
-          110,
-          47,
-          34
-        ],
-        [
-          108,
-          49,
-          20
-        ]
-      ],
-      "points": 261,
-      "points_sampled": false
-    },
-    {
-      "pattern": "-jagu",
-      "title": "-jagu",
-      "mode": "suffix",
-      "zoom": 7,
-      "places": 261,
-      "file": "-jagu_z7.json.gz",
-      "tiles": 7,
-      "score": 1.0726796579959537,
-      "entropy": 0.8073611183231533,
-      "hotspots": [
-        [
-          108,
-          48,
-          86
-        ],
-        [
-          109,
-          48,
-          60
-        ],
-        [
-          109,
-          47,
-          57
-        ],
-        [
-          110,
-          47,
-          34
-        ],
-        [
-          108,
-          49,
-          20
-        ]
-      ],
-      "points": 261,
-      "points_sampled": false
-    },
-    {
-      "pattern": "-ngjagu",
-      "title": "-ngjagu",
-      "mode": "suffix",
-      "zoom": 7,
-      "places": 261,
-      "file": "-ngjagu_z7.json.gz",
-      "tiles": 7,
-      "score": 1.0726796579959537,
-      "entropy": 0.8073611183231533,
-      "hotspots": [
-        [
-          108,
-          48,
-          86
-        ],
-        [
-          109,
-          48,
-          60
-        ],
-        [
-          109,
-          47,
-          57
-        ],
-        [
-          110,
-          47,
-          34
-        ],
-        [
-          108,
-          49,
-          20
-        ]
-      ],
-      "points": 261,
-      "points_sampled": false
-    },
-    {
-      "pattern": "-odongjagu",
-      "title": "-odongjagu",
-      "mode": "suffix",
-      "zoom": 7,
-      "places": 261,
-      "file": "-odongjagu_z7.json.gz",
-      "tiles": 7,
-      "score": 1.0726796579959537,
-      "entropy": 0.8073611183231533,
-      "hotspots": [
-        [
-          108,
-          48,
-          86
-        ],
-        [
-          109,
-          48,
-          60
-        ],
-        [
-          109,
-          47,
-          57
-        ],
-        [
-          110,
-          47,
-          34
-        ],
-        [
-          108,
-          49,
-          20
-        ]
-      ],
-      "points": 261,
-      "points_sampled": false
-    },
-    {
-      "pattern": "-ongjagu",
-      "title": "-ongjagu",
-      "mode": "suffix",
-      "zoom": 7,
-      "places": 261,
-      "file": "-ongjagu_z7.json.gz",
-      "tiles": 7,
-      "score": 1.0726796579959537,
-      "entropy": 0.8073611183231533,
-      "hotspots": [
-        [
-          108,
-          48,
-          86
-        ],
-        [
-          109,
-          48,
-          60
-        ],
-        [
-          109,
-          47,
-          57
-        ],
-        [
-          110,
-          47,
-          34
-        ],
-        [
-          108,
-          49,
-          20
-        ]
-      ],
-      "points": 261,
-      "points_sampled": false
-    },
-    {
-      "pattern": "-rodongjagu",
-      "title": "-rodongjagu",
-      "mode": "suffix",
-      "zoom": 7,
-      "places": 261,
-      "file": "-rodongjagu_z7.json.gz",
-      "tiles": 7,
-      "score": 1.0726796579959537,
-      "entropy": 0.8073611183231533,
-      "hotspots": [
-        [
-          108,
-          48,
-          86
-        ],
-        [
-          109,
-          48,
-          60
-        ],
-        [
-          109,
-          47,
-          57
-        ],
-        [
-          110,
-          47,
-          34
-        ],
-        [
-          108,
-          49,
-          20
-        ]
-      ],
-      "points": 261,
-      "points_sampled": false
-    },
-    {
-      "pattern": "-gsangri",
-      "title": "-gsangri",
-      "mode": "suffix",
-      "zoom": 7,
-      "places": 28,
-      "file": "-gsangri_z7.json.gz",
-      "tiles": 4,
-      "score": 1.065303029627382,
-      "entropy": 0.6836324803598676,
-      "hotspots": [
-        [
-          108,
-          48,
-          14
-        ],
-        [
-          109,
-          48,
-          12
-        ],
-        [
-          108,
-          49,
-          1
-        ],
-        [
-          109,
-          47,
-          1
-        ]
-      ],
-      "points": 28,
-      "points_sampled": false
-    },
-    {
-      "pattern": "-pyeongri",
-      "title": "-pyeongri",
+      "pattern": "-평리 / -pyeongri",
+      "title": "-평리 / -pyeongri",
       "mode": "suffix",
       "zoom": 7,
       "places": 111,
-      "file": "-pyeongri_z7.json.gz",
+      "file": "-평리_z7.json.gz",
       "tiles": 8,
       "score": 1.0525292494751128,
       "entropy": 0.7769355724808675,
@@ -1433,167 +403,12 @@
       "points_sampled": false
     },
     {
-      "pattern": "-nheungri",
-      "title": "-nheungri",
-      "mode": "suffix",
-      "zoom": 7,
-      "places": 47,
-      "file": "-nheungri_z7.json.gz",
-      "tiles": 6,
-      "score": 1.0408606687584838,
-      "entropy": 0.7311271964887257,
-      "hotspots": [
-        [
-          108,
-          48,
-          21
-        ],
-        [
-          109,
-          48,
-          16
-        ],
-        [
-          108,
-          49,
-          4
-        ],
-        [
-          109,
-          47,
-          4
-        ],
-        [
-          109,
-          49,
-          1
-        ]
-      ],
-      "points": 47,
-      "points_sampled": false
-    },
-    {
-      "pattern": "-ari",
-      "title": "-ari",
-      "mode": "suffix",
-      "zoom": 7,
-      "places": 185,
-      "file": "-ari_z7.json.gz",
-      "tiles": 8,
-      "score": 1.025063039659341,
-      "entropy": 0.8038437177187211,
-      "hotspots": [
-        [
-          108,
-          48,
-          64
-        ],
-        [
-          109,
-          48,
-          44
-        ],
-        [
-          108,
-          49,
-          33
-        ],
-        [
-          109,
-          49,
-          20
-        ],
-        [
-          109,
-          47,
-          11
-        ]
-      ],
-      "points": 185,
-      "points_sampled": false
-    },
-    {
-      "pattern": "-un",
-      "title": "-un",
-      "mode": "suffix",
-      "zoom": 7,
-      "places": 74,
-      "file": "-un_z7.json.gz",
-      "tiles": 4,
-      "score": 0.9987784470967165,
-      "entropy": 0.7686667754879699,
-      "hotspots": [
-        [
-          109,
-          47,
-          39
-        ],
-        [
-          110,
-          47,
-          25
-        ],
-        [
-          108,
-          47,
-          6
-        ],
-        [
-          108,
-          48,
-          4
-        ]
-      ],
-      "points": 74,
-      "points_sampled": false
-    },
-    {
-      "pattern": "-ori",
-      "title": "-ori",
-      "mode": "suffix",
-      "zoom": 7,
-      "places": 249,
-      "file": "-ori_z7.json.gz",
-      "tiles": 8,
-      "score": 0.9889056410504967,
-      "entropy": 0.8208978283534835,
-      "hotspots": [
-        [
-          108,
-          48,
-          71
-        ],
-        [
-          108,
-          49,
-          59
-        ],
-        [
-          109,
-          48,
-          56
-        ],
-        [
-          109,
-          49,
-          25
-        ],
-        [
-          109,
-          47,
-          18
-        ]
-      ],
-      "points": 249,
-      "points_sampled": false
-    },
-    {
-      "pattern": "-dongri",
-      "title": "-dongri",
+      "pattern": "-동리 / -dongri",
+      "title": "-동리 / -dongri",
       "mode": "suffix",
       "zoom": 7,
       "places": 134,
-      "file": "-dongri_z7.json.gz",
+      "file": "-동리_z7.json.gz",
       "tiles": 8,
       "score": 0.9666963343459328,
       "entropy": 0.8029271798197458,
@@ -1628,12 +443,12 @@
       "points_sampled": false
     },
     {
-      "pattern": "-samri",
-      "title": "-samri",
+      "pattern": "-삼리 / -samri",
+      "title": "-삼리 / -samri",
       "mode": "suffix",
       "zoom": 7,
       "places": 22,
-      "file": "-samri_z7.json.gz",
+      "file": "-삼리_z7.json.gz",
       "tiles": 5,
       "score": 0.9603658034696931,
       "entropy": 0.6937115053216243,
@@ -1668,132 +483,12 @@
       "points_sampled": false
     },
     {
-      "pattern": "-eub",
-      "title": "-eub",
-      "mode": "suffix",
-      "zoom": 7,
-      "places": 145,
-      "file": "-eub_z7.json.gz",
-      "tiles": 8,
-      "score": 0.9540751062361472,
-      "entropy": 0.8085573002330793,
-      "hotspots": [
-        [
-          108,
-          48,
-          50
-        ],
-        [
-          108,
-          49,
-          29
-        ],
-        [
-          109,
-          48,
-          29
-        ],
-        [
-          109,
-          47,
-          14
-        ],
-        [
-          109,
-          49,
-          13
-        ]
-      ],
-      "points": 145,
-      "points_sampled": false
-    },
-    {
-      "pattern": "-ub",
-      "title": "-ub",
-      "mode": "suffix",
-      "zoom": 7,
-      "places": 145,
-      "file": "-ub_z7.json.gz",
-      "tiles": 8,
-      "score": 0.9540751062361472,
-      "entropy": 0.8085573002330793,
-      "hotspots": [
-        [
-          108,
-          48,
-          50
-        ],
-        [
-          108,
-          49,
-          29
-        ],
-        [
-          109,
-          48,
-          29
-        ],
-        [
-          109,
-          47,
-          14
-        ],
-        [
-          109,
-          49,
-          13
-        ]
-      ],
-      "points": 145,
-      "points_sampled": false
-    },
-    {
-      "pattern": "-ngdong",
-      "title": "-ngdong",
-      "mode": "suffix",
-      "zoom": 7,
-      "places": 81,
-      "file": "-ngdong_z7.json.gz",
-      "tiles": 6,
-      "score": 0.9524642467812695,
-      "entropy": 0.7838609193511542,
-      "hotspots": [
-        [
-          108,
-          48,
-          32
-        ],
-        [
-          109,
-          48,
-          27
-        ],
-        [
-          110,
-          47,
-          12
-        ],
-        [
-          108,
-          49,
-          4
-        ],
-        [
-          109,
-          47,
-          4
-        ]
-      ],
-      "points": 81,
-      "points_sampled": false
-    },
-    {
-      "pattern": "-jungri",
-      "title": "-jungri",
+      "pattern": "-중리 / -jungri",
+      "title": "-중리 / -jungri",
       "mode": "suffix",
       "zoom": 7,
       "places": 30,
-      "file": "-jungri_z7.json.gz",
+      "file": "-중리_z7.json.gz",
       "tiles": 6,
       "score": 0.9503524814041034,
       "entropy": 0.7232510126529174,
@@ -1828,52 +523,12 @@
       "points_sampled": false
     },
     {
-      "pattern": "-wari",
-      "title": "-wari",
-      "mode": "suffix",
-      "zoom": 7,
-      "places": 63,
-      "file": "-wari_z7.json.gz",
-      "tiles": 6,
-      "score": 0.909627517908046,
-      "entropy": 0.7812808151429875,
-      "hotspots": [
-        [
-          108,
-          48,
-          28
-        ],
-        [
-          109,
-          48,
-          16
-        ],
-        [
-          108,
-          49,
-          10
-        ],
-        [
-          109,
-          49,
-          6
-        ],
-        [
-          109,
-          47,
-          2
-        ]
-      ],
-      "points": 63,
-      "points_sampled": false
-    },
-    {
-      "pattern": "-hwari",
-      "title": "-hwari",
+      "pattern": "-화리 / -hwari",
+      "title": "-화리 / -hwari",
       "mode": "suffix",
       "zoom": 7,
       "places": 59,
-      "file": "-hwari_z7.json.gz",
+      "file": "-화리_z7.json.gz",
       "tiles": 6,
       "score": 0.9070493582790868,
       "entropy": 0.7784628664015495,
@@ -1908,12 +563,12 @@
       "points_sampled": false
     },
     {
-      "pattern": "-danri",
-      "title": "-danri",
+      "pattern": "-단리 / -danri",
+      "title": "-단리 / -danri",
       "mode": "suffix",
       "zoom": 7,
       "places": 11,
-      "file": "-danri_z7.json.gz",
+      "file": "-단리_z7.json.gz",
       "tiles": 4,
       "score": 0.8975315872828394,
       "entropy": 0.6388067184095578,
@@ -1943,52 +598,12 @@
       "points_sampled": false
     },
     {
-      "pattern": "-onri",
-      "title": "-onri",
-      "mode": "suffix",
-      "zoom": 7,
-      "places": 322,
-      "file": "-onri_z7.json.gz",
-      "tiles": 7,
-      "score": 0.8937588694477657,
-      "entropy": 0.8453076060227097,
-      "hotspots": [
-        [
-          108,
-          49,
-          92
-        ],
-        [
-          108,
-          48,
-          83
-        ],
-        [
-          109,
-          48,
-          69
-        ],
-        [
-          109,
-          49,
-          45
-        ],
-        [
-          110,
-          47,
-          17
-        ]
-      ],
-      "points": 322,
-      "points_sampled": false
-    },
-    {
-      "pattern": "-weolri",
-      "title": "-weolri",
+      "pattern": "-월리 / -weolri",
+      "title": "-월리 / -weolri",
       "mode": "suffix",
       "zoom": 7,
       "places": 16,
-      "file": "-weolri_z7.json.gz",
+      "file": "-월리_z7.json.gz",
       "tiles": 4,
       "score": 0.8901378887165936,
       "entropy": 0.685820381093429,
@@ -2018,12 +633,12 @@
       "points_sampled": false
     },
     {
-      "pattern": "-cangri",
-      "title": "-cangri",
+      "pattern": "-창리 / -cangri",
+      "title": "-창리 / -cangri",
       "mode": "suffix",
       "zoom": 7,
       "places": 49,
-      "file": "-cangri_z7.json.gz",
+      "file": "-창리_z7.json.gz",
       "tiles": 6,
       "score": 0.8805531927627556,
       "entropy": 0.7749110392395597,
@@ -2058,12 +673,12 @@
       "points_sampled": false
     },
     {
-      "pattern": "-ryongri",
-      "title": "-ryongri",
+      "pattern": "-룡리 / -ryongri",
+      "title": "-룡리 / -ryongri",
       "mode": "suffix",
       "zoom": 7,
       "places": 54,
-      "file": "-ryongri_z7.json.gz",
+      "file": "-룡리_z7.json.gz",
       "tiles": 6,
       "score": 0.870159522643419,
       "entropy": 0.7828582045910066,
@@ -2098,47 +713,12 @@
       "points_sampled": false
     },
     {
-      "pattern": "-ngsangri",
-      "title": "-ngsangri",
-      "mode": "suffix",
-      "zoom": 7,
-      "places": 21,
-      "file": "-ngsangri_z7.json.gz",
-      "tiles": 4,
-      "score": 0.8695457101238377,
-      "entropy": 0.7186885255558024,
-      "hotspots": [
-        [
-          108,
-          48,
-          11
-        ],
-        [
-          109,
-          48,
-          8
-        ],
-        [
-          108,
-          49,
-          1
-        ],
-        [
-          109,
-          47,
-          1
-        ]
-      ],
-      "points": 21,
-      "points_sampled": false
-    },
-    {
-      "pattern": "-songri",
-      "title": "-songri",
+      "pattern": "-송리 / -songri",
+      "title": "-송리 / -songri",
       "mode": "suffix",
       "zoom": 7,
       "places": 38,
-      "file": "-songri_z7.json.gz",
+      "file": "-송리_z7.json.gz",
       "tiles": 6,
       "score": 0.8609946230366052,
       "entropy": 0.7649842677149437,
@@ -2173,457 +753,12 @@
       "points_sampled": false
     },
     {
-      "pattern": "-eonri",
-      "title": "-eonri",
-      "mode": "suffix",
-      "zoom": 7,
-      "places": 291,
-      "file": "-eonri_z7.json.gz",
-      "tiles": 7,
-      "score": 0.8597007040828224,
-      "entropy": 0.848557690886769,
-      "hotspots": [
-        [
-          108,
-          48,
-          79
-        ],
-        [
-          108,
-          49,
-          74
-        ],
-        [
-          109,
-          48,
-          67
-        ],
-        [
-          109,
-          49,
-          40
-        ],
-        [
-          110,
-          47,
-          16
-        ]
-      ],
-      "points": 291,
-      "points_sampled": false
-    },
-    {
-      "pattern": "-ungdong",
-      "title": "-ungdong",
-      "mode": "suffix",
-      "zoom": 7,
-      "places": 20,
-      "file": "-ungdong_z7.json.gz",
-      "tiles": 3,
-      "score": 0.8525036871630789,
-      "entropy": 0.7199877141320895,
-      "hotspots": [
-        [
-          109,
-          48,
-          13
-        ],
-        [
-          108,
-          48,
-          6
-        ],
-        [
-          109,
-          49,
-          1
-        ]
-      ],
-      "points": 20,
-      "points_sampled": false
-    },
-    {
-      "pattern": "-wangri",
-      "title": "-wangri",
-      "mode": "suffix",
-      "zoom": 7,
-      "places": 14,
-      "file": "-wangri_z7.json.gz",
-      "tiles": 3,
-      "score": 0.8372911523446147,
-      "entropy": 0.6908140210976049,
-      "hotspots": [
-        [
-          108,
-          48,
-          10
-        ],
-        [
-          108,
-          49,
-          3
-        ],
-        [
-          109,
-          49,
-          1
-        ]
-      ],
-      "points": 14,
-      "points_sampled": false
-    },
-    {
-      "pattern": "-ngpyeongri",
-      "title": "-ngpyeongri",
-      "mode": "suffix",
-      "zoom": 7,
-      "places": 39,
-      "file": "-ngpyeongri_z7.json.gz",
-      "tiles": 5,
-      "score": 0.8370492483348221,
-      "entropy": 0.773088478832963,
-      "hotspots": [
-        [
-          109,
-          48,
-          22
-        ],
-        [
-          108,
-          48,
-          7
-        ],
-        [
-          110,
-          47,
-          5
-        ],
-        [
-          109,
-          47,
-          3
-        ],
-        [
-          109,
-          49,
-          2
-        ]
-      ],
-      "points": 39,
-      "points_sampled": false
-    },
-    {
-      "pattern": "-eondong",
-      "title": "-eondong",
-      "mode": "suffix",
-      "zoom": 7,
-      "places": 39,
-      "file": "-eondong_z7.json.gz",
-      "tiles": 5,
-      "score": 0.8149653151040303,
-      "entropy": 0.7790751025504075,
-      "hotspots": [
-        [
-          108,
-          48,
-          19
-        ],
-        [
-          109,
-          48,
-          10
-        ],
-        [
-          110,
-          47,
-          7
-        ],
-        [
-          108,
-          49,
-          2
-        ],
-        [
-          109,
-          47,
-          1
-        ]
-      ],
-      "points": 39,
-      "points_sampled": false
-    },
-    {
-      "pattern": "-ondong",
-      "title": "-ondong",
-      "mode": "suffix",
-      "zoom": 7,
-      "places": 39,
-      "file": "-ondong_z7.json.gz",
-      "tiles": 5,
-      "score": 0.8149653151040303,
-      "entropy": 0.7790751025504075,
-      "hotspots": [
-        [
-          108,
-          48,
-          19
-        ],
-        [
-          109,
-          48,
-          10
-        ],
-        [
-          110,
-          47,
-          7
-        ],
-        [
-          108,
-          49,
-          2
-        ],
-        [
-          109,
-          47,
-          1
-        ]
-      ],
-      "points": 39,
-      "points_sampled": false
-    },
-    {
-      "pattern": "-yongri",
-      "title": "-yongri",
-      "mode": "suffix",
-      "zoom": 7,
-      "places": 55,
-      "file": "-yongri_z7.json.gz",
-      "tiles": 6,
-      "score": 0.8052058695463944,
-      "entropy": 0.7999663305445642,
-      "hotspots": [
-        [
-          108,
-          48,
-          25
-        ],
-        [
-          108,
-          49,
-          13
-        ],
-        [
-          109,
-          48,
-          9
-        ],
-        [
-          109,
-          49,
-          3
-        ],
-        [
-          110,
-          47,
-          3
-        ]
-      ],
-      "points": 55,
-      "points_sampled": false
-    },
-    {
-      "pattern": "-yori",
-      "title": "-yori",
-      "mode": "suffix",
-      "zoom": 7,
-      "places": 28,
-      "file": "-yori_z7.json.gz",
-      "tiles": 5,
-      "score": 0.7985393307175178,
-      "entropy": 0.7628544175993217,
-      "hotspots": [
-        [
-          108,
-          49,
-          15
-        ],
-        [
-          108,
-          48,
-          7
-        ],
-        [
-          109,
-          49,
-          3
-        ],
-        [
-          110,
-          47,
-          2
-        ],
-        [
-          109,
-          48,
-          1
-        ]
-      ],
-      "points": 28,
-      "points_sampled": false
-    },
-    {
-      "pattern": "-ongheungri",
-      "title": "-ongheungri",
-      "mode": "suffix",
-      "zoom": 7,
-      "places": 25,
-      "file": "-ongheungri_z7.json.gz",
-      "tiles": 3,
-      "score": 0.7965255546091754,
-      "entropy": 0.7555242623065813,
-      "hotspots": [
-        [
-          109,
-          48,
-          13
-        ],
-        [
-          108,
-          48,
-          11
-        ],
-        [
-          109,
-          49,
-          1
-        ]
-      ],
-      "points": 25,
-      "points_sampled": false
-    },
-    {
-      "pattern": "-iri",
-      "title": "-iri",
-      "mode": "suffix",
-      "zoom": 7,
-      "places": 62,
-      "file": "-iri_z7.json.gz",
-      "tiles": 8,
-      "score": 0.7485307803256743,
-      "entropy": 0.8193322617395047,
-      "hotspots": [
-        [
-          108,
-          49,
-          19
-        ],
-        [
-          108,
-          48,
-          16
-        ],
-        [
-          109,
-          48,
-          11
-        ],
-        [
-          109,
-          49,
-          8
-        ],
-        [
-          109,
-          47,
-          4
-        ]
-      ],
-      "points": 62,
-      "points_sampled": false
-    },
-    {
-      "pattern": "-gcangri",
-      "title": "-gcangri",
-      "mode": "suffix",
-      "zoom": 7,
-      "places": 12,
-      "file": "-gcangri_z7.json.gz",
-      "tiles": 4,
-      "score": 0.7460208633373181,
-      "entropy": 0.7091479170272448,
-      "hotspots": [
-        [
-          108,
-          48,
-          8
-        ],
-        [
-          109,
-          48,
-          2
-        ],
-        [
-          108,
-          49,
-          1
-        ],
-        [
-          109,
-          47,
-          1
-        ]
-      ],
-      "points": 12,
-      "points_sampled": false
-    },
-    {
-      "pattern": "-ogri",
-      "title": "-ogri",
-      "mode": "suffix",
-      "zoom": 7,
-      "places": 172,
-      "file": "-ogri_z7.json.gz",
-      "tiles": 7,
-      "score": 0.7423688717575228,
-      "entropy": 0.8559427779033196,
-      "hotspots": [
-        [
-          108,
-          48,
-          62
-        ],
-        [
-          109,
-          48,
-          33
-        ],
-        [
-          108,
-          49,
-          30
-        ],
-        [
-          109,
-          49,
-          22
-        ],
-        [
-          109,
-          47,
-          12
-        ]
-      ],
-      "points": 172,
-      "points_sampled": false
-    },
-    {
-      "pattern": "-daeri",
-      "title": "-daeri",
+      "pattern": "-대리 / -daeri",
+      "title": "-대리 / -daeri",
       "mode": "suffix",
       "zoom": 7,
       "places": 26,
-      "file": "-daeri_z7.json.gz",
+      "file": "-대리_z7.json.gz",
       "tiles": 6,
       "score": 0.7422756887401907,
       "entropy": 0.7747838503790753,
@@ -2658,92 +793,12 @@
       "points_sampled": false
     },
     {
-      "pattern": "-gpyeongri",
-      "title": "-gpyeongri",
-      "mode": "suffix",
-      "zoom": 7,
-      "places": 42,
-      "file": "-gpyeongri_z7.json.gz",
-      "tiles": 5,
-      "score": 0.7367121019839588,
-      "entropy": 0.8041284485475696,
-      "hotspots": [
-        [
-          109,
-          48,
-          23
-        ],
-        [
-          108,
-          48,
-          7
-        ],
-        [
-          110,
-          47,
-          5
-        ],
-        [
-          109,
-          47,
-          4
-        ],
-        [
-          109,
-          49,
-          3
-        ]
-      ],
-      "points": 42,
-      "points_sampled": false
-    },
-    {
-      "pattern": "-neub",
-      "title": "-neub",
-      "mode": "suffix",
-      "zoom": 7,
-      "places": 68,
-      "file": "-neub_z7.json.gz",
-      "tiles": 6,
-      "score": 0.7299399107914345,
-      "entropy": 0.8276047354975864,
-      "hotspots": [
-        [
-          108,
-          48,
-          28
-        ],
-        [
-          108,
-          49,
-          18
-        ],
-        [
-          109,
-          48,
-          11
-        ],
-        [
-          109,
-          47,
-          4
-        ],
-        [
-          109,
-          49,
-          4
-        ]
-      ],
-      "points": 68,
-      "points_sampled": false
-    },
-    {
-      "pattern": "-seongri",
-      "title": "-seongri",
+      "pattern": "-성리 / -seongri",
+      "title": "-성리 / -seongri",
       "mode": "suffix",
       "zoom": 7,
       "places": 96,
-      "file": "-seongri_z7.json.gz",
+      "file": "-성리_z7.json.gz",
       "tiles": 6,
       "score": 0.72336422408747,
       "entropy": 0.841877612053184,
@@ -2778,412 +833,12 @@
       "points_sampled": false
     },
     {
-      "pattern": "-eoneub",
-      "title": "-eoneub",
-      "mode": "suffix",
-      "zoom": 7,
-      "places": 39,
-      "file": "-eoneub_z7.json.gz",
-      "tiles": 6,
-      "score": 0.7223634770285324,
-      "entropy": 0.8041780746662964,
-      "hotspots": [
-        [
-          108,
-          48,
-          16
-        ],
-        [
-          108,
-          49,
-          9
-        ],
-        [
-          109,
-          48,
-          9
-        ],
-        [
-          109,
-          49,
-          2
-        ],
-        [
-          110,
-          47,
-          2
-        ]
-      ],
-      "points": 39,
-      "points_sampled": false
-    },
-    {
-      "pattern": "-oneub",
-      "title": "-oneub",
-      "mode": "suffix",
-      "zoom": 7,
-      "places": 39,
-      "file": "-oneub_z7.json.gz",
-      "tiles": 6,
-      "score": 0.7223634770285324,
-      "entropy": 0.8041780746662964,
-      "hotspots": [
-        [
-          108,
-          48,
-          16
-        ],
-        [
-          108,
-          49,
-          9
-        ],
-        [
-          109,
-          48,
-          9
-        ],
-        [
-          109,
-          49,
-          2
-        ],
-        [
-          110,
-          47,
-          2
-        ]
-      ],
-      "points": 39,
-      "points_sampled": false
-    },
-    {
-      "pattern": "-gceonri",
-      "title": "-gceonri",
-      "mode": "suffix",
-      "zoom": 7,
-      "places": 48,
-      "file": "-gceonri_z7.json.gz",
-      "tiles": 6,
-      "score": 0.7046805617876784,
-      "entropy": 0.8189329136985637,
-      "hotspots": [
-        [
-          108,
-          49,
-          20
-        ],
-        [
-          109,
-          48,
-          11
-        ],
-        [
-          108,
-          48,
-          10
-        ],
-        [
-          110,
-          47,
-          3
-        ],
-        [
-          109,
-          47,
-          2
-        ]
-      ],
-      "points": 48,
-      "points_sampled": false
-    },
-    {
-      "pattern": "-inri",
-      "title": "-inri",
-      "mode": "suffix",
-      "zoom": 7,
-      "places": 47,
-      "file": "-inri_z7.json.gz",
-      "tiles": 7,
-      "score": 0.6991409261464011,
-      "entropy": 0.8193994772742541,
-      "hotspots": [
-        [
-          108,
-          48,
-          19
-        ],
-        [
-          109,
-          48,
-          10
-        ],
-        [
-          108,
-          49,
-          6
-        ],
-        [
-          109,
-          47,
-          6
-        ],
-        [
-          110,
-          47,
-          4
-        ]
-      ],
-      "points": 47,
-      "points_sampled": false
-    },
-    {
-      "pattern": "-gjeongri",
-      "title": "-gjeongri",
-      "mode": "suffix",
-      "zoom": 7,
-      "places": 30,
-      "file": "-gjeongri_z7.json.gz",
-      "tiles": 5,
-      "score": 0.693166579339911,
-      "entropy": 0.7981452643636636,
-      "hotspots": [
-        [
-          108,
-          49,
-          16
-        ],
-        [
-          108,
-          48,
-          5
-        ],
-        [
-          109,
-          48,
-          4
-        ],
-        [
-          109,
-          49,
-          4
-        ],
-        [
-          110,
-          47,
-          1
-        ]
-      ],
-      "points": 30,
-      "points_sampled": false
-    },
-    {
-      "pattern": "-aeri",
-      "title": "-aeri",
-      "mode": "suffix",
-      "zoom": 7,
-      "places": 72,
-      "file": "-aeri_z7.json.gz",
-      "tiles": 6,
-      "score": 0.6824465033424566,
-      "entropy": 0.8409385958069349,
-      "hotspots": [
-        [
-          109,
-          48,
-          25
-        ],
-        [
-          108,
-          49,
-          19
-        ],
-        [
-          108,
-          48,
-          13
-        ],
-        [
-          109,
-          49,
-          11
-        ],
-        [
-          110,
-          47,
-          3
-        ]
-      ],
-      "points": 72,
-      "points_sampled": false
-    },
-    {
-      "pattern": "-aneub",
-      "title": "-aneub",
-      "mode": "suffix",
-      "zoom": 7,
-      "places": 26,
-      "file": "-aneub_z7.json.gz",
-      "tiles": 6,
-      "score": 0.6770381518054889,
-      "entropy": 0.7945777721012361,
-      "hotspots": [
-        [
-          108,
-          48,
-          11
-        ],
-        [
-          108,
-          49,
-          8
-        ],
-        [
-          109,
-          47,
-          3
-        ],
-        [
-          109,
-          49,
-          2
-        ],
-        [
-          109,
-          48,
-          1
-        ]
-      ],
-      "points": 26,
-      "points_sampled": false
-    },
-    {
-      "pattern": "-npungri",
-      "title": "-npungri",
-      "mode": "suffix",
-      "zoom": 7,
-      "places": 25,
-      "file": "-npungri_z7.json.gz",
-      "tiles": 5,
-      "score": 0.6740710417822319,
-      "entropy": 0.7931089413969392,
-      "hotspots": [
-        [
-          108,
-          48,
-          14
-        ],
-        [
-          109,
-          48,
-          4
-        ],
-        [
-          108,
-          49,
-          3
-        ],
-        [
-          109,
-          47,
-          2
-        ],
-        [
-          109,
-          49,
-          2
-        ]
-      ],
-      "points": 25,
-      "points_sampled": false
-    },
-    {
-      "pattern": "-eogri",
-      "title": "-eogri",
-      "mode": "suffix",
-      "zoom": 7,
-      "places": 97,
-      "file": "-eogri_z7.json.gz",
-      "tiles": 7,
-      "score": 0.6531782667501449,
-      "entropy": 0.8575391712615732,
-      "hotspots": [
-        [
-          108,
-          48,
-          37
-        ],
-        [
-          109,
-          48,
-          20
-        ],
-        [
-          108,
-          49,
-          14
-        ],
-        [
-          109,
-          49,
-          9
-        ],
-        [
-          109,
-          47,
-          8
-        ]
-      ],
-      "points": 97,
-      "points_sampled": false
-    },
-    {
-      "pattern": "-mri",
-      "title": "-mri",
-      "mode": "suffix",
-      "zoom": 7,
-      "places": 214,
-      "file": "-mri_z7.json.gz",
-      "tiles": 7,
-      "score": 0.6493624842342018,
-      "entropy": 0.8790902531815972,
-      "hotspots": [
-        [
-          108,
-          48,
-          59
-        ],
-        [
-          109,
-          48,
-          49
-        ],
-        [
-          108,
-          49,
-          45
-        ],
-        [
-          109,
-          49,
-          28
-        ],
-        [
-          109,
-          47,
-          16
-        ]
-      ],
-      "points": 214,
-      "points_sampled": false
-    },
-    {
-      "pattern": "-seori",
-      "title": "-seori",
+      "pattern": "-서리 / -seori",
+      "title": "-서리 / -seori",
       "mode": "suffix",
       "zoom": 7,
       "places": 36,
-      "file": "-seori_z7.json.gz",
+      "file": "-서리_z7.json.gz",
       "tiles": 6,
       "score": 0.6465520564528551,
       "entropy": 0.8209452355067817,
@@ -3218,12 +873,12 @@
       "points_sampled": false
     },
     {
-      "pattern": "-hyeonri",
-      "title": "-hyeonri",
+      "pattern": "-현리 / -hyeonri",
+      "title": "-현리 / -hyeonri",
       "mode": "suffix",
       "zoom": 7,
       "places": 60,
-      "file": "-hyeonri_z7.json.gz",
+      "file": "-현리_z7.json.gz",
       "tiles": 6,
       "score": 0.6459081161004308,
       "entropy": 0.8428781477024663,
@@ -3258,12 +913,12 @@
       "points_sampled": false
     },
     {
-      "pattern": "-gyori",
-      "title": "-gyori",
+      "pattern": "-교리 / -gyori",
+      "title": "-교리 / -gyori",
       "mode": "suffix",
       "zoom": 7,
       "places": 23,
-      "file": "-gyori_z7.json.gz",
+      "file": "-교리_z7.json.gz",
       "tiles": 3,
       "score": 0.6433934495535268,
       "entropy": 0.7975511165325083,
@@ -3288,247 +943,12 @@
       "points_sampled": false
     },
     {
-      "pattern": "-yangri",
-      "title": "-yangri",
-      "mode": "suffix",
-      "zoom": 7,
-      "places": 71,
-      "file": "-yangri_z7.json.gz",
-      "tiles": 7,
-      "score": 0.6432204081528647,
-      "entropy": 0.8495977029179794,
-      "hotspots": [
-        [
-          109,
-          48,
-          22
-        ],
-        [
-          108,
-          48,
-          19
-        ],
-        [
-          108,
-          49,
-          13
-        ],
-        [
-          110,
-          47,
-          8
-        ],
-        [
-          109,
-          47,
-          5
-        ]
-      ],
-      "points": 71,
-      "points_sampled": false
-    },
-    {
-      "pattern": "-gjeonri",
-      "title": "-gjeonri",
-      "mode": "suffix",
-      "zoom": 7,
-      "places": 19,
-      "file": "-gjeonri_z7.json.gz",
-      "tiles": 6,
-      "score": 0.6430490855915056,
-      "entropy": 0.7853449417799196,
-      "hotspots": [
-        [
-          109,
-          48,
-          9
-        ],
-        [
-          108,
-          48,
-          5
-        ],
-        [
-          109,
-          47,
-          2
-        ],
-        [
-          108,
-          49,
-          1
-        ],
-        [
-          109,
-          49,
-          1
-        ]
-      ],
-      "points": 19,
-      "points_sampled": false
-    },
-    {
-      "pattern": "-ongdong",
-      "title": "-ongdong",
-      "mode": "suffix",
-      "zoom": 7,
-      "places": 36,
-      "file": "-ongdong_z7.json.gz",
-      "tiles": 6,
-      "score": 0.6422215222951266,
-      "entropy": 0.8221445245137581,
-      "hotspots": [
-        [
-          108,
-          48,
-          16
-        ],
-        [
-          109,
-          48,
-          8
-        ],
-        [
-          110,
-          47,
-          5
-        ],
-        [
-          109,
-          47,
-          4
-        ],
-        [
-          108,
-          49,
-          2
-        ]
-      ],
-      "points": 36,
-      "points_sampled": false
-    },
-    {
-      "pattern": "-gsongri",
-      "title": "-gsongri",
-      "mode": "suffix",
-      "zoom": 7,
-      "places": 20,
-      "file": "-gsongri_z7.json.gz",
-      "tiles": 4,
-      "score": 0.6418008193008743,
-      "entropy": 0.78919491236176,
-      "hotspots": [
-        [
-          108,
-          48,
-          10
-        ],
-        [
-          109,
-          48,
-          7
-        ],
-        [
-          108,
-          49,
-          2
-        ],
-        [
-          109,
-          47,
-          1
-        ]
-      ],
-      "points": 20,
-      "points_sampled": false
-    },
-    {
-      "pattern": "-mdong",
-      "title": "-mdong",
-      "mode": "suffix",
-      "zoom": 7,
-      "places": 21,
-      "file": "-mdong_z7.json.gz",
-      "tiles": 6,
-      "score": 0.6414399082852117,
-      "entropy": 0.7924842774034668,
-      "hotspots": [
-        [
-          108,
-          48,
-          10
-        ],
-        [
-          109,
-          48,
-          4
-        ],
-        [
-          110,
-          47,
-          4
-        ],
-        [
-          108,
-          47,
-          1
-        ],
-        [
-          108,
-          49,
-          1
-        ]
-      ],
-      "points": 21,
-      "points_sampled": false
-    },
-    {
-      "pattern": "-gsanri",
-      "title": "-gsanri",
-      "mode": "suffix",
-      "zoom": 7,
-      "places": 86,
-      "file": "-gsanri_z7.json.gz",
-      "tiles": 7,
-      "score": 0.6351415592765766,
-      "entropy": 0.8577799761209772,
-      "hotspots": [
-        [
-          108,
-          48,
-          26
-        ],
-        [
-          108,
-          49,
-          20
-        ],
-        [
-          109,
-          48,
-          17
-        ],
-        [
-          109,
-          49,
-          12
-        ],
-        [
-          110,
-          47,
-          7
-        ]
-      ],
-      "points": 86,
-      "points_sampled": false
-    },
-    {
-      "pattern": "-ryongsanri",
-      "title": "-ryongsanri",
+      "pattern": "-룡산리 / -ryongsanri",
+      "title": "-룡산리 / -ryongsanri",
       "mode": "suffix",
       "zoom": 7,
       "places": 11,
-      "file": "-ryongsanri_z7.json.gz",
+      "file": "-룡산리_z7.json.gz",
       "tiles": 4,
       "score": 0.6322660465381161,
       "entropy": 0.7455574250275929,
@@ -3558,87 +978,12 @@
       "points_sampled": false
     },
     {
-      "pattern": "-yongsanri",
-      "title": "-yongsanri",
-      "mode": "suffix",
-      "zoom": 7,
-      "places": 11,
-      "file": "-yongsanri_z7.json.gz",
-      "tiles": 4,
-      "score": 0.6322660465381161,
-      "entropy": 0.7455574250275929,
-      "hotspots": [
-        [
-          108,
-          48,
-          7
-        ],
-        [
-          108,
-          49,
-          2
-        ],
-        [
-          109,
-          48,
-          1
-        ],
-        [
-          110,
-          47,
-          1
-        ]
-      ],
-      "points": 11,
-      "points_sampled": false
-    },
-    {
-      "pattern": "-inheungri",
-      "title": "-inheungri",
-      "mode": "suffix",
-      "zoom": 7,
-      "places": 27,
-      "file": "-inheungri_z7.json.gz",
-      "tiles": 6,
-      "score": 0.6283336900022256,
-      "entropy": 0.8114360363886584,
-      "hotspots": [
-        [
-          108,
-          48,
-          10
-        ],
-        [
-          109,
-          48,
-          9
-        ],
-        [
-          108,
-          49,
-          4
-        ],
-        [
-          109,
-          47,
-          2
-        ],
-        [
-          109,
-          49,
-          1
-        ]
-      ],
-      "points": 27,
-      "points_sampled": false
-    },
-    {
-      "pattern": "-hori",
-      "title": "-hori",
+      "pattern": "-호리 / -hori",
+      "title": "-호리 / -hori",
       "mode": "suffix",
       "zoom": 7,
       "places": 37,
-      "file": "-hori_z7.json.gz",
+      "file": "-호리_z7.json.gz",
       "tiles": 6,
       "score": 0.6249875537251071,
       "entropy": 0.8281861854862242,
@@ -3673,12 +1018,12 @@
       "points_sampled": false
     },
     {
-      "pattern": "-ceonri",
-      "title": "-ceonri",
+      "pattern": "-천리 / -ceonri",
+      "title": "-천리 / -ceonri",
       "mode": "suffix",
       "zoom": 7,
       "places": 109,
-      "file": "-ceonri_z7.json.gz",
+      "file": "-천리_z7.json.gz",
       "tiles": 6,
       "score": 0.6244487617132495,
       "entropy": 0.8671521391180242,
@@ -3713,132 +1058,52 @@
       "points_sampled": false
     },
     {
-      "pattern": "-odong",
-      "title": "-odong",
+      "pattern": "-양리 / -yangri",
+      "title": "-양리 / -yangri",
       "mode": "suffix",
       "zoom": 7,
-      "places": 23,
-      "file": "-odong_z7.json.gz",
-      "tiles": 5,
-      "score": 0.6201503748578828,
-      "entropy": 0.8048647354755516,
-      "hotspots": [
-        [
-          108,
-          48,
-          9
-        ],
-        [
-          109,
-          48,
-          9
-        ],
-        [
-          108,
-          47,
-          2
-        ],
-        [
-          109,
-          47,
-          2
-        ],
-        [
-          110,
-          47,
-          1
-        ]
-      ],
-      "points": 23,
-      "points_sampled": false
-    },
-    {
-      "pattern": "-amri",
-      "title": "-amri",
-      "mode": "suffix",
-      "zoom": 7,
-      "places": 172,
-      "file": "-amri_z7.json.gz",
-      "tiles": 7,
-      "score": 0.6184044918623793,
-      "entropy": 0.8799981564166375,
-      "hotspots": [
-        [
-          108,
-          48,
-          47
-        ],
-        [
-          109,
-          48,
-          40
-        ],
-        [
-          108,
-          49,
-          38
-        ],
-        [
-          109,
-          49,
-          19
-        ],
-        [
-          109,
-          47,
-          14
-        ]
-      ],
-      "points": 172,
-      "points_sampled": false
-    },
-    {
-      "pattern": "-nsanri",
-      "title": "-nsanri",
-      "mode": "suffix",
-      "zoom": 7,
-      "places": 29,
-      "file": "-nsanri_z7.json.gz",
+      "places": 59,
+      "file": "-양리_z7.json.gz",
       "tiles": 6,
-      "score": 0.6052891890694878,
-      "entropy": 0.8220364415388075,
+      "score": 0.6106466201288738,
+      "entropy": 0.8508560745562994,
       "hotspots": [
+        [
+          109,
+          48,
+          20
+        ],
+        [
+          108,
+          48,
+          17
+        ],
         [
           108,
           49,
-          10
-        ],
-        [
-          108,
-          48,
-          9
-        ],
-        [
-          109,
-          48,
-          6
-        ],
-        [
-          110,
-          47,
-          2
+          12
         ],
         [
           109,
           47,
-          1
+          5
+        ],
+        [
+          109,
+          49,
+          3
         ]
       ],
-      "points": 29,
+      "points": 59,
       "points_sampled": false
     },
     {
-      "pattern": "-ceoneub",
-      "title": "-ceoneub",
+      "pattern": "-천읍 / -ceoneub",
+      "title": "-천읍 / -ceoneub",
       "mode": "suffix",
       "zoom": 7,
       "places": 19,
-      "file": "-ceoneub_z7.json.gz",
+      "file": "-천읍_z7.json.gz",
       "tiles": 6,
       "score": 0.6046715312824477,
       "entropy": 0.7981556841309138,
@@ -3873,82 +1138,12 @@
       "points_sampled": false
     },
     {
-      "pattern": "-yeonri",
-      "title": "-yeonri",
-      "mode": "suffix",
-      "zoom": 7,
-      "places": 90,
-      "file": "-yeonri_z7.json.gz",
-      "tiles": 6,
-      "score": 0.6036116731954585,
-      "entropy": 0.8661869933383163,
-      "hotspots": [
-        [
-          108,
-          48,
-          27
-        ],
-        [
-          108,
-          49,
-          26
-        ],
-        [
-          109,
-          49,
-          17
-        ],
-        [
-          109,
-          48,
-          12
-        ],
-        [
-          110,
-          47,
-          7
-        ]
-      ],
-      "points": 90,
-      "points_sampled": false
-    },
-    {
-      "pattern": "-eungdong",
-      "title": "-eungdong",
-      "mode": "suffix",
-      "zoom": 7,
-      "places": 16,
-      "file": "-eungdong_z7.json.gz",
-      "tiles": 3,
-      "score": 0.6031334460853098,
-      "entropy": 0.7871203566965331,
-      "hotspots": [
-        [
-          109,
-          48,
-          9
-        ],
-        [
-          108,
-          48,
-          6
-        ],
-        [
-          109,
-          49,
-          1
-        ]
-      ],
-      "points": 16,
-      "points_sampled": false
-    },
-    {
-      "pattern": "-hari",
-      "title": "-hari",
+      "pattern": "-하리 / -hari",
+      "title": "-하리 / -hari",
       "mode": "suffix",
       "zoom": 7,
       "places": 63,
-      "file": "-hari_z7.json.gz",
+      "file": "-하리_z7.json.gz",
       "tiles": 7,
       "score": 0.585967413557792,
       "entropy": 0.8591046197229402,
@@ -3983,87 +1178,12 @@
       "points_sampled": false
     },
     {
-      "pattern": "-gseori",
-      "title": "-gseori",
-      "mode": "suffix",
-      "zoom": 7,
-      "places": 14,
-      "file": "-gseori_z7.json.gz",
-      "tiles": 4,
-      "score": 0.576249486008939,
-      "entropy": 0.7872087135702291,
-      "hotspots": [
-        [
-          108,
-          48,
-          7
-        ],
-        [
-          109,
-          48,
-          5
-        ],
-        [
-          109,
-          47,
-          1
-        ],
-        [
-          110,
-          47,
-          1
-        ]
-      ],
-      "points": 14,
-      "points_sampled": false
-    },
-    {
-      "pattern": "-unri",
-      "title": "-unri",
-      "mode": "suffix",
-      "zoom": 7,
-      "places": 44,
-      "file": "-unri_z7.json.gz",
-      "tiles": 7,
-      "score": 0.572943053232943,
-      "entropy": 0.8494894005516332,
-      "hotspots": [
-        [
-          109,
-          48,
-          14
-        ],
-        [
-          108,
-          48,
-          13
-        ],
-        [
-          109,
-          49,
-          6
-        ],
-        [
-          108,
-          49,
-          5
-        ],
-        [
-          109,
-          47,
-          3
-        ]
-      ],
-      "points": 44,
-      "points_sampled": false
-    },
-    {
-      "pattern": "-bongri",
-      "title": "-bongri",
+      "pattern": "-봉리 / -bongri",
+      "title": "-봉리 / -bongri",
       "mode": "suffix",
       "zoom": 7,
       "places": 93,
-      "file": "-bongri_z7.json.gz",
+      "file": "-봉리_z7.json.gz",
       "tiles": 6,
       "score": 0.5708019263221201,
       "entropy": 0.8743638804706998,
@@ -4098,132 +1218,47 @@
       "points_sampled": false
     },
     {
-      "pattern": "-ngsanri",
-      "title": "-ngsanri",
+      "pattern": "-흥로동자구 / -heungrodongjagu",
+      "title": "-흥로동자구 / -heungrodongjagu",
       "mode": "suffix",
       "zoom": 7,
-      "places": 67,
-      "file": "-ngsanri_z7.json.gz",
-      "tiles": 7,
-      "score": 0.5661859290311299,
-      "entropy": 0.865817064787775,
+      "places": 13,
+      "file": "-흥로동자구_z7.json.gz",
+      "tiles": 4,
+      "score": 0.5629076923713927,
+      "entropy": 0.7867012262088836,
       "hotspots": [
         [
-          108,
-          48,
-          22
-        ],
-        [
           109,
           48,
-          14
-        ],
-        [
-          108,
-          49,
-          13
-        ],
-        [
-          109,
-          49,
           7
         ],
         [
-          110,
+          109,
           47,
-          7
-        ]
-      ],
-      "points": 67,
-      "points_sampled": false
-    },
-    {
-      "pattern": "-gryongri",
-      "title": "-gryongri",
-      "mode": "suffix",
-      "zoom": 7,
-      "places": 19,
-      "file": "-gryongri_z7.json.gz",
-      "tiles": 5,
-      "score": 0.5636008103632256,
-      "entropy": 0.8118654275822195,
-      "hotspots": [
+          4
+        ],
         [
           108,
           48,
-          9
+          1
         ],
         [
           108,
           49,
-          5
-        ],
-        [
-          109,
-          48,
-          3
-        ],
-        [
-          109,
-          47,
-          1
-        ],
-        [
-          110,
-          47,
           1
         ]
       ],
-      "points": 19,
+      "points": 13,
       "points_sampled": false
     },
     {
-      "pattern": "-ngryongri",
-      "title": "-ngryongri",
-      "mode": "suffix",
-      "zoom": 7,
-      "places": 19,
-      "file": "-ngryongri_z7.json.gz",
-      "tiles": 5,
-      "score": 0.5636008103632256,
-      "entropy": 0.8118654275822195,
-      "hotspots": [
-        [
-          108,
-          48,
-          9
-        ],
-        [
-          108,
-          49,
-          5
-        ],
-        [
-          109,
-          48,
-          3
-        ],
-        [
-          109,
-          47,
-          1
-        ],
-        [
-          110,
-          47,
-          1
-        ]
-      ],
-      "points": 19,
-      "points_sampled": false
-    },
-    {
-      "pattern": "-pungri",
-      "title": "-pungri",
+      "pattern": "-풍리 / -pungri",
+      "title": "-풍리 / -pungri",
       "mode": "suffix",
       "zoom": 7,
       "places": 48,
-      "file": "-pungri_z7.json.gz",
+      "file": "-풍리_z7.json.gz",
       "tiles": 5,
       "score": 0.5501490328560679,
       "entropy": 0.8586396619794726,
@@ -4258,52 +1293,12 @@
       "points_sampled": false
     },
     {
-      "pattern": "-eolri",
-      "title": "-eolri",
-      "mode": "suffix",
-      "zoom": 7,
-      "places": 23,
-      "file": "-eolri_z7.json.gz",
-      "tiles": 6,
-      "score": 0.5463438873469871,
-      "entropy": 0.8280885357794046,
-      "hotspots": [
-        [
-          108,
-          49,
-          11
-        ],
-        [
-          109,
-          49,
-          4
-        ],
-        [
-          108,
-          48,
-          3
-        ],
-        [
-          109,
-          47,
-          2
-        ],
-        [
-          109,
-          48,
-          2
-        ]
-      ],
-      "points": 23,
-      "points_sampled": false
-    },
-    {
-      "pattern": "-heungdong",
-      "title": "-heungdong",
+      "pattern": "-흥동 / -heungdong",
+      "title": "-흥동 / -heungdong",
       "mode": "suffix",
       "zoom": 7,
       "places": 15,
-      "file": "-heungdong_z7.json.gz",
+      "file": "-흥동_z7.json.gz",
       "tiles": 3,
       "score": 0.5458838655289757,
       "entropy": 0.8031140135750122,
@@ -4328,12 +1323,12 @@
       "points_sampled": false
     },
     {
-      "pattern": "-deogri",
-      "title": "-deogri",
+      "pattern": "-덕리 / -deogri",
+      "title": "-덕리 / -deogri",
       "mode": "suffix",
       "zoom": 7,
       "places": 56,
-      "file": "-deogri_z7.json.gz",
+      "file": "-덕리_z7.json.gz",
       "tiles": 7,
       "score": 0.5445581533391994,
       "entropy": 0.8653101043581711,
@@ -4368,52 +1363,12 @@
       "points_sampled": false
     },
     {
-      "pattern": "-ngceonri",
-      "title": "-ngceonri",
-      "mode": "suffix",
-      "zoom": 7,
-      "places": 36,
-      "file": "-ngceonri_z7.json.gz",
-      "tiles": 6,
-      "score": 0.5407169371921738,
-      "entropy": 0.8502549904835099,
-      "hotspots": [
-        [
-          108,
-          49,
-          12
-        ],
-        [
-          108,
-          48,
-          10
-        ],
-        [
-          109,
-          48,
-          8
-        ],
-        [
-          110,
-          47,
-          3
-        ],
-        [
-          109,
-          49,
-          2
-        ]
-      ],
-      "points": 36,
-      "points_sampled": false
-    },
-    {
-      "pattern": "-saneub",
-      "title": "-saneub",
+      "pattern": "-산읍 / -saneub",
+      "title": "-산읍 / -saneub",
       "mode": "suffix",
       "zoom": 7,
       "places": 17,
-      "file": "-saneub_z7.json.gz",
+      "file": "-산읍_z7.json.gz",
       "tiles": 5,
       "score": 0.5323505482974489,
       "entropy": 0.8158193502814549,
@@ -4448,47 +1403,12 @@
       "points_sampled": false
     },
     {
-      "pattern": "-lsanri",
-      "title": "-lsanri",
-      "mode": "suffix",
-      "zoom": 7,
-      "places": 14,
-      "file": "-lsanri_z7.json.gz",
-      "tiles": 4,
-      "score": 0.5272881872547618,
-      "entropy": 0.805288621665821,
-      "hotspots": [
-        [
-          108,
-          49,
-          8
-        ],
-        [
-          108,
-          48,
-          3
-        ],
-        [
-          109,
-          48,
-          2
-        ],
-        [
-          110,
-          47,
-          1
-        ]
-      ],
-      "points": 14,
-      "points_sampled": false
-    },
-    {
-      "pattern": "-sari",
-      "title": "-sari",
+      "pattern": "-사리 / -sari",
+      "title": "-사리 / -sari",
       "mode": "suffix",
       "zoom": 7,
       "places": 26,
-      "file": "-sari_z7.json.gz",
+      "file": "-사리_z7.json.gz",
       "tiles": 6,
       "score": 0.5227996235158721,
       "entropy": 0.8413757583367036,
@@ -4523,34 +1443,29 @@
       "points_sampled": false
     },
     {
-      "pattern": "-msanri",
-      "title": "-msanri",
+      "pattern": "-평로동자구 / -pyeongrodongjagu",
+      "title": "-평로동자구 / -pyeongrodongjagu",
       "mode": "suffix",
       "zoom": 7,
-      "places": 19,
-      "file": "-msanri_z7.json.gz",
-      "tiles": 5,
-      "score": 0.5208757410655405,
-      "entropy": 0.8261274060890632,
+      "places": 10,
+      "file": "-평로동자구_z7.json.gz",
+      "tiles": 4,
+      "score": 0.5144077706770502,
+      "entropy": 0.7854752972273344,
       "hotspots": [
         [
-          108,
-          48,
-          8
-        ],
-        [
-          108,
-          49,
+          109,
+          47,
           6
         ],
         [
-          109,
+          108,
           48,
-          3
+          2
         ],
         [
           109,
-          49,
+          48,
           1
         ],
         [
@@ -4559,91 +1474,16 @@
           1
         ]
       ],
-      "points": 19,
+      "points": 10,
       "points_sampled": false
     },
     {
-      "pattern": "-ngsongri",
-      "title": "-ngsongri",
-      "mode": "suffix",
-      "zoom": 7,
-      "places": 13,
-      "file": "-ngsongri_z7.json.gz",
-      "tiles": 4,
-      "score": 0.5089015181397678,
-      "entropy": 0.8071654175796328,
-      "hotspots": [
-        [
-          108,
-          48,
-          6
-        ],
-        [
-          109,
-          48,
-          5
-        ],
-        [
-          108,
-          49,
-          1
-        ],
-        [
-          109,
-          47,
-          1
-        ]
-      ],
-      "points": 13,
-      "points_sampled": false
-    },
-    {
-      "pattern": "-nbongri",
-      "title": "-nbongri",
-      "mode": "suffix",
-      "zoom": 7,
-      "places": 23,
-      "file": "-nbongri_z7.json.gz",
-      "tiles": 5,
-      "score": 0.5079464290851445,
-      "entropy": 0.8401706024502635,
-      "hotspots": [
-        [
-          108,
-          48,
-          11
-        ],
-        [
-          109,
-          48,
-          5
-        ],
-        [
-          108,
-          49,
-          3
-        ],
-        [
-          109,
-          49,
-          3
-        ],
-        [
-          109,
-          47,
-          1
-        ]
-      ],
-      "points": 23,
-      "points_sampled": false
-    },
-    {
-      "pattern": "-jangri",
-      "title": "-jangri",
+      "pattern": "-장리 / -jangri",
+      "title": "-장리 / -jangri",
       "mode": "suffix",
       "zoom": 7,
       "places": 27,
-      "file": "-jangri_z7.json.gz",
+      "file": "-장리_z7.json.gz",
       "tiles": 6,
       "score": 0.5073709923705102,
       "entropy": 0.8477371389357392,
@@ -4678,207 +1518,12 @@
       "points_sampled": false
     },
     {
-      "pattern": "-gdongri",
-      "title": "-gdongri",
-      "mode": "suffix",
-      "zoom": 7,
-      "places": 49,
-      "file": "-gdongri_z7.json.gz",
-      "tiles": 7,
-      "score": 0.5072577852891562,
-      "entropy": 0.8703336395043413,
-      "hotspots": [
-        [
-          109,
-          48,
-          18
-        ],
-        [
-          109,
-          49,
-          10
-        ],
-        [
-          108,
-          48,
-          8
-        ],
-        [
-          108,
-          49,
-          5
-        ],
-        [
-          109,
-          47,
-          3
-        ]
-      ],
-      "points": 49,
-      "points_sampled": false
-    },
-    {
-      "pattern": "-eongdong",
-      "title": "-eongdong",
-      "mode": "suffix",
-      "zoom": 7,
-      "places": 23,
-      "file": "-eongdong_z7.json.gz",
-      "tiles": 6,
-      "score": 0.5052092468038586,
-      "entropy": 0.8410318786990004,
-      "hotspots": [
-        [
-          108,
-          48,
-          9
-        ],
-        [
-          109,
-          48,
-          6
-        ],
-        [
-          110,
-          47,
-          4
-        ],
-        [
-          108,
-          49,
-          2
-        ],
-        [
-          109,
-          47,
-          1
-        ]
-      ],
-      "points": 23,
-      "points_sampled": false
-    },
-    {
-      "pattern": "-uri",
-      "title": "-uri",
-      "mode": "suffix",
-      "zoom": 7,
-      "places": 106,
-      "file": "-uri_z7.json.gz",
-      "tiles": 7,
-      "score": 0.5003295002975497,
-      "entropy": 0.8929279205333519,
-      "hotspots": [
-        [
-          108,
-          48,
-          32
-        ],
-        [
-          109,
-          48,
-          26
-        ],
-        [
-          108,
-          49,
-          13
-        ],
-        [
-          109,
-          47,
-          13
-        ],
-        [
-          109,
-          49,
-          12
-        ]
-      ],
-      "points": 106,
-      "points_sampled": false
-    },
-    {
-      "pattern": "-amdong",
-      "title": "-amdong",
-      "mode": "suffix",
-      "zoom": 7,
-      "places": 15,
-      "file": "-amdong_z7.json.gz",
-      "tiles": 4,
-      "score": 0.4987555385737798,
-      "entropy": 0.8201119644709259,
-      "hotspots": [
-        [
-          108,
-          48,
-          8
-        ],
-        [
-          109,
-          48,
-          4
-        ],
-        [
-          110,
-          47,
-          2
-        ],
-        [
-          109,
-          49,
-          1
-        ]
-      ],
-      "points": 15,
-      "points_sampled": false
-    },
-    {
-      "pattern": "-ngdongri",
-      "title": "-ngdongri",
-      "mode": "suffix",
-      "zoom": 7,
-      "places": 34,
-      "file": "-ngdongri_z7.json.gz",
-      "tiles": 7,
-      "score": 0.4973739213408788,
-      "entropy": 0.8601054206961335,
-      "hotspots": [
-        [
-          109,
-          48,
-          13
-        ],
-        [
-          109,
-          49,
-          7
-        ],
-        [
-          108,
-          48,
-          5
-        ],
-        [
-          108,
-          49,
-          3
-        ],
-        [
-          110,
-          47,
-          3
-        ]
-      ],
-      "points": 34,
-      "points_sampled": false
-    },
-    {
-      "pattern": "-suri",
-      "title": "-suri",
+      "pattern": "-수리 / -suri",
+      "title": "-수리 / -suri",
       "mode": "suffix",
       "zoom": 7,
       "places": 41,
-      "file": "-suri_z7.json.gz",
+      "file": "-수리_z7.json.gz",
       "tiles": 7,
       "score": 0.49651644274711926,
       "entropy": 0.8671588199453651,
@@ -4913,87 +1558,12 @@
       "points_sampled": false
     },
     {
-      "pattern": "-ghwari",
-      "title": "-ghwari",
-      "mode": "suffix",
-      "zoom": 7,
-      "places": 32,
-      "file": "-ghwari_z7.json.gz",
-      "tiles": 5,
-      "score": 0.49629417496630374,
-      "entropy": 0.858060030976123,
-      "hotspots": [
-        [
-          108,
-          48,
-          13
-        ],
-        [
-          109,
-          48,
-          9
-        ],
-        [
-          108,
-          49,
-          5
-        ],
-        [
-          109,
-          49,
-          4
-        ],
-        [
-          109,
-          47,
-          1
-        ]
-      ],
-      "points": 32,
-      "points_sampled": false
-    },
-    {
-      "pattern": "-mseongri",
-      "title": "-mseongri",
-      "mode": "suffix",
-      "zoom": 7,
-      "places": 17,
-      "file": "-mseongri_z7.json.gz",
-      "tiles": 4,
-      "score": 0.49443214521021245,
-      "entropy": 0.8289382174249799,
-      "hotspots": [
-        [
-          108,
-          48,
-          7
-        ],
-        [
-          109,
-          48,
-          7
-        ],
-        [
-          108,
-          49,
-          2
-        ],
-        [
-          109,
-          49,
-          1
-        ]
-      ],
-      "points": 17,
-      "points_sampled": false
-    },
-    {
-      "pattern": "-jeonri",
-      "title": "-jeonri",
+      "pattern": "-전리 / -jeonri",
+      "title": "-전리 / -jeonri",
       "mode": "suffix",
       "zoom": 7,
       "places": 45,
-      "file": "-jeonri_z7.json.gz",
+      "file": "-전리_z7.json.gz",
       "tiles": 6,
       "score": 0.49168365220560895,
       "entropy": 0.8715775124156344,
@@ -5028,237 +1598,12 @@
       "points_sampled": false
     },
     {
-      "pattern": "-si",
-      "title": "-si",
-      "mode": "suffix",
-      "zoom": 7,
-      "places": 29,
-      "file": "-si_z7.json.gz",
-      "tiles": 7,
-      "score": 0.4915948623922169,
-      "entropy": 0.8554641771034247,
-      "hotspots": [
-        [
-          108,
-          48,
-          10
-        ],
-        [
-          109,
-          48,
-          7
-        ],
-        [
-          108,
-          49,
-          5
-        ],
-        [
-          110,
-          47,
-          3
-        ],
-        [
-          109,
-          47,
-          2
-        ]
-      ],
-      "points": 29,
-      "points_sampled": false
-    },
-    {
-      "pattern": "-osanri",
-      "title": "-osanri",
-      "mode": "suffix",
-      "zoom": 7,
-      "places": 14,
-      "file": "-osanri_z7.json.gz",
-      "tiles": 6,
-      "score": 0.4892363493587362,
-      "entropy": 0.8193399999898041,
-      "hotspots": [
-        [
-          108,
-          48,
-          7
-        ],
-        [
-          108,
-          49,
-          2
-        ],
-        [
-          110,
-          47,
-          2
-        ],
-        [
-          108,
-          47,
-          1
-        ],
-        [
-          109,
-          47,
-          1
-        ]
-      ],
-      "points": 14,
-      "points_sampled": false
-    },
-    {
-      "pattern": "-obongri",
-      "title": "-obongri",
-      "mode": "suffix",
-      "zoom": 7,
-      "places": 16,
-      "file": "-obongri_z7.json.gz",
-      "tiles": 5,
-      "score": 0.4889926287202798,
-      "entropy": 0.8274070571684498,
-      "hotspots": [
-        [
-          108,
-          48,
-          7
-        ],
-        [
-          108,
-          49,
-          5
-        ],
-        [
-          109,
-          49,
-          2
-        ],
-        [
-          109,
-          47,
-          1
-        ],
-        [
-          110,
-          47,
-          1
-        ]
-      ],
-      "points": 16,
-      "points_sampled": false
-    },
-    {
-      "pattern": "-inpungri",
-      "title": "-inpungri",
-      "mode": "suffix",
-      "zoom": 7,
-      "places": 13,
-      "file": "-inpungri_z7.json.gz",
-      "tiles": 5,
-      "score": 0.4886528581488266,
-      "entropy": 0.8148381042483582,
-      "hotspots": [
-        [
-          108,
-          48,
-          6
-        ],
-        [
-          109,
-          48,
-          4
-        ],
-        [
-          108,
-          49,
-          1
-        ],
-        [
-          109,
-          47,
-          1
-        ],
-        [
-          109,
-          49,
-          1
-        ]
-      ],
-      "points": 13,
-      "points_sampled": false
-    },
-    {
-      "pattern": "-gconri",
-      "title": "-gconri",
-      "mode": "suffix",
-      "zoom": 7,
-      "places": 11,
-      "file": "-gconri_z7.json.gz",
-      "tiles": 5,
-      "score": 0.4861815879471277,
-      "entropy": 0.8043461359047004,
-      "hotspots": [
-        [
-          108,
-          49,
-          6
-        ],
-        [
-          108,
-          48,
-          2
-        ],
-        [
-          109,
-          48,
-          1
-        ],
-        [
-          109,
-          49,
-          1
-        ],
-        [
-          110,
-          48,
-          1
-        ]
-      ],
-      "points": 11,
-      "points_sampled": false
-    },
-    {
-      "pattern": "-ggyori",
-      "title": "-ggyori",
+      "pattern": "-광리 / -gwangri",
+      "title": "-광리 / -gwangri",
       "mode": "suffix",
       "zoom": 7,
       "places": 12,
-      "file": "-ggyori_z7.json.gz",
-      "tiles": 2,
-      "score": 0.4840620534074834,
-      "entropy": 0.8112781244591328,
-      "hotspots": [
-        [
-          108,
-          49,
-          9
-        ],
-        [
-          108,
-          48,
-          3
-        ]
-      ],
-      "points": 12,
-      "points_sampled": false
-    },
-    {
-      "pattern": "-gwangri",
-      "title": "-gwangri",
-      "mode": "suffix",
-      "zoom": 7,
-      "places": 12,
-      "file": "-gwangri_z7.json.gz",
+      "file": "-광리_z7.json.gz",
       "tiles": 2,
       "score": 0.4840620534074834,
       "entropy": 0.8112781244591328,
@@ -5278,147 +1623,12 @@
       "points_sampled": false
     },
     {
-      "pattern": "-ngseori",
-      "title": "-ngseori",
-      "mode": "suffix",
-      "zoom": 7,
-      "places": 13,
-      "file": "-ngseori_z7.json.gz",
-      "tiles": 3,
-      "score": 0.4815764187334466,
-      "entropy": 0.8175195311866702,
-      "hotspots": [
-        [
-          108,
-          48,
-          7
-        ],
-        [
-          109,
-          48,
-          5
-        ],
-        [
-          110,
-          47,
-          1
-        ]
-      ],
-      "points": 13,
-      "points_sampled": false
-    },
-    {
-      "pattern": "-ldong",
-      "title": "-ldong",
-      "mode": "suffix",
-      "zoom": 7,
-      "places": 18,
-      "file": "-ldong_z7.json.gz",
-      "tiles": 4,
-      "score": 0.47726108492857483,
-      "entropy": 0.8379110287883481,
-      "hotspots": [
-        [
-          108,
-          48,
-          9
-        ],
-        [
-          109,
-          48,
-          5
-        ],
-        [
-          110,
-          47,
-          3
-        ],
-        [
-          108,
-          47,
-          1
-        ]
-      ],
-      "points": 18,
-      "points_sampled": false
-    },
-    {
-      "pattern": "-epyeongri",
-      "title": "-epyeongri",
-      "mode": "suffix",
-      "zoom": 7,
-      "places": 11,
-      "file": "-epyeongri_z7.json.gz",
-      "tiles": 4,
-      "score": 0.4756240883362745,
-      "entropy": 0.8085947862963575,
-      "hotspots": [
-        [
-          108,
-          48,
-          6
-        ],
-        [
-          108,
-          49,
-          3
-        ],
-        [
-          109,
-          48,
-          1
-        ],
-        [
-          109,
-          49,
-          1
-        ]
-      ],
-      "points": 11,
-      "points_sampled": false
-    },
-    {
-      "pattern": "-ndeogri",
-      "title": "-ndeogri",
-      "mode": "suffix",
-      "zoom": 7,
-      "places": 11,
-      "file": "-ndeogri_z7.json.gz",
-      "tiles": 4,
-      "score": 0.4756240883362745,
-      "entropy": 0.8085947862963575,
-      "hotspots": [
-        [
-          109,
-          48,
-          6
-        ],
-        [
-          108,
-          48,
-          3
-        ],
-        [
-          108,
-          49,
-          1
-        ],
-        [
-          110,
-          48,
-          1
-        ]
-      ],
-      "points": 11,
-      "points_sampled": false
-    },
-    {
-      "pattern": "-pori",
-      "title": "-pori",
+      "pattern": "-포리 / -pori",
+      "title": "-포리 / -pori",
       "mode": "suffix",
       "zoom": 7,
       "places": 73,
-      "file": "-pori_z7.json.gz",
+      "file": "-포리_z7.json.gz",
       "tiles": 8,
       "score": 0.4683379987359539,
       "entropy": 0.8911870548901716,
@@ -5453,263 +1663,28 @@
       "points_sampled": false
     },
     {
-      "pattern": "-weoneub",
-      "title": "-weoneub",
-      "mode": "suffix",
-      "zoom": 7,
-      "places": 13,
-      "file": "-weoneub_z7.json.gz",
-      "tiles": 5,
-      "score": 0.46325518349341466,
-      "entropy": 0.8244618719363132,
-      "hotspots": [
-        [
-          108,
-          48,
-          5
-        ],
-        [
-          109,
-          48,
-          5
-        ],
-        [
-          108,
-          49,
-          1
-        ],
-        [
-          109,
-          49,
-          1
-        ],
-        [
-          110,
-          47,
-          1
-        ]
-      ],
-      "points": 13,
-      "points_sampled": false
-    },
-    {
-      "pattern": "-edong",
-      "title": "-edong",
-      "mode": "suffix",
-      "zoom": 7,
-      "places": 12,
-      "file": "-edong_z7.json.gz",
-      "tiles": 6,
-      "score": 0.45559312927374407,
-      "entropy": 0.822377339362118,
-      "hotspots": [
-        [
-          110,
-          47,
-          6
-        ],
-        [
-          108,
-          48,
-          2
-        ],
-        [
-          108,
-          47,
-          1
-        ],
-        [
-          108,
-          49,
-          1
-        ],
-        [
-          109,
-          47,
-          1
-        ]
-      ],
-      "points": 12,
-      "points_sampled": false
-    },
-    {
-      "pattern": "-nghwari",
-      "title": "-nghwari",
-      "mode": "suffix",
-      "zoom": 7,
-      "places": 25,
-      "file": "-nghwari_z7.json.gz",
-      "tiles": 5,
-      "score": 0.45411375750588195,
-      "entropy": 0.8606199195737619,
-      "hotspots": [
-        [
-          108,
-          48,
-          9
-        ],
-        [
-          109,
-          48,
-          8
-        ],
-        [
-          108,
-          49,
-          5
-        ],
-        [
-          109,
-          49,
-          2
-        ],
-        [
-          109,
-          47,
-          1
-        ]
-      ],
-      "points": 25,
-      "points_sampled": false
-    },
-    {
-      "pattern": "-ngrimri",
-      "title": "-ngrimri",
-      "mode": "suffix",
-      "zoom": 7,
-      "places": 13,
-      "file": "-ngrimri_z7.json.gz",
-      "tiles": 6,
-      "score": 0.45262069697418705,
-      "entropy": 0.8284915254038178,
-      "hotspots": [
-        [
-          108,
-          48,
-          6
-        ],
-        [
-          109,
-          48,
-          3
-        ],
-        [
-          108,
-          49,
-          1
-        ],
-        [
-          109,
-          47,
-          1
-        ],
-        [
-          109,
-          49,
-          1
-        ]
-      ],
-      "points": 13,
-      "points_sampled": false
-    },
-    {
-      "pattern": "-adong",
-      "title": "-adong",
-      "mode": "suffix",
-      "zoom": 7,
-      "places": 16,
-      "file": "-adong_z7.json.gz",
-      "tiles": 5,
-      "score": 0.4503857421720143,
-      "entropy": 0.8410335941990121,
-      "hotspots": [
-        [
-          108,
-          48,
-          8
-        ],
-        [
-          109,
-          48,
-          3
-        ],
-        [
-          108,
-          49,
-          2
-        ],
-        [
-          109,
-          47,
-          2
-        ],
-        [
-          110,
-          47,
-          1
-        ]
-      ],
-      "points": 16,
-      "points_sampled": false
-    },
-    {
-      "pattern": "-yeondong",
-      "title": "-yeondong",
-      "mode": "suffix",
-      "zoom": 7,
-      "places": 12,
-      "file": "-yeondong_z7.json.gz",
-      "tiles": 4,
-      "score": 0.4488373823594991,
-      "entropy": 0.8250112108241772,
-      "hotspots": [
-        [
-          108,
-          48,
-          5
-        ],
-        [
-          109,
-          48,
-          5
-        ],
-        [
-          108,
-          49,
-          1
-        ],
-        [
-          110,
-          47,
-          1
-        ]
-      ],
-      "points": 12,
-      "points_sampled": false
-    },
-    {
-      "pattern": "-gsamri",
-      "title": "-gsamri",
+      "pattern": "-경리 / -gyeongri",
+      "title": "-경리 / -gyeongri",
       "mode": "suffix",
       "zoom": 7,
       "places": 10,
-      "file": "-gsamri_z7.json.gz",
+      "file": "-경리_z7.json.gz",
       "tiles": 3,
       "score": 0.4379865487898655,
       "entropy": 0.8173454221465101,
       "hotspots": [
         [
-          108,
+          109,
           48,
           6
         ],
         [
-          109,
+          108,
           48,
           3
         ],
         [
-          109,
+          108,
           49,
           1
         ]
@@ -5718,122 +1693,12 @@
       "points_sampled": false
     },
     {
-      "pattern": "-ongryongri",
-      "title": "-ongryongri",
-      "mode": "suffix",
-      "zoom": 7,
-      "places": 10,
-      "file": "-ongryongri_z7.json.gz",
-      "tiles": 3,
-      "score": 0.4379865487898655,
-      "entropy": 0.8173454221465101,
-      "hotspots": [
-        [
-          108,
-          48,
-          6
-        ],
-        [
-          108,
-          49,
-          3
-        ],
-        [
-          110,
-          47,
-          1
-        ]
-      ],
-      "points": 10,
-      "points_sampled": false
-    },
-    {
-      "pattern": "-ngjeongri",
-      "title": "-ngjeongri",
-      "mode": "suffix",
-      "zoom": 7,
-      "places": 25,
-      "file": "-ngjeongri_z7.json.gz",
-      "tiles": 5,
-      "score": 0.42742083005024656,
-      "entropy": 0.8688127177748383,
-      "hotspots": [
-        [
-          108,
-          49,
-          11
-        ],
-        [
-          108,
-          48,
-          5
-        ],
-        [
-          109,
-          48,
-          4
-        ],
-        [
-          109,
-          49,
-          4
-        ],
-        [
-          110,
-          47,
-          1
-        ]
-      ],
-      "points": 25,
-      "points_sampled": false
-    },
-    {
-      "pattern": "-ngbongri",
-      "title": "-ngbongri",
-      "mode": "suffix",
-      "zoom": 7,
-      "places": 15,
-      "file": "-ngbongri_z7.json.gz",
-      "tiles": 5,
-      "score": 0.4254919483274582,
-      "entropy": 0.8465362190524482,
-      "hotspots": [
-        [
-          109,
-          48,
-          6
-        ],
-        [
-          108,
-          48,
-          5
-        ],
-        [
-          109,
-          47,
-          2
-        ],
-        [
-          108,
-          49,
-          1
-        ],
-        [
-          109,
-          49,
-          1
-        ]
-      ],
-      "points": 15,
-      "points_sampled": false
-    },
-    {
-      "pattern": "-sinri",
-      "title": "-sinri",
+      "pattern": "-신리 / -sinri",
+      "title": "-신리 / -sinri",
       "mode": "suffix",
       "zoom": 7,
       "places": 18,
-      "file": "-sinri_z7.json.gz",
+      "file": "-신리_z7.json.gz",
       "tiles": 5,
       "score": 0.4225016555702723,
       "entropy": 0.8565086053541239,
@@ -5868,82 +1733,12 @@
       "points_sampled": false
     },
     {
-      "pattern": "-edongri",
-      "title": "-edongri",
-      "mode": "suffix",
-      "zoom": 7,
-      "places": 12,
-      "file": "-edongri_z7.json.gz",
-      "tiles": 3,
-      "score": 0.4206799174675607,
-      "entropy": 0.8359889967247164,
-      "hotspots": [
-        [
-          109,
-          48,
-          6
-        ],
-        [
-          108,
-          48,
-          5
-        ],
-        [
-          108,
-          49,
-          1
-        ]
-      ],
-      "points": 12,
-      "points_sampled": false
-    },
-    {
-      "pattern": "-ngdeogri",
-      "title": "-ngdeogri",
-      "mode": "suffix",
-      "zoom": 7,
-      "places": 28,
-      "file": "-ngdeogri_z7.json.gz",
-      "tiles": 7,
-      "score": 0.4133296354514473,
-      "entropy": 0.8772517603678713,
-      "hotspots": [
-        [
-          108,
-          48,
-          9
-        ],
-        [
-          109,
-          47,
-          6
-        ],
-        [
-          109,
-          48,
-          5
-        ],
-        [
-          108,
-          49,
-          4
-        ],
-        [
-          110,
-          47,
-          2
-        ]
-      ],
-      "points": 28,
-      "points_sampled": false
-    },
-    {
-      "pattern": "-ceondong",
-      "title": "-ceondong",
+      "pattern": "-천동 / -ceondong",
+      "title": "-천동 / -ceondong",
       "mode": "suffix",
       "zoom": 7,
       "places": 17,
-      "file": "-ceondong_z7.json.gz",
+      "file": "-천동_z7.json.gz",
       "tiles": 5,
       "score": 0.41279496187917514,
       "entropy": 0.8571827444855609,
@@ -5978,52 +1773,12 @@
       "points_sampled": false
     },
     {
-      "pattern": "-eri",
-      "title": "-eri",
-      "mode": "suffix",
-      "zoom": 7,
-      "places": 111,
-      "file": "-eri_z7.json.gz",
-      "tiles": 6,
-      "score": 0.41065350284409646,
-      "entropy": 0.91296946040566,
-      "hotspots": [
-        [
-          109,
-          48,
-          29
-        ],
-        [
-          108,
-          49,
-          28
-        ],
-        [
-          108,
-          48,
-          26
-        ],
-        [
-          109,
-          49,
-          14
-        ],
-        [
-          110,
-          47,
-          10
-        ]
-      ],
-      "points": 111,
-      "points_sampled": false
-    },
-    {
-      "pattern": "-sinheungri",
-      "title": "-sinheungri",
+      "pattern": "-신흥리 / -sinheungri",
+      "title": "-신흥리 / -sinheungri",
       "mode": "suffix",
       "zoom": 7,
       "places": 21,
-      "file": "-sinheungri_z7.json.gz",
+      "file": "-신흥리_z7.json.gz",
       "tiles": 6,
       "score": 0.4103687345222249,
       "entropy": 0.8672393728929951,
@@ -6058,12 +1813,12 @@
       "points_sampled": false
     },
     {
-      "pattern": "-sinpungri",
-      "title": "-sinpungri",
+      "pattern": "-신풍리 / -sinpungri",
+      "title": "-신풍리 / -sinpungri",
       "mode": "suffix",
       "zoom": 7,
       "places": 12,
-      "file": "-sinpungri_z7.json.gz",
+      "file": "-신풍리_z7.json.gz",
       "tiles": 5,
       "score": 0.40994318858562323,
       "entropy": 0.8401749385838427,
@@ -6098,12 +1853,92 @@
       "points_sampled": false
     },
     {
-      "pattern": "-myeongri",
-      "title": "-myeongri",
+      "pattern": "-오봉리 / -obongri",
+      "title": "-오봉리 / -obongri",
+      "mode": "suffix",
+      "zoom": 7,
+      "places": 12,
+      "file": "-오봉리_z7.json.gz",
+      "tiles": 5,
+      "score": 0.40994318858562323,
+      "entropy": 0.8401749385838427,
+      "hotspots": [
+        [
+          108,
+          48,
+          5
+        ],
+        [
+          108,
+          49,
+          4
+        ],
+        [
+          109,
+          47,
+          1
+        ],
+        [
+          109,
+          49,
+          1
+        ],
+        [
+          110,
+          47,
+          1
+        ]
+      ],
+      "points": 12,
+      "points_sampled": false
+    },
+    {
+      "pattern": "-원읍 / -weoneub",
+      "title": "-원읍 / -weoneub",
+      "mode": "suffix",
+      "zoom": 7,
+      "places": 12,
+      "file": "-원읍_z7.json.gz",
+      "tiles": 5,
+      "score": 0.40994318858562323,
+      "entropy": 0.8401749385838427,
+      "hotspots": [
+        [
+          108,
+          48,
+          5
+        ],
+        [
+          109,
+          48,
+          4
+        ],
+        [
+          108,
+          49,
+          1
+        ],
+        [
+          109,
+          49,
+          1
+        ],
+        [
+          110,
+          47,
+          1
+        ]
+      ],
+      "points": 12,
+      "points_sampled": false
+    },
+    {
+      "pattern": "-명리 / -myeongri",
+      "title": "-명리 / -myeongri",
       "mode": "suffix",
       "zoom": 7,
       "places": 15,
-      "file": "-myeongri_z7.json.gz",
+      "file": "-명리_z7.json.gz",
       "tiles": 4,
       "score": 0.4081427189495677,
       "entropy": 0.8527936308491302,
@@ -6133,52 +1968,12 @@
       "points_sampled": false
     },
     {
-      "pattern": "-nsangri",
-      "title": "-nsangri",
-      "mode": "suffix",
-      "zoom": 7,
-      "places": 15,
-      "file": "-nsangri_z7.json.gz",
-      "tiles": 6,
-      "score": 0.40621274175873445,
-      "entropy": 0.8534897229796912,
-      "hotspots": [
-        [
-          108,
-          48,
-          6
-        ],
-        [
-          109,
-          48,
-          4
-        ],
-        [
-          108,
-          47,
-          2
-        ],
-        [
-          108,
-          49,
-          1
-        ],
-        [
-          109,
-          47,
-          1
-        ]
-      ],
-      "points": 15,
-      "points_sampled": false
-    },
-    {
-      "pattern": "-guryongri",
-      "title": "-guryongri",
+      "pattern": "-구룡리 / -guryongri",
+      "title": "-구룡리 / -guryongri",
       "mode": "suffix",
       "zoom": 7,
       "places": 11,
-      "file": "-guryongri_z7.json.gz",
+      "file": "-구룡리_z7.json.gz",
       "tiles": 4,
       "score": 0.40163915182683696,
       "entropy": 0.8383685150260664,
@@ -6208,442 +2003,12 @@
       "points_sampled": false
     },
     {
-      "pattern": "-eori",
-      "title": "-eori",
-      "mode": "suffix",
-      "zoom": 7,
-      "places": 46,
-      "file": "-eori_z7.json.gz",
-      "tiles": 6,
-      "score": 0.4006368068183077,
-      "entropy": 0.895942481103747,
-      "hotspots": [
-        [
-          108,
-          48,
-          16
-        ],
-        [
-          109,
-          48,
-          12
-        ],
-        [
-          108,
-          49,
-          6
-        ],
-        [
-          109,
-          47,
-          6
-        ],
-        [
-          109,
-          49,
-          3
-        ]
-      ],
-      "points": 46,
-      "points_sampled": false
-    },
-    {
-      "pattern": "-agri",
-      "title": "-agri",
-      "mode": "suffix",
-      "zoom": 7,
-      "places": 28,
-      "file": "-agri_z7.json.gz",
-      "tiles": 7,
-      "score": 0.392447080071527,
-      "entropy": 0.883453340637106,
-      "hotspots": [
-        [
-          108,
-          49,
-          8
-        ],
-        [
-          109,
-          49,
-          7
-        ],
-        [
-          108,
-          48,
-          6
-        ],
-        [
-          109,
-          47,
-          2
-        ],
-        [
-          109,
-          48,
-          2
-        ]
-      ],
-      "points": 28,
-      "points_sampled": false
-    },
-    {
-      "pattern": "-ndaeri",
-      "title": "-ndaeri",
-      "mode": "suffix",
-      "zoom": 7,
-      "places": 11,
-      "file": "-ndaeri_z7.json.gz",
-      "tiles": 4,
-      "score": 0.39035931679228103,
-      "entropy": 0.8429078545765152,
-      "hotspots": [
-        [
-          109,
-          48,
-          6
-        ],
-        [
-          108,
-          48,
-          2
-        ],
-        [
-          108,
-          49,
-          2
-        ],
-        [
-          109,
-          49,
-          1
-        ]
-      ],
-      "points": 11,
-      "points_sampled": false
-    },
-    {
-      "pattern": "-grimri",
-      "title": "-grimri",
-      "mode": "suffix",
-      "zoom": 7,
-      "places": 14,
-      "file": "-grimri_z7.json.gz",
-      "tiles": 6,
-      "score": 0.3854607777625596,
-      "entropy": 0.8576611402529863,
-      "hotspots": [
-        [
-          108,
-          48,
-          6
-        ],
-        [
-          109,
-          48,
-          3
-        ],
-        [
-          108,
-          49,
-          2
-        ],
-        [
-          109,
-          47,
-          1
-        ],
-        [
-          109,
-          49,
-          1
-        ]
-      ],
-      "points": 14,
-      "points_sampled": false
-    },
-    {
-      "pattern": "-ilri",
-      "title": "-ilri",
-      "mode": "suffix",
-      "zoom": 7,
-      "places": 14,
-      "file": "-ilri_z7.json.gz",
-      "tiles": 6,
-      "score": 0.3854607777625596,
-      "entropy": 0.8576611402529863,
-      "hotspots": [
-        [
-          108,
-          48,
-          6
-        ],
-        [
-          108,
-          49,
-          3
-        ],
-        [
-          109,
-          48,
-          2
-        ],
-        [
-          109,
-          47,
-          1
-        ],
-        [
-          109,
-          49,
-          1
-        ]
-      ],
-      "points": 14,
-      "points_sampled": false
-    },
-    {
-      "pattern": "-gdeogri",
-      "title": "-gdeogri",
-      "mode": "suffix",
-      "zoom": 7,
-      "places": 30,
-      "file": "-gdeogri_z7.json.gz",
-      "tiles": 7,
-      "score": 0.3813411516451497,
-      "entropy": 0.8889509107235233,
-      "hotspots": [
-        [
-          108,
-          48,
-          10
-        ],
-        [
-          109,
-          47,
-          6
-        ],
-        [
-          109,
-          48,
-          5
-        ],
-        [
-          108,
-          49,
-          4
-        ],
-        [
-          109,
-          49,
-          2
-        ]
-      ],
-      "points": 30,
-      "points_sampled": false
-    },
-    {
-      "pattern": "-angeub",
-      "title": "-angeub",
-      "mode": "suffix",
-      "zoom": 7,
-      "places": 13,
-      "file": "-angeub_z7.json.gz",
-      "tiles": 5,
-      "score": 0.37979361805149564,
-      "entropy": 0.8560873938623892,
-      "hotspots": [
-        [
-          108,
-          48,
-          6
-        ],
-        [
-          109,
-          49,
-          3
-        ],
-        [
-          109,
-          47,
-          2
-        ],
-        [
-          109,
-          48,
-          1
-        ],
-        [
-          110,
-          47,
-          1
-        ]
-      ],
-      "points": 13,
-      "points_sampled": false
-    },
-    {
-      "pattern": "-gsari",
-      "title": "-gsari",
-      "mode": "suffix",
-      "zoom": 7,
-      "places": 13,
-      "file": "-gsari_z7.json.gz",
-      "tiles": 5,
-      "score": 0.37979361805149564,
-      "entropy": 0.8560873938623892,
-      "hotspots": [
-        [
-          108,
-          49,
-          6
-        ],
-        [
-          109,
-          49,
-          3
-        ],
-        [
-          108,
-          48,
-          2
-        ],
-        [
-          109,
-          47,
-          1
-        ],
-        [
-          109,
-          48,
-          1
-        ]
-      ],
-      "points": 13,
-      "points_sampled": false
-    },
-    {
-      "pattern": "-gyeongri",
-      "title": "-gyeongri",
-      "mode": "suffix",
-      "zoom": 7,
-      "places": 13,
-      "file": "-gyeongri_z7.json.gz",
-      "tiles": 5,
-      "score": 0.37979361805149564,
-      "entropy": 0.8560873938623892,
-      "hotspots": [
-        [
-          109,
-          48,
-          6
-        ],
-        [
-          108,
-          48,
-          3
-        ],
-        [
-          110,
-          47,
-          2
-        ],
-        [
-          108,
-          49,
-          1
-        ],
-        [
-          109,
-          47,
-          1
-        ]
-      ],
-      "points": 13,
-      "points_sampled": false
-    },
-    {
-      "pattern": "-ncangri",
-      "title": "-ncangri",
-      "mode": "suffix",
-      "zoom": 7,
-      "places": 17,
-      "file": "-ncangri_z7.json.gz",
-      "tiles": 4,
-      "score": 0.3765371160491017,
-      "entropy": 0.8697270982459452,
-      "hotspots": [
-        [
-          108,
-          48,
-          7
-        ],
-        [
-          109,
-          48,
-          6
-        ],
-        [
-          108,
-          49,
-          3
-        ],
-        [
-          109,
-          49,
-          1
-        ]
-      ],
-      "points": 17,
-      "points_sampled": false
-    },
-    {
-      "pattern": "-gjiri",
-      "title": "-gjiri",
-      "mode": "suffix",
-      "zoom": 7,
-      "places": 11,
-      "file": "-gjiri_z7.json.gz",
-      "tiles": 5,
-      "score": 0.3747603960226573,
-      "entropy": 0.8491853220906186,
-      "hotspots": [
-        [
-          108,
-          48,
-          5
-        ],
-        [
-          108,
-          49,
-          3
-        ],
-        [
-          109,
-          47,
-          1
-        ],
-        [
-          109,
-          48,
-          1
-        ],
-        [
-          109,
-          49,
-          1
-        ]
-      ],
-      "points": 11,
-      "points_sampled": false
-    },
-    {
-      "pattern": "-gangri",
-      "title": "-gangri",
+      "pattern": "-강리 / -gangri",
+      "title": "-강리 / -gangri",
       "mode": "suffix",
       "zoom": 7,
       "places": 21,
-      "file": "-gangri_z7.json.gz",
+      "file": "-강리_z7.json.gz",
       "tiles": 7,
       "score": 0.37342212398091307,
       "entropy": 0.8791921723445751,
@@ -6678,55 +2043,15 @@
       "points_sampled": false
     },
     {
-      "pattern": "-onghwari",
-      "title": "-onghwari",
-      "mode": "suffix",
-      "zoom": 7,
-      "places": 20,
-      "file": "-onghwari_z7.json.gz",
-      "tiles": 5,
-      "score": 0.3677692760940739,
-      "entropy": 0.8792029674220179,
-      "hotspots": [
-        [
-          108,
-          48,
-          8
-        ],
-        [
-          109,
-          48,
-          5
-        ],
-        [
-          108,
-          49,
-          4
-        ],
-        [
-          109,
-          49,
-          2
-        ],
-        [
-          109,
-          47,
-          1
-        ]
-      ],
-      "points": 20,
-      "points_sampled": false
-    },
-    {
-      "pattern": "-oseongri",
-      "title": "-oseongri",
+      "pattern": "-운리 / -unri",
+      "title": "-운리 / -unri",
       "mode": "suffix",
       "zoom": 7,
       "places": 16,
-      "file": "-oseongri_z7.json.gz",
-      "tiles": 5,
-      "score": 0.36623756576879923,
-      "entropy": 0.8707342083725791,
+      "file": "-운리_z7.json.gz",
+      "tiles": 4,
+      "score": 0.3555693752942122,
+      "entropy": 0.8744996115311403,
       "hotspots": [
         [
           108,
@@ -6736,21 +2061,16 @@
         [
           109,
           48,
-          4
+          5
         ],
         [
           108,
           49,
-          2
+          3
         ],
         [
           109,
           47,
-          2
-        ],
-        [
-          109,
-          49,
           1
         ]
       ],
@@ -6758,212 +2078,12 @@
       "points_sampled": false
     },
     {
-      "pattern": "-gseongri",
-      "title": "-gseongri",
-      "mode": "suffix",
-      "zoom": 7,
-      "places": 26,
-      "file": "-gseongri_z7.json.gz",
-      "tiles": 5,
-      "score": 0.3651248052970879,
-      "entropy": 0.8892163598680347,
-      "hotspots": [
-        [
-          109,
-          48,
-          9
-        ],
-        [
-          108,
-          48,
-          8
-        ],
-        [
-          108,
-          49,
-          4
-        ],
-        [
-          109,
-          47,
-          4
-        ],
-        [
-          110,
-          47,
-          1
-        ]
-      ],
-      "points": 26,
-      "points_sampled": false
-    },
-    {
-      "pattern": "-ngjeonri",
-      "title": "-ngjeonri",
-      "mode": "suffix",
-      "zoom": 7,
-      "places": 12,
-      "file": "-ngjeonri_z7.json.gz",
-      "tiles": 6,
-      "score": 0.36089476559397693,
-      "entropy": 0.8592975083332074,
-      "hotspots": [
-        [
-          109,
-          48,
-          5
-        ],
-        [
-          108,
-          48,
-          3
-        ],
-        [
-          108,
-          49,
-          1
-        ],
-        [
-          109,
-          47,
-          1
-        ],
-        [
-          109,
-          49,
-          1
-        ]
-      ],
-      "points": 12,
-      "points_sampled": false
-    },
-    {
-      "pattern": "-imri",
-      "title": "-imri",
-      "mode": "suffix",
-      "zoom": 7,
-      "places": 23,
-      "file": "-imri_z7.json.gz",
-      "tiles": 6,
-      "score": 0.3579498441090373,
-      "entropy": 0.887368224952361,
-      "hotspots": [
-        [
-          108,
-          48,
-          9
-        ],
-        [
-          108,
-          49,
-          4
-        ],
-        [
-          109,
-          48,
-          4
-        ],
-        [
-          109,
-          49,
-          3
-        ],
-        [
-          109,
-          47,
-          2
-        ]
-      ],
-      "points": 23,
-      "points_sampled": false
-    },
-    {
-      "pattern": "-namri",
-      "title": "-namri",
-      "mode": "suffix",
-      "zoom": 7,
-      "places": 73,
-      "file": "-namri_z7.json.gz",
-      "tiles": 7,
-      "score": 0.35719840230575856,
-      "entropy": 0.9170090613011985,
-      "hotspots": [
-        [
-          108,
-          49,
-          17
-        ],
-        [
-          109,
-          48,
-          17
-        ],
-        [
-          108,
-          48,
-          16
-        ],
-        [
-          109,
-          47,
-          7
-        ],
-        [
-          109,
-          49,
-          7
-        ]
-      ],
-      "points": 73,
-      "points_sampled": false
-    },
-    {
-      "pattern": "-ghyeonri",
-      "title": "-ghyeonri",
-      "mode": "suffix",
-      "zoom": 7,
-      "places": 20,
-      "file": "-ghyeonri_z7.json.gz",
-      "tiles": 6,
-      "score": 0.35273065299539447,
-      "entropy": 0.8841425345975926,
-      "hotspots": [
-        [
-          108,
-          49,
-          6
-        ],
-        [
-          108,
-          48,
-          5
-        ],
-        [
-          109,
-          49,
-          5
-        ],
-        [
-          110,
-          47,
-          2
-        ],
-        [
-          109,
-          48,
-          1
-        ]
-      ],
-      "points": 20,
-      "points_sampled": false
-    },
-    {
-      "pattern": "-jinri",
-      "title": "-jinri",
+      "pattern": "-진리 / -jinri",
+      "title": "-진리 / -jinri",
       "mode": "suffix",
       "zoom": 7,
       "places": 14,
-      "file": "-jinri_z7.json.gz",
+      "file": "-진리_z7.json.gz",
       "tiles": 5,
       "score": 0.3518520296322616,
       "entropy": 0.8700718216046905,
@@ -6998,122 +2118,12 @@
       "points_sampled": false
     },
     {
-      "pattern": "-olri",
-      "title": "-olri",
-      "mode": "suffix",
-      "zoom": 7,
-      "places": 29,
-      "file": "-olri_z7.json.gz",
-      "tiles": 6,
-      "score": 0.3514380514140101,
-      "entropy": 0.8966722562739763,
-      "hotspots": [
-        [
-          108,
-          49,
-          11
-        ],
-        [
-          109,
-          49,
-          5
-        ],
-        [
-          108,
-          48,
-          4
-        ],
-        [
-          109,
-          47,
-          4
-        ],
-        [
-          109,
-          48,
-          4
-        ]
-      ],
-      "points": 29,
-      "points_sampled": false
-    },
-    {
-      "pattern": "-onamri",
-      "title": "-onamri",
-      "mode": "suffix",
-      "zoom": 7,
-      "places": 21,
-      "file": "-onamri_z7.json.gz",
-      "tiles": 6,
-      "score": 0.345156271850911,
-      "entropy": 0.8883366123050461,
-      "hotspots": [
-        [
-          108,
-          49,
-          7
-        ],
-        [
-          109,
-          48,
-          5
-        ],
-        [
-          108,
-          48,
-          4
-        ],
-        [
-          109,
-          49,
-          3
-        ],
-        [
-          108,
-          47,
-          1
-        ]
-      ],
-      "points": 21,
-      "points_sampled": false
-    },
-    {
-      "pattern": "-unheungri",
-      "title": "-unheungri",
-      "mode": "suffix",
-      "zoom": 7,
-      "places": 10,
-      "file": "-unheungri_z7.json.gz",
-      "tiles": 3,
-      "score": 0.3388880380348515,
-      "entropy": 0.8586727110732549,
-      "hotspots": [
-        [
-          108,
-          48,
-          5
-        ],
-        [
-          109,
-          48,
-          4
-        ],
-        [
-          109,
-          47,
-          1
-        ]
-      ],
-      "points": 10,
-      "points_sampled": false
-    },
-    {
-      "pattern": "-gyeri",
-      "title": "-gyeri",
+      "pattern": "-계리 / -gyeri",
+      "title": "-계리 / -gyeri",
       "mode": "suffix",
       "zoom": 7,
       "places": 24,
-      "file": "-gyeri_z7.json.gz",
+      "file": "-계리_z7.json.gz",
       "tiles": 6,
       "score": 0.3387716203350437,
       "entropy": 0.894754678724236,
@@ -7148,35 +2158,35 @@
       "points_sampled": false
     },
     {
-      "pattern": "-gweonri",
-      "title": "-gweonri",
+      "pattern": "-안리 / -anri",
+      "title": "-안리 / -anri",
       "mode": "suffix",
       "zoom": 7,
-      "places": 14,
-      "file": "-gweonri_z7.json.gz",
-      "tiles": 6,
-      "score": 0.33644562777394404,
-      "entropy": 0.8757609339601583,
+      "places": 20,
+      "file": "-안리_z7.json.gz",
+      "tiles": 5,
+      "score": 0.33837331706386237,
+      "entropy": 0.8888583270495175,
       "hotspots": [
         [
-          109,
-          48,
-          5
+          108,
+          49,
+          7
         ],
         [
           108,
+          48,
+          6
+        ],
+        [
+          109,
           48,
           4
         ],
         [
           109,
-          49,
+          47,
           2
-        ],
-        [
-          108,
-          49,
-          1
         ],
         [
           110,
@@ -7184,56 +2194,16 @@
           1
         ]
       ],
-      "points": 14,
+      "points": 20,
       "points_sampled": false
     },
     {
-      "pattern": "-npori",
-      "title": "-npori",
-      "mode": "suffix",
-      "zoom": 7,
-      "places": 14,
-      "file": "-npori_z7.json.gz",
-      "tiles": 6,
-      "score": 0.33644562777394404,
-      "entropy": 0.8757609339601583,
-      "hotspots": [
-        [
-          108,
-          49,
-          5
-        ],
-        [
-          109,
-          48,
-          4
-        ],
-        [
-          108,
-          48,
-          2
-        ],
-        [
-          108,
-          47,
-          1
-        ],
-        [
-          109,
-          47,
-          1
-        ]
-      ],
-      "points": 14,
-      "points_sampled": false
-    },
-    {
-      "pattern": "-seogri",
-      "title": "-seogri",
+      "pattern": "-석리 / -seogri",
+      "title": "-석리 / -seogri",
       "mode": "suffix",
       "zoom": 7,
       "places": 35,
-      "file": "-seogri_z7.json.gz",
+      "file": "-석리_z7.json.gz",
       "tiles": 5,
       "score": 0.33543611987445265,
       "entropy": 0.906394768484475,
@@ -7268,12 +2238,47 @@
       "points_sampled": false
     },
     {
-      "pattern": "-hyeondong",
-      "title": "-hyeondong",
+      "pattern": "-련리 / -ryeonri",
+      "title": "-련리 / -ryeonri",
       "mode": "suffix",
       "zoom": 7,
       "places": 10,
-      "file": "-hyeondong_z7.json.gz",
+      "file": "-련리_z7.json.gz",
+      "tiles": 4,
+      "score": 0.3333936533838152,
+      "entropy": 0.8609640474436813,
+      "hotspots": [
+        [
+          108,
+          48,
+          4
+        ],
+        [
+          108,
+          49,
+          4
+        ],
+        [
+          109,
+          48,
+          1
+        ],
+        [
+          109,
+          49,
+          1
+        ]
+      ],
+      "points": 10,
+      "points_sampled": false
+    },
+    {
+      "pattern": "-현동 / -hyeondong",
+      "title": "-현동 / -hyeondong",
+      "mode": "suffix",
+      "zoom": 7,
+      "places": 10,
+      "file": "-현동_z7.json.gz",
       "tiles": 4,
       "score": 0.3333936533838152,
       "entropy": 0.8609640474436813,
@@ -7303,331 +2308,56 @@
       "points_sampled": false
     },
     {
-      "pattern": "-ogheungri",
-      "title": "-ogheungri",
+      "pattern": "-남리 / -namri",
+      "title": "-남리 / -namri",
       "mode": "suffix",
       "zoom": 7,
-      "places": 10,
-      "file": "-ogheungri_z7.json.gz",
-      "tiles": 4,
-      "score": 0.3333936533838152,
-      "entropy": 0.8609640474436813,
-      "hotspots": [
-        [
-          108,
-          48,
-          4
-        ],
-        [
-          109,
-          48,
-          4
-        ],
-        [
-          109,
-          49,
-          1
-        ],
-        [
-          110,
-          47,
-          1
-        ]
-      ],
-      "points": 10,
-      "points_sampled": false
-    },
-    {
-      "pattern": "-ryeonri",
-      "title": "-ryeonri",
-      "mode": "suffix",
-      "zoom": 7,
-      "places": 10,
-      "file": "-ryeonri_z7.json.gz",
-      "tiles": 4,
-      "score": 0.3333936533838152,
-      "entropy": 0.8609640474436813,
-      "hotspots": [
-        [
-          108,
-          48,
-          4
-        ],
-        [
-          108,
-          49,
-          4
-        ],
-        [
-          109,
-          48,
-          1
-        ],
-        [
-          109,
-          49,
-          1
-        ]
-      ],
-      "points": 10,
-      "points_sampled": false
-    },
-    {
-      "pattern": "-ghari",
-      "title": "-ghari",
-      "mode": "suffix",
-      "zoom": 7,
-      "places": 20,
-      "file": "-ghari_z7.json.gz",
+      "places": 51,
+      "file": "-남리_z7.json.gz",
       "tiles": 7,
-      "score": 0.3315750350358976,
-      "entropy": 0.8910912821901104,
-      "hotspots": [
-        [
-          108,
-          48,
-          7
-        ],
-        [
-          109,
-          48,
-          4
-        ],
-        [
-          109,
-          49,
-          3
-        ],
-        [
-          108,
-          49,
-          2
-        ],
-        [
-          109,
-          47,
-          2
-        ]
-      ],
-      "points": 20,
-      "points_sampled": false
-    },
-    {
-      "pattern": "-apyeongri",
-      "title": "-apyeongri",
-      "mode": "suffix",
-      "zoom": 7,
-      "places": 12,
-      "file": "-apyeongri_z7.json.gz",
-      "tiles": 6,
-      "score": 0.3307526197828097,
-      "entropy": 0.8710490642551528,
-      "hotspots": [
-        [
-          108,
-          48,
-          4
-        ],
-        [
-          109,
-          48,
-          4
-        ],
-        [
-          108,
-          49,
-          1
-        ],
-        [
-          109,
-          47,
-          1
-        ],
-        [
-          110,
-          47,
-          1
-        ]
-      ],
-      "points": 12,
-      "points_sampled": false
-    },
-    {
-      "pattern": "-ambongri",
-      "title": "-ambongri",
-      "mode": "suffix",
-      "zoom": 7,
-      "places": 14,
-      "file": "-ambongri_z7.json.gz",
-      "tiles": 6,
-      "score": 0.32897271731202743,
-      "entropy": 0.8785204509214299,
-      "hotspots": [
-        [
-          108,
-          48,
-          6
-        ],
-        [
-          108,
-          49,
-          2
-        ],
-        [
-          109,
-          47,
-          2
-        ],
-        [
-          109,
-          49,
-          2
-        ],
-        [
-          109,
-          48,
-          1
-        ]
-      ],
-      "points": 14,
-      "points_sampled": false
-    },
-    {
-      "pattern": "-lri",
-      "title": "-lri",
-      "mode": "suffix",
-      "zoom": 7,
-      "places": 63,
-      "file": "-lri_z7.json.gz",
-      "tiles": 6,
-      "score": 0.32610676427318697,
-      "entropy": 0.9215878980637878,
+      "score": 0.3303097640801983,
+      "entropy": 0.9164035965367416,
       "hotspots": [
         [
           108,
           49,
-          19
-        ],
-        [
-          108,
-          48,
-          14
-        ],
-        [
-          109,
-          48,
-          11
-        ],
-        [
-          109,
-          49,
-          11
-        ],
-        [
-          109,
-          47,
-          5
-        ]
-      ],
-      "points": 63,
-      "points_sampled": false
-    },
-    {
-      "pattern": "-mbongri",
-      "title": "-mbongri",
-      "mode": "suffix",
-      "zoom": 7,
-      "places": 15,
-      "file": "-mbongri_z7.json.gz",
-      "tiles": 6,
-      "score": 0.3171802479035163,
-      "entropy": 0.8856014073204163,
-      "hotspots": [
-        [
-          108,
-          48,
-          6
-        ],
-        [
-          108,
-          49,
-          3
-        ],
-        [
-          109,
-          47,
-          2
-        ],
-        [
-          109,
-          49,
-          2
-        ],
-        [
-          109,
-          48,
-          1
-        ]
-      ],
-      "points": 15,
-      "points_sampled": false
-    },
-    {
-      "pattern": "-gamri",
-      "title": "-gamri",
-      "mode": "suffix",
-      "zoom": 7,
-      "places": 46,
-      "file": "-gamri_z7.json.gz",
-      "tiles": 6,
-      "score": 0.3170735150075462,
-      "entropy": 0.9176464001362657,
-      "hotspots": [
-        [
-          108,
-          48,
           13
         ],
         [
           108,
-          49,
+          48,
           11
         ],
         [
           109,
           48,
           11
+        ],
+        [
+          110,
+          47,
+          6
         ],
         [
           109,
           47,
-          4
-        ],
-        [
-          109,
-          49,
-          4
+          5
         ]
       ],
-      "points": 46,
+      "points": 51,
       "points_sampled": false
     },
     {
-      "pattern": "-uryongri",
-      "title": "-uryongri",
+      "pattern": "-산로동자구 / -sanrodongjagu",
+      "title": "-산로동자구 / -sanrodongjagu",
       "mode": "suffix",
       "zoom": 7,
       "places": 13,
-      "file": "-uryongri_z7.json.gz",
-      "tiles": 4,
-      "score": 0.3160336735873996,
-      "entropy": 0.880247514883099,
+      "file": "-산로동자구_z7.json.gz",
+      "tiles": 5,
+      "score": 0.32252553923913035,
+      "entropy": 0.8777875964952415,
       "hotspots": [
-        [
-          108,
-          48,
-          5
-        ],
         [
           109,
           48,
@@ -7635,12 +2365,22 @@
         ],
         [
           108,
-          49,
+          48,
+          4
+        ],
+        [
+          109,
+          47,
           2
         ],
         [
-          109,
+          108,
           49,
+          1
+        ],
+        [
+          110,
+          47,
           1
         ]
       ],
@@ -7648,92 +2388,12 @@
       "points_sampled": false
     },
     {
-      "pattern": "-yeri",
-      "title": "-yeri",
-      "mode": "suffix",
-      "zoom": 7,
-      "places": 28,
-      "file": "-yeri_z7.json.gz",
-      "tiles": 6,
-      "score": 0.31211019797320744,
-      "entropy": 0.9073113222800917,
-      "hotspots": [
-        [
-          108,
-          48,
-          9
-        ],
-        [
-          108,
-          49,
-          7
-        ],
-        [
-          109,
-          48,
-          4
-        ],
-        [
-          110,
-          47,
-          4
-        ],
-        [
-          109,
-          47,
-          3
-        ]
-      ],
-      "points": 28,
-      "points_sampled": false
-    },
-    {
-      "pattern": "-ndongri",
-      "title": "-ndongri",
-      "mode": "suffix",
-      "zoom": 7,
-      "places": 31,
-      "file": "-ndongri_z7.json.gz",
-      "tiles": 6,
-      "score": 0.31065754587294375,
-      "entropy": 0.9103631798308737,
-      "hotspots": [
-        [
-          109,
-          48,
-          12
-        ],
-        [
-          109,
-          47,
-          5
-        ],
-        [
-          108,
-          48,
-          4
-        ],
-        [
-          108,
-          49,
-          4
-        ],
-        [
-          109,
-          49,
-          4
-        ]
-      ],
-      "points": 31,
-      "points_sampled": false
-    },
-    {
-      "pattern": "-weonri",
-      "title": "-weonri",
+      "pattern": "-원리 / -weonri",
+      "title": "-원리 / -weonri",
       "mode": "suffix",
       "zoom": 7,
       "places": 40,
-      "file": "-weonri_z7.json.gz",
+      "file": "-원리_z7.json.gz",
       "tiles": 6,
       "score": 0.3068955848695309,
       "entropy": 0.9173583871924446,
@@ -7768,52 +2428,12 @@
       "points_sampled": false
     },
     {
-      "pattern": "-on",
-      "title": "-on",
-      "mode": "suffix",
-      "zoom": 7,
-      "places": 15,
-      "file": "-on_z7.json.gz",
-      "tiles": 5,
-      "score": 0.305304903220894,
-      "entropy": 0.8898845325410328,
-      "hotspots": [
-        [
-          110,
-          47,
-          5
-        ],
-        [
-          109,
-          47,
-          4
-        ],
-        [
-          109,
-          48,
-          4
-        ],
-        [
-          108,
-          48,
-          1
-        ],
-        [
-          109,
-          49,
-          1
-        ]
-      ],
-      "points": 15,
-      "points_sampled": false
-    },
-    {
-      "pattern": "-rimri",
-      "title": "-rimri",
+      "pattern": "-림리 / -rimri",
+      "title": "-림리 / -rimri",
       "mode": "suffix",
       "zoom": 7,
       "places": 22,
-      "file": "-rimri_z7.json.gz",
+      "file": "-림리_z7.json.gz",
       "tiles": 6,
       "score": 0.3041571049170446,
       "entropy": 0.9029954820608996,
@@ -7848,172 +2468,12 @@
       "points_sampled": false
     },
     {
-      "pattern": "-nceonri",
-      "title": "-nceonri",
-      "mode": "suffix",
-      "zoom": 7,
-      "places": 20,
-      "file": "-nceonri_z7.json.gz",
-      "tiles": 5,
-      "score": 0.30349075678308235,
-      "entropy": 0.9003158088038198,
-      "hotspots": [
-        [
-          108,
-          48,
-          6
-        ],
-        [
-          109,
-          48,
-          6
-        ],
-        [
-          108,
-          49,
-          5
-        ],
-        [
-          109,
-          47,
-          2
-        ],
-        [
-          109,
-          49,
-          1
-        ]
-      ],
-      "points": 20,
-      "points_sampled": false
-    },
-    {
-      "pattern": "-npyeongri",
-      "title": "-npyeongri",
-      "mode": "suffix",
-      "zoom": 7,
-      "places": 20,
-      "file": "-npyeongri_z7.json.gz",
-      "tiles": 6,
-      "score": 0.3023950175254218,
-      "entropy": 0.9006757139383932,
-      "hotspots": [
-        [
-          109,
-          48,
-          6
-        ],
-        [
-          108,
-          48,
-          5
-        ],
-        [
-          108,
-          49,
-          4
-        ],
-        [
-          109,
-          47,
-          3
-        ],
-        [
-          108,
-          47,
-          1
-        ]
-      ],
-      "points": 20,
-      "points_sampled": false
-    },
-    {
-      "pattern": "-geub",
-      "title": "-geub",
-      "mode": "suffix",
-      "zoom": 7,
-      "places": 45,
-      "file": "-geub_z7.json.gz",
-      "tiles": 7,
-      "score": 0.30054343182429927,
-      "entropy": 0.9215012844765507,
-      "hotspots": [
-        [
-          108,
-          48,
-          12
-        ],
-        [
-          109,
-          48,
-          10
-        ],
-        [
-          109,
-          47,
-          7
-        ],
-        [
-          108,
-          49,
-          5
-        ],
-        [
-          109,
-          49,
-          5
-        ]
-      ],
-      "points": 45,
-      "points_sampled": false
-    },
-    {
-      "pattern": "-ongsanri",
-      "title": "-ongsanri",
-      "mode": "suffix",
-      "zoom": 7,
-      "places": 45,
-      "file": "-ongsanri_z7.json.gz",
-      "tiles": 5,
-      "score": 0.3004119915923374,
-      "entropy": 0.9215356152530194,
-      "hotspots": [
-        [
-          108,
-          48,
-          17
-        ],
-        [
-          109,
-          48,
-          10
-        ],
-        [
-          108,
-          49,
-          9
-        ],
-        [
-          110,
-          47,
-          5
-        ],
-        [
-          109,
-          49,
-          4
-        ]
-      ],
-      "points": 45,
-      "points_sampled": false
-    },
-    {
-      "pattern": "-sambongri",
-      "title": "-sambongri",
+      "pattern": "-삼봉리 / -sambongri",
+      "title": "-삼봉리 / -sambongri",
       "mode": "suffix",
       "zoom": 7,
       "places": 12,
-      "file": "-sambongri_z7.json.gz",
+      "file": "-삼봉리_z7.json.gz",
       "tiles": 6,
       "score": 0.29847451084851,
       "entropy": 0.8836333707797247,
@@ -8048,172 +2508,52 @@
       "points_sampled": false
     },
     {
-      "pattern": "-gpori",
-      "title": "-gpori",
+      "pattern": "-암리 / -amri",
+      "title": "-암리 / -amri",
       "mode": "suffix",
       "zoom": 7,
-      "places": 28,
-      "file": "-gpori_z7.json.gz",
-      "tiles": 7,
-      "score": 0.2961201328648851,
-      "entropy": 0.9120599591435141,
+      "places": 88,
+      "file": "-암리_z7.json.gz",
+      "tiles": 6,
+      "score": 0.2880012845323961,
+      "entropy": 0.9358376885963737,
       "hotspots": [
         [
           108,
           48,
+          22
+        ],
+        [
+          108,
+          49,
+          20
+        ],
+        [
+          109,
+          48,
+          20
+        ],
+        [
+          109,
+          49,
+          14
+        ],
+        [
+          109,
+          47,
           7
-        ],
-        [
-          109,
-          49,
-          7
-        ],
-        [
-          109,
-          48,
-          5
-        ],
-        [
-          108,
-          49,
-          4
-        ],
-        [
-          109,
-          47,
-          2
         ]
       ],
-      "points": 28,
+      "points": 88,
       "points_sampled": false
     },
     {
-      "pattern": "-gsuri",
-      "title": "-gsuri",
-      "mode": "suffix",
-      "zoom": 7,
-      "places": 23,
-      "file": "-gsuri_z7.json.gz",
-      "tiles": 7,
-      "score": 0.2958666024624578,
-      "entropy": 0.9069032123882983,
-      "hotspots": [
-        [
-          109,
-          48,
-          6
-        ],
-        [
-          108,
-          48,
-          5
-        ],
-        [
-          109,
-          47,
-          5
-        ],
-        [
-          109,
-          49,
-          3
-        ],
-        [
-          108,
-          49,
-          2
-        ]
-      ],
-      "points": 23,
-      "points_sampled": false
-    },
-    {
-      "pattern": "-eondongri",
-      "title": "-eondongri",
-      "mode": "suffix",
-      "zoom": 7,
-      "places": 12,
-      "file": "-eondongri_z7.json.gz",
-      "tiles": 5,
-      "score": 0.2953239881200988,
-      "entropy": 0.8848616689990428,
-      "hotspots": [
-        [
-          109,
-          48,
-          5
-        ],
-        [
-          109,
-          47,
-          3
-        ],
-        [
-          109,
-          49,
-          2
-        ],
-        [
-          108,
-          48,
-          1
-        ],
-        [
-          108,
-          49,
-          1
-        ]
-      ],
-      "points": 12,
-      "points_sampled": false
-    },
-    {
-      "pattern": "-ondongri",
-      "title": "-ondongri",
-      "mode": "suffix",
-      "zoom": 7,
-      "places": 12,
-      "file": "-ondongri_z7.json.gz",
-      "tiles": 5,
-      "score": 0.2953239881200988,
-      "entropy": 0.8848616689990428,
-      "hotspots": [
-        [
-          109,
-          48,
-          5
-        ],
-        [
-          109,
-          47,
-          3
-        ],
-        [
-          109,
-          49,
-          2
-        ],
-        [
-          108,
-          48,
-          1
-        ],
-        [
-          108,
-          49,
-          1
-        ]
-      ],
-      "points": 12,
-      "points_sampled": false
-    },
-    {
-      "pattern": "-gogri",
-      "title": "-gogri",
+      "pattern": "-곡리 / -gogri",
+      "title": "-곡리 / -gogri",
       "mode": "suffix",
       "zoom": 7,
       "places": 51,
-      "file": "-gogri_z7.json.gz",
+      "file": "-곡리_z7.json.gz",
       "tiles": 6,
       "score": 0.2869397513148412,
       "entropy": 0.9273798905480176,
@@ -8248,842 +2588,12 @@
       "points_sampled": false
     },
     {
-      "pattern": "-nsuri",
-      "title": "-nsuri",
-      "mode": "suffix",
-      "zoom": 7,
-      "places": 10,
-      "file": "-nsuri_z7.json.gz",
-      "tiles": 4,
-      "score": 0.28659159033182596,
-      "entropy": 0.8804820237218407,
-      "hotspots": [
-        [
-          109,
-          48,
-          5
-        ],
-        [
-          108,
-          48,
-          2
-        ],
-        [
-          109,
-          47,
-          2
-        ],
-        [
-          108,
-          49,
-          1
-        ]
-      ],
-      "points": 10,
-      "points_sampled": false
-    },
-    {
-      "pattern": "-nhari",
-      "title": "-nhari",
-      "mode": "suffix",
-      "zoom": 7,
-      "places": 17,
-      "file": "-nhari_z7.json.gz",
-      "tiles": 5,
-      "score": 0.2826618562248989,
-      "entropy": 0.9022057091954697,
-      "hotspots": [
-        [
-          108,
-          48,
-          6
-        ],
-        [
-          109,
-          48,
-          5
-        ],
-        [
-          109,
-          47,
-          3
-        ],
-        [
-          108,
-          47,
-          2
-        ],
-        [
-          109,
-          49,
-          1
-        ]
-      ],
-      "points": 17,
-      "points_sampled": false
-    },
-    {
-      "pattern": "-ngpori",
-      "title": "-ngpori",
-      "mode": "suffix",
-      "zoom": 7,
-      "places": 22,
-      "file": "-ngpori_z7.json.gz",
-      "tiles": 7,
-      "score": 0.28067413978492434,
-      "entropy": 0.91048488038695,
-      "hotspots": [
-        [
-          109,
-          49,
-          6
-        ],
-        [
-          109,
-          48,
-          5
-        ],
-        [
-          108,
-          49,
-          4
-        ],
-        [
-          108,
-          48,
-          3
-        ],
-        [
-          109,
-          47,
-          2
-        ]
-      ],
-      "points": 22,
-      "points_sampled": false
-    },
-    {
-      "pattern": "-ngseongri",
-      "title": "-ngseongri",
-      "mode": "suffix",
-      "zoom": 7,
-      "places": 19,
-      "file": "-ngseongri_z7.json.gz",
-      "tiles": 4,
-      "score": 0.2801829364145015,
-      "entropy": 0.9064726381299401,
-      "hotspots": [
-        [
-          109,
-          48,
-          8
-        ],
-        [
-          108,
-          48,
-          6
-        ],
-        [
-          109,
-          47,
-          3
-        ],
-        [
-          108,
-          49,
-          2
-        ]
-      ],
-      "points": 19,
-      "points_sampled": false
-    },
-    {
-      "pattern": "-indong",
-      "title": "-indong",
-      "mode": "suffix",
-      "zoom": 7,
-      "places": 13,
-      "file": "-indong_z7.json.gz",
-      "tiles": 5,
-      "score": 0.2796655401640161,
-      "entropy": 0.8940282437120122,
-      "hotspots": [
-        [
-          108,
-          48,
-          5
-        ],
-        [
-          109,
-          48,
-          3
-        ],
-        [
-          110,
-          47,
-          3
-        ],
-        [
-          108,
-          47,
-          1
-        ],
-        [
-          109,
-          47,
-          1
-        ]
-      ],
-      "points": 13,
-      "points_sampled": false
-    },
-    {
-      "pattern": "-angdong",
-      "title": "-angdong",
-      "mode": "suffix",
-      "zoom": 7,
-      "places": 25,
-      "file": "-angdong_z7.json.gz",
-      "tiles": 4,
-      "score": 0.2791625514560502,
-      "entropy": 0.9143172867352866,
-      "hotspots": [
-        [
-          108,
-          48,
-          10
-        ],
-        [
-          110,
-          47,
-          7
-        ],
-        [
-          109,
-          48,
-          6
-        ],
-        [
-          108,
-          49,
-          2
-        ]
-      ],
-      "points": 25,
-      "points_sampled": false
-    },
-    {
-      "pattern": "-ngeub",
-      "title": "-ngeub",
-      "mode": "suffix",
-      "zoom": 7,
-      "places": 39,
-      "file": "-ngeub_z7.json.gz",
-      "tiles": 7,
-      "score": 0.2775861504829154,
-      "entropy": 0.9247505498794915,
-      "hotspots": [
-        [
-          108,
-          48,
-          11
-        ],
-        [
-          109,
-          48,
-          8
-        ],
-        [
-          109,
-          47,
-          5
-        ],
-        [
-          109,
-          49,
-          5
-        ],
-        [
-          110,
-          47,
-          5
-        ]
-      ],
-      "points": 39,
-      "points_sampled": false
-    },
-    {
-      "pattern": "-angceonri",
-      "title": "-angceonri",
-      "mode": "suffix",
-      "zoom": 7,
-      "places": 12,
-      "file": "-angceonri_z7.json.gz",
-      "tiles": 4,
-      "score": 0.2768104531657168,
-      "entropy": 0.8920795639257109,
-      "hotspots": [
-        [
-          108,
-          49,
-          5
-        ],
-        [
-          108,
-          48,
-          4
-        ],
-        [
-          109,
-          48,
-          2
-        ],
-        [
-          110,
-          47,
-          1
-        ]
-      ],
-      "points": 12,
-      "points_sampled": false
-    },
-    {
-      "pattern": "-ogsanri",
-      "title": "-ogsanri",
-      "mode": "suffix",
-      "zoom": 7,
-      "places": 12,
-      "file": "-ogsanri_z7.json.gz",
-      "tiles": 4,
-      "score": 0.2768104531657168,
-      "entropy": 0.8920795639257109,
-      "hotspots": [
-        [
-          108,
-          49,
-          5
-        ],
-        [
-          109,
-          49,
-          4
-        ],
-        [
-          109,
-          48,
-          2
-        ],
-        [
-          108,
-          48,
-          1
-        ]
-      ],
-      "points": 12,
-      "points_sampled": false
-    },
-    {
-      "pattern": "-ghori",
-      "title": "-ghori",
-      "mode": "suffix",
-      "zoom": 7,
-      "places": 17,
-      "file": "-ghori_z7.json.gz",
-      "tiles": 4,
-      "score": 0.2756214006759085,
-      "entropy": 0.9046415396486828,
-      "hotspots": [
-        [
-          108,
-          49,
-          6
-        ],
-        [
-          108,
-          48,
-          5
-        ],
-        [
-          109,
-          48,
-          5
-        ],
-        [
-          110,
-          47,
-          1
-        ]
-      ],
-      "points": 17,
-      "points_sampled": false
-    },
-    {
-      "pattern": "-ongceonri",
-      "title": "-ongceonri",
-      "mode": "suffix",
-      "zoom": 7,
-      "places": 18,
-      "file": "-ongceonri_z7.json.gz",
-      "tiles": 5,
-      "score": 0.2716181242704976,
-      "entropy": 0.9077521639292414,
-      "hotspots": [
-        [
-          108,
-          49,
-          6
-        ],
-        [
-          109,
-          48,
-          5
-        ],
-        [
-          108,
-          48,
-          4
-        ],
-        [
-          109,
-          49,
-          2
-        ],
-        [
-          110,
-          47,
-          1
-        ]
-      ],
-      "points": 18,
-      "points_sampled": false
-    },
-    {
-      "pattern": "-ugri",
-      "title": "-ugri",
-      "mode": "suffix",
-      "zoom": 7,
-      "places": 25,
-      "file": "-ugri_z7.json.gz",
-      "tiles": 6,
-      "score": 0.2692425014681497,
-      "entropy": 0.9173620246281436,
-      "hotspots": [
-        [
-          108,
-          49,
-          7
-        ],
-        [
-          109,
-          48,
-          7
-        ],
-        [
-          108,
-          48,
-          4
-        ],
-        [
-          109,
-          47,
-          3
-        ],
-        [
-          109,
-          49,
-          3
-        ]
-      ],
-      "points": 25,
-      "points_sampled": false
-    },
-    {
-      "pattern": "-ongdongri",
-      "title": "-ongdongri",
-      "mode": "suffix",
-      "zoom": 7,
-      "places": 18,
-      "file": "-ongdongri_z7.json.gz",
-      "tiles": 7,
-      "score": 0.261816518199847,
-      "entropy": 0.9110810174527827,
-      "hotspots": [
-        [
-          109,
-          48,
-          6
-        ],
-        [
-          108,
-          48,
-          3
-        ],
-        [
-          109,
-          49,
-          3
-        ],
-        [
-          108,
-          49,
-          2
-        ],
-        [
-          110,
-          47,
-          2
-        ]
-      ],
-      "points": 18,
-      "points_sampled": false
-    },
-    {
-      "pattern": "-gsinri",
-      "title": "-gsinri",
-      "mode": "suffix",
-      "zoom": 7,
-      "places": 11,
-      "file": "-gsinri_z7.json.gz",
-      "tiles": 4,
-      "score": 0.26100331884464884,
-      "entropy": 0.8949645376549995,
-      "hotspots": [
-        [
-          109,
-          48,
-          5
-        ],
-        [
-          109,
-          47,
-          3
-        ],
-        [
-          108,
-          48,
-          2
-        ],
-        [
-          110,
-          47,
-          1
-        ]
-      ],
-      "points": 11,
-      "points_sampled": false
-    },
-    {
-      "pattern": "-unsanri",
-      "title": "-unsanri",
-      "mode": "suffix",
-      "zoom": 7,
-      "places": 11,
-      "file": "-unsanri_z7.json.gz",
-      "tiles": 4,
-      "score": 0.26100331884464884,
-      "entropy": 0.8949645376549995,
-      "hotspots": [
-        [
-          108,
-          49,
-          5
-        ],
-        [
-          109,
-          48,
-          3
-        ],
-        [
-          108,
-          48,
-          2
-        ],
-        [
-          109,
-          49,
-          1
-        ]
-      ],
-      "points": 11,
-      "points_sampled": false
-    },
-    {
-      "pattern": "-yeongdong",
-      "title": "-yeongdong",
-      "mode": "suffix",
-      "zoom": 7,
-      "places": 11,
-      "file": "-yeongdong_z7.json.gz",
-      "tiles": 4,
-      "score": 0.26100331884464884,
-      "entropy": 0.8949645376549995,
-      "hotspots": [
-        [
-          108,
-          48,
-          5
-        ],
-        [
-          109,
-          48,
-          3
-        ],
-        [
-          110,
-          47,
-          2
-        ],
-        [
-          109,
-          47,
-          1
-        ]
-      ],
-      "points": 11,
-      "points_sampled": false
-    },
-    {
-      "pattern": "-asanri",
-      "title": "-asanri",
-      "mode": "suffix",
-      "zoom": 7,
-      "places": 20,
-      "file": "-asanri_z7.json.gz",
-      "tiles": 6,
-      "score": 0.2579403699695581,
-      "entropy": 0.9152772314063036,
-      "hotspots": [
-        [
-          108,
-          49,
-          6
-        ],
-        [
-          108,
-          48,
-          5
-        ],
-        [
-          109,
-          48,
-          4
-        ],
-        [
-          109,
-          49,
-          2
-        ],
-        [
-          110,
-          47,
-          2
-        ]
-      ],
-      "points": 20,
-      "points_sampled": false
-    },
-    {
-      "pattern": "-gbongri",
-      "title": "-gbongri",
-      "mode": "suffix",
-      "zoom": 7,
-      "places": 20,
-      "file": "-gbongri_z7.json.gz",
-      "tiles": 5,
-      "score": 0.25674346501331746,
-      "entropy": 0.9156703652986377,
-      "hotspots": [
-        [
-          108,
-          48,
-          7
-        ],
-        [
-          109,
-          48,
-          6
-        ],
-        [
-          109,
-          49,
-          3
-        ],
-        [
-          108,
-          49,
-          2
-        ],
-        [
-          109,
-          47,
-          2
-        ]
-      ],
-      "points": 20,
-      "points_sampled": false
-    },
-    {
-      "pattern": "-ggogri",
-      "title": "-ggogri",
-      "mode": "suffix",
-      "zoom": 7,
-      "places": 16,
-      "file": "-ggogri_z7.json.gz",
-      "tiles": 6,
-      "score": 0.25509757069386296,
-      "entropy": 0.9099617502405772,
-      "hotspots": [
-        [
-          108,
-          49,
-          5
-        ],
-        [
-          108,
-          48,
-          4
-        ],
-        [
-          109,
-          48,
-          3
-        ],
-        [
-          110,
-          47,
-          2
-        ],
-        [
-          109,
-          47,
-          1
-        ]
-      ],
-      "points": 16,
-      "points_sampled": false
-    },
-    {
-      "pattern": "-guri",
-      "title": "-guri",
-      "mode": "suffix",
-      "zoom": 7,
-      "places": 16,
-      "file": "-guri_z7.json.gz",
-      "tiles": 6,
-      "score": 0.25509757069386296,
-      "entropy": 0.9099617502405772,
-      "hotspots": [
-        [
-          109,
-          48,
-          5
-        ],
-        [
-          108,
-          49,
-          4
-        ],
-        [
-          108,
-          48,
-          3
-        ],
-        [
-          109,
-          47,
-          2
-        ],
-        [
-          109,
-          49,
-          1
-        ]
-      ],
-      "points": 16,
-      "points_sampled": false
-    },
-    {
-      "pattern": "-ngsuri",
-      "title": "-ngsuri",
-      "mode": "suffix",
-      "zoom": 7,
-      "places": 10,
-      "file": "-ngsuri_z7.json.gz",
-      "tiles": 6,
-      "score": 0.24399926813492298,
-      "entropy": 0.8982444017039272,
-      "hotspots": [
-        [
-          109,
-          48,
-          4
-        ],
-        [
-          109,
-          47,
-          2
-        ],
-        [
-          108,
-          48,
-          1
-        ],
-        [
-          108,
-          49,
-          1
-        ],
-        [
-          109,
-          49,
-          1
-        ]
-      ],
-      "points": 10,
-      "points_sampled": false
-    },
-    {
-      "pattern": "-nghori",
-      "title": "-nghori",
+      "pattern": "-학리 / -hagri",
+      "title": "-학리 / -hagri",
       "mode": "suffix",
       "zoom": 7,
       "places": 15,
-      "file": "-nghori_z7.json.gz",
-      "tiles": 4,
-      "score": 0.24176252921143646,
-      "entropy": 0.9128025995084719,
-      "hotspots": [
-        [
-          108,
-          48,
-          5
-        ],
-        [
-          108,
-          49,
-          5
-        ],
-        [
-          109,
-          48,
-          4
-        ],
-        [
-          110,
-          47,
-          1
-        ]
-      ],
-      "points": 15,
-      "points_sampled": false
-    },
-    {
-      "pattern": "-hagri",
-      "title": "-hagri",
-      "mode": "suffix",
-      "zoom": 7,
-      "places": 15,
-      "file": "-hagri_z7.json.gz",
+      "file": "-학리_z7.json.gz",
       "tiles": 6,
       "score": 0.23528869261357271,
       "entropy": 0.9151375424972877,
@@ -9118,12 +2628,12 @@
       "points_sampled": false
     },
     {
-      "pattern": "-dangri",
-      "title": "-dangri",
+      "pattern": "-당리 / -dangri",
+      "title": "-당리 / -dangri",
       "mode": "suffix",
       "zoom": 7,
       "places": 17,
-      "file": "-dangri_z7.json.gz",
+      "file": "-당리_z7.json.gz",
       "tiles": 5,
       "score": 0.2346982393544245,
       "entropy": 0.9187999817970627,
@@ -9158,337 +2668,12 @@
       "points_sampled": false
     },
     {
-      "pattern": "-angheungri",
-      "title": "-angheungri",
+      "pattern": "-방리 / -bangri",
+      "title": "-방리 / -bangri",
       "mode": "suffix",
       "zoom": 7,
       "places": 11,
-      "file": "-angheungri_z7.json.gz",
-      "tiles": 3,
-      "score": 0.23452917257436645,
-      "entropy": 0.9056185178648963,
-      "hotspots": [
-        [
-          109,
-          48,
-          6
-        ],
-        [
-          109,
-          47,
-          3
-        ],
-        [
-          108,
-          48,
-          2
-        ]
-      ],
-      "points": 11,
-      "points_sampled": false
-    },
-    {
-      "pattern": "-eogdong",
-      "title": "-eogdong",
-      "mode": "suffix",
-      "zoom": 7,
-      "places": 13,
-      "file": "-eogdong_z7.json.gz",
-      "tiles": 4,
-      "score": 0.2292743621839997,
-      "entropy": 0.9131226292013046,
-      "hotspots": [
-        [
-          109,
-          48,
-          5
-        ],
-        [
-          108,
-          48,
-          4
-        ],
-        [
-          110,
-          47,
-          3
-        ],
-        [
-          109,
-          49,
-          1
-        ]
-      ],
-      "points": 13,
-      "points_sampled": false
-    },
-    {
-      "pattern": "-nghari",
-      "title": "-nghari",
-      "mode": "suffix",
-      "zoom": 7,
-      "places": 17,
-      "file": "-nghari_z7.json.gz",
-      "tiles": 6,
-      "score": 0.2286971488242922,
-      "entropy": 0.9208762166321623,
-      "hotspots": [
-        [
-          108,
-          48,
-          6
-        ],
-        [
-          109,
-          48,
-          3
-        ],
-        [
-          109,
-          49,
-          3
-        ],
-        [
-          108,
-          49,
-          2
-        ],
-        [
-          109,
-          47,
-          2
-        ]
-      ],
-      "points": 17,
-      "points_sampled": false
-    },
-    {
-      "pattern": "-angdongri",
-      "title": "-angdongri",
-      "mode": "suffix",
-      "zoom": 7,
-      "places": 12,
-      "file": "-angdongri_z7.json.gz",
-      "tiles": 6,
-      "score": 0.2277965646368719,
-      "entropy": 0.911188669681059,
-      "hotspots": [
-        [
-          109,
-          48,
-          4
-        ],
-        [
-          109,
-          49,
-          3
-        ],
-        [
-          108,
-          48,
-          2
-        ],
-        [
-          108,
-          49,
-          1
-        ],
-        [
-          109,
-          47,
-          1
-        ]
-      ],
-      "points": 12,
-      "points_sampled": false
-    },
-    {
-      "pattern": "-ongdeogri",
-      "title": "-ongdeogri",
-      "mode": "suffix",
-      "zoom": 7,
-      "places": 12,
-      "file": "-ongdeogri_z7.json.gz",
-      "tiles": 6,
-      "score": 0.2277965646368719,
-      "entropy": 0.911188669681059,
-      "hotspots": [
-        [
-          108,
-          48,
-          4
-        ],
-        [
-          109,
-          47,
-          3
-        ],
-        [
-          109,
-          48,
-          2
-        ],
-        [
-          108,
-          49,
-          1
-        ],
-        [
-          109,
-          49,
-          1
-        ]
-      ],
-      "points": 12,
-      "points_sampled": false
-    },
-    {
-      "pattern": "-con",
-      "title": "-con",
-      "mode": "suffix",
-      "zoom": 7,
-      "places": 12,
-      "file": "-con_z7.json.gz",
-      "tiles": 4,
-      "score": 0.22441869117974983,
-      "entropy": 0.9125056054120885,
-      "hotspots": [
-        [
-          110,
-          47,
-          5
-        ],
-        [
-          109,
-          47,
-          3
-        ],
-        [
-          109,
-          48,
-          3
-        ],
-        [
-          108,
-          48,
-          1
-        ]
-      ],
-      "points": 12,
-      "points_sampled": false
-    },
-    {
-      "pattern": "-ogdong",
-      "title": "-ogdong",
-      "mode": "suffix",
-      "zoom": 7,
-      "places": 14,
-      "file": "-ogdong_z7.json.gz",
-      "tiles": 4,
-      "score": 0.22309222847078677,
-      "entropy": 0.9176188726560588,
-      "hotspots": [
-        [
-          109,
-          48,
-          5
-        ],
-        [
-          108,
-          48,
-          4
-        ],
-        [
-          110,
-          47,
-          4
-        ],
-        [
-          109,
-          49,
-          1
-        ]
-      ],
-      "points": 14,
-      "points_sampled": false
-    },
-    {
-      "pattern": "-amsanri",
-      "title": "-amsanri",
-      "mode": "suffix",
-      "zoom": 7,
-      "places": 11,
-      "file": "-amsanri_z7.json.gz",
-      "tiles": 4,
-      "score": 0.2198297737042937,
-      "entropy": 0.9115339911368306,
-      "hotspots": [
-        [
-          108,
-          48,
-          4
-        ],
-        [
-          108,
-          49,
-          4
-        ],
-        [
-          109,
-          48,
-          2
-        ],
-        [
-          110,
-          47,
-          1
-        ]
-      ],
-      "points": 11,
-      "points_sampled": false
-    },
-    {
-      "pattern": "-gdori",
-      "title": "-gdori",
-      "mode": "suffix",
-      "zoom": 7,
-      "places": 11,
-      "file": "-gdori_z7.json.gz",
-      "tiles": 4,
-      "score": 0.2198297737042937,
-      "entropy": 0.9115339911368306,
-      "hotspots": [
-        [
-          108,
-          48,
-          4
-        ],
-        [
-          109,
-          49,
-          4
-        ],
-        [
-          109,
-          48,
-          2
-        ],
-        [
-          108,
-          49,
-          1
-        ]
-      ],
-      "points": 11,
-      "points_sampled": false
-    },
-    {
-      "pattern": "-bangri",
-      "title": "-bangri",
-      "mode": "suffix",
-      "zoom": 7,
-      "places": 11,
-      "file": "-bangri_z7.json.gz",
+      "file": "-방리_z7.json.gz",
       "tiles": 5,
       "score": 0.21815832163209561,
       "entropy": 0.9122066329329885,
@@ -9523,172 +2708,12 @@
       "points_sampled": false
     },
     {
-      "pattern": "-ongnamri",
-      "title": "-ongnamri",
-      "mode": "suffix",
-      "zoom": 7,
-      "places": 11,
-      "file": "-ongnamri_z7.json.gz",
-      "tiles": 5,
-      "score": 0.21815832163209561,
-      "entropy": 0.9122066329329885,
-      "hotspots": [
-        [
-          108,
-          48,
-          4
-        ],
-        [
-          110,
-          47,
-          3
-        ],
-        [
-          108,
-          49,
-          2
-        ],
-        [
-          109,
-          47,
-          1
-        ],
-        [
-          109,
-          48,
-          1
-        ]
-      ],
-      "points": 11,
-      "points_sampled": false
-    },
-    {
-      "pattern": "-unamri",
-      "title": "-unamri",
-      "mode": "suffix",
-      "zoom": 7,
-      "places": 12,
-      "file": "-unamri_z7.json.gz",
-      "tiles": 5,
-      "score": 0.21663944961636253,
-      "entropy": 0.9155385080075168,
-      "hotspots": [
-        [
-          109,
-          48,
-          4
-        ],
-        [
-          109,
-          47,
-          3
-        ],
-        [
-          110,
-          47,
-          3
-        ],
-        [
-          108,
-          48,
-          1
-        ],
-        [
-          109,
-          49,
-          1
-        ]
-      ],
-      "points": 12,
-      "points_sampled": false
-    },
-    {
-      "pattern": "-angsanri",
-      "title": "-angsanri",
+      "pattern": "-읍리 / -eubri",
+      "title": "-읍리 / -eubri",
       "mode": "suffix",
       "zoom": 7,
       "places": 13,
-      "file": "-angsanri_z7.json.gz",
-      "tiles": 5,
-      "score": 0.2136662991417994,
-      "entropy": 0.9190368861092725,
-      "hotspots": [
-        [
-          108,
-          48,
-          5
-        ],
-        [
-          108,
-          49,
-          3
-        ],
-        [
-          109,
-          48,
-          2
-        ],
-        [
-          109,
-          49,
-          2
-        ],
-        [
-          109,
-          47,
-          1
-        ]
-      ],
-      "points": 13,
-      "points_sampled": false
-    },
-    {
-      "pattern": "-ggyeri",
-      "title": "-ggyeri",
-      "mode": "suffix",
-      "zoom": 7,
-      "places": 13,
-      "file": "-ggyeri_z7.json.gz",
-      "tiles": 5,
-      "score": 0.2136662991417994,
-      "entropy": 0.9190368861092725,
-      "hotspots": [
-        [
-          108,
-          48,
-          5
-        ],
-        [
-          108,
-          49,
-          3
-        ],
-        [
-          109,
-          47,
-          2
-        ],
-        [
-          110,
-          47,
-          2
-        ],
-        [
-          109,
-          48,
-          1
-        ]
-      ],
-      "points": 13,
-      "points_sampled": false
-    },
-    {
-      "pattern": "-eubri",
-      "title": "-eubri",
-      "mode": "suffix",
-      "zoom": 7,
-      "places": 13,
-      "file": "-eubri_z7.json.gz",
+      "file": "-읍리_z7.json.gz",
       "tiles": 3,
       "score": 0.21262245257782866,
       "entropy": 0.9194324237704884,
@@ -9713,672 +2738,42 @@
       "points_sampled": false
     },
     {
-      "pattern": "-ubri",
-      "title": "-ubri",
+      "pattern": "-암동 / -amdong",
+      "title": "-암동 / -amdong",
       "mode": "suffix",
       "zoom": 7,
-      "places": 13,
-      "file": "-ubri_z7.json.gz",
+      "places": 12,
+      "file": "-암동_z7.json.gz",
       "tiles": 3,
-      "score": 0.21262245257782866,
-      "entropy": 0.9194324237704884,
-      "hotspots": [
-        [
-          109,
-          48,
-          7
-        ],
-        [
-          108,
-          48,
-          3
-        ],
-        [
-          109,
-          49,
-          3
-        ]
-      ],
-      "points": 13,
-      "points_sampled": false
-    },
-    {
-      "pattern": "-ongpori",
-      "title": "-ongpori",
-      "mode": "suffix",
-      "zoom": 7,
-      "places": 19,
-      "file": "-ongpori_z7.json.gz",
-      "tiles": 7,
-      "score": 0.21052990245471853,
-      "entropy": 0.9297233920690262,
-      "hotspots": [
-        [
-          109,
-          49,
-          5
-        ],
-        [
-          108,
-          49,
-          4
-        ],
-        [
-          108,
-          48,
-          3
-        ],
-        [
-          109,
-          48,
-          3
-        ],
-        [
-          109,
-          47,
-          2
-        ]
-      ],
-      "points": 19,
-      "points_sampled": false
-    },
-    {
-      "pattern": "-nghyeonri",
-      "title": "-nghyeonri",
-      "mode": "suffix",
-      "zoom": 7,
-      "places": 16,
-      "file": "-nghyeonri_z7.json.gz",
-      "tiles": 5,
-      "score": 0.21052162156978352,
-      "entropy": 0.9256951044610051,
+      "score": 0.20360610137978474,
+      "entropy": 0.920619835714305,
       "hotspots": [
         [
           108,
-          49,
-          5
-        ],
-        [
-          108,
           48,
-          4
+          6
         ],
         [
           109,
-          49,
+          48,
           4
         ],
         [
           110,
           47,
           2
-        ],
-        [
-          109,
-          48,
-          1
-        ]
-      ],
-      "points": 16,
-      "points_sampled": false
-    },
-    {
-      "pattern": "-ongsangri",
-      "title": "-ongsangri",
-      "mode": "suffix",
-      "zoom": 7,
-      "places": 12,
-      "file": "-ongsangri_z7.json.gz",
-      "tiles": 2,
-      "score": 0.20956704794386807,
-      "entropy": 0.9182958340544894,
-      "hotspots": [
-        [
-          108,
-          48,
-          8
-        ],
-        [
-          109,
-          48,
-          4
         ]
       ],
       "points": 12,
       "points_sampled": false
     },
     {
-      "pattern": "-nggogri",
-      "title": "-nggogri",
-      "mode": "suffix",
-      "zoom": 7,
-      "places": 15,
-      "file": "-nggogri_z7.json.gz",
-      "tiles": 6,
-      "score": 0.20922290747920766,
-      "entropy": 0.9245387872348442,
-      "hotspots": [
-        [
-          108,
-          48,
-          4
-        ],
-        [
-          108,
-          49,
-          4
-        ],
-        [
-          109,
-          48,
-          3
-        ],
-        [
-          110,
-          47,
-          2
-        ],
-        [
-          109,
-          47,
-          1
-        ]
-      ],
-      "points": 15,
-      "points_sampled": false
-    },
-    {
-      "pattern": "-udong",
-      "title": "-udong",
-      "mode": "suffix",
-      "zoom": 7,
-      "places": 15,
-      "file": "-udong_z7.json.gz",
-      "tiles": 6,
-      "score": 0.20922290747920766,
-      "entropy": 0.9245387872348442,
-      "hotspots": [
-        [
-          108,
-          48,
-          4
-        ],
-        [
-          109,
-          47,
-          4
-        ],
-        [
-          109,
-          48,
-          3
-        ],
-        [
-          108,
-          49,
-          2
-        ],
-        [
-          108,
-          47,
-          1
-        ]
-      ],
-      "points": 15,
-      "points_sampled": false
-    },
-    {
-      "pattern": "-ngweonri",
-      "title": "-ngweonri",
-      "mode": "suffix",
-      "zoom": 7,
-      "places": 11,
-      "file": "-ngweonri_z7.json.gz",
-      "tiles": 6,
-      "score": 0.20806225545634432,
-      "entropy": 0.9162695888499091,
-      "hotspots": [
-        [
-          109,
-          48,
-          4
-        ],
-        [
-          108,
-          48,
-          2
-        ],
-        [
-          109,
-          49,
-          2
-        ],
-        [
-          108,
-          49,
-          1
-        ],
-        [
-          110,
-          47,
-          1
-        ]
-      ],
-      "points": 11,
-      "points_sampled": false
-    },
-    {
-      "pattern": "-bseogri",
-      "title": "-bseogri",
-      "mode": "suffix",
-      "zoom": 7,
-      "places": 10,
-      "file": "-bseogri_z7.json.gz",
-      "tiles": 5,
-      "score": 0.20654345654185208,
-      "entropy": 0.9138646883853215,
-      "hotspots": [
-        [
-          108,
-          48,
-          4
-        ],
-        [
-          109,
-          48,
-          2
-        ],
-        [
-          109,
-          49,
-          2
-        ],
-        [
-          108,
-          49,
-          1
-        ],
-        [
-          110,
-          47,
-          1
-        ]
-      ],
-      "points": 10,
-      "points_sampled": false
-    },
-    {
-      "pattern": "-ibseogri",
-      "title": "-ibseogri",
-      "mode": "suffix",
-      "zoom": 7,
-      "places": 10,
-      "file": "-ibseogri_z7.json.gz",
-      "tiles": 5,
-      "score": 0.20654345654185208,
-      "entropy": 0.9138646883853215,
-      "hotspots": [
-        [
-          108,
-          48,
-          4
-        ],
-        [
-          109,
-          48,
-          2
-        ],
-        [
-          109,
-          49,
-          2
-        ],
-        [
-          108,
-          49,
-          1
-        ],
-        [
-          110,
-          47,
-          1
-        ]
-      ],
-      "points": 10,
-      "points_sampled": false
-    },
-    {
-      "pattern": "-gnamri",
-      "title": "-gnamri",
-      "mode": "suffix",
-      "zoom": 7,
-      "places": 18,
-      "file": "-gnamri_z7.json.gz",
-      "tiles": 5,
-      "score": 0.19093541740388037,
-      "entropy": 0.9351538888206359,
-      "hotspots": [
-        [
-          108,
-          48,
-          5
-        ],
-        [
-          109,
-          48,
-          5
-        ],
-        [
-          108,
-          49,
-          4
-        ],
-        [
-          110,
-          47,
-          3
-        ],
-        [
-          109,
-          47,
-          1
-        ]
-      ],
-      "points": 18,
-      "points_sampled": false
-    },
-    {
-      "pattern": "-ngnamri",
-      "title": "-ngnamri",
-      "mode": "suffix",
-      "zoom": 7,
-      "places": 18,
-      "file": "-ngnamri_z7.json.gz",
-      "tiles": 5,
-      "score": 0.19093541740388037,
-      "entropy": 0.9351538888206359,
-      "hotspots": [
-        [
-          108,
-          48,
-          5
-        ],
-        [
-          109,
-          48,
-          5
-        ],
-        [
-          108,
-          49,
-          4
-        ],
-        [
-          110,
-          47,
-          3
-        ],
-        [
-          109,
-          47,
-          1
-        ]
-      ],
-      "points": 18,
-      "points_sampled": false
-    },
-    {
-      "pattern": "-onghori",
-      "title": "-onghori",
-      "mode": "suffix",
-      "zoom": 7,
-      "places": 12,
-      "file": "-onghori_z7.json.gz",
-      "tiles": 4,
-      "score": 0.18546053287318115,
-      "entropy": 0.9276942711037669,
-      "hotspots": [
-        [
-          108,
-          48,
-          4
-        ],
-        [
-          108,
-          49,
-          4
-        ],
-        [
-          109,
-          48,
-          3
-        ],
-        [
-          110,
-          47,
-          1
-        ]
-      ],
-      "points": 12,
-      "points_sampled": false
-    },
-    {
-      "pattern": "-eumri",
-      "title": "-eumri",
-      "mode": "suffix",
-      "zoom": 7,
-      "places": 10,
-      "file": "-eumri_z7.json.gz",
-      "tiles": 4,
-      "score": 0.18411118475059574,
-      "entropy": 0.9232196723355078,
-      "hotspots": [
-        [
-          109,
-          48,
-          4
-        ],
-        [
-          108,
-          48,
-          3
-        ],
-        [
-          108,
-          49,
-          2
-        ],
-        [
-          109,
-          49,
-          1
-        ]
-      ],
-      "points": 10,
-      "points_sampled": false
-    },
-    {
-      "pattern": "-gori",
-      "title": "-gori",
-      "mode": "suffix",
-      "zoom": 7,
-      "places": 10,
-      "file": "-gori_z7.json.gz",
-      "tiles": 4,
-      "score": 0.18411118475059574,
-      "entropy": 0.9232196723355078,
-      "hotspots": [
-        [
-          108,
-          48,
-          4
-        ],
-        [
-          108,
-          49,
-          3
-        ],
-        [
-          109,
-          48,
-          2
-        ],
-        [
-          109,
-          49,
-          1
-        ]
-      ],
-      "points": 10,
-      "points_sampled": false
-    },
-    {
-      "pattern": "-mogri",
-      "title": "-mogri",
-      "mode": "suffix",
-      "zoom": 7,
-      "places": 10,
-      "file": "-mogri_z7.json.gz",
-      "tiles": 4,
-      "score": 0.18411118475059574,
-      "entropy": 0.9232196723355078,
-      "hotspots": [
-        [
-          108,
-          48,
-          4
-        ],
-        [
-          109,
-          49,
-          3
-        ],
-        [
-          109,
-          48,
-          2
-        ],
-        [
-          108,
-          49,
-          1
-        ]
-      ],
-      "points": 10,
-      "points_sampled": false
-    },
-    {
-      "pattern": "-ngyangri",
-      "title": "-ngyangri",
-      "mode": "suffix",
-      "zoom": 7,
-      "places": 10,
-      "file": "-ngyangri_z7.json.gz",
-      "tiles": 4,
-      "score": 0.18411118475059574,
-      "entropy": 0.9232196723355078,
-      "hotspots": [
-        [
-          109,
-          48,
-          4
-        ],
-        [
-          108,
-          48,
-          3
-        ],
-        [
-          109,
-          47,
-          2
-        ],
-        [
-          108,
-          49,
-          1
-        ]
-      ],
-      "points": 10,
-      "points_sampled": false
-    },
-    {
-      "pattern": "-onghyeonri",
-      "title": "-onghyeonri",
-      "mode": "suffix",
-      "zoom": 7,
-      "places": 10,
-      "file": "-onghyeonri_z7.json.gz",
-      "tiles": 4,
-      "score": 0.18411118475059574,
-      "entropy": 0.9232196723355078,
-      "hotspots": [
-        [
-          108,
-          48,
-          4
-        ],
-        [
-          108,
-          49,
-          3
-        ],
-        [
-          110,
-          47,
-          2
-        ],
-        [
-          109,
-          49,
-          1
-        ]
-      ],
-      "points": 10,
-      "points_sampled": false
-    },
-    {
-      "pattern": "-umri",
-      "title": "-umri",
-      "mode": "suffix",
-      "zoom": 7,
-      "places": 10,
-      "file": "-umri_z7.json.gz",
-      "tiles": 4,
-      "score": 0.18411118475059574,
-      "entropy": 0.9232196723355078,
-      "hotspots": [
-        [
-          109,
-          48,
-          4
-        ],
-        [
-          108,
-          48,
-          3
-        ],
-        [
-          108,
-          49,
-          2
-        ],
-        [
-          109,
-          49,
-          1
-        ]
-      ],
-      "points": 10,
-      "points_sampled": false
-    },
-    {
-      "pattern": "-tanri",
-      "title": "-tanri",
+      "pattern": "-탄리 / -tanri",
+      "title": "-탄리 / -tanri",
       "mode": "suffix",
       "zoom": 7,
       "places": 17,
-      "file": "-tanri_z7.json.gz",
+      "file": "-탄리_z7.json.gz",
       "tiles": 4,
       "score": 0.18401604105127212,
       "entropy": 0.9363348190250748,
@@ -10408,397 +2803,12 @@
       "points_sampled": false
     },
     {
-      "pattern": "-mceonri",
-      "title": "-mceonri",
-      "mode": "suffix",
-      "zoom": 7,
-      "places": 13,
-      "file": "-mceonri_z7.json.gz",
-      "tiles": 5,
-      "score": 0.18179589498484547,
-      "entropy": 0.9311133210541701,
-      "hotspots": [
-        [
-          108,
-          49,
-          4
-        ],
-        [
-          109,
-          48,
-          4
-        ],
-        [
-          108,
-          48,
-          2
-        ],
-        [
-          109,
-          49,
-          2
-        ],
-        [
-          109,
-          47,
-          1
-        ]
-      ],
-      "points": 13,
-      "points_sampled": false
-    },
-    {
-      "pattern": "-eongeub",
-      "title": "-eongeub",
-      "mode": "suffix",
-      "zoom": 7,
-      "places": 14,
-      "file": "-eongeub_z7.json.gz",
-      "tiles": 6,
-      "score": 0.17931317125081972,
-      "entropy": 0.9337851376692216,
-      "hotspots": [
-        [
-          109,
-          48,
-          4
-        ],
-        [
-          108,
-          49,
-          3
-        ],
-        [
-          110,
-          47,
-          3
-        ],
-        [
-          109,
-          47,
-          2
-        ],
-        [
-          108,
-          48,
-          1
-        ]
-      ],
-      "points": 14,
-      "points_sampled": false
-    },
-    {
-      "pattern": "-eonghwari",
-      "title": "-eonghwari",
-      "mode": "suffix",
-      "zoom": 7,
-      "places": 11,
-      "file": "-eonghwari_z7.json.gz",
-      "tiles": 5,
-      "score": 0.17046428531795182,
-      "entropy": 0.9314001250982628,
-      "hotspots": [
-        [
-          108,
-          48,
-          3
-        ],
-        [
-          108,
-          49,
-          3
-        ],
-        [
-          109,
-          48,
-          3
-        ],
-        [
-          109,
-          47,
-          1
-        ],
-        [
-          109,
-          49,
-          1
-        ]
-      ],
-      "points": 11,
-      "points_sampled": false
-    },
-    {
-      "pattern": "-eongsanri",
-      "title": "-eongsanri",
-      "mode": "suffix",
-      "zoom": 7,
-      "places": 16,
-      "file": "-eongsanri_z7.json.gz",
-      "tiles": 4,
-      "score": 0.16965166058676903,
-      "entropy": 0.9401204074720739,
-      "hotspots": [
-        [
-          108,
-          48,
-          7
-        ],
-        [
-          108,
-          49,
-          3
-        ],
-        [
-          109,
-          48,
-          3
-        ],
-        [
-          109,
-          49,
-          3
-        ]
-      ],
-      "points": 16,
-      "points_sampled": false
-    },
-    {
-      "pattern": "-abri",
-      "title": "-abri",
-      "mode": "suffix",
-      "zoom": 7,
-      "places": 16,
-      "file": "-abri_z7.json.gz",
-      "tiles": 4,
-      "score": 0.16594688176147937,
-      "entropy": 0.9414280318460244,
-      "hotspots": [
-        [
-          108,
-          49,
-          6
-        ],
-        [
-          109,
-          49,
-          5
-        ],
-        [
-          108,
-          48,
-          3
-        ],
-        [
-          109,
-          48,
-          2
-        ]
-      ],
-      "points": 16,
-      "points_sampled": false
-    },
-    {
-      "pattern": "-angdeogri",
-      "title": "-angdeogri",
-      "mode": "suffix",
-      "zoom": 7,
-      "places": 11,
-      "file": "-angdeogri_z7.json.gz",
-      "tiles": 6,
-      "score": 0.1652213543425003,
-      "entropy": 0.933510035736515,
-      "hotspots": [
-        [
-          108,
-          48,
-          3
-        ],
-        [
-          109,
-          48,
-          3
-        ],
-        [
-          108,
-          49,
-          2
-        ],
-        [
-          109,
-          47,
-          1
-        ],
-        [
-          110,
-          47,
-          1
-        ]
-      ],
-      "points": 11,
-      "points_sampled": false
-    },
-    {
-      "pattern": "-nyangri",
-      "title": "-nyangri",
-      "mode": "suffix",
-      "zoom": 7,
-      "places": 11,
-      "file": "-nyangri_z7.json.gz",
-      "tiles": 6,
-      "score": 0.1652213543425003,
-      "entropy": 0.933510035736515,
-      "hotspots": [
-        [
-          108,
-          49,
-          3
-        ],
-        [
-          109,
-          48,
-          3
-        ],
-        [
-          108,
-          48,
-          2
-        ],
-        [
-          109,
-          47,
-          1
-        ],
-        [
-          109,
-          49,
-          1
-        ]
-      ],
-      "points": 11,
-      "points_sampled": false
-    },
-    {
-      "pattern": "-idong",
-      "title": "-idong",
-      "mode": "suffix",
-      "zoom": 7,
-      "places": 11,
-      "file": "-idong_z7.json.gz",
-      "tiles": 4,
-      "score": 0.16445871226609937,
-      "entropy": 0.933816945485606,
-      "hotspots": [
-        [
-          108,
-          48,
-          4
-        ],
-        [
-          109,
-          48,
-          3
-        ],
-        [
-          110,
-          47,
-          3
-        ],
-        [
-          108,
-          49,
-          1
-        ]
-      ],
-      "points": 11,
-      "points_sampled": false
-    },
-    {
-      "pattern": "-ongeub",
-      "title": "-ongeub",
-      "mode": "suffix",
-      "zoom": 7,
-      "places": 18,
-      "file": "-ongeub_z7.json.gz",
-      "tiles": 6,
-      "score": 0.16390444789154018,
-      "entropy": 0.9443342351289138,
-      "hotspots": [
-        [
-          109,
-          48,
-          5
-        ],
-        [
-          108,
-          48,
-          4
-        ],
-        [
-          108,
-          49,
-          3
-        ],
-        [
-          110,
-          47,
-          3
-        ],
-        [
-          109,
-          47,
-          2
-        ]
-      ],
-      "points": 18,
-      "points_sampled": false
-    },
-    {
-      "pattern": "-njeongri",
-      "title": "-njeongri",
-      "mode": "suffix",
-      "zoom": 7,
-      "places": 14,
-      "file": "-njeongri_z7.json.gz",
-      "tiles": 5,
-      "score": 0.1631904793569357,
-      "entropy": 0.9397387539970584,
-      "hotspots": [
-        [
-          108,
-          48,
-          4
-        ],
-        [
-          108,
-          49,
-          4
-        ],
-        [
-          109,
-          48,
-          3
-        ],
-        [
-          109,
-          49,
-          2
-        ],
-        [
-          109,
-          47,
-          1
-        ]
-      ],
-      "points": 14,
-      "points_sampled": false
-    },
-    {
-      "pattern": "-jiri",
-      "title": "-jiri",
+      "pattern": "-지리 / -jiri",
+      "title": "-지리 / -jiri",
       "mode": "suffix",
       "zoom": 7,
       "places": 23,
-      "file": "-jiri_z7.json.gz",
+      "file": "-지리_z7.json.gz",
       "tiles": 5,
       "score": 0.15749924856823724,
       "entropy": 0.9504416045240512,
@@ -10833,52 +2843,12 @@
       "points_sampled": false
     },
     {
-      "pattern": "-gyeonri",
-      "title": "-gyeonri",
+      "pattern": "-구리 / -guri",
+      "title": "-구리 / -guri",
       "mode": "suffix",
       "zoom": 7,
       "places": 10,
-      "file": "-gyeonri_z7.json.gz",
-      "tiles": 5,
-      "score": 0.1559170739970877,
-      "entropy": 0.9349775297671233,
-      "hotspots": [
-        [
-          108,
-          48,
-          3
-        ],
-        [
-          110,
-          47,
-          3
-        ],
-        [
-          109,
-          48,
-          2
-        ],
-        [
-          108,
-          49,
-          1
-        ],
-        [
-          109,
-          49,
-          1
-        ]
-      ],
-      "points": 10,
-      "points_sampled": false
-    },
-    {
-      "pattern": "-yeonghwari",
-      "title": "-yeonghwari",
-      "mode": "suffix",
-      "zoom": 7,
-      "places": 10,
-      "file": "-yeonghwari_z7.json.gz",
+      "file": "-구리_z7.json.gz",
       "tiles": 5,
       "score": 0.1559170739970877,
       "entropy": 0.9349775297671233,
@@ -10904,8 +2874,8 @@
           1
         ],
         [
-          109,
-          49,
+          110,
+          47,
           1
         ]
       ],
@@ -10913,197 +2883,52 @@
       "points_sampled": false
     },
     {
-      "pattern": "-ongjeongri",
-      "title": "-ongjeongri",
-      "mode": "suffix",
-      "zoom": 7,
-      "places": 15,
-      "file": "-ongjeongri_z7.json.gz",
-      "tiles": 4,
-      "score": 0.15353705163164244,
-      "entropy": 0.9446232142545792,
-      "hotspots": [
-        [
-          108,
-          49,
-          6
-        ],
-        [
-          109,
-          48,
-          4
-        ],
-        [
-          108,
-          48,
-          3
-        ],
-        [
-          109,
-          49,
-          2
-        ]
-      ],
-      "points": 15,
-      "points_sampled": false
-    },
-    {
-      "pattern": "-gunri",
-      "title": "-gunri",
+      "pattern": "-평화리 / -pyeonghwari",
+      "title": "-평화리 / -pyeonghwari",
       "mode": "suffix",
       "zoom": 7,
       "places": 10,
-      "file": "-gunri_z7.json.gz",
-      "tiles": 3,
-      "score": 0.1505145357402592,
-      "entropy": 0.9372305632161295,
+      "file": "-평화리_z7.json.gz",
+      "tiles": 5,
+      "score": 0.1559170739970877,
+      "entropy": 0.9349775297671233,
       "hotspots": [
         [
           108,
           48,
-          5
-        ],
-        [
-          108,
-          49,
           3
         ],
         [
           109,
           48,
+          3
+        ],
+        [
+          108,
+          49,
           2
+        ],
+        [
+          109,
+          47,
+          1
+        ],
+        [
+          109,
+          49,
+          1
         ]
       ],
       "points": 10,
       "points_sampled": false
     },
     {
-      "pattern": "-giri",
-      "title": "-giri",
-      "mode": "suffix",
-      "zoom": 7,
-      "places": 12,
-      "file": "-giri_z7.json.gz",
-      "tiles": 5,
-      "score": 0.14714805659787145,
-      "entropy": 0.942631203937882,
-      "hotspots": [
-        [
-          108,
-          49,
-          4
-        ],
-        [
-          108,
-          48,
-          3
-        ],
-        [
-          109,
-          47,
-          2
-        ],
-        [
-          109,
-          48,
-          2
-        ],
-        [
-          109,
-          49,
-          1
-        ]
-      ],
-      "points": 12,
-      "points_sampled": false
-    },
-    {
-      "pattern": "-nggyeri",
-      "title": "-nggyeri",
-      "mode": "suffix",
-      "zoom": 7,
-      "places": 12,
-      "file": "-nggyeri_z7.json.gz",
-      "tiles": 5,
-      "score": 0.14714805659787145,
-      "entropy": 0.942631203937882,
-      "hotspots": [
-        [
-          108,
-          48,
-          4
-        ],
-        [
-          108,
-          49,
-          3
-        ],
-        [
-          109,
-          47,
-          2
-        ],
-        [
-          110,
-          47,
-          2
-        ],
-        [
-          109,
-          48,
-          1
-        ]
-      ],
-      "points": 12,
-      "points_sampled": false
-    },
-    {
-      "pattern": "-nsi",
-      "title": "-nsi",
-      "mode": "suffix",
-      "zoom": 7,
-      "places": 12,
-      "file": "-nsi_z7.json.gz",
-      "tiles": 5,
-      "score": 0.14714805659787145,
-      "entropy": 0.942631203937882,
-      "hotspots": [
-        [
-          108,
-          48,
-          4
-        ],
-        [
-          109,
-          48,
-          3
-        ],
-        [
-          109,
-          47,
-          2
-        ],
-        [
-          110,
-          47,
-          2
-        ],
-        [
-          108,
-          49,
-          1
-        ]
-      ],
-      "points": 12,
-      "points_sampled": false
-    },
-    {
-      "pattern": "-inseongri",
-      "title": "-inseongri",
+      "pattern": "-신성리 / -sinseongri",
+      "title": "-신성리 / -sinseongri",
       "mode": "suffix",
       "zoom": 7,
       "places": 11,
-      "file": "-inseongri_z7.json.gz",
+      "file": "-신성리_z7.json.gz",
       "tiles": 5,
       "score": 0.14471524496513286,
       "entropy": 0.9417623012206598,
@@ -11138,92 +2963,12 @@
       "points_sampled": false
     },
     {
-      "pattern": "-isanri",
-      "title": "-isanri",
-      "mode": "suffix",
-      "zoom": 7,
-      "places": 11,
-      "file": "-isanri_z7.json.gz",
-      "tiles": 5,
-      "score": 0.14471524496513286,
-      "entropy": 0.9417623012206598,
-      "hotspots": [
-        [
-          108,
-          48,
-          4
-        ],
-        [
-          108,
-          49,
-          2
-        ],
-        [
-          109,
-          48,
-          2
-        ],
-        [
-          109,
-          49,
-          2
-        ],
-        [
-          110,
-          47,
-          1
-        ]
-      ],
-      "points": 11,
-      "points_sampled": false
-    },
-    {
-      "pattern": "-sinseongri",
-      "title": "-sinseongri",
-      "mode": "suffix",
-      "zoom": 7,
-      "places": 11,
-      "file": "-sinseongri_z7.json.gz",
-      "tiles": 5,
-      "score": 0.14471524496513286,
-      "entropy": 0.9417623012206598,
-      "hotspots": [
-        [
-          109,
-          48,
-          4
-        ],
-        [
-          108,
-          48,
-          2
-        ],
-        [
-          108,
-          49,
-          2
-        ],
-        [
-          109,
-          49,
-          2
-        ],
-        [
-          109,
-          47,
-          1
-        ]
-      ],
-      "points": 11,
-      "points_sampled": false
-    },
-    {
-      "pattern": "-duri",
-      "title": "-duri",
+      "pattern": "-두리 / -duri",
+      "title": "-두리 / -duri",
       "mode": "suffix",
       "zoom": 7,
       "places": 12,
-      "file": "-duri_z7.json.gz",
+      "file": "-두리_z7.json.gz",
       "tiles": 4,
       "score": 0.1437416822785023,
       "entropy": 0.9439592513355665,
@@ -11253,92 +2998,12 @@
       "points_sampled": false
     },
     {
-      "pattern": "-ngogri",
-      "title": "-ngogri",
-      "mode": "suffix",
-      "zoom": 7,
-      "places": 13,
-      "file": "-ngogri_z7.json.gz",
-      "tiles": 5,
-      "score": 0.13893589590973154,
-      "entropy": 0.9473539682709406,
-      "hotspots": [
-        [
-          108,
-          48,
-          4
-        ],
-        [
-          108,
-          49,
-          3
-        ],
-        [
-          109,
-          49,
-          3
-        ],
-        [
-          109,
-          48,
-          2
-        ],
-        [
-          110,
-          47,
-          1
-        ]
-      ],
-      "points": 13,
-      "points_sampled": false
-    },
-    {
-      "pattern": "-ulri",
-      "title": "-ulri",
-      "mode": "suffix",
-      "zoom": 7,
-      "places": 15,
-      "file": "-ulri_z7.json.gz",
-      "tiles": 5,
-      "score": 0.138143157099443,
-      "entropy": 0.9501753880799721,
-      "hotspots": [
-        [
-          108,
-          48,
-          4
-        ],
-        [
-          109,
-          49,
-          4
-        ],
-        [
-          108,
-          49,
-          3
-        ],
-        [
-          109,
-          48,
-          3
-        ],
-        [
-          110,
-          47,
-          1
-        ]
-      ],
-      "points": 15,
-      "points_sampled": false
-    },
-    {
-      "pattern": "-haeri",
-      "title": "-haeri",
+      "pattern": "-해리 / -haeri",
+      "title": "-해리 / -haeri",
       "mode": "suffix",
       "zoom": 7,
       "places": 12,
-      "file": "-haeri_z7.json.gz",
+      "file": "-해리_z7.json.gz",
       "tiles": 3,
       "score": 0.13749505842182402,
       "entropy": 0.946394630357186,
@@ -11363,25 +3028,20 @@
       "points_sampled": false
     },
     {
-      "pattern": "-munri",
-      "title": "-munri",
+      "pattern": "-문리 / -munri",
+      "title": "-문리 / -munri",
       "mode": "suffix",
       "zoom": 7,
-      "places": 12,
-      "file": "-munri_z7.json.gz",
+      "places": 11,
+      "file": "-문리_z7.json.gz",
       "tiles": 7,
-      "score": 0.10838948579176674,
-      "entropy": 0.957742056202218,
+      "score": 0.12730298438105195,
+      "entropy": 0.9487695103589051,
       "hotspots": [
         [
           108,
           48,
           3
-        ],
-        [
-          109,
-          47,
-          2
         ],
         [
           109,
@@ -11397,18 +3057,63 @@
           108,
           49,
           1
+        ],
+        [
+          109,
+          47,
+          1
         ]
       ],
-      "points": 12,
+      "points": 11,
       "points_sampled": false
     },
     {
-      "pattern": "-dori",
-      "title": "-dori",
+      "pattern": "-연리 / -yeonri",
+      "title": "-연리 / -yeonri",
+      "mode": "suffix",
+      "zoom": 7,
+      "places": 17,
+      "file": "-연리_z7.json.gz",
+      "tiles": 5,
+      "score": 0.11683322835158952,
+      "entropy": 0.9595784770480079,
+      "hotspots": [
+        [
+          108,
+          48,
+          5
+        ],
+        [
+          108,
+          49,
+          4
+        ],
+        [
+          109,
+          48,
+          4
+        ],
+        [
+          109,
+          49,
+          2
+        ],
+        [
+          110,
+          47,
+          2
+        ]
+      ],
+      "points": 17,
+      "points_sampled": false
+    },
+    {
+      "pattern": "-도리 / -dori",
+      "title": "-도리 / -dori",
       "mode": "suffix",
       "zoom": 7,
       "places": 24,
-      "file": "-dori_z7.json.gz",
+      "file": "-도리_z7.json.gz",
       "tiles": 4,
       "score": 0.10794235020612551,
       "entropy": 0.9664658234492332,
@@ -11438,92 +3143,12 @@
       "points_sampled": false
     },
     {
-      "pattern": "-ngamri",
-      "title": "-ngamri",
-      "mode": "suffix",
-      "zoom": 7,
-      "places": 31,
-      "file": "-ngamri_z7.json.gz",
-      "tiles": 6,
-      "score": 0.10069266467606489,
-      "entropy": 0.9709462384035892,
-      "hotspots": [
-        [
-          108,
-          49,
-          8
-        ],
-        [
-          108,
-          48,
-          6
-        ],
-        [
-          109,
-          48,
-          6
-        ],
-        [
-          109,
-          47,
-          4
-        ],
-        [
-          109,
-          49,
-          4
-        ]
-      ],
-      "points": 31,
-      "points_sampled": false
-    },
-    {
-      "pattern": "-ongamri",
-      "title": "-ongamri",
-      "mode": "suffix",
-      "zoom": 7,
-      "places": 19,
-      "file": "-ongamri_z7.json.gz",
-      "tiles": 6,
-      "score": 0.09290047463343211,
-      "entropy": 0.9689890597188715,
-      "hotspots": [
-        [
-          109,
-          48,
-          5
-        ],
-        [
-          109,
-          49,
-          4
-        ],
-        [
-          108,
-          48,
-          3
-        ],
-        [
-          108,
-          49,
-          3
-        ],
-        [
-          109,
-          47,
-          2
-        ]
-      ],
-      "points": 19,
-      "points_sampled": false
-    },
-    {
-      "pattern": "-bugri",
-      "title": "-bugri",
+      "pattern": "-북리 / -bugri",
+      "title": "-북리 / -bugri",
       "mode": "suffix",
       "zoom": 7,
       "places": 14,
-      "file": "-bugri_z7.json.gz",
+      "file": "-북리_z7.json.gz",
       "tiles": 6,
       "score": 0.08614168564014356,
       "entropy": 0.9681905137485698,
@@ -11558,345 +3183,50 @@
       "points_sampled": false
     },
     {
-      "pattern": "-eonsanri",
-      "title": "-eonsanri",
+      "pattern": "-포로동자구 / -porodongjagu",
+      "title": "-포로동자구 / -porodongjagu",
       "mode": "suffix",
       "zoom": 7,
-      "places": 11,
-      "file": "-eonsanri_z7.json.gz",
-      "tiles": 4,
-      "score": 0.07919394072210585,
-      "entropy": 0.9681300137657637,
+      "places": 13,
+      "file": "-포로동자구_z7.json.gz",
+      "tiles": 5,
+      "score": 0.030076655812400578,
+      "entropy": 0.9886032578849716,
       "hotspots": [
         [
-          108,
-          49,
-          4
-        ],
-        [
-          108,
-          48,
+          109,
+          47,
           3
         ],
         [
           109,
           48,
-          2
+          3
         ],
         [
           110,
           47,
+          3
+        ],
+        [
+          108,
+          48,
+          2
+        ],
+        [
+          108,
+          49,
           2
         ]
       ],
-      "points": 11,
-      "points_sampled": false
-    },
-    {
-      "pattern": "-onsanri",
-      "title": "-onsanri",
-      "mode": "suffix",
-      "zoom": 7,
-      "places": 11,
-      "file": "-onsanri_z7.json.gz",
-      "tiles": 4,
-      "score": 0.07919394072210585,
-      "entropy": 0.9681300137657637,
-      "hotspots": [
-        [
-          108,
-          49,
-          4
-        ],
-        [
-          108,
-          48,
-          3
-        ],
-        [
-          109,
-          48,
-          2
-        ],
-        [
-          110,
-          47,
-          2
-        ]
-      ],
-      "points": 11,
-      "points_sampled": false
-    },
-    {
-      "pattern": "-anghari",
-      "title": "-anghari",
-      "mode": "suffix",
-      "zoom": 7,
-      "places": 10,
-      "file": "-anghari_z7.json.gz",
-      "tiles": 5,
-      "score": 0.07795853699854347,
-      "entropy": 0.9674887648835618,
-      "hotspots": [
-        [
-          109,
-          49,
-          3
-        ],
-        [
-          108,
-          48,
-          2
-        ],
-        [
-          109,
-          47,
-          2
-        ],
-        [
-          109,
-          48,
-          2
-        ],
-        [
-          108,
-          49,
-          1
-        ]
-      ],
-      "points": 10,
-      "points_sampled": false
-    },
-    {
-      "pattern": "-onceonri",
-      "title": "-onceonri",
-      "mode": "suffix",
-      "zoom": 7,
-      "places": 10,
-      "file": "-onceonri_z7.json.gz",
-      "tiles": 5,
-      "score": 0.07795853699854347,
-      "entropy": 0.9674887648835618,
-      "hotspots": [
-        [
-          109,
-          48,
-          3
-        ],
-        [
-          108,
-          48,
-          2
-        ],
-        [
-          108,
-          49,
-          2
-        ],
-        [
-          109,
-          47,
-          2
-        ],
-        [
-          109,
-          49,
-          1
-        ]
-      ],
-      "points": 10,
-      "points_sampled": false
-    },
-    {
-      "pattern": "-undongri",
-      "title": "-undongri",
-      "mode": "suffix",
-      "zoom": 7,
-      "places": 10,
-      "file": "-undongri_z7.json.gz",
-      "tiles": 5,
-      "score": 0.07795853699854347,
-      "entropy": 0.9674887648835618,
-      "hotspots": [
-        [
-          109,
-          48,
-          3
-        ],
-        [
-          108,
-          49,
-          2
-        ],
-        [
-          109,
-          49,
-          2
-        ],
-        [
-          110,
-          47,
-          2
-        ],
-        [
-          108,
-          48,
-          1
-        ]
-      ],
-      "points": 10,
-      "points_sampled": false
-    },
-    {
-      "pattern": "-nseongri",
-      "title": "-nseongri",
-      "mode": "suffix",
-      "zoom": 7,
-      "places": 21,
-      "file": "-nseongri_z7.json.gz",
-      "tiles": 5,
-      "score": 0.054550426532983295,
-      "entropy": 0.9823520940407285,
-      "hotspots": [
-        [
-          108,
-          48,
-          5
-        ],
-        [
-          108,
-          49,
-          5
-        ],
-        [
-          109,
-          48,
-          5
-        ],
-        [
-          109,
-          47,
-          3
-        ],
-        [
-          109,
-          49,
-          3
-        ]
-      ],
-      "points": 21,
-      "points_sampled": false
-    },
-    {
-      "pattern": "-gyangri",
-      "title": "-gyangri",
-      "mode": "suffix",
-      "zoom": 7,
-      "places": 12,
-      "file": "-gyangri_z7.json.gz",
-      "tiles": 4,
-      "score": 0.05239176198596723,
-      "entropy": 0.9795739585136223,
-      "hotspots": [
-        [
-          109,
-          48,
-          4
-        ],
-        [
-          108,
-          48,
-          3
-        ],
-        [
-          108,
-          49,
-          3
-        ],
-        [
-          109,
-          47,
-          2
-        ]
-      ],
-      "points": 12,
-      "points_sampled": false
-    },
-    {
-      "pattern": "-bri",
-      "title": "-bri",
-      "mode": "suffix",
-      "zoom": 7,
-      "places": 30,
-      "file": "-bri_z7.json.gz",
-      "tiles": 4,
-      "score": 0.02769319541572646,
-      "entropy": 0.9919355566090764,
-      "hotspots": [
-        [
-          109,
-          48,
-          9
-        ],
-        [
-          109,
-          49,
-          8
-        ],
-        [
-          108,
-          49,
-          7
-        ],
-        [
-          108,
-          48,
-          6
-        ]
-      ],
-      "points": 30,
-      "points_sampled": false
-    },
-    {
-      "pattern": "-eonamri",
-      "title": "-eonamri",
-      "mode": "suffix",
-      "zoom": 7,
-      "places": 11,
-      "file": "-eonamri_z7.json.gz",
-      "tiles": 4,
-      "score": 0.023822879283910955,
-      "entropy": 0.9904129681145393,
-      "hotspots": [
-        [
-          108,
-          48,
-          3
-        ],
-        [
-          108,
-          49,
-          3
-        ],
-        [
-          109,
-          49,
-          3
-        ],
-        [
-          109,
-          48,
-          2
-        ]
-      ],
-      "points": 11,
+      "points": 13,
       "points_sampled": false
     }
   ],
   "selection_mode": "score",
   "min_places_for_candidate": 10,
   "analyze_tail_token_only": true,
-  "suffix_len": [
+  "pattern_len": [
     2,
     10
   ]

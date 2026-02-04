@@ -517,34 +517,34 @@
       "title": "-ng",
       "mode": "suffix",
       "zoom": 7,
-      "places": 161,
+      "places": 151,
       "file": "-ng_z7.json.gz",
       "tiles": 4,
-      "score": 0.5514269555882233,
-      "entropy": 0.8916134615929516,
+      "score": 0.5709900101387428,
+      "entropy": 0.8863448269182646,
       "hotspots": [
         [
           96,
           53,
-          80
+          76
         ],
         [
           96,
           54,
-          34
+          32
         ],
         [
           95,
           53,
-          26
+          23
         ],
         [
           95,
           54,
-          21
+          20
         ]
       ],
-      "points": 161,
+      "points": 151,
       "points_sampled": false
     },
     {
@@ -648,6 +648,41 @@
       "points_sampled": false
     },
     {
+      "pattern": "-ang",
+      "title": "-ang",
+      "mode": "suffix",
+      "zoom": 7,
+      "places": 67,
+      "file": "-ang_z7.json.gz",
+      "tiles": 4,
+      "score": 0.2799084735443815,
+      "entropy": 0.9336632391496725,
+      "hotspots": [
+        [
+          96,
+          53,
+          29
+        ],
+        [
+          95,
+          53,
+          15
+        ],
+        [
+          96,
+          54,
+          14
+        ],
+        [
+          95,
+          54,
+          9
+        ]
+      ],
+      "points": 67,
+      "points_sampled": false
+    },
+    {
       "pattern": "-ling",
       "title": "-ling",
       "mode": "suffix",
@@ -680,41 +715,6 @@
         ]
       ],
       "points": 36,
-      "points_sampled": false
-    },
-    {
-      "pattern": "-ang",
-      "title": "-ang",
-      "mode": "suffix",
-      "zoom": 7,
-      "places": 68,
-      "file": "-ang_z7.json.gz",
-      "tiles": 4,
-      "score": 0.26992486671804,
-      "entropy": 0.9362498637138759,
-      "hotspots": [
-        [
-          96,
-          53,
-          29
-        ],
-        [
-          95,
-          53,
-          15
-        ],
-        [
-          96,
-          54,
-          15
-        ],
-        [
-          95,
-          54,
-          9
-        ]
-      ],
-      "points": 68,
       "points_sampled": false
     },
     {
@@ -1001,7 +1001,7 @@
   "selection_mode": "score",
   "min_places_for_candidate": 10,
   "analyze_tail_token_only": true,
-  "suffix_len": [
+  "pattern_len": [
     2,
     10
   ]

@@ -80,6 +80,43 @@ function keepLargestPolygonOnly(feature: any) {
   };
 }
 
+function filterPolygonsByBbox(
+  feature: any,
+  bbox: { lonMin: number; lonMax: number; latMin: number; latMax: number }
+) {
+  const g = feature?.geometry;
+  if (!g || g.type !== "MultiPolygon") return feature;
+
+  const kept = g.coordinates.filter((coords: any) => {
+    const polyFeat: GeoJSON.Feature<GeoJSON.Polygon> = {
+      type: "Feature",
+      geometry: { type: "Polygon", coordinates: coords },
+      properties: {},
+    } as any;
+
+    let c: any;
+    try {
+      c = d3.geoCentroid(polyFeat as any);
+    } catch {
+      c = null;
+    }
+    if (!c) return false;
+    return (
+      c[0] >= bbox.lonMin &&
+      c[0] <= bbox.lonMax &&
+      c[1] >= bbox.latMin &&
+      c[1] <= bbox.latMax
+    );
+  });
+
+  if (kept.length === 0) return feature;
+
+  return {
+    ...feature,
+    geometry: { type: "MultiPolygon", coordinates: kept },
+  };
+}
+
 function geomCrossesAntimeridian(geom: GeoJSON.Polygon | GeoJSON.MultiPolygon): boolean {
   let minLon = Infinity;
   let maxLon = -Infinity;
@@ -336,7 +373,16 @@ export default function TileSVG({
   const pad = 10;
 
   const countryForView = useMemo(() => {
-    if (String((country as any).id) === "710") return keepLargestPolygonOnly(country as any);
+    const id = String((country as any).id ?? "");
+    if (id === "710") return keepLargestPolygonOnly(country as any);
+    if (id === "578") {
+      return filterPolygonsByBbox(country as any, {
+        lonMin: -1,
+        lonMax: 32,
+        latMin: 57,
+        latMax: 72.5,
+      });
+    }
     return country;
   }, [country]);
 

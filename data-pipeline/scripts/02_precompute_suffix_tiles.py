@@ -1,8 +1,9 @@
-import json, math, pathlib, re, gzip, random, sys
+import json, math, pathlib, re, gzip, random, sys, shutil, unicodedata
 from collections import Counter, defaultdict
 import pandas as pd
 from tqdm import tqdm
 import orjson
+from unidecode import unidecode
 
 ROOT = pathlib.Path(__file__).resolve().parents[1]  # data-pipeline when run from correct folder
 CFG_NAME = sys.argv[1] if len(sys.argv) > 1 else "europe.json"
@@ -52,8 +53,9 @@ def sanitize_token(token: str) -> str:
     t = re.sub(r"\([^\)]*\)", " ", t)
     t = re.sub(r"\[[^\]]*\]", " ", t)
     t = t.strip()
-    t = re.sub(r"^[^0-9a-z]+", "", t)
-    t = re.sub(r"[^0-9a-z]+$", "", t)
+    t = re.sub(r"^[^\w]+", "", t, flags=re.UNICODE)
+    t = re.sub(r"[^\w]+$", "", t, flags=re.UNICODE)
+    t = t.strip("_")
     return t
 
 
@@ -88,6 +90,25 @@ def prefixes(s: str, min_len: int, max_len: int):
     L = len(s)
     for k in range(min_len, min(max_len, L) + 1):
         yield s[:k]
+
+def _has_non_latin_letters(s: str) -> bool:
+    for ch in s:
+        if ch.isalpha():
+            try:
+                name = unicodedata.name(ch)
+            except ValueError:
+                return True
+            if "LATIN" not in name:
+                return True
+    return False
+
+def format_pattern_label(pat: str) -> str:
+    if not _has_non_latin_letters(pat):
+        return pat
+    latin = unidecode(pat).strip()
+    if not latin or latin == pat:
+        return pat
+    return f"{pat} / {latin}"
 
 # Blacklist: non-city suffixes (geographic features, infrastructure, etc.)
 SUFFIX_BLACKLIST = {
@@ -178,7 +199,7 @@ def main():
 
         lons = df["lon"].astype(float).tolist()
         lats = df["lat"].astype(float).tolist()
-        names = df["name_norm"].astype(str).tolist()
+        names = df["name"].astype(str).tolist()
 
         for lon, lat, nm in tqdm(list(zip(lons, lats, names)), desc=f"aggregate {mode} tiles"):
             if mode == 'suffix':
@@ -241,13 +262,12 @@ def main():
                     arr[j] = [lon_q, lat_q, name]
 
         if export_points and chosen_patterns:
-            names_norm = df["name_norm"].astype(str).tolist()
-            names_raw = df["name"].astype(str).tolist() if "name" in df.columns else names_norm
-            for lon, lat, nm_raw, nm_norm in tqdm(list(zip(lons, lats, names_raw, names_norm)), desc="collect points (selected patterns)"):
+            names_raw = df["name"].astype(str).tolist() if "name" in df.columns else df["name_norm"].astype(str).tolist()
+            for lon, lat, nm_raw in tqdm(list(zip(lons, lats, names_raw)), desc="collect points (selected patterns)"):
                 if mode == "suffix":
-                    nm2 = tail_token(nm_norm) if analyze_tail_only else (nm_norm or "").strip()
+                    nm2 = tail_token(nm_raw) if analyze_tail_only else (nm_raw or "").strip()
                 else:
-                    nm2 = head_token(nm_norm) if analyze_tail_only else (nm_norm or "").strip()
+                    nm2 = head_token(nm_raw) if analyze_tail_only else (nm_raw or "").strip()
                 if not nm2:
                     continue
 
@@ -268,16 +288,19 @@ def main():
             print(f"  {d['pattern']}  places={d['places']:,}  score={d['score']:.3f}  tiles={d['tiles']:,}  H={d['entropy']:.3f}")
 
         c_out = OUT / "web" / "public" / "data" / str(cid)
+        if c_out.exists():
+            shutil.rmtree(c_out)
         c_out.mkdir(parents=True, exist_ok=True)
 
         patterns_index = []
         for d in tqdm(chosen, desc="export patterns"):
             pat = d["pattern"]
+            label = format_pattern_label(pat)
             tc = tile_counts.get(pat, {})
             cells = [[x, y, int(c)] for (x, y), c in sorted(tc.items(), key=lambda kv: (-kv[1], kv[0][0], kv[0][1]))]
             payload = {
                 "country_id": cid,
-                "pattern": pat,
+                "pattern": label,
                 "mode": mode,
                 "zoom": z,
                 "cells": cells,
@@ -294,8 +317,8 @@ def main():
             with gzip.open(c_out / fname, "wb") as fz:
                 fz.write(orjson.dumps(payload))
             patterns_index.append({
-                "pattern": pat,
-                "title": pat,
+                "pattern": label,
+                "title": label,
                 "mode": mode,
                 "zoom": z,
                 "places": d["places"],

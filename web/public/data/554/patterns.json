@@ -123,46 +123,6 @@
       "points_sampled": false
     },
     {
-      "pattern": "-ata",
-      "title": "-ata",
-      "mode": "suffix",
-      "zoom": 7,
-      "places": 10,
-      "file": "-ata_z7.json.gz",
-      "tiles": 5,
-      "score": 0.5690039870807927,
-      "entropy": 0.7627069065377661,
-      "hotspots": [
-        [
-          126,
-          78,
-          6
-        ],
-        [
-          124,
-          81,
-          1
-        ],
-        [
-          124,
-          82,
-          1
-        ],
-        [
-          125,
-          81,
-          1
-        ],
-        [
-          126,
-          79,
-          1
-        ]
-      ],
-      "points": 10,
-      "points_sampled": false
-    },
-    {
       "pattern": "-roa",
       "title": "-roa",
       "mode": "suffix",
@@ -280,46 +240,6 @@
         ]
       ],
       "points": 36,
-      "points_sampled": false
-    },
-    {
-      "pattern": "-ta",
-      "title": "-ta",
-      "mode": "suffix",
-      "zoom": 7,
-      "places": 11,
-      "file": "-ta_z7.json.gz",
-      "tiles": 5,
-      "score": 0.4861815879471277,
-      "entropy": 0.8043461359047004,
-      "hotspots": [
-        [
-          126,
-          78,
-          6
-        ],
-        [
-          126,
-          79,
-          2
-        ],
-        [
-          124,
-          81,
-          1
-        ],
-        [
-          124,
-          82,
-          1
-        ],
-        [
-          125,
-          81,
-          1
-        ]
-      ],
-      "points": 11,
       "points_sampled": false
     },
     {
@@ -807,17 +727,12 @@
       "title": "-ka",
       "mode": "suffix",
       "zoom": 7,
-      "places": 15,
+      "places": 14,
       "file": "-ka_z7.json.gz",
       "tiles": 10,
-      "score": 0.11019651146607878,
-      "entropy": 0.9602550098461561,
+      "score": 0.07010899519238636,
+      "entropy": 0.9741108952988201,
       "hotspots": [
-        [
-          126,
-          77,
-          3
-        ],
         [
           124,
           81,
@@ -826,6 +741,11 @@
         [
           125,
           80,
+          2
+        ],
+        [
+          126,
+          77,
           2
         ],
         [
@@ -839,7 +759,7 @@
           1
         ]
       ],
-      "points": 15,
+      "points": 14,
       "points_sampled": false
     },
     {
@@ -916,7 +836,7 @@
   "selection_mode": "score",
   "min_places_for_candidate": 10,
   "analyze_tail_token_only": true,
-  "suffix_len": [
+  "pattern_len": [
     2,
     10
   ]

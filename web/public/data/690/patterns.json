@@ -6,11 +6,37 @@
   ],
   "default_mode": "suffix",
   "default_zoom": 7,
-  "patterns": [],
+  "patterns": [
+    {
+      "pattern": "-re",
+      "title": "-re",
+      "mode": "suffix",
+      "zoom": 7,
+      "places": 4,
+      "file": "-re_z7.json.gz",
+      "tiles": 2,
+      "score": 0.30373614140114136,
+      "entropy": 0.8112781244591328,
+      "hotspots": [
+        [
+          83,
+          65,
+          3
+        ],
+        [
+          82,
+          66,
+          1
+        ]
+      ],
+      "points": 4,
+      "points_sampled": false
+    }
+  ],
   "selection_mode": "score",
-  "min_places_for_candidate": 10,
+  "min_places_for_candidate": 3,
   "analyze_tail_token_only": true,
-  "suffix_len": [
+  "pattern_len": [
     2,
     10
   ]

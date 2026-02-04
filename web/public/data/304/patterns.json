@@ -92,11 +92,11 @@
       "title": "-aq",
       "mode": "suffix",
       "zoom": 7,
-      "places": 39,
+      "places": 38,
       "file": "-aq_z7.json.gz",
       "tiles": 23,
-      "score": 0.16514267187263157,
-      "entropy": 0.9552322937285305,
+      "score": 0.17228687758841907,
+      "entropy": 0.9529728460361979,
       "hotspots": [
         [
           47,
@@ -124,7 +124,7 @@
           2
         ]
       ],
-      "points": 39,
+      "points": 38,
       "points_sampled": false
     },
     {
@@ -611,7 +611,7 @@
   "selection_mode": "score",
   "min_places_for_candidate": 10,
   "analyze_tail_token_only": true,
-  "suffix_len": [
+  "pattern_len": [
     2,
     10
   ]

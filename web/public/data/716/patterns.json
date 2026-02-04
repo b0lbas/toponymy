@@ -12,21 +12,26 @@
       "title": "-age",
       "mode": "suffix",
       "zoom": 7,
-      "places": 36,
+      "places": 54,
       "file": "-age_z7.json.gz",
-      "tiles": 4,
-      "score": 2.217588718777411,
-      "entropy": 0.38586565177453674,
+      "tiles": 5,
+      "score": 2.795046432613182,
+      "entropy": 0.30251708470029864,
       "hotspots": [
         [
           74,
           70,
-          31
+          48
         ],
         [
           75,
           70,
           3
+        ],
+        [
+          74,
+          69,
+          1
         ],
         [
           74,
@@ -39,7 +44,7 @@
           1
         ]
       ],
-      "points": 36,
+      "points": 54,
       "points_sampled": false
     },
     {
@@ -47,21 +52,26 @@
       "title": "-illage",
       "mode": "suffix",
       "zoom": 7,
-      "places": 36,
+      "places": 54,
       "file": "-illage_z7.json.gz",
-      "tiles": 4,
-      "score": 2.217588718777411,
-      "entropy": 0.38586565177453674,
+      "tiles": 5,
+      "score": 2.795046432613182,
+      "entropy": 0.30251708470029864,
       "hotspots": [
         [
           74,
           70,
-          31
+          48
         ],
         [
           75,
           70,
           3
+        ],
+        [
+          74,
+          69,
+          1
         ],
         [
           74,
@@ -74,7 +84,7 @@
           1
         ]
       ],
-      "points": 36,
+      "points": 54,
       "points_sampled": false
     },
     {
@@ -82,21 +92,26 @@
       "title": "-lage",
       "mode": "suffix",
       "zoom": 7,
-      "places": 36,
+      "places": 54,
       "file": "-lage_z7.json.gz",
-      "tiles": 4,
-      "score": 2.217588718777411,
-      "entropy": 0.38586565177453674,
+      "tiles": 5,
+      "score": 2.795046432613182,
+      "entropy": 0.30251708470029864,
       "hotspots": [
         [
           74,
           70,
-          31
+          48
         ],
         [
           75,
           70,
           3
+        ],
+        [
+          74,
+          69,
+          1
         ],
         [
           74,
@@ -109,7 +124,7 @@
           1
         ]
       ],
-      "points": 36,
+      "points": 54,
       "points_sampled": false
     },
     {
@@ -117,21 +132,26 @@
       "title": "-llage",
       "mode": "suffix",
       "zoom": 7,
-      "places": 36,
+      "places": 54,
       "file": "-llage_z7.json.gz",
-      "tiles": 4,
-      "score": 2.217588718777411,
-      "entropy": 0.38586565177453674,
+      "tiles": 5,
+      "score": 2.795046432613182,
+      "entropy": 0.30251708470029864,
       "hotspots": [
         [
           74,
           70,
-          31
+          48
         ],
         [
           75,
           70,
           3
+        ],
+        [
+          74,
+          69,
+          1
         ],
         [
           74,
@@ -144,7 +164,7 @@
           1
         ]
       ],
-      "points": 36,
+      "points": 54,
       "points_sampled": false
     },
     {
@@ -152,21 +172,26 @@
       "title": "-village",
       "mode": "suffix",
       "zoom": 7,
-      "places": 36,
+      "places": 54,
       "file": "-village_z7.json.gz",
-      "tiles": 4,
-      "score": 2.217588718777411,
-      "entropy": 0.38586565177453674,
+      "tiles": 5,
+      "score": 2.795046432613182,
+      "entropy": 0.30251708470029864,
       "hotspots": [
         [
           74,
           70,
-          31
+          48
         ],
         [
           75,
           70,
           3
+        ],
+        [
+          74,
+          69,
+          1
         ],
         [
           74,
@@ -179,7 +204,7 @@
           1
         ]
       ],
-      "points": 36,
+      "points": 54,
       "points_sampled": false
     },
     {
@@ -187,16 +212,16 @@
       "title": "-ge",
       "mode": "suffix",
       "zoom": 7,
-      "places": 41,
+      "places": 59,
       "file": "-ge_z7.json.gz",
-      "tiles": 6,
-      "score": 1.8131827938331238,
-      "entropy": 0.5148894955927432,
+      "tiles": 7,
+      "score": 2.426093590680681,
+      "entropy": 0.40745251069832256,
       "hotspots": [
         [
           74,
           70,
-          31
+          48
         ],
         [
           75,
@@ -219,7 +244,7 @@
           1
         ]
       ],
-      "points": 41,
+      "points": 59,
       "points_sampled": false
     },
     {
@@ -876,7 +901,7 @@
   "selection_mode": "score",
   "min_places_for_candidate": 10,
   "analyze_tail_token_only": true,
-  "suffix_len": [
+  "pattern_len": [
     2,
     10
   ]

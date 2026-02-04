@@ -132,16 +132,16 @@
       "title": "-da",
       "mode": "suffix",
       "zoom": 7,
-      "places": 292,
+      "places": 291,
       "file": "-da_z7.json.gz",
       "tiles": 3,
-      "score": 4.932724263324384,
-      "entropy": 0.13158901976079684,
+      "score": 4.927682461230866,
+      "entropy": 0.131954170839346,
       "hotspots": [
         [
           92,
           61,
-          284
+          283
         ],
         [
           92,
@@ -154,7 +154,7 @@
           4
         ]
       ],
-      "points": 292,
+      "points": 291,
       "points_sampled": false
     },
     {
@@ -357,16 +357,16 @@
       "title": "-oda",
       "mode": "suffix",
       "zoom": 7,
-      "places": 151,
+      "places": 150,
       "file": "-oda_z7.json.gz",
       "tiles": 2,
-      "score": 4.513407478310631,
-      "entropy": 0.10160931184917106,
+      "score": 4.504724380573197,
+      "entropy": 0.10215803640865039,
       "hotspots": [
         [
           92,
           61,
-          149
+          148
         ],
         [
           93,
@@ -374,7 +374,7 @@
           2
         ]
       ],
-      "points": 151,
+      "points": 150,
       "points_sampled": false
     },
     {
@@ -412,16 +412,16 @@
       "title": "-goda",
       "mode": "suffix",
       "zoom": 7,
-      "places": 145,
+      "places": 144,
       "file": "-goda_z7.json.gz",
       "tiles": 2,
-      "score": 4.4603204718863925,
-      "entropy": 0.10500149581279872,
+      "score": 4.451235268794981,
+      "entropy": 0.10559103637519525,
       "hotspots": [
         [
           92,
           61,
-          143
+          142
         ],
         [
           93,
@@ -429,7 +429,7 @@
           2
         ]
       ],
-      "points": 145,
+      "points": 144,
       "points_sampled": false
     },
     {
@@ -2633,26 +2633,6 @@
       "points_sampled": false
     },
     {
-      "pattern": "-ngoda",
-      "title": "-ngoda",
-      "mode": "suffix",
-      "zoom": 7,
-      "places": 20,
-      "file": "-ngoda_z7.json.gz",
-      "tiles": 1,
-      "score": 3.044522437723423,
-      "entropy": 0.0,
-      "hotspots": [
-        [
-          92,
-          61,
-          20
-        ]
-      ],
-      "points": 20,
-      "points_sampled": false
-    },
-    {
       "pattern": "-wana",
       "title": "-wana",
       "mode": "suffix",
@@ -2729,6 +2709,26 @@
       "zoom": 7,
       "places": 19,
       "file": "-edda_z7.json.gz",
+      "tiles": 1,
+      "score": 2.995732273553991,
+      "entropy": 0.0,
+      "hotspots": [
+        [
+          92,
+          61,
+          19
+        ]
+      ],
+      "points": 19,
+      "points_sampled": false
+    },
+    {
+      "pattern": "-ngoda",
+      "title": "-ngoda",
+      "mode": "suffix",
+      "zoom": 7,
+      "places": 19,
+      "file": "-ngoda_z7.json.gz",
       "tiles": 1,
       "score": 2.995732273553991,
       "entropy": 0.0,
@@ -3058,26 +3058,6 @@
       "points_sampled": false
     },
     {
-      "pattern": "-angoda",
-      "title": "-angoda",
-      "mode": "suffix",
-      "zoom": 7,
-      "places": 16,
-      "file": "-angoda_z7.json.gz",
-      "tiles": 1,
-      "score": 2.833213344056216,
-      "entropy": 0.0,
-      "hotspots": [
-        [
-          92,
-          61,
-          16
-        ]
-      ],
-      "points": 16,
-      "points_sampled": false
-    },
-    {
       "pattern": "-aragama",
       "title": "-aragama",
       "mode": "suffix",
@@ -3344,6 +3324,26 @@
       "zoom": 7,
       "places": 15,
       "file": "-andeniya_z7.json.gz",
+      "tiles": 1,
+      "score": 2.772588722239781,
+      "entropy": 0.0,
+      "hotspots": [
+        [
+          92,
+          61,
+          15
+        ]
+      ],
+      "points": 15,
+      "points_sampled": false
+    },
+    {
+      "pattern": "-angoda",
+      "title": "-angoda",
+      "mode": "suffix",
+      "zoom": 7,
+      "places": 15,
+      "file": "-angoda_z7.json.gz",
       "tiles": 1,
       "score": 2.772588722239781,
       "entropy": 0.0,
@@ -7251,7 +7251,7 @@
   "selection_mode": "score",
   "min_places_for_candidate": 10,
   "analyze_tail_token_only": true,
-  "suffix_len": [
+  "pattern_len": [
     2,
     10
   ]

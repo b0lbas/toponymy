@@ -56,7 +56,7 @@ def clean_place_name(name: str, country_id: str) -> str:
     
     return name
 
-def normalize_name(name: str, strip_diacritics: bool = True) -> str:
+def normalize_name(name: str, strip_diacritics: bool = False) -> str:
     s = name.strip().lower()
 
     s = re.sub(r"\([^\)]*\)", " ", s)
@@ -69,12 +69,13 @@ def normalize_name(name: str, strip_diacritics: bool = True) -> str:
     if strip_diacritics:
         s = unidecode(s)
 
-    s = re.sub(r"[^0-9a-z\-\'\s]+", " ", s)
+    s = re.sub(r"[^\w\-\'\s]+", " ", s, flags=re.UNICODE)
+    s = s.replace("_", " ")
     s = re.sub(r"\s+", " ", s).strip()
     return s
 
 class PlaceExtractor(osmium.SimpleHandler):
-    def __init__(self, country_id: str, strip_diacritics: bool = True):
+    def __init__(self, country_id: str, strip_diacritics: bool = False):
         super().__init__()
         self.country_id = country_id
         self.strip_diacritics = strip_diacritics
@@ -236,7 +237,7 @@ class Admin0Locator:
 
 
 class SharedPlaceExtractor(osmium.SimpleHandler):
-    def __init__(self, locator: Admin0Locator, strip_diacritics: bool = True):
+    def __init__(self, locator: Admin0Locator, strip_diacritics: bool = False):
         super().__init__()
         self.locator = locator
         self.strip_diacritics = strip_diacritics
@@ -329,7 +330,7 @@ def main():
             wanted = [str(c.get("country_id") or c.get("id")) for c in full_group]
             print(f"[shared] {slug}: splitting into {wanted} using {ADMIN0_TOPO}")
             locator = Admin0Locator(ADMIN0_TOPO, wanted)
-            h = SharedPlaceExtractor(locator=locator, strip_diacritics=True)
+            h = SharedPlaceExtractor(locator=locator, strip_diacritics=False)
             print(f"[apply] starting apply_file for {pbf.name}")
             h.apply_file(str(pbf), locations=False)
             print(f"[apply] finished apply_file for {pbf.name}; dropped_unassigned={h.dropped}")
@@ -353,7 +354,7 @@ def main():
             print(f"[skip] {out_csv.name}")
             continue
         print(f"[parse] {c['name']} ({pbf.name})")
-        h = PlaceExtractor(country_id=cid, strip_diacritics=True)
+        h = PlaceExtractor(country_id=cid, strip_diacritics=False)
         print(f"[apply] starting apply_file for {pbf.name}")
         h.apply_file(str(pbf), locations=False)
         print(f"[apply] finished apply_file for {pbf.name}; collected rows={len(h.rows)}")

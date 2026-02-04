@@ -8,32 +8,52 @@
   "default_zoom": 7,
   "patterns": [
     {
-      "pattern": "-ry",
-      "title": "-ry",
+      "pattern": "-ان / -n",
+      "title": "-ان / -n",
       "mode": "suffix",
       "zoom": 7,
-      "places": 3,
-      "file": "-ry_z7.json.gz",
+      "places": 6,
+      "file": "-ان_z7.json.gz",
       "tiles": 1,
-      "score": 1.3862943611198906,
+      "score": 1.9459101490553132,
       "entropy": 0.0,
       "hotspots": [
         [
           82,
           54,
-          3
+          6
         ]
       ],
-      "points": 3,
+      "points": 6,
       "points_sampled": false
     },
     {
-      "pattern": "-yr",
-      "title": "-yr",
+      "pattern": "-ية / -y@",
+      "title": "-ية / -y@",
+      "mode": "suffix",
+      "zoom": 7,
+      "places": 5,
+      "file": "-ية_z7.json.gz",
+      "tiles": 1,
+      "score": 1.791759469228055,
+      "entropy": 0.0,
+      "hotspots": [
+        [
+          82,
+          54,
+          5
+        ]
+      ],
+      "points": 5,
+      "points_sampled": false
+    },
+    {
+      "pattern": "-رية / -ry@",
+      "title": "-رية / -ry@",
       "mode": "suffix",
       "zoom": 7,
       "places": 3,
-      "file": "-yr_z7.json.gz",
+      "file": "-رية_z7.json.gz",
       "tiles": 1,
       "score": 1.3862943611198906,
       "entropy": 0.0,
@@ -51,7 +71,7 @@
   "selection_mode": "score",
   "min_places_for_candidate": 3,
   "analyze_tail_token_only": true,
-  "suffix_len": [
+  "pattern_len": [
     2,
     10
   ]

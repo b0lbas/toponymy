@@ -528,46 +528,6 @@
       "points_sampled": false
     },
     {
-      "pattern": "-le",
-      "title": "-le",
-      "mode": "suffix",
-      "zoom": 7,
-      "places": 13,
-      "file": "-le_z7.json.gz",
-      "tiles": 6,
-      "score": 0.13848939346201614,
-      "entropy": 0.9475231583990613,
-      "hotspots": [
-        [
-          69,
-          63,
-          3
-        ],
-        [
-          69,
-          65,
-          3
-        ],
-        [
-          70,
-          62,
-          3
-        ],
-        [
-          69,
-          64,
-          2
-        ],
-        [
-          68,
-          65,
-          1
-        ]
-      ],
-      "points": 13,
-      "points_sampled": false
-    },
-    {
       "pattern": "-ma",
       "title": "-ma",
       "mode": "suffix",
@@ -646,52 +606,12 @@
       ],
       "points": 12,
       "points_sampled": false
-    },
-    {
-      "pattern": "-be",
-      "title": "-be",
-      "mode": "suffix",
-      "zoom": 7,
-      "places": 11,
-      "file": "-be_z7.json.gz",
-      "tiles": 5,
-      "score": 0.09702120865098907,
-      "entropy": 0.9609557933859341,
-      "hotspots": [
-        [
-          69,
-          63,
-          3
-        ],
-        [
-          69,
-          65,
-          3
-        ],
-        [
-          68,
-          64,
-          2
-        ],
-        [
-          70,
-          63,
-          2
-        ],
-        [
-          69,
-          64,
-          1
-        ]
-      ],
-      "points": 11,
-      "points_sampled": false
     }
   ],
   "selection_mode": "score",
   "min_places_for_candidate": 10,
   "analyze_tail_token_only": true,
-  "suffix_len": [
+  "pattern_len": [
     2,
     10
   ]
