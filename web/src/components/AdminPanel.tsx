@@ -119,6 +119,10 @@ export default function AdminPanel() {
       const countryId = (r.country_id || r.countryId || "").toString();
       const pattern = (r.pattern || "").toString();
       if (!countryId || !pattern) continue;
+
+      // Wait for country index to load before deciding payload availability.
+      if (indexByCountry[countryId] === undefined) continue;
+
       const key = `${countryId}|${pattern}`;
       if (payloadByKey[key] !== undefined) continue;
       needed.push({ countryId, pattern });
@@ -308,7 +312,7 @@ export default function AdminPanel() {
 
               const entry = country_id && pattern ? getEntryForReport(country_id, pattern) : null;
               const payloadKey = country_id && pattern ? `${country_id}|${pattern}` : "";
-              const payload = payloadKey ? payloadByKey[payloadKey] ?? null : null;
+              const payload = payloadKey ? payloadByKey[payloadKey] : null;
               const decodedPoints = decodedPointsForPayload(payload);
               const countryName = indexByCountry[country_id]?.country_name || "";
 
