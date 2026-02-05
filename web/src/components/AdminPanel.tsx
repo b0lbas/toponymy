@@ -31,6 +31,7 @@ export default function AdminPanel() {
   const [busyKey, setBusyKey] = useState<string | null>(null);
   const [indexByCountry, setIndexByCountry] = useState<Record<string, CountryPatternsIndex | null>>({});
   const [payloadByKey, setPayloadByKey] = useState<Record<string, PatternPayload | null>>({});
+  const [previewScaleByKey, setPreviewScaleByKey] = useState<Record<string, number>>({});
 
   useEffect(() => {
     return auth.onAuthChange((u) => setUserId(u));
@@ -197,6 +198,13 @@ export default function AdminPanel() {
     }
 
     return [] as Array<{ lon: number; lat: number; name: string | null }>;
+  };
+
+  const getPreviewScale = (key: string) => previewScaleByKey[key] ?? 1;
+
+  const updatePreviewScale = (key: string, next: number) => {
+    const clamped = Math.max(0.5, Math.min(6, next));
+    setPreviewScaleByKey((prev) => (prev[key] === clamped ? prev : { ...prev, [key]: clamped }));
   };
 
   const buildPreviewCountry = (
@@ -428,14 +436,38 @@ export default function AdminPanel() {
                         </div>
                       ) : (
                         <div className="flex flex-col gap-3 lg:flex-row">
-                          <div className="w-full shrink-0 lg:w-64">
-                            <div className="overflow-hidden rounded-2xl border border-zinc-800 bg-zinc-950/30">
+                          <div className="w-full shrink-0 lg:w-1/2">
+                            <div className="rounded-2xl border border-zinc-800 bg-zinc-950/30">
                               {payload && previewCountry ? (
-                                <TileSVG country={previewCountry} payload={payload} variant="mini" viewScale={1} renderMode="points" />
+                                <div
+                                  className="relative h-72 w-full overflow-auto rounded-2xl lg:h-[420px]"
+                                  onWheel={(e) => {
+                                    if (!payloadKey) return;
+                                    const delta = e.deltaY;
+                                    const next = getPreviewScale(keyBase) * (delta > 0 ? 0.9 : 1.1);
+                                    updatePreviewScale(keyBase, next);
+                                    e.preventDefault();
+                                  }}
+                                >
+                                  <div
+                                    className="origin-top-left"
+                                    style={{
+                                      transform: `scale(${getPreviewScale(keyBase)})`,
+                                      width: "520px",
+                                      height: "320px",
+                                    }}
+                                  >
+                                    <TileSVG country={previewCountry} payload={payload} variant="mini" viewScale={1} renderMode="points" />
+                                  </div>
+                                  <div className="pointer-events-none absolute bottom-2 right-3 rounded-full border border-zinc-800 bg-zinc-950/70 px-2 py-0.5 text-[11px] text-zinc-300">
+                                    Zoom: {getPreviewScale(keyBase).toFixed(2)}×
+                                  </div>
+                                </div>
                               ) : (
                                 <div className="p-3 text-xs text-zinc-500">Map preview unavailable.</div>
                               )}
                             </div>
+                            <div className="mt-2 text-[11px] text-zinc-500">Scroll to zoom · use scrollbars to pan</div>
                           </div>
 
                           <div className="min-w-0 flex-1">
