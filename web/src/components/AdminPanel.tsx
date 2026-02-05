@@ -32,9 +32,6 @@ export default function AdminPanel() {
   const [indexByCountry, setIndexByCountry] = useState<Record<string, CountryPatternsIndex | null>>({});
   const [payloadByKey, setPayloadByKey] = useState<Record<string, PatternPayload | null>>({});
   const [previewScaleByKey, setPreviewScaleByKey] = useState<Record<string, number>>({});
-  const previewWrapRef = useRef<Record<string, HTMLDivElement | null>>({});
-  const previewCenteredRef = useRef<Record<string, boolean>>({});
-
   const PREVIEW_BASE_W = 520;
   const PREVIEW_BASE_H = 320;
 
@@ -212,16 +209,10 @@ export default function AdminPanel() {
     setPreviewScaleByKey((prev) => (prev[key] === clamped ? prev : { ...prev, [key]: clamped }));
   };
 
-  const centerPreview = (key: string) => {
-    const el = previewWrapRef.current[key];
-    if (!el) return;
-    const scale = getPreviewScale(key);
-    const contentW = PREVIEW_BASE_W * scale;
-    const contentH = PREVIEW_BASE_H * scale;
-    const targetLeft = Math.max(0, (contentW - el.clientWidth) / 2);
-    const targetTop = Math.max(0, (contentH - el.clientHeight) / 2);
-    el.scrollLeft = targetLeft;
-    el.scrollTop = targetTop;
+  const fitPreviewScale = (containerWidth: number, containerHeight: number) => {
+    const fitW = containerWidth / PREVIEW_BASE_W;
+    const fitH = containerHeight / PREVIEW_BASE_H;
+    return Math.max(0.5, Math.min(96, Math.min(fitW, fitH)));
   };
 
   const buildPreviewCountry = (
@@ -457,36 +448,23 @@ export default function AdminPanel() {
                             <div className="rounded-2xl border border-zinc-800 bg-zinc-950/30">
                               {payload && previewCountry ? (
                                 <div
-                                  className="relative h-72 w-full overflow-auto rounded-2xl lg:h-[420px]"
+                                  className="relative flex h-72 w-full items-center justify-center overflow-hidden rounded-2xl lg:h-[420px]"
                                   ref={(el) => {
-                                    previewWrapRef.current[keyBase] = el;
-                                    if (el && !previewCenteredRef.current[keyBase]) {
-                                      previewCenteredRef.current[keyBase] = true;
-                                      requestAnimationFrame(() => centerPreview(keyBase));
-                                    }
+                                    if (!el) return;
+                                    if (previewScaleByKey[keyBase] !== undefined) return;
+                                    const fit = fitPreviewScale(el.clientWidth, el.clientHeight);
+                                    updatePreviewScale(keyBase, Math.max(12, fit));
                                   }}
                                   onWheel={(e) => {
-                                    const container = e.currentTarget;
                                     const oldScale = getPreviewScale(keyBase);
                                     const delta = e.deltaY;
                                     const nextScale = oldScale * (delta > 0 ? 0.9 : 1.1);
-                                    const clamped = Math.max(0.5, Math.min(96, nextScale));
-                                    if (clamped === oldScale) return;
-
-                                    const rect = container.getBoundingClientRect();
-                                    const cursorX = e.clientX - rect.left + container.scrollLeft;
-                                    const cursorY = e.clientY - rect.top + container.scrollTop;
-                                    const ratio = clamped / oldScale;
-
-                                    updatePreviewScale(keyBase, clamped);
-
-                                    container.scrollLeft = cursorX * ratio - (e.clientX - rect.left);
-                                    container.scrollTop = cursorY * ratio - (e.clientY - rect.top);
+                                    updatePreviewScale(keyBase, nextScale);
                                     e.preventDefault();
                                   }}
                                 >
                                   <div
-                                    className="origin-top-left"
+                                    className="origin-center"
                                     style={{
                                       transform: `scale(${getPreviewScale(keyBase)})`,
                                       width: `${PREVIEW_BASE_W}px`,
@@ -503,7 +481,7 @@ export default function AdminPanel() {
                                 <div className="p-3 text-xs text-zinc-500">Map preview unavailable.</div>
                               )}
                             </div>
-                            <div className="mt-2 text-[11px] text-zinc-500">Scroll to zoom · use scrollbars to pan</div>
+                            <div className="mt-2 text-[11px] text-zinc-500">Scroll to zoom</div>
                           </div>
 
                           <div className="min-w-0 flex-1">
