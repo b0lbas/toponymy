@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from "react";
+import type { PointerEvent as ReactPointerEvent, WheelEvent as ReactWheelEvent } from "react";
 import auth from "../lib/auth";
 import { API_BASE } from "../lib/likes";
 import type { CountryPatternsIndex, PatternIndexEntry, PatternPayload } from "../lib/data";
@@ -19,6 +20,287 @@ type ReportRow = {
   created_at?: number | string;
 };
 
+const ADMIN_PREVIEW_W = 520;
+const ADMIN_PREVIEW_H = 320;
+const ADMIN_MIN_ZOOM = 0.5;
+const ADMIN_MAX_ZOOM = 96;
+const ADMIN_PAN_PAD = 80;
+const ADMIN_INERTIA_FRICTION = 0.92;
+const ADMIN_INERTIA_STOP_SPEED = 10;
+
+function clamp(v: number, min: number, max: number) {
+  return Math.max(min, Math.min(max, v));
+}
+
+function AdminPatternPreview({
+  payload,
+  country,
+  initialScale = 12,
+}: {
+  payload: PatternPayload;
+  country: CountryFeature;
+  initialScale?: number;
+}) {
+  const viewportRef = useRef<HTMLDivElement | null>(null);
+  const stageRef = useRef<HTMLDivElement | null>(null);
+  const sheetRef = useRef<HTMLDivElement | null>(null);
+
+  const viewRef = useRef({
+    scale: initialScale,
+    tx: 0,
+    ty: 0,
+  });
+
+  const dragRef = useRef({
+    active: false,
+    pointerId: -1,
+    startX: 0,
+    startY: 0,
+    startTx: 0,
+    startTy: 0,
+    lastX: 0,
+    lastY: 0,
+    lastT: 0,
+    vx: 0,
+    vy: 0,
+  });
+
+  const rafRef = useRef<number | null>(null);
+  const rafLastTRef = useRef<number>(0);
+
+  const applyTransform = () => {
+    const stage = stageRef.current;
+    if (!stage) return;
+    const { scale, tx, ty } = viewRef.current;
+    stage.style.transform = `translate(${tx}px, ${ty}px) scale(${scale})`;
+  };
+
+  const clampToBounds = () => {
+    const vp = viewportRef.current;
+    const sheet = sheetRef.current;
+    if (!vp || !sheet) return;
+
+    const { scale } = viewRef.current;
+    const vw = vp.clientWidth;
+    const vh = vp.clientHeight;
+    const sw = sheet.offsetWidth;
+    const sh = sheet.offsetHeight;
+
+    const W = sw * scale;
+    const H = sh * scale;
+
+    if (W <= vw) viewRef.current.tx = (vw - W) / 2;
+    else {
+      const minTx = vw - W - ADMIN_PAN_PAD;
+      const maxTx = ADMIN_PAN_PAD;
+      viewRef.current.tx = clamp(viewRef.current.tx, minTx, maxTx);
+    }
+
+    if (H <= vh) viewRef.current.ty = (vh - H) / 2;
+    else {
+      const minTy = vh - H - ADMIN_PAN_PAD;
+      const maxTy = ADMIN_PAN_PAD;
+      viewRef.current.ty = clamp(viewRef.current.ty, minTy, maxTy);
+    }
+  };
+
+  const centerView = (scale = initialScale) => {
+    viewRef.current.scale = clamp(scale, ADMIN_MIN_ZOOM, ADMIN_MAX_ZOOM);
+    viewRef.current.tx = 0;
+    viewRef.current.ty = 0;
+    clampToBounds();
+    applyTransform();
+  };
+
+  const stopInertia = () => {
+    if (rafRef.current != null) cancelAnimationFrame(rafRef.current);
+    rafRef.current = null;
+    rafLastTRef.current = 0;
+  };
+
+  const startInertia = () => {
+    stopInertia();
+    rafRef.current = requestAnimationFrame(function tick(ts) {
+      const stage = stageRef.current;
+      const vp = viewportRef.current;
+      const sheet = sheetRef.current;
+      if (!stage || !vp || !sheet) {
+        stopInertia();
+        return;
+      }
+
+      const last = rafLastTRef.current || ts;
+      const dtMs = Math.max(1, ts - last);
+      const dt = dtMs / 1000;
+      rafLastTRef.current = ts;
+
+      const friction = Math.pow(ADMIN_INERTIA_FRICTION, dtMs / 16);
+      dragRef.current.vx *= friction;
+      dragRef.current.vy *= friction;
+
+      const speed = Math.hypot(dragRef.current.vx, dragRef.current.vy);
+      if (speed < ADMIN_INERTIA_STOP_SPEED) {
+        stopInertia();
+        return;
+      }
+
+      viewRef.current.tx += dragRef.current.vx * dt;
+      viewRef.current.ty += dragRef.current.vy * dt;
+
+      clampToBounds();
+      applyTransform();
+
+      rafRef.current = requestAnimationFrame(tick);
+    });
+  };
+
+  useEffect(() => {
+    stopInertia();
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => centerView(initialScale));
+    });
+
+    const vp = viewportRef.current;
+    if (!vp) return;
+
+    const ro = new ResizeObserver(() => {
+      clampToBounds();
+      applyTransform();
+    });
+    ro.observe(vp);
+
+    return () => {
+      ro.disconnect();
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [payload, country]);
+
+  const onWheel = (e: ReactWheelEvent<HTMLDivElement>) => {
+    e.preventDefault();
+    e.stopPropagation();
+
+    const vp = viewportRef.current;
+    const sheet = sheetRef.current;
+    if (!vp || !sheet) return;
+
+    stopInertia();
+
+    const rect = vp.getBoundingClientRect();
+    const mx = e.clientX - rect.left;
+    const my = e.clientY - rect.top;
+
+    const { scale, tx, ty } = viewRef.current;
+    const factor = Math.exp(-e.deltaY * 0.0015);
+    const nextScale = clamp(scale * factor, ADMIN_MIN_ZOOM, ADMIN_MAX_ZOOM);
+    if (nextScale === scale) return;
+
+    const cx = (mx - tx) / scale;
+    const cy = (my - ty) / scale;
+
+    viewRef.current.scale = nextScale;
+    viewRef.current.tx = mx - cx * nextScale;
+    viewRef.current.ty = my - cy * nextScale;
+
+    clampToBounds();
+    applyTransform();
+  };
+
+  const onPointerDown = (e: ReactPointerEvent<HTMLDivElement>) => {
+    if (e.button !== 0) return;
+    stopInertia();
+
+    dragRef.current.active = true;
+    dragRef.current.pointerId = e.pointerId;
+    dragRef.current.startX = e.clientX;
+    dragRef.current.startY = e.clientY;
+    dragRef.current.startTx = viewRef.current.tx;
+    dragRef.current.startTy = viewRef.current.ty;
+    dragRef.current.lastX = e.clientX;
+    dragRef.current.lastY = e.clientY;
+    dragRef.current.lastT = performance.now();
+    dragRef.current.vx = 0;
+    dragRef.current.vy = 0;
+
+    (e.currentTarget as HTMLDivElement).setPointerCapture(e.pointerId);
+    e.preventDefault();
+  };
+
+  const onPointerMove = (e: ReactPointerEvent<HTMLDivElement>) => {
+    if (!dragRef.current.active) return;
+    if (dragRef.current.pointerId !== e.pointerId) return;
+
+    const now = performance.now();
+    const dtMs = Math.max(1, now - dragRef.current.lastT);
+    const dt = dtMs / 1000;
+
+    const dx = e.clientX - dragRef.current.startX;
+    const dy = e.clientY - dragRef.current.startY;
+
+    viewRef.current.tx = dragRef.current.startTx + dx;
+    viewRef.current.ty = dragRef.current.startTy + dy;
+
+    const ddx = e.clientX - dragRef.current.lastX;
+    const ddy = e.clientY - dragRef.current.lastY;
+    const vx = ddx / dt;
+    const vy = ddy / dt;
+
+    dragRef.current.vx = dragRef.current.vx * 0.6 + vx * 0.4;
+    dragRef.current.vy = dragRef.current.vy * 0.6 + vy * 0.4;
+
+    dragRef.current.lastX = e.clientX;
+    dragRef.current.lastY = e.clientY;
+    dragRef.current.lastT = now;
+
+    clampToBounds();
+    applyTransform();
+
+    e.preventDefault();
+  };
+
+  const onPointerUp = (e: ReactPointerEvent<HTMLDivElement>) => {
+    if (!dragRef.current.active) return;
+    if (dragRef.current.pointerId !== e.pointerId) return;
+
+    dragRef.current.active = false;
+    dragRef.current.pointerId = -1;
+
+    try {
+      (e.currentTarget as HTMLDivElement).releasePointerCapture(e.pointerId);
+    } catch {}
+
+    const speed = Math.hypot(dragRef.current.vx, dragRef.current.vy);
+    if (speed > ADMIN_INERTIA_STOP_SPEED) startInertia();
+
+    e.preventDefault();
+  };
+
+  const onPointerCancel = (e: ReactPointerEvent<HTMLDivElement>) => {
+    if (!dragRef.current.active) return;
+    dragRef.current.active = false;
+    dragRef.current.pointerId = -1;
+    stopInertia();
+    e.preventDefault();
+  };
+
+  return (
+    <div
+      ref={viewportRef}
+      className="relative h-72 w-full overflow-hidden rounded-2xl border border-zinc-800 bg-zinc-950/30 lg:h-[420px]"
+      onWheel={onWheel}
+      onPointerDown={onPointerDown}
+      onPointerMove={onPointerMove}
+      onPointerUp={onPointerUp}
+      onPointerCancel={onPointerCancel}
+    >
+      <div ref={stageRef} className="absolute left-0 top-0">
+        <div ref={sheetRef} style={{ width: `${ADMIN_PREVIEW_W}px`, height: `${ADMIN_PREVIEW_H}px` }}>
+          <TileSVG country={country} payload={payload} variant="mini" viewScale={1} renderMode="points" />
+        </div>
+      </div>
+    </div>
+  );
+}
+
 function getAdminUserId() {
   const vite = (import.meta as any).env?.VITE_ADMIN_USER_ID;
   return vite || "user_1767857068696";
@@ -31,9 +313,6 @@ export default function AdminPanel() {
   const [busyKey, setBusyKey] = useState<string | null>(null);
   const [indexByCountry, setIndexByCountry] = useState<Record<string, CountryPatternsIndex | null>>({});
   const [payloadByKey, setPayloadByKey] = useState<Record<string, PatternPayload | null>>({});
-  const [previewScaleByKey, setPreviewScaleByKey] = useState<Record<string, number>>({});
-  const PREVIEW_BASE_W = 520;
-  const PREVIEW_BASE_H = 320;
 
   useEffect(() => {
     return auth.onAuthChange((u) => setUserId(u));
@@ -202,18 +481,6 @@ export default function AdminPanel() {
     return [] as Array<{ lon: number; lat: number; name: string | null }>;
   };
 
-  const getPreviewScale = (key: string) => previewScaleByKey[key] ?? 12;
-
-  const updatePreviewScale = (key: string, next: number) => {
-    const clamped = Math.max(0.5, Math.min(96, next));
-    setPreviewScaleByKey((prev) => (prev[key] === clamped ? prev : { ...prev, [key]: clamped }));
-  };
-
-  const fitPreviewScale = (containerWidth: number, containerHeight: number) => {
-    const fitW = containerWidth / PREVIEW_BASE_W;
-    const fitH = containerHeight / PREVIEW_BASE_H;
-    return Math.max(0.5, Math.min(96, Math.min(fitW, fitH)));
-  };
 
   const buildPreviewCountry = (
     countryId: string,
@@ -445,43 +712,13 @@ export default function AdminPanel() {
                       ) : (
                         <div className="flex flex-col gap-3 lg:flex-row">
                           <div className="w-full shrink-0 lg:w-1/2">
-                            <div className="rounded-2xl border border-zinc-800 bg-zinc-950/30">
-                              {payload && previewCountry ? (
-                                <div
-                                  className="relative flex h-72 w-full items-center justify-center overflow-hidden rounded-2xl lg:h-[420px]"
-                                  ref={(el) => {
-                                    if (!el) return;
-                                    if (previewScaleByKey[keyBase] !== undefined) return;
-                                    const fit = fitPreviewScale(el.clientWidth, el.clientHeight);
-                                    updatePreviewScale(keyBase, Math.max(12, fit));
-                                  }}
-                                  onWheel={(e) => {
-                                    const oldScale = getPreviewScale(keyBase);
-                                    const delta = e.deltaY;
-                                    const nextScale = oldScale * (delta > 0 ? 0.9 : 1.1);
-                                    updatePreviewScale(keyBase, nextScale);
-                                    e.preventDefault();
-                                  }}
-                                >
-                                  <div
-                                    className="origin-center"
-                                    style={{
-                                      transform: `scale(${getPreviewScale(keyBase)})`,
-                                      width: `${PREVIEW_BASE_W}px`,
-                                      height: `${PREVIEW_BASE_H}px`,
-                                    }}
-                                  >
-                                    <TileSVG country={previewCountry} payload={payload} variant="mini" viewScale={1} renderMode="points" />
-                                  </div>
-                                  <div className="pointer-events-none absolute bottom-2 right-3 rounded-full border border-zinc-800 bg-zinc-950/70 px-2 py-0.5 text-[11px] text-zinc-300">
-                                    Zoom: {getPreviewScale(keyBase).toFixed(2)}×
-                                  </div>
-                                </div>
-                              ) : (
-                                <div className="p-3 text-xs text-zinc-500">Map preview unavailable.</div>
-                              )}
-                            </div>
-                            <div className="mt-2 text-[11px] text-zinc-500">Scroll to zoom</div>
+                            {payload && previewCountry ? (
+                              <AdminPatternPreview payload={payload} country={previewCountry} initialScale={12} />
+                            ) : (
+                              <div className="rounded-2xl border border-zinc-800 bg-zinc-950/30 p-3 text-xs text-zinc-500">
+                                Map preview unavailable.
+                              </div>
+                            )}
                           </div>
 
                           <div className="min-w-0 flex-1">
