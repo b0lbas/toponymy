@@ -333,39 +333,6 @@ export default function CountryPanel({ country, onClose }: Props) {
                   key={p.file ?? `${p.pattern}|${p.mode}|${p.zoom}`}
                   className="rounded-2xl border border-zinc-800 bg-zinc-900/40 p-3"
                 >
-                  <div className="mb-2 flex flex-wrap items-center justify-between gap-2 text-[11px] text-zinc-400">
-                    <div className="flex flex-wrap items-center gap-2">
-                      <span className="rounded-full border border-zinc-800 bg-zinc-950/50 px-2 py-0.5">{p.pattern}</span>
-                      <span className="rounded-full border border-zinc-800 bg-zinc-950/50 px-2 py-0.5">
-                        {p.places.toLocaleString()} places
-                      </span>
-                      <span className="rounded-full border border-zinc-800 bg-zinc-950/50 px-2 py-0.5">z{p.zoom}</span>
-                      {typeof p.score === "number" ? (
-                        <span className="rounded-full border border-zinc-800 bg-zinc-950/50 px-2 py-0.5">
-                          score {p.score.toFixed(2)}
-                        </span>
-                      ) : null}
-                    </div>
-
-                    {p.hotspots?.length ? (
-                      <div className="flex flex-wrap items-center gap-2">
-                        <span className="text-zinc-500">hotspots:</span>
-                        {p.hotspots.slice(0, 3).map(([x, y, c], i) => {
-                          const { lon, lat } = tileCenterLonLat(x, y, p.zoom);
-                          return (
-                            <span
-                              key={i}
-                              className="rounded-full border border-zinc-800 bg-zinc-950/50 px-2 py-0.5 font-mono"
-                              title={`tile (${x},${y}) @ z${p.zoom}`}
-                            >
-                              {fmtCoord(lat)},{fmtCoord(lon)} · {c}
-                            </span>
-                          );
-                        })}
-                      </div>
-                    ) : null}
-                  </div>
-
                   <SmallMultiple country={country} entry={p} renderMode={renderMode} />
                 </div>
               ))}

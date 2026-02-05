@@ -30,6 +30,18 @@ function uniqueStrings(arr: string[]) {
   return Array.from(new Set(arr.filter(Boolean)));
 }
 
+function tileCenterLonLat(x: number, y: number, z: number) {
+  const n = 2 ** z;
+  const lon = ((x + 0.5) / n) * 360 - 180;
+  const merc2lat = (a: number) => (180 / Math.PI) * Math.atan(Math.sinh(a));
+  const lat = merc2lat(Math.PI * (1 - (2 * (y + 0.5)) / n));
+  return { lon, lat };
+}
+
+function fmtCoord(v: number) {
+  return (Math.round(v * 10) / 10).toFixed(1);
+}
+
 function buildDataKeyCandidates(country: CountryFeature): string[] {
   const p: any = (country as any)?.properties ?? {};
   const raw = [
@@ -87,6 +99,7 @@ const INERTIA_STOP_SPEED = 10;
 
 export default function SmallMultiple({ country, entry, renderMode = "points" }: Props) {
   const rootRef = useRef<HTMLDivElement | null>(null);
+  const miniWrapRef = useRef<HTMLDivElement | null>(null);
 
   const [visible, setVisible] = useState(false);
   const [payload, setPayload] = useState<PatternPayload | null>(null);
@@ -186,8 +199,8 @@ export default function SmallMultiple({ country, entry, renderMode = "points" }:
 
   const subtitle = useMemo(() => {
     const places = entry.places.toLocaleString();
-    return `${places} places • z${entry.zoom}`;
-  }, [entry.places, entry.zoom]);
+    return `${places} places`;
+  }, [entry.places]);
 
   const decodedNamedPoints = useMemo(() => {
     if (!payload) return [];
@@ -507,6 +520,68 @@ export default function SmallMultiple({ country, entry, renderMode = "points" }:
     }
   };
 
+  const makeFileSafe = (value: string) => value.replace(/[^a-z0-9]+/gi, "_").replace(/^_+|_+$/g, "");
+
+  const onDownloadImage = async () => {
+    const svg = miniWrapRef.current?.querySelector("svg");
+    if (!svg) return;
+
+    const serializer = new XMLSerializer();
+    const cloned = svg.cloneNode(true) as SVGElement;
+    cloned.setAttribute("xmlns", "http://www.w3.org/2000/svg");
+
+    const svgString = serializer.serializeToString(cloned);
+    const svgBlob = new Blob([svgString], { type: "image/svg+xml;charset=utf-8" });
+    const url = URL.createObjectURL(svgBlob);
+
+    const img = new Image();
+    img.onload = () => {
+      const width = svg.viewBox.baseVal.width || svg.clientWidth || 520;
+      const height = svg.viewBox.baseVal.height || svg.clientHeight || 320;
+      const scale = 2;
+
+      const canvas = document.createElement("canvas");
+      canvas.width = Math.round(width * scale);
+      canvas.height = Math.round(height * scale);
+
+      const ctx = canvas.getContext("2d");
+      if (!ctx) {
+        URL.revokeObjectURL(url);
+        return;
+      }
+
+      ctx.fillStyle = "#0a0a0a";
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+
+      const pad = 12 * scale;
+      ctx.fillStyle = "#e5e7eb";
+      ctx.font = `${Math.round(16 * scale)}px ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto`;
+      ctx.textBaseline = "top";
+      ctx.fillText(entry.title, pad, pad);
+
+      ctx.fillStyle = "#9ca3af";
+      ctx.font = `${Math.round(12 * scale)}px ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto`;
+      ctx.fillText("Toponymy Atlas", pad, pad + Math.round(20 * scale));
+
+      canvas.toBlob((blob) => {
+        if (!blob) return;
+        const a = document.createElement("a");
+        const countryName = (country as any)?.properties?.name ?? country.id;
+        const filename = `${makeFileSafe(countryName)}_${makeFileSafe(entry.title)}.png`;
+        a.href = URL.createObjectURL(blob);
+        a.download = filename;
+        a.click();
+        URL.revokeObjectURL(a.href);
+      }, "image/png");
+
+      URL.revokeObjectURL(url);
+    };
+
+    img.onerror = () => URL.revokeObjectURL(url);
+    img.src = url;
+  };
+
   const modal =
     open && payload ? (
       <AnimatePresence>
@@ -525,42 +600,42 @@ export default function SmallMultiple({ country, entry, renderMode = "points" }:
             transition={{ duration: 0.18 }}
             onClick={(e) => e.stopPropagation()}
           >
-            <div className="flex items-center justify-between gap-3 border-b border-zinc-800 px-4 py-3">
-              <div className="flex flex-col">
-                <div className="text-sm font-semibold text-zinc-100">{entry.title}</div>
-                <div className="text-[11px] text-zinc-400">
-                  {entry.places.toLocaleString()} matches
-                  {"points_sampled" in (payload as any) && (payload as any).points_sampled ? " (sampled)" : ""}
-                  {" · "}
-                  <span className="font-mono">{Math.round(zoomUI * 100)}%</span>
+            <div className="border-b border-zinc-800 px-4 py-3">
+              <div className="flex items-start justify-between gap-4">
+                <div className="flex flex-col">
+                  <div className="text-sm font-semibold text-zinc-100">{entry.title}</div>
+                  <div className="text-[11px] text-zinc-400">
+                    {entry.places.toLocaleString()} places
+                    {"points_sampled" in (payload as any) && (payload as any).points_sampled ? " (sampled)" : ""}
+                  </div>
                 </div>
-              </div>
 
-              <div className="flex items-center gap-2">
-                <button
-                  type="button"
-                  onClick={reset}
-                  className="rounded-xl border border-zinc-800 bg-zinc-950/60 px-3 py-1.5 text-xs text-zinc-300 hover:bg-zinc-950"
-                  title="Reset zoom & center"
-                >
-                  Reset
-                </button>
-                <button
-                  type="button"
-                  onClick={reportPattern}
-                  disabled={reporting}
-                  className="rounded-xl border border-zinc-800 bg-zinc-950/60 px-3 py-1.5 text-xs text-zinc-300 hover:bg-zinc-950 disabled:opacity-60"
-                  title="Report this pattern"
-                >
-                  {reporting ? "Reporting…" : "Report"}
-                </button>
-                <button
-                  type="button"
-                  onClick={() => setOpen(false)}
-                  className="rounded-xl border border-zinc-800 bg-zinc-950/60 px-3 py-1.5 text-xs text-zinc-300 hover:bg-zinc-950"
-                >
-                  Close
-                </button>
+                <div className="flex items-center gap-2">
+                  <button
+                    type="button"
+                    onClick={onDownloadImage}
+                    className="rounded-xl border border-zinc-800 bg-zinc-950/60 px-3 py-1.5 text-xs text-zinc-300 hover:bg-zinc-950"
+                    title="Download image"
+                  >
+                    Download
+                  </button>
+                  <button
+                    type="button"
+                    onClick={reportPattern}
+                    disabled={reporting}
+                    className="rounded-xl border border-zinc-800 bg-zinc-950/60 px-3 py-1.5 text-xs text-zinc-300 hover:bg-zinc-950 disabled:opacity-60"
+                    title="Report this pattern"
+                  >
+                    {reporting ? "Reporting…" : "Report"}
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setOpen(false)}
+                    className="rounded-xl border border-zinc-800 bg-zinc-950/60 px-3 py-1.5 text-xs text-zinc-300 hover:bg-zinc-950"
+                  >
+                    Close
+                  </button>
+                </div>
               </div>
             </div>
 
@@ -662,6 +737,7 @@ export default function SmallMultiple({ country, entry, renderMode = "points" }:
 
   const patternKey = `${country.id}|${entry.file ?? `${entry.pattern}|${entry.mode}|${entry.zoom}`}`;
 
+
   // Load initial like count
   useEffect(() => {
     likes.getCount(patternKey).then(setLikeCount);
@@ -715,9 +791,13 @@ export default function SmallMultiple({ country, entry, renderMode = "points" }:
 
   return (
     <div ref={rootRef} className="flex flex-col gap-2">
-      <div className="flex items-baseline justify-between gap-2">
-        <div className="flex items-center gap-3">
-          <div className="text-sm font-semibold">{entry.title}</div>
+      <div className="flex flex-col gap-2">
+        <div>
+          <div className="text-sm font-semibold text-zinc-100">{entry.title}</div>
+          <div className="text-[11px] text-zinc-400">{subtitle}</div>
+        </div>
+
+        <div className="flex items-center gap-2">
           <button
             onClick={onToggleLike}
             disabled={liking}
@@ -727,11 +807,75 @@ export default function SmallMultiple({ country, entry, renderMode = "points" }:
             <span aria-hidden>{liked ? "♥" : "♡"}</span>
             <span className="font-mono text-[11px]">{likeCount}</span>
           </button>
+          <button
+            onClick={onDownloadImage}
+            className="rounded-full border border-zinc-800 bg-zinc-950/40 px-2 py-0.5 text-xs text-zinc-300 hover:bg-zinc-950"
+            title="Download image"
+            type="button"
+          >
+            <svg
+              width="14"
+              height="14"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              aria-hidden
+            >
+              <path d="M12 3v12" />
+              <path d="M7 10l5 5 5-5" />
+              <path d="M5 21h14" />
+            </svg>
+          </button>
+          <div className="relative group">
+            <button
+              type="button"
+              className="flex h-6 w-6 items-center justify-center rounded-full border border-zinc-800 bg-zinc-950/60 text-[11px] text-zinc-300 hover:bg-zinc-950"
+              aria-label="Pattern info"
+              title="Info"
+            >
+              i
+            </button>
+            <div className="pointer-events-none absolute left-0 top-full z-10 mt-2 w-max max-w-[220px] rounded-xl border border-zinc-800 bg-zinc-950/95 p-2 text-xs text-zinc-300 opacity-0 shadow-lg transition-opacity group-hover:opacity-100">
+              <div className="space-y-1">
+                <div>
+                  <span className="text-zinc-400">Places:</span>{" "}
+                  <span className="font-mono">{entry.places.toLocaleString()}</span>
+                </div>
+                <div>
+                  <span className="text-zinc-400">Zoom:</span>{" "}
+                  <span className="font-mono">z{entry.zoom}</span>
+                </div>
+                {typeof entry.score === "number" ? (
+                  <div>
+                    <span className="text-zinc-400">Score:</span>{" "}
+                    <span className="font-mono">{entry.score.toFixed(2)}</span>
+                  </div>
+                ) : null}
+                {entry.hotspots?.length ? (
+                  <div>
+                    <div className="text-zinc-400">Hotspots:</div>
+                    <div className="mt-1 space-y-0.5 font-mono text-[11px]">
+                      {entry.hotspots.slice(0, 3).map(([x, y, c], i) => {
+                        const { lon, lat } = tileCenterLonLat(x, y, entry.zoom);
+                        return (
+                          <div key={i}>
+                            {fmtCoord(lat)},{fmtCoord(lon)} · {c}
+                          </div>
+                        );
+                      })}
+                    </div>
+                  </div>
+                ) : null}
+              </div>
+            </div>
+          </div>
         </div>
-        <div className="text-[11px] text-zinc-400">{subtitle}</div>
       </div>
 
-      <div className="overflow-hidden rounded-xl border border-zinc-800 bg-zinc-950/40">
+      <div ref={miniWrapRef} className="overflow-hidden rounded-xl border border-zinc-800 bg-zinc-950/40">
         {err && <div className="p-3 text-xs text-zinc-400">{err}</div>}
         {!err && !payload && <div className="p-3 text-xs text-zinc-400">Loading map…</div>}
         {payload && (
@@ -744,7 +888,13 @@ export default function SmallMultiple({ country, entry, renderMode = "points" }:
             className="block w-full cursor-zoom-in text-left"
             title="Open larger view"
           >
-            <TileSVG country={country} payload={payload} variant="mini" viewScale={1} renderMode={renderMode} />
+            <TileSVG
+              country={country}
+              payload={payload}
+              variant="mini"
+              viewScale={1}
+              renderMode={renderMode}
+            />
           </button>
         )}
       </div>

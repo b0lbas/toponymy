@@ -704,6 +704,7 @@ export default function TileSVG({
           </g>
         )}
 
+
         {/* data (clipped) - drawn after borders so points are on top */}
         <g clipPath={`url(#${clipId})`} onClick={() => onPointClick?.(null)}>
           {renderMode === "heatmap" && heatContours.length > 0 ? (

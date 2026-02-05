@@ -15,6 +15,7 @@ type Props = {
   countries: CountryFeature[]; // fallback
   selectedId: string | null;
   onSelect: (country: CountryFeature) => void;
+  theme?: "light" | "dark";
 };
 
 const EUROPE_BBOX = { lonMin: -25, lonMax: 45, latMin: 34, latMax: 72 };
@@ -470,7 +471,7 @@ function buildAdmin1InternalBordersFC(topo: Topology<any>, iso3: string): GeoJSO
   return emptyFC();
 }
 
-export default function MapView({ countries, selectedId, onSelect }: Props) {
+export default function MapView({ countries, selectedId, onSelect, theme = "light" }: Props) {
   const mapRef = useRef<maplibregl.Map | null>(null);
   const creatingRef = useRef(false);
   const containerIdRef = useRef(`map-${Math.random().toString(36).slice(2)}`);
@@ -482,6 +483,8 @@ export default function MapView({ countries, selectedId, onSelect }: Props) {
   const countriesRef = useRef<CountryFeature[]>([]);
   const countriesFCRef = useRef<GeoJSON.FeatureCollection>(emptyFC());
   const selectedIdRef = useRef<string | null>(null);
+  const onSelectRef = useRef(onSelect);
+  const lastThemeRef = useRef<"light" | "dark" | null>(null);
 
   useEffect(() => {
     let cancelled = false;
@@ -600,6 +603,97 @@ export default function MapView({ countries, selectedId, onSelect }: Props) {
   }, [selectedId]);
 
   useEffect(() => {
+    onSelectRef.current = onSelect;
+  }, [onSelect]);
+
+  const LIGHT_STYLE = () => JSON.parse(JSON.stringify(style)) as any;
+  const DARK_STYLE = "https://basemaps.cartocdn.com/gl/dark-matter-gl-style/style.json";
+
+  const onCountriesMove = (e: maplibregl.MapMouseEvent & maplibregl.EventData) => {
+    const map = mapRef.current;
+    if (!map) return;
+    map.getCanvas().style.cursor = e.features?.length ? "pointer" : "";
+  };
+
+  const onCountriesLeave = () => {
+    const map = mapRef.current;
+    if (!map) return;
+    map.getCanvas().style.cursor = "";
+  };
+
+  const onCountriesClick = (e: maplibregl.MapMouseEvent & maplibregl.EventData) => {
+    const map = mapRef.current;
+    if (!map) return;
+
+    const feats = map.queryRenderedFeatures(e.point, { layers: ["countries-fill"] }) as any[];
+    const feat =
+      feats
+        .map((f) => ({ f, area: Number(f.properties?.area ?? Infinity) }))
+        .sort((a, b) => a.area - b.area)[0]?.f ?? (e.features?.[0] as any);
+
+    if (!feat) return;
+
+    const idRaw = feat.id ?? feat.properties?.id ?? "";
+    const id = normalizeId(idRaw);
+    const name = (feat.properties?.name ?? getName(feat) ?? "Unknown").toString();
+
+    const list = countriesRef.current ?? [];
+    const found =
+      list.find((c) => normalizeId(c.id) === id) ||
+      list.find((c) => normalizeId(c.id) === normalizeId(idRaw?.toString()));
+
+    if (found) onSelectRef.current(found);
+    else onSelectRef.current({ ...(feat as any), id, properties: { ...(feat.properties ?? {}), id, name } } as CountryFeature);
+  };
+
+  const setupLayers = (map: maplibregl.Map) => {
+    hideBasemapBoundaries(map);
+
+    if (map.getLayer("countries-fill")) map.removeLayer("countries-fill");
+    if (map.getLayer("countries-line")) map.removeLayer("countries-line");
+    if (map.getLayer("admin1-borders-line")) map.removeLayer("admin1-borders-line");
+    if (map.getSource("countries")) map.removeSource("countries");
+    if (map.getSource("admin1-borders")) map.removeSource("admin1-borders");
+
+    map.addSource("countries", { type: "geojson", data: countriesFCRef.current as any });
+    map.addLayer({
+      id: "countries-fill",
+      type: "fill",
+      source: "countries",
+      layout: { "fill-sort-key": ["*", -1, ["coalesce", ["get", "area"], 0]] },
+      paint: {
+        "fill-color": ["case", ["==", ["id"], selectedIdRef.current ?? ""], "#60a5fa", "#27272a"],
+        "fill-opacity": 0.35,
+      },
+    });
+    map.addLayer({
+      id: "countries-line",
+      type: "line",
+      source: "countries",
+      paint: { "line-color": "#52525b", "line-width": 1.2, "line-opacity": 0.9 },
+    });
+
+    map.off("mousemove", "countries-fill", onCountriesMove);
+    map.off("mouseleave", "countries-fill", onCountriesLeave);
+    map.off("click", "countries-fill", onCountriesClick);
+    map.on("mousemove", "countries-fill", onCountriesMove);
+    map.on("mouseleave", "countries-fill", onCountriesLeave);
+    map.on("click", "countries-fill", onCountriesClick);
+
+    map.addSource("admin1-borders", { type: "geojson", data: emptyFC() as any });
+    map.addLayer({
+      id: "admin1-borders-line",
+      type: "line",
+      source: "admin1-borders",
+      paint: {
+        "line-color": "#ffffff",
+        "line-opacity": 0.55,
+        "line-width": 1.2,
+      },
+    });
+  };
+
+  useEffect(() => {
     if (typeof window === "undefined") return;
     if (mapRef.current || creatingRef.current) return;
 
@@ -617,7 +711,7 @@ export default function MapView({ countries, selectedId, onSelect }: Props) {
 
       const map = new maplibregl.Map({
         container: containerIdRef.current,
-        style: style as any,
+        style: theme === "dark" ? (DARK_STYLE as any) : (LIGHT_STYLE() as any),
         center: [10, 52],
         zoom: 3.6,
         minZoom: 2.8,
@@ -630,74 +724,11 @@ export default function MapView({ countries, selectedId, onSelect }: Props) {
 
       map.on("load", () => {
         setMapReady(true);
-
-        // ✅ прячем старые границы из style.json
-        hideBasemapBoundaries(map);
-
-        map.addSource("countries", { type: "geojson", data: countriesFCRef.current as any });
-
-        map.addLayer({
-          id: "countries-fill",
-          type: "fill",
-          source: "countries",
-          layout: { "fill-sort-key": ["*", -1, ["coalesce", ["get", "area"], 0]] },
-          paint: {
-            "fill-color": ["case", ["==", ["id"], selectedIdRef.current ?? ""], "#60a5fa", "#27272a"],
-            "fill-opacity": 0.35,
-          },
-        });
-
-        map.addLayer({
-          id: "countries-line",
-          type: "line",
-          source: "countries",
-          paint: { "line-color": "#52525b", "line-width": 1.2, "line-opacity": 0.9 },
-        });
-
-        map.on("mousemove", "countries-fill", (e) => {
-          map.getCanvas().style.cursor = e.features?.length ? "pointer" : "";
-        });
-        map.on("mouseleave", "countries-fill", () => {
-          map.getCanvas().style.cursor = "";
-        });
-
-        map.on("click", "countries-fill", (e) => {
-          const feats = map.queryRenderedFeatures(e.point, { layers: ["countries-fill"] }) as any[];
-          const feat =
-            feats
-              .map((f) => ({ f, area: Number(f.properties?.area ?? Infinity) }))
-              .sort((a, b) => a.area - b.area)[0]?.f ?? (e.features?.[0] as any);
-
-          if (!feat) return;
-
-          const idRaw = feat.id ?? feat.properties?.id ?? "";
-          const id = normalizeId(idRaw);
-          const name = (feat.properties?.name ?? getName(feat) ?? "Unknown").toString();
-
-          const list = countriesRef.current ?? [];
-          const found =
-            list.find((c) => normalizeId(c.id) === id) ||
-            list.find((c) => normalizeId(c.id) === normalizeId(idRaw?.toString()));
-
-          if (found) onSelect(found);
-          else onSelect({ ...(feat as any), id, properties: { ...(feat.properties ?? {}), id, name } } as CountryFeature);
-        });
-
-        // admin1 borders layer (empty until selection)
-        map.addSource("admin1-borders", { type: "geojson", data: emptyFC() as any });
-        map.addLayer({
-          id: "admin1-borders-line",
-          type: "line",
-          source: "admin1-borders",
-          paint: {
-            "line-color": "#ffffff",
-            "line-opacity": 0.55,
-            "line-width": 1.2,
-          },
-        });
+        setupLayers(map);
       });
 
       mapRef.current = map;
+      lastThemeRef.current = theme;
       creatingRef.current = false;
     });
 
@@ -711,6 +742,34 @@ export default function MapView({ countries, selectedId, onSelect }: Props) {
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  useEffect(() => {
+    const map = mapRef.current;
+    if (!map) return;
+    if (lastThemeRef.current === theme) return;
+    lastThemeRef.current = theme;
+    setMapReady(false);
+    let cancelled = false;
+    map.once("style.load", () => {
+      if (cancelled) return;
+      setMapReady(true);
+      setupLayers(map);
+    });
+    map.setStyle(theme === "dark" ? (DARK_STYLE as any) : (LIGHT_STYLE() as any));
+
+    const fallback = window.setTimeout(() => {
+      if (cancelled) return;
+      if (map.getLayer("countries-fill")) return;
+      if (!map.isStyleLoaded()) return;
+      setupLayers(map);
+      setMapReady(true);
+    }, 1200);
+
+    return () => {
+      cancelled = true;
+      window.clearTimeout(fallback);
+    };
+  }, [theme]);
 
   // Update countries source
   useEffect(() => {

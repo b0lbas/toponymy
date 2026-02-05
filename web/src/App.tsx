@@ -16,6 +16,10 @@ export default function App() {
   const [countries, setCountries] = useState<CountryFeature[] | null>(null);
   const [selected, setSelected] = useState<CountryFeature | null>(null);
   const [showChangelog, setShowChangelog] = useState(false);
+  const [theme, setTheme] = useState<"light" | "dark">(() => {
+    if (typeof window === "undefined") return "light";
+    return (window.localStorage.getItem("toponymy_theme") as "light" | "dark") ?? "light";
+  });
   const changelogRef = useRef<HTMLDivElement | null>(null);
   const changelogButtonRef = useRef<HTMLButtonElement | null>(null);
 
@@ -39,6 +43,11 @@ export default function App() {
     return () => document.removeEventListener("mousedown", onClick);
   }, [showChangelog]);
 
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    window.localStorage.setItem("toponymy_theme", theme);
+  }, [theme]);
+
   const subtitle = useMemo(() => {
     if (!countries) return "Loading…";
     if (countries.length === 0) return "Failed to load country shapes.";
@@ -47,11 +56,8 @@ export default function App() {
 
   return (
     <div className="h-screen w-screen overflow-hidden bg-zinc-950">
-      <header className="absolute left-0 right-0 top-0 z-10 flex items-center justify-between px-5 py-4">
-        <div className="flex flex-col gap-1">
-          <div className="text-xs text-zinc-400">{subtitle}</div>
-        </div>
-        <div className="hidden md:flex flex-col items-end gap-2 text-xs text-zinc-400 relative">
+      <header className="absolute right-5 top-4 z-10 inline-flex pointer-events-none">
+        <div className="flex flex-col items-end gap-2 text-xs text-zinc-400 relative pointer-events-auto">
           <AuthControl />
           <button
             type="button"
@@ -60,6 +66,14 @@ export default function App() {
             className="rounded-xl border border-zinc-800 bg-zinc-950/60 px-3 py-1.5 text-xs text-zinc-300 hover:bg-zinc-950"
           >
             Changelog
+          </button>
+          <button
+            type="button"
+            onClick={() => setTheme((t) => (t === "light" ? "dark" : "light"))}
+            className="rounded-xl border border-zinc-800 bg-zinc-950/60 px-3 py-1.5 text-xs text-zinc-300 hover:bg-zinc-950"
+            title="Toggle theme"
+          >
+            Theme: {theme === "light" ? "Light" : "Dark"}
           </button>
           <AnimatePresence>
             {showChangelog && (
@@ -97,6 +111,7 @@ export default function App() {
           countries={countries ?? []}
           selectedId={selected?.id ?? null}
           onSelect={(c) => setSelected(c)}
+          theme={theme}
         />
       </div>
 
