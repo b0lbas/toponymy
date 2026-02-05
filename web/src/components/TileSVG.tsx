@@ -630,7 +630,7 @@ export default function TileSVG({
   }, [renderMode, decodedNamedPoints, decodedPoints, projection, payload]);
 
   const heatBandwidth = useMemo(() => {
-    const base = variant === "large" ? 24 : 16;
+    const base = variant === "large" ? 12 : 8;
     const s = Math.max(0.2, viewScale ?? 1);
     return base / s;
   }, [variant, viewScale]);

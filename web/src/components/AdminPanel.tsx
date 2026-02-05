@@ -169,15 +169,28 @@ export default function AdminPanel() {
     return idx.patterns.find((p) => p.pattern === pattern) ?? null;
   };
 
-  const cityNamesForPayload = (payload: PatternPayload | null): string[] => {
-    if (!payload) return [];
+  const decodedPointsForPayload = (payload: PatternPayload | null) => {
+    if (!payload) return [] as Array<{ lon: number; lat: number; name: string | null }>;
     const anyPayload = payload as any;
-    if (!Array.isArray(anyPayload.points_named)) return [];
-    const names = (anyPayload.points_named as any[])
-      .map((row) => (Array.isArray(row) ? row[2] : null))
-      .filter((v) => typeof v === "string" && v.trim().length > 0)
-      .map((v) => (v as string).trim());
-    return Array.from(new Set(names));
+    const scale = anyPayload.points_scale ?? 10000;
+
+    if (Array.isArray(anyPayload.points_named)) {
+      return (anyPayload.points_named as [number, number, string][])?.map(([lonq, latq, name]) => ({
+        lon: lonq / scale,
+        lat: latq / scale,
+        name: typeof name === "string" && name.trim() ? name : null,
+      }));
+    }
+
+    if (Array.isArray(anyPayload.points_q)) {
+      return (anyPayload.points_q as [number, number][])?.map(([lonq, latq]) => ({
+        lon: lonq / scale,
+        lat: latq / scale,
+        name: null,
+      }));
+    }
+
+    return [] as Array<{ lon: number; lat: number; name: string | null }>;
   };
 
   const accept = async (r: ReportRow) => {
@@ -296,18 +309,32 @@ export default function AdminPanel() {
               const entry = country_id && pattern ? getEntryForReport(country_id, pattern) : null;
               const payloadKey = country_id && pattern ? `${country_id}|${pattern}` : "";
               const payload = payloadKey ? payloadByKey[payloadKey] ?? null : null;
-              const cityNames = cityNamesForPayload(payload);
+              const decodedPoints = decodedPointsForPayload(payload);
+              const countryName = indexByCountry[country_id]?.country_name || "";
 
               return (
                 <div key={keyBase} className="rounded-2xl border border-zinc-800 bg-zinc-900/40 p-4">
                   <div className="flex flex-wrap items-center justify-between gap-3">
                     <div className="text-sm">
-                      <span className="rounded-full border border-zinc-800 bg-zinc-950/50 px-2 py-0.5 text-xs font-mono">
-                        {country_id}
-                      </span>
-                      <span className="ml-2 rounded-full border border-zinc-800 bg-zinc-950/50 px-2 py-0.5 text-xs">
-                        {pattern}
-                      </span>
+                      <div className="flex flex-wrap items-center gap-2">
+                        <span className="rounded-full border border-zinc-800 bg-zinc-950/50 px-2 py-0.5 text-xs font-mono">
+                          {country_id}
+                        </span>
+                        {countryName ? (
+                          <span className="text-sm font-semibold text-zinc-100">{countryName}</span>
+                        ) : null}
+                      </div>
+                      <div className="mt-1 flex flex-wrap items-center gap-2 text-xs text-zinc-400">
+                        <span className="rounded-full border border-zinc-800 bg-zinc-950/50 px-2 py-0.5">
+                          {pattern}
+                        </span>
+                        {entry?.title && entry.title !== pattern ? (
+                          <span className="text-zinc-300">{entry.title}</span>
+                        ) : null}
+                        {entry?.places ? (
+                          <span className="text-zinc-500">· {entry.places.toLocaleString()} places</span>
+                        ) : null}
+                      </div>
                     </div>
                     <div className="flex items-center gap-2">
                       <button
@@ -342,30 +369,43 @@ export default function AdminPanel() {
                         <div className="rounded-2xl border border-zinc-800 bg-zinc-950/30 p-3 text-xs text-zinc-400">
                           Loading cities…
                         </div>
-                      ) : cityNames.length > 0 ? (
+                      ) : decodedPoints.length > 0 ? (
                         <div className="rounded-2xl border border-zinc-800 bg-zinc-950/30 p-3">
                           <div className="mb-2 flex items-center justify-between gap-3">
-                            <div className="text-xs text-zinc-400">Cities in sample</div>
-                            <div className="text-xs text-zinc-500">{cityNames.length.toLocaleString()}</div>
+                            <div className="text-xs text-zinc-400">
+                              Cities ({(payload as any)?.points ?? decodedPoints.length})
+                            </div>
+                            <div className="text-xs text-zinc-500">{decodedPoints.length.toLocaleString()}</div>
                           </div>
-                          <div className="flex flex-wrap gap-2">
-                            {cityNames.slice(0, 36).map((name) => (
-                              <span
-                                key={name}
-                                className="rounded-full border border-zinc-800 bg-zinc-950/50 px-2 py-0.5 text-xs text-zinc-200"
-                                title={name}
-                              >
-                                {name}
-                              </span>
+                          {(payload as any)?.points_sampled && (
+                            <div className="text-xs text-zinc-400 mb-2">Sampled (not all cities)</div>
+                          )}
+                          {!((payload as any) && "points_named" in (payload as any)) && (
+                            <div className="text-xs text-zinc-500 mb-2">
+                              Names not exported for this pattern — showing coordinates only.
+                            </div>
+                          )}
+                          <ul className="divide-y divide-zinc-800 text-sm">
+                            {decodedPoints.slice(0, 2000).map((p, idx) => (
+                              <li key={`${p.lon}-${p.lat}-${idx}`} className="py-2">
+                                <div className="font-medium text-zinc-100">
+                                  {p.name ?? `(${p.lat.toFixed(4)}, ${p.lon.toFixed(4)})`}
+                                </div>
+                                <div className="text-[11px] text-zinc-400">
+                                  {p.lat.toFixed(5)}, {p.lon.toFixed(5)}
+                                </div>
+                              </li>
                             ))}
-                          </div>
-                          {cityNames.length > 36 ? (
-                            <div className="mt-2 text-xs text-zinc-500">…and {(cityNames.length - 36).toLocaleString()} more</div>
-                          ) : null}
+                          </ul>
+                          {decodedPoints.length > 2000 && (
+                            <div className="text-xs text-zinc-400 mt-2">
+                              Showing first 2000 of {decodedPoints.length}
+                            </div>
+                          )}
                         </div>
                       ) : (
                         <div className="rounded-2xl border border-zinc-800 bg-zinc-950/30 p-3 text-xs text-zinc-400">
-                          No city names in payload (no points_named).
+                          No city list available for this pattern.
                         </div>
                       )
                     ) : indexByCountry[country_id] === undefined ? (
