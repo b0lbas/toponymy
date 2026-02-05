@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import auth from "../lib/auth";
 import { API_BASE } from "../lib/likes";
 import type { CountryPatternsIndex, PatternIndexEntry, PatternPayload } from "../lib/data";
@@ -32,6 +32,11 @@ export default function AdminPanel() {
   const [indexByCountry, setIndexByCountry] = useState<Record<string, CountryPatternsIndex | null>>({});
   const [payloadByKey, setPayloadByKey] = useState<Record<string, PatternPayload | null>>({});
   const [previewScaleByKey, setPreviewScaleByKey] = useState<Record<string, number>>({});
+  const previewWrapRef = useRef<Record<string, HTMLDivElement | null>>({});
+  const previewCenteredRef = useRef<Record<string, boolean>>({});
+
+  const PREVIEW_BASE_W = 520;
+  const PREVIEW_BASE_H = 320;
 
   useEffect(() => {
     return auth.onAuthChange((u) => setUserId(u));
@@ -200,11 +205,23 @@ export default function AdminPanel() {
     return [] as Array<{ lon: number; lat: number; name: string | null }>;
   };
 
-  const getPreviewScale = (key: string) => previewScaleByKey[key] ?? 1;
+  const getPreviewScale = (key: string) => previewScaleByKey[key] ?? 12;
 
   const updatePreviewScale = (key: string, next: number) => {
-    const clamped = Math.max(0.5, Math.min(6, next));
+    const clamped = Math.max(0.5, Math.min(96, next));
     setPreviewScaleByKey((prev) => (prev[key] === clamped ? prev : { ...prev, [key]: clamped }));
+  };
+
+  const centerPreview = (key: string) => {
+    const el = previewWrapRef.current[key];
+    if (!el) return;
+    const scale = getPreviewScale(key);
+    const contentW = PREVIEW_BASE_W * scale;
+    const contentH = PREVIEW_BASE_H * scale;
+    const targetLeft = Math.max(0, (contentW - el.clientWidth) / 2);
+    const targetTop = Math.max(0, (contentH - el.clientHeight) / 2);
+    el.scrollLeft = targetLeft;
+    el.scrollTop = targetTop;
   };
 
   const buildPreviewCountry = (
@@ -441,11 +458,30 @@ export default function AdminPanel() {
                               {payload && previewCountry ? (
                                 <div
                                   className="relative h-72 w-full overflow-auto rounded-2xl lg:h-[420px]"
+                                  ref={(el) => {
+                                    previewWrapRef.current[keyBase] = el;
+                                    if (el && !previewCenteredRef.current[keyBase]) {
+                                      previewCenteredRef.current[keyBase] = true;
+                                      requestAnimationFrame(() => centerPreview(keyBase));
+                                    }
+                                  }}
                                   onWheel={(e) => {
-                                    if (!payloadKey) return;
+                                    const container = e.currentTarget;
+                                    const oldScale = getPreviewScale(keyBase);
                                     const delta = e.deltaY;
-                                    const next = getPreviewScale(keyBase) * (delta > 0 ? 0.9 : 1.1);
-                                    updatePreviewScale(keyBase, next);
+                                    const nextScale = oldScale * (delta > 0 ? 0.9 : 1.1);
+                                    const clamped = Math.max(0.5, Math.min(96, nextScale));
+                                    if (clamped === oldScale) return;
+
+                                    const rect = container.getBoundingClientRect();
+                                    const cursorX = e.clientX - rect.left + container.scrollLeft;
+                                    const cursorY = e.clientY - rect.top + container.scrollTop;
+                                    const ratio = clamped / oldScale;
+
+                                    updatePreviewScale(keyBase, clamped);
+
+                                    container.scrollLeft = cursorX * ratio - (e.clientX - rect.left);
+                                    container.scrollTop = cursorY * ratio - (e.clientY - rect.top);
                                     e.preventDefault();
                                   }}
                                 >
@@ -453,8 +489,8 @@ export default function AdminPanel() {
                                     className="origin-top-left"
                                     style={{
                                       transform: `scale(${getPreviewScale(keyBase)})`,
-                                      width: "520px",
-                                      height: "320px",
+                                      width: `${PREVIEW_BASE_W}px`,
+                                      height: `${PREVIEW_BASE_H}px`,
                                     }}
                                   >
                                     <TileSVG country={previewCountry} payload={payload} variant="mini" viewScale={1} renderMode="points" />
