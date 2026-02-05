@@ -95,7 +95,9 @@ export default function App() {
                     Close
                   </button>
                 </div>
-                <div className="mt-2 text-sm font-medium text-zinc-100">04.02.2026</div>
+                <div className="mt-2 text-sm font-medium text-zinc-100">05.02.2026</div>
+                <div className="mt-1 text-xs text-zinc-400">UI cleanup, pattern image downloads, and dark theme.</div>
+                <div className="mt-3 text-sm font-medium text-zinc-100">04.02.2026</div>
                 <div className="mt-1 text-xs text-zinc-400">
                   Added updated patterns in original scripts and non-Latin labels; refreshed site data.
                 </div>
