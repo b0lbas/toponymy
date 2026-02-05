@@ -1,0 +1,58 @@
+{
+  "country_id": "634",
+  "country_name": "Qatar",
+  "modes": [
+    "prefix"
+  ],
+  "default_mode": "prefix",
+  "default_zoom": 7,
+  "patterns": [
+    {
+      "pattern": "ال / l",
+      "title": "ال / l",
+      "mode": "prefix",
+      "zoom": 7,
+      "places": 14,
+      "file": "ال_z7.json.gz",
+      "tiles": 1,
+      "score": 2.70805020110221,
+      "entropy": 0.0,
+      "hotspots": [
+        [
+          82,
+          54,
+          14
+        ]
+      ],
+      "points": 14,
+      "points_sampled": false
+    },
+    {
+      "pattern": "أم / 'm",
+      "title": "أم / 'm",
+      "mode": "prefix",
+      "zoom": 7,
+      "places": 6,
+      "file": "أم_z7.json.gz",
+      "tiles": 1,
+      "score": 1.9459101490553132,
+      "entropy": 0.0,
+      "hotspots": [
+        [
+          82,
+          54,
+          6
+        ]
+      ],
+      "points": 6,
+      "points_sampled": false
+    }
+  ],
+  "selection_mode": "score",
+  "min_places_for_candidate": 3,
+  "analyze_tail_token_only": true,
+  "pattern_len": [
+    2,
+    10
+  ]
+}

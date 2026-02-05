@@ -1,0 +1,118 @@
+{
+  "country_id": "232",
+  "country_name": "Eritrea",
+  "modes": [
+    "prefix"
+  ],
+  "default_mode": "prefix",
+  "default_zoom": 7,
+  "patterns": [
+    {
+      "pattern": "ዓዲ / `aadi",
+      "title": "ዓዲ / `aadi",
+      "mode": "prefix",
+      "zoom": 7,
+      "places": 32,
+      "file": "ዓዲ_z7.json.gz",
+      "tiles": 1,
+      "score": 3.4965075614664802,
+      "entropy": 0.0,
+      "hotspots": [
+        [
+          77,
+          58,
+          32
+        ]
+      ],
+      "points": 32,
+      "points_sampled": false
+    },
+    {
+      "pattern": "adi",
+      "title": "adi",
+      "mode": "prefix",
+      "zoom": 7,
+      "places": 30,
+      "file": "adi_z7.json.gz",
+      "tiles": 1,
+      "score": 3.4339872044851463,
+      "entropy": 0.0,
+      "hotspots": [
+        [
+          77,
+          58,
+          30
+        ]
+      ],
+      "points": 30,
+      "points_sampled": false
+    },
+    {
+      "pattern": "ad",
+      "title": "ad",
+      "mode": "prefix",
+      "zoom": 7,
+      "places": 37,
+      "file": "ad_z7.json.gz",
+      "tiles": 3,
+      "score": 2.817264932397822,
+      "entropy": 0.22551252157564497,
+      "hotspots": [
+        [
+          77,
+          58,
+          35
+        ],
+        [
+          78,
+          58,
+          1
+        ],
+        [
+          79,
+          59,
+          1
+        ]
+      ],
+      "points": 37,
+      "points_sampled": false
+    },
+    {
+      "pattern": "ma",
+      "title": "ma",
+      "mode": "prefix",
+      "zoom": 7,
+      "places": 10,
+      "file": "ma_z7.json.gz",
+      "tiles": 3,
+      "score": 0.6477993230100824,
+      "entropy": 0.7298466991620975,
+      "hotspots": [
+        [
+          77,
+          58,
+          7
+        ],
+        [
+          78,
+          58,
+          2
+        ],
+        [
+          77,
+          57,
+          1
+        ]
+      ],
+      "points": 10,
+      "points_sampled": false
+    }
+  ],
+  "selection_mode": "score",
+  "min_places_for_candidate": 10,
+  "analyze_tail_token_only": true,
+  "pattern_len": [
+    2,
+    10
+  ]
+}

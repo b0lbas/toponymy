@@ -1,6 +1,6 @@
 import { useEffect, useId, useMemo, useState } from "react";
 import * as d3 from "d3";
-import { mesh } from "topojson-client";
+import { feature, mesh } from "topojson-client";
 import type { Topology } from "topojson-specification";
 
 import type { CountryFeature } from "./MapView";
@@ -11,6 +11,7 @@ type Props = {
   payload: PatternPayload;
   variant?: "mini" | "large";
   viewScale?: number;
+  renderMode?: "points" | "heatmap";
   onPointClick?: (pt: { x: number; y: number; name: string } | null) => void;
   onPointHover?: (pt: { x: number; y: number; name: string } | null) => void;
 };
@@ -325,6 +326,7 @@ function getA3FromAdmin1Props(p: any): string | null {
 }
 
 const _admin1MeshCache = new Map<string, Promise<GeoJSON.MultiLineString | GeoJSON.LineString | null>>();
+const _admin1ClipCache = new Map<string, Promise<GeoJSON.FeatureCollection | null>>();
 
 function loadAdmin1MeshForISO3(iso3: string) {
   const key = `${ADMIN1_URL}::${iso3}`;
@@ -335,10 +337,7 @@ function loadAdmin1MeshForISO3(iso3: string) {
       const obj = (topo as any).objects?.admin1;
       if (!obj) return null;
 
-      // Включаем дуги:
-      // - внутренние (оба региона в iso3)
-      // - внешняя граница (b == null, но a в iso3)
-      // - границы с соседями (одна сторона iso3)
+      // Включаем дуги admin1, включая внешнюю границу страны
       const m = mesh(
         topo as any,
         obj as any,
@@ -357,12 +356,39 @@ function loadAdmin1MeshForISO3(iso3: string) {
   return p;
 }
 
+function loadAdmin1ClipForISO3(iso3: string) {
+  const key = `${ADMIN1_URL}::clip::${iso3}`;
+  if (_admin1ClipCache.has(key)) return _admin1ClipCache.get(key)!;
+
+  const p = loadTopo(ADMIN1_URL)
+    .then((topo: Topology<any>) => {
+      const obj = (topo as any).objects?.admin1;
+      const geoms = obj?.geometries;
+      if (!obj || !Array.isArray(geoms)) return null;
+
+      const filtered = geoms.filter((g: any) => getA3FromAdmin1Props(g?.properties) === iso3);
+      if (filtered.length === 0) return null;
+
+      const collection = feature(topo as any, {
+        type: "GeometryCollection",
+        geometries: filtered,
+      } as any) as GeoJSON.FeatureCollection;
+
+      return collection ?? null;
+    })
+    .catch(() => null);
+
+  _admin1ClipCache.set(key, p);
+  return p;
+}
+
 /** ----------------- component ----------------- */
 export default function TileSVG({
   country,
   payload,
   variant = "mini",
   viewScale = 1,
+  renderMode = "points",
   onPointClick,
   onPointHover,
 }: Props) {
@@ -466,16 +492,22 @@ export default function TileSVG({
   }, [countryForView]);
 
   const [admin1Mesh, setAdmin1Mesh] = useState<GeoJSON.MultiLineString | GeoJSON.LineString | null>(null);
+  const [admin1Clip, setAdmin1Clip] = useState<GeoJSON.FeatureCollection | null>(null);
 
   useEffect(() => {
     let cancelled = false;
     if (!iso3) {
       setAdmin1Mesh(null);
+      setAdmin1Clip(null);
       return;
     }
 
     loadAdmin1MeshForISO3(iso3).then((m) => {
       if (!cancelled) setAdmin1Mesh(m);
+    });
+
+    loadAdmin1ClipForISO3(iso3).then((c) => {
+      if (!cancelled) setAdmin1Clip(c);
     });
 
     return () => {
@@ -487,6 +519,11 @@ export default function TileSVG({
     if (!admin1Mesh) return "";
     return path({ type: "Feature", geometry: admin1Mesh, properties: {} } as any) ?? "";
   }, [admin1Mesh, path]);
+
+  const admin1ClipPathD = useMemo(() => {
+    if (!admin1Clip) return "";
+    return path(admin1Clip as any) ?? "";
+  }, [admin1Clip, path]);
 
   const cells = useMemo(() => {
     if (!("cells" in payload)) return [];
@@ -578,6 +615,46 @@ export default function TileSVG({
     return out;
   }, [payload, variant]);
 
+  const heatPoints = useMemo(() => {
+    if (renderMode !== "heatmap") return [] as [number, number][];
+    const src = "points_named" in (payload as any)
+      ? decodedNamedPoints.map(([lon, lat]) => [lon, lat] as [number, number])
+      : ("points_q" in (payload as any) ? decodedPoints : []);
+    const out: [number, number][] = [];
+    for (const pt of src) {
+      const p = projection(pt as any);
+      if (!p) continue;
+      out.push([p[0], p[1]]);
+    }
+    return out;
+  }, [renderMode, decodedNamedPoints, decodedPoints, projection, payload]);
+
+  const heatBandwidth = useMemo(() => {
+    const base = variant === "large" ? 24 : 16;
+    const s = Math.max(0.2, viewScale ?? 1);
+    return base / s;
+  }, [variant, viewScale]);
+
+  const heatContours = useMemo(() => {
+    if (renderMode !== "heatmap" || heatPoints.length === 0) return [] as d3.ContourMultiPolygon[];
+    return d3
+      .contourDensity()
+      .x((d: [number, number]) => d[0])
+      .y((d: [number, number]) => d[1])
+      .size([width, height])
+      .bandwidth(heatBandwidth)
+      .thresholds(30)(heatPoints);
+  }, [renderMode, heatPoints, width, height, heatBandwidth]);
+
+  const heatMax = useMemo(() => d3.max(heatContours, (d: d3.ContourMultiPolygon) => d.value) ?? 1, [heatContours]);
+
+  const heatColor = useMemo(() => {
+    const scale = d3.scaleSequential(d3.interpolateRdYlGn).domain([Math.sqrt(heatMax), 0]);
+    return (v: number) => scale(Math.sqrt(v));
+  }, [heatMax]);
+
+  const heatPath = useMemo(() => d3.geoPath(d3.geoIdentity() as any), []);
+
   const maxC = useMemo(() => d3.max(cells, (d: any) => d.c) ?? 1, [cells]);
 
   const color = useMemo(() => {
@@ -595,30 +672,24 @@ export default function TileSVG({
   const borderStrokeWidth = useMemo(() => {
     const base = variant === "large" ? 1.05 : 0.85;
     const s = Math.max(1e-6, viewScale ?? 1);
-    return Math.max(0.35, base / s);
+    return Math.max(0.35, (base / s) * 2);
   }, [variant, viewScale]);
 
 
   // ISO3-коды стран, где нет admin1-границ (использовать admin0)
-  const ADMIN0_ONLY_ISO3 = new Set([
-    'DOM','COD','COG','CAF','GNQ','GNB','LBR','MRT','SOM','SSD','TLS','HTI','JAM','BHS','BRB','VCT','GRD','LCA','KNA','ATG','DMA','TTO','BRN','QAT','BHR','KWT','LIE','SMR','MCO','VAT','AND'
-  ]);
-
-  // path для admin0 (country.geometry)
-  const admin0PathD = useMemo(() => {
-    if (!countryForView?.geometry) return "";
-    return path({ type: "Feature", geometry: countryForView.geometry, properties: {} } as any) ?? "";
-  }, [countryForView, path]);
-
-  const showAdmin0 = iso3 && ADMIN0_ONLY_ISO3.has(iso3);
-
   return (
     <div className="relative">
       <svg viewBox={`0 0 ${width} ${height}`} className="block h-auto w-full">
-        <defs></defs>
+        <defs>
+          {admin1ClipPathD && (
+            <clipPath id={clipId}>
+              <path d={admin1ClipPathD} />
+            </clipPath>
+          )}
+        </defs>
 
-        {/* ✅ borders: admin1 если есть, иначе admin0 для особых стран */}
-        {admin1PathD && !showAdmin0 && (
+        {/* ✅ borders: admin1 only */}
+        {admin1PathD && (
           <g clipPath={`url(#${clipId})`}>
             <path
               d={admin1PathD}
@@ -632,24 +703,26 @@ export default function TileSVG({
             />
           </g>
         )}
-        {showAdmin0 && admin0PathD && (
-          <g clipPath={`url(#${clipId})`}>
-            <path
-              d={admin0PathD}
-              fill="none"
-              stroke="#71717a"
-              strokeOpacity={variant === "large" ? 0.35 : 0.28}
-              strokeWidth={borderStrokeWidth}
-              strokeLinejoin="round"
-              strokeLinecap="round"
-              pointerEvents="none"
-            />
-          </g>
-        )}
 
         {/* data (clipped) - drawn after borders so points are on top */}
         <g clipPath={`url(#${clipId})`} onClick={() => onPointClick?.(null)}>
-          {"points_named" in (payload as any) ? (
+          {renderMode === "heatmap" && heatContours.length > 0 ? (
+            <>
+              {heatContours.map((c: d3.ContourMultiPolygon, i: number) => {
+                const dStr = heatPath(c as any) ?? "";
+                return (
+                  <path
+                    key={i}
+                    d={dStr}
+                    fill={heatColor(c.value)}
+                    fillOpacity={0.9}
+                    stroke="none"
+                    pointerEvents="none"
+                  />
+                );
+              })}
+            </>
+          ) : "points_named" in (payload as any) ? (
             decodedNamedPoints.map((pt, i) => {
               const [lon, lat, name] = pt;
               const p = projection([lon, lat] as any);

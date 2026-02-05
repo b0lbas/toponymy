@@ -1,0 +1,43 @@
+{
+  "country_id": "748",
+  "country_name": "Eswatini",
+  "modes": [
+    "prefix"
+  ],
+  "default_mode": "prefix",
+  "default_zoom": 7,
+  "patterns": [
+    {
+      "pattern": "ma",
+      "title": "ma",
+      "mode": "prefix",
+      "zoom": 7,
+      "places": 20,
+      "file": "ma_z7.json.gz",
+      "tiles": 2,
+      "score": 0.8465961544159241,
+      "entropy": 0.7219280948873623,
+      "hotspots": [
+        [
+          75,
+          73,
+          16
+        ],
+        [
+          75,
+          74,
+          4
+        ]
+      ],
+      "points": 20,
+      "points_sampled": false
+    }
+  ],
+  "selection_mode": "score",
+  "min_places_for_candidate": 8,
+  "analyze_tail_token_only": true,
+  "pattern_len": [
+    2,
+    10
+  ]
+}

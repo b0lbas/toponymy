@@ -1,0 +1,428 @@
+{
+  "country_id": "196",
+  "country_name": "Cyprus",
+  "modes": [
+    "prefix"
+  ],
+  "default_mode": "prefix",
+  "default_zoom": 7,
+  "patterns": [
+    {
+      "pattern": "κα / ka",
+      "title": "κα / ka",
+      "mode": "prefix",
+      "zoom": 7,
+      "places": 20,
+      "file": "κα_z7.json.gz",
+      "tiles": 1,
+      "score": 3.044522437723423,
+      "entropy": 0.0,
+      "hotspots": [
+        [
+          75,
+          50,
+          20
+        ]
+      ],
+      "points": 20,
+      "points_sampled": false
+    },
+    {
+      "pattern": "κο / ko",
+      "title": "κο / ko",
+      "mode": "prefix",
+      "zoom": 7,
+      "places": 16,
+      "file": "κο_z7.json.gz",
+      "tiles": 1,
+      "score": 2.833213344056216,
+      "entropy": 0.0,
+      "hotspots": [
+        [
+          75,
+          50,
+          16
+        ]
+      ],
+      "points": 16,
+      "points_sampled": false
+    },
+    {
+      "pattern": "μα / ma",
+      "title": "μα / ma",
+      "mode": "prefix",
+      "zoom": 7,
+      "places": 15,
+      "file": "μα_z7.json.gz",
+      "tiles": 1,
+      "score": 2.772588722239781,
+      "entropy": 0.0,
+      "hotspots": [
+        [
+          75,
+          50,
+          15
+        ]
+      ],
+      "points": 15,
+      "points_sampled": false
+    },
+    {
+      "pattern": "άγ / ag",
+      "title": "άγ / ag",
+      "mode": "prefix",
+      "zoom": 7,
+      "places": 31,
+      "file": "άγ_z7.json.gz",
+      "tiles": 2,
+      "score": 2.753206565836037,
+      "entropy": 0.20559250818508307,
+      "hotspots": [
+        [
+          75,
+          50,
+          30
+        ],
+        [
+          76,
+          50,
+          1
+        ]
+      ],
+      "points": 31,
+      "points_sampled": false
+    },
+    {
+      "pattern": "άγι / agi",
+      "title": "άγι / agi",
+      "mode": "prefix",
+      "zoom": 7,
+      "places": 31,
+      "file": "άγι_z7.json.gz",
+      "tiles": 2,
+      "score": 2.753206565836037,
+      "entropy": 0.20559250818508307,
+      "hotspots": [
+        [
+          75,
+          50,
+          30
+        ],
+        [
+          76,
+          50,
+          1
+        ]
+      ],
+      "points": 31,
+      "points_sampled": false
+    },
+    {
+      "pattern": "άγιο / agio",
+      "title": "άγιο / agio",
+      "mode": "prefix",
+      "zoom": 7,
+      "places": 31,
+      "file": "άγιο_z7.json.gz",
+      "tiles": 2,
+      "score": 2.753206565836037,
+      "entropy": 0.20559250818508307,
+      "hotspots": [
+        [
+          75,
+          50,
+          30
+        ],
+        [
+          76,
+          50,
+          1
+        ]
+      ],
+      "points": 31,
+      "points_sampled": false
+    },
+    {
+      "pattern": "άγιος / agios",
+      "title": "άγιος / agios",
+      "mode": "prefix",
+      "zoom": 7,
+      "places": 29,
+      "file": "άγιος_z7.json.gz",
+      "tiles": 2,
+      "score": 2.6651887016091917,
+      "entropy": 0.21639693245126465,
+      "hotspots": [
+        [
+          75,
+          50,
+          28
+        ],
+        [
+          76,
+          50,
+          1
+        ]
+      ],
+      "points": 29,
+      "points_sampled": false
+    },
+    {
+      "pattern": "κάτ / kat",
+      "title": "κάτ / kat",
+      "mode": "prefix",
+      "zoom": 7,
+      "places": 13,
+      "file": "κάτ_z7.json.gz",
+      "tiles": 1,
+      "score": 2.6390573296152584,
+      "entropy": 0.0,
+      "hotspots": [
+        [
+          75,
+          50,
+          13
+        ]
+      ],
+      "points": 13,
+      "points_sampled": false
+    },
+    {
+      "pattern": "κάτω / kato",
+      "title": "κάτω / kato",
+      "mode": "prefix",
+      "zoom": 7,
+      "places": 13,
+      "file": "κάτω_z7.json.gz",
+      "tiles": 1,
+      "score": 2.6390573296152584,
+      "entropy": 0.0,
+      "hotspots": [
+        [
+          75,
+          50,
+          13
+        ]
+      ],
+      "points": 13,
+      "points_sampled": false
+    },
+    {
+      "pattern": "πά / pa",
+      "title": "πά / pa",
+      "mode": "prefix",
+      "zoom": 7,
+      "places": 13,
+      "file": "πά_z7.json.gz",
+      "tiles": 1,
+      "score": 2.6390573296152584,
+      "entropy": 0.0,
+      "hotspots": [
+        [
+          75,
+          50,
+          13
+        ]
+      ],
+      "points": 13,
+      "points_sampled": false
+    },
+    {
+      "pattern": "πάν / pan",
+      "title": "πάν / pan",
+      "mode": "prefix",
+      "zoom": 7,
+      "places": 11,
+      "file": "πάν_z7.json.gz",
+      "tiles": 1,
+      "score": 2.4849066497880004,
+      "entropy": 0.0,
+      "hotspots": [
+        [
+          75,
+          50,
+          11
+        ]
+      ],
+      "points": 11,
+      "points_sampled": false
+    },
+    {
+      "pattern": "πάνω / pano",
+      "title": "πάνω / pano",
+      "mode": "prefix",
+      "zoom": 7,
+      "places": 11,
+      "file": "πάνω_z7.json.gz",
+      "tiles": 1,
+      "score": 2.4849066497880004,
+      "entropy": 0.0,
+      "hotspots": [
+        [
+          75,
+          50,
+          11
+        ]
+      ],
+      "points": 11,
+      "points_sampled": false
+    },
+    {
+      "pattern": "κά / ka",
+      "title": "κά / ka",
+      "mode": "prefix",
+      "zoom": 7,
+      "places": 18,
+      "file": "κά_z7.json.gz",
+      "tiles": 2,
+      "score": 2.0330072406313775,
+      "entropy": 0.3095434291503252,
+      "hotspots": [
+        [
+          75,
+          50,
+          17
+        ],
+        [
+          76,
+          50,
+          1
+        ]
+      ],
+      "points": 18,
+      "points_sampled": false
+    },
+    {
+      "pattern": "πα / pa",
+      "title": "πα / pa",
+      "mode": "prefix",
+      "zoom": 7,
+      "places": 13,
+      "file": "πα_z7.json.gz",
+      "tiles": 2,
+      "score": 1.6065431353546777,
+      "entropy": 0.3912435636292556,
+      "hotspots": [
+        [
+          75,
+          50,
+          12
+        ],
+        [
+          76,
+          50,
+          1
+        ]
+      ],
+      "points": 13,
+      "points_sampled": false
+    },
+    {
+      "pattern": "αγ / ag",
+      "title": "αγ / ag",
+      "mode": "prefix",
+      "zoom": 7,
+      "places": 17,
+      "file": "αγ_z7.json.gz",
+      "tiles": 2,
+      "score": 1.3799808999107068,
+      "entropy": 0.5225593745369408,
+      "hotspots": [
+        [
+          75,
+          50,
+          15
+        ],
+        [
+          76,
+          50,
+          2
+        ]
+      ],
+      "points": 17,
+      "points_sampled": false
+    },
+    {
+      "pattern": "αγί / agi",
+      "title": "αγί / agi",
+      "mode": "prefix",
+      "zoom": 7,
+      "places": 12,
+      "file": "αγί_z7.json.gz",
+      "tiles": 2,
+      "score": 0.8976747647189988,
+      "entropy": 0.6500224216483541,
+      "hotspots": [
+        [
+          75,
+          50,
+          10
+        ],
+        [
+          76,
+          50,
+          2
+        ]
+      ],
+      "points": 12,
+      "points_sampled": false
+    },
+    {
+      "pattern": "αγία / agia",
+      "title": "αγία / agia",
+      "mode": "prefix",
+      "zoom": 7,
+      "places": 10,
+      "file": "αγία_z7.json.gz",
+      "tiles": 2,
+      "score": 0.666787306767631,
+      "entropy": 0.7219280948873623,
+      "hotspots": [
+        [
+          75,
+          50,
+          8
+        ],
+        [
+          76,
+          50,
+          2
+        ]
+      ],
+      "points": 10,
+      "points_sampled": false
+    },
+    {
+      "pattern": "ka",
+      "title": "ka",
+      "mode": "prefix",
+      "zoom": 7,
+      "places": 14,
+      "file": "ka_z7.json.gz",
+      "tiles": 2,
+      "score": 0.3706763718198908,
+      "entropy": 0.8631205685666311,
+      "hotspots": [
+        [
+          75,
+          50,
+          10
+        ],
+        [
+          76,
+          50,
+          4
+        ]
+      ],
+      "points": 14,
+      "points_sampled": false
+    }
+  ],
+  "selection_mode": "score",
+  "min_places_for_candidate": 10,
+  "analyze_tail_token_only": true,
+  "pattern_len": [
+    2,
+    10
+  ]
+}

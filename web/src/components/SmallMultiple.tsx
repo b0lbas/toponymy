@@ -12,6 +12,7 @@ import auth from "../lib/auth";
 type Props = {
   country: CountryFeature;
   entry: PatternIndexEntry;
+  renderMode?: "points" | "heatmap";
 };
 
 function clamp(v: number, min: number, max: number) {
@@ -84,7 +85,7 @@ const PAN_PAD = 80;
 const INERTIA_FRICTION = 0.92;
 const INERTIA_STOP_SPEED = 10;
 
-export default function SmallMultiple({ country, entry }: Props) {
+export default function SmallMultiple({ country, entry, renderMode = "points" }: Props) {
   const rootRef = useRef<HTMLDivElement | null>(null);
 
   const [visible, setVisible] = useState(false);
@@ -583,6 +584,7 @@ export default function SmallMultiple({ country, entry }: Props) {
                         payload={payload}
                         variant="large"
                         viewScale={zoomUI}
+                        renderMode={renderMode}
                         onPointClick={(pt) => {
                           if (!pt) {
                             setSelectedLabel(null);
@@ -742,7 +744,7 @@ export default function SmallMultiple({ country, entry }: Props) {
             className="block w-full cursor-zoom-in text-left"
             title="Open larger view"
           >
-            <TileSVG country={country} payload={payload} variant="mini" viewScale={1} />
+            <TileSVG country={country} payload={payload} variant="mini" viewScale={1} renderMode={renderMode} />
           </button>
         )}
       </div>

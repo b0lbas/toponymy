@@ -1,0 +1,178 @@
+{
+  "country_id": "304",
+  "country_name": "Greenland",
+  "modes": [
+    "prefix"
+  ],
+  "default_mode": "prefix",
+  "default_zoom": 7,
+  "patterns": [
+    {
+      "pattern": "sa",
+      "title": "sa",
+      "mode": "prefix",
+      "zoom": 7,
+      "places": 11,
+      "file": "sa_z7.json.gz",
+      "tiles": 8,
+      "score": 0.12809616199013074,
+      "entropy": 0.948450312207479,
+      "hotspots": [
+        [
+          44,
+          24,
+          3
+        ],
+        [
+          48,
+          37,
+          2
+        ],
+        [
+          40,
+          21,
+          1
+        ],
+        [
+          44,
+          25,
+          1
+        ],
+        [
+          45,
+          27,
+          1
+        ]
+      ],
+      "points": 11,
+      "points_sampled": false
+    },
+    {
+      "pattern": "ka",
+      "title": "ka",
+      "mode": "prefix",
+      "zoom": 7,
+      "places": 13,
+      "file": "ka_z7.json.gz",
+      "tiles": 11,
+      "score": 0.05087062494352932,
+      "entropy": 0.9807239409418417,
+      "hotspots": [
+        [
+          45,
+          31,
+          2
+        ],
+        [
+          46,
+          33,
+          2
+        ],
+        [
+          39,
+          18,
+          1
+        ],
+        [
+          40,
+          19,
+          1
+        ],
+        [
+          44,
+          26,
+          1
+        ]
+      ],
+      "points": 13,
+      "points_sampled": false
+    },
+    {
+      "pattern": "kan",
+      "title": "kan",
+      "mode": "prefix",
+      "zoom": 7,
+      "places": 11,
+      "file": "kan_z7.json.gz",
+      "tiles": 10,
+      "score": 0.033148757399760094,
+      "entropy": 0.9866599586738648,
+      "hotspots": [
+        [
+          45,
+          31,
+          2
+        ],
+        [
+          39,
+          18,
+          1
+        ],
+        [
+          40,
+          19,
+          1
+        ],
+        [
+          44,
+          26,
+          1
+        ],
+        [
+          44,
+          29,
+          1
+        ]
+      ],
+      "points": 11,
+      "points_sampled": false
+    },
+    {
+      "pattern": "kang",
+      "title": "kang",
+      "mode": "prefix",
+      "zoom": 7,
+      "places": 11,
+      "file": "kang_z7.json.gz",
+      "tiles": 10,
+      "score": 0.033148757399760094,
+      "entropy": 0.9866599586738648,
+      "hotspots": [
+        [
+          45,
+          31,
+          2
+        ],
+        [
+          39,
+          18,
+          1
+        ],
+        [
+          40,
+          19,
+          1
+        ],
+        [
+          44,
+          26,
+          1
+        ],
+        [
+          44,
+          29,
+          1
+        ]
+      ],
+      "points": 11,
+      "points_sampled": false
+    }
+  ],
+  "selection_mode": "score",
+  "min_places_for_candidate": 10,
+  "analyze_tail_token_only": true,
+  "pattern_len": [
+    2,
+    10
+  ]
+}

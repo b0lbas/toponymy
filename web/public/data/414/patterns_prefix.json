@@ -1,0 +1,48 @@
+{
+  "country_id": "414",
+  "country_name": "Kuwait",
+  "modes": [
+    "prefix"
+  ],
+  "default_mode": "prefix",
+  "default_zoom": 7,
+  "patterns": [
+    {
+      "pattern": "ال / l",
+      "title": "ال / l",
+      "mode": "prefix",
+      "zoom": 7,
+      "places": 6,
+      "file": "ال_z7.json.gz",
+      "tiles": 3,
+      "score": 0.40924420360522246,
+      "entropy": 0.7896900821428474,
+      "hotspots": [
+        [
+          80,
+          53,
+          4
+        ],
+        [
+          80,
+          52,
+          1
+        ],
+        [
+          81,
+          53,
+          1
+        ]
+      ],
+      "points": 6,
+      "points_sampled": false
+    }
+  ],
+  "selection_mode": "score",
+  "min_places_for_candidate": 3,
+  "analyze_tail_token_only": true,
+  "pattern_len": [
+    2,
+    10
+  ]
+}

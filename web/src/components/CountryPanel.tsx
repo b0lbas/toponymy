@@ -11,6 +11,7 @@ type Props = {
 };
 
 type SortMode = "localized" | "common" | "az" | "popularity";
+type RenderMode = "points" | "heatmap";
 
 const PAGE_SIZE = 40;
 
@@ -41,6 +42,20 @@ function fmtCoord(v: number) {
   return (Math.round(v * 10) / 10).toFixed(1);
 }
 
+function stripDiacritics(value: string) {
+  return value.normalize("NFD").replace(/\p{M}+/gu, "");
+}
+
+function getInitialRenderMode(): RenderMode {
+  if (typeof window === "undefined") return "points";
+  try {
+    const v = window.localStorage.getItem("renderMode");
+    return v === "heatmap" ? "heatmap" : "points";
+  } catch {
+    return "points";
+  }
+}
+
 export default function CountryPanel({ country, onClose }: Props) {
   const [index, setIndex] = useState<CountryPatternsIndex | null>(null);
   const [error, setError] = useState<string | null>(null);
@@ -51,6 +66,7 @@ export default function CountryPanel({ country, onClose }: Props) {
 
   const [sort, setSort] = useState<SortMode>("localized");
   const [mode, setMode] = useState<string>("suffix");
+  const [renderMode, setRenderMode] = useState<RenderMode>(getInitialRenderMode);
 
   // progressive rendering (no “Show more” button, loads automatically while you scroll)
   const [renderLimit, setRenderLimit] = useState(PAGE_SIZE);
@@ -110,11 +126,20 @@ export default function CountryPanel({ country, onClose }: Props) {
     };
   }, [country.id, mode]);
 
+  useEffect(() => {
+    try {
+      window.localStorage.setItem("renderMode", renderMode);
+    } catch {
+      // ignore storage errors
+    }
+  }, [renderMode]);
+
   const searchKeyFor = useMemo(() => {
-    const wm = new WeakMap<PatternIndexEntry, string>();
+    const wm = new WeakMap<PatternIndexEntry, { raw: string; normalized: string }>();
     const all = index?.patterns ?? [];
     for (const p of all) {
-      wm.set(p, (p.pattern + " " + (p.title ?? "")).toLowerCase());
+      const raw = (p.pattern + " " + (p.title ?? "")).toLowerCase();
+      wm.set(p, { raw, normalized: stripDiacritics(raw) });
     }
     return wm;
   }, [index]);
@@ -172,8 +197,14 @@ export default function CountryPanel({ country, onClose }: Props) {
 
   const filteredSorted: PatternIndexEntry[] = useMemo(() => {
     const q = deferredQuery.trim().toLowerCase();
-    if (!q) return baseSorted.filter(p => !hiddenPatterns.has(p.pattern));
-    return baseSorted.filter((p) => (searchKeyFor.get(p) ?? "").includes(q) && !hiddenPatterns.has(p.pattern));
+    if (!q) return baseSorted.filter((p) => !hiddenPatterns.has(p.pattern));
+    const qNormalized = stripDiacritics(q);
+    return baseSorted.filter((p) => {
+      if (hiddenPatterns.has(p.pattern)) return false;
+      const keys = searchKeyFor.get(p);
+      if (!keys) return false;
+      return keys.raw.includes(q) || keys.normalized.includes(qNormalized);
+    });
   }, [baseSorted, deferredQuery, searchKeyFor, hiddenPatterns]);
 
   // reset progressive render when user changes country/query/sort
@@ -207,7 +238,19 @@ export default function CountryPanel({ country, onClose }: Props) {
       {/* header */}
       <div className="flex items-start justify-between gap-3 px-5 pt-5">
         <div>
-          <div className="text-xl font-semibold tracking-tight">{country.properties.name}</div>
+          <div className="flex flex-wrap items-baseline gap-4">
+            <div className="text-xl font-semibold tracking-tight">{country.properties.name}</div>
+            <label className="inline-flex items-center gap-2 text-xs text-zinc-300 leading-none">
+              <input
+                type="checkbox"
+                checked={renderMode === "heatmap"}
+                onChange={(e) => setRenderMode(e.target.checked ? "heatmap" : "points")}
+                className="h-4 w-4 appearance-none rounded-full border border-zinc-700 bg-zinc-950/60 align-middle checked:border-amber-400 checked:bg-amber-400 focus:ring-0 translate-y-[2px]"
+                aria-label="Toggle heatmap"
+              />
+              <span className="translate-y-[1px]">Heatmap</span>
+            </label>
+          </div>
           <div className="mt-1 text-xs text-zinc-400">
             Country id: <span className="font-mono">{country.id}</span>
           </div>
@@ -323,7 +366,7 @@ export default function CountryPanel({ country, onClose }: Props) {
                     ) : null}
                   </div>
 
-                  <SmallMultiple country={country} entry={p} />
+                  <SmallMultiple country={country} entry={p} renderMode={renderMode} />
                 </div>
               ))}
             </div>

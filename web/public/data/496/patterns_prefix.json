@@ -1,0 +1,818 @@
+{
+  "country_id": "496",
+  "country_name": "Mongolia",
+  "modes": [
+    "prefix"
+  ],
+  "default_mode": "prefix",
+  "default_zoom": 7,
+  "patterns": [
+    {
+      "pattern": "ба / ba",
+      "title": "ба / ba",
+      "mode": "prefix",
+      "zoom": 7,
+      "places": 49,
+      "file": "ба_z7.json.gz",
+      "tiles": 23,
+      "score": 0.2740473017269436,
+      "entropy": 0.9299474207215326,
+      "hotspots": [
+        [
+          101,
+          44,
+          6
+        ],
+        [
+          102,
+          44,
+          5
+        ],
+        [
+          103,
+          44,
+          5
+        ],
+        [
+          99,
+          46,
+          4
+        ],
+        [
+          99,
+          45,
+          3
+        ]
+      ],
+      "points": 49,
+      "points_sampled": false
+    },
+    {
+      "pattern": "бая / baia",
+      "title": "бая / baia",
+      "mode": "prefix",
+      "zoom": 7,
+      "places": 37,
+      "file": "бая_z7.json.gz",
+      "tiles": 19,
+      "score": 0.19204361011709126,
+      "entropy": 0.9472057563217866,
+      "hotspots": [
+        [
+          101,
+          44,
+          5
+        ],
+        [
+          99,
+          46,
+          4
+        ],
+        [
+          102,
+          44,
+          3
+        ],
+        [
+          102,
+          45,
+          3
+        ],
+        [
+          103,
+          44,
+          3
+        ]
+      ],
+      "points": 37,
+      "points_sampled": false
+    },
+    {
+      "pattern": "баян / baian",
+      "title": "баян / baian",
+      "mode": "prefix",
+      "zoom": 7,
+      "places": 37,
+      "file": "баян_z7.json.gz",
+      "tiles": 19,
+      "score": 0.19204361011709126,
+      "entropy": 0.9472057563217866,
+      "hotspots": [
+        [
+          101,
+          44,
+          5
+        ],
+        [
+          99,
+          46,
+          4
+        ],
+        [
+          102,
+          44,
+          3
+        ],
+        [
+          102,
+          45,
+          3
+        ],
+        [
+          103,
+          44,
+          3
+        ]
+      ],
+      "points": 37,
+      "points_sampled": false
+    },
+    {
+      "pattern": "ха / kha",
+      "title": "ха / kha",
+      "mode": "prefix",
+      "zoom": 7,
+      "places": 18,
+      "file": "ха_z7.json.gz",
+      "tiles": 15,
+      "score": 0.08458781965553085,
+      "entropy": 0.9712720079261152,
+      "hotspots": [
+        [
+          100,
+          44,
+          3
+        ],
+        [
+          102,
+          46,
+          2
+        ],
+        [
+          96,
+          43,
+          1
+        ],
+        [
+          98,
+          45,
+          1
+        ],
+        [
+          99,
+          42,
+          1
+        ]
+      ],
+      "points": 18,
+      "points_sampled": false
+    },
+    {
+      "pattern": "са / sa",
+      "title": "са / sa",
+      "mode": "prefix",
+      "zoom": 7,
+      "places": 12,
+      "file": "са_z7.json.gz",
+      "tiles": 8,
+      "score": 0.06985568264795546,
+      "entropy": 0.9727652780181634,
+      "hotspots": [
+        [
+          96,
+          43,
+          2
+        ],
+        [
+          100,
+          44,
+          2
+        ],
+        [
+          100,
+          45,
+          2
+        ],
+        [
+          101,
+          43,
+          2
+        ],
+        [
+          95,
+          44,
+          1
+        ]
+      ],
+      "points": 12,
+      "points_sampled": false
+    },
+    {
+      "pattern": "ца / tsa",
+      "title": "ца / tsa",
+      "mode": "prefix",
+      "zoom": 7,
+      "places": 12,
+      "file": "ца_z7.json.gz",
+      "tiles": 9,
+      "score": 0.06874752921091201,
+      "entropy": 0.973197315178593,
+      "hotspots": [
+        [
+          95,
+          43,
+          2
+        ],
+        [
+          98,
+          44,
+          2
+        ],
+        [
+          99,
+          44,
+          2
+        ],
+        [
+          97,
+          43,
+          1
+        ],
+        [
+          99,
+          43,
+          1
+        ]
+      ],
+      "points": 12,
+      "points_sampled": false
+    },
+    {
+      "pattern": "да / da",
+      "title": "да / da",
+      "mode": "prefix",
+      "zoom": 7,
+      "places": 11,
+      "file": "да_z7.json.gz",
+      "tiles": 9,
+      "score": 0.05811036532267066,
+      "entropy": 0.9766146686727132,
+      "hotspots": [
+        [
+          97,
+          45,
+          2
+        ],
+        [
+          102,
+          45,
+          2
+        ],
+        [
+          96,
+          43,
+          1
+        ],
+        [
+          100,
+          44,
+          1
+        ],
+        [
+          101,
+          43,
+          1
+        ]
+      ],
+      "points": 11,
+      "points_sampled": false
+    },
+    {
+      "pattern": "цаг / tsag",
+      "title": "цаг / tsag",
+      "mode": "prefix",
+      "zoom": 7,
+      "places": 11,
+      "file": "цаг_z7.json.gz",
+      "tiles": 9,
+      "score": 0.05811036532267066,
+      "entropy": 0.9766146686727132,
+      "hotspots": [
+        [
+          95,
+          43,
+          2
+        ],
+        [
+          98,
+          44,
+          2
+        ],
+        [
+          97,
+          43,
+          1
+        ],
+        [
+          99,
+          43,
+          1
+        ],
+        [
+          99,
+          44,
+          1
+        ]
+      ],
+      "points": 11,
+      "points_sampled": false
+    },
+    {
+      "pattern": "цага / tsaga",
+      "title": "цага / tsaga",
+      "mode": "prefix",
+      "zoom": 7,
+      "places": 11,
+      "file": "цага_z7.json.gz",
+      "tiles": 9,
+      "score": 0.05811036532267066,
+      "entropy": 0.9766146686727132,
+      "hotspots": [
+        [
+          95,
+          43,
+          2
+        ],
+        [
+          98,
+          44,
+          2
+        ],
+        [
+          97,
+          43,
+          1
+        ],
+        [
+          99,
+          43,
+          1
+        ],
+        [
+          99,
+          44,
+          1
+        ]
+      ],
+      "points": 11,
+      "points_sampled": false
+    },
+    {
+      "pattern": "цагаа / tsagaa",
+      "title": "цагаа / tsagaa",
+      "mode": "prefix",
+      "zoom": 7,
+      "places": 11,
+      "file": "цагаа_z7.json.gz",
+      "tiles": 9,
+      "score": 0.05811036532267066,
+      "entropy": 0.9766146686727132,
+      "hotspots": [
+        [
+          95,
+          43,
+          2
+        ],
+        [
+          98,
+          44,
+          2
+        ],
+        [
+          97,
+          43,
+          1
+        ],
+        [
+          99,
+          43,
+          1
+        ],
+        [
+          99,
+          44,
+          1
+        ]
+      ],
+      "points": 11,
+      "points_sampled": false
+    },
+    {
+      "pattern": "цагаан / tsagaan",
+      "title": "цагаан / tsagaan",
+      "mode": "prefix",
+      "zoom": 7,
+      "places": 11,
+      "file": "цагаан_z7.json.gz",
+      "tiles": 9,
+      "score": 0.05811036532267066,
+      "entropy": 0.9766146686727132,
+      "hotspots": [
+        [
+          95,
+          43,
+          2
+        ],
+        [
+          98,
+          44,
+          2
+        ],
+        [
+          97,
+          43,
+          1
+        ],
+        [
+          99,
+          43,
+          1
+        ],
+        [
+          99,
+          44,
+          1
+        ]
+      ],
+      "points": 11,
+      "points_sampled": false
+    },
+    {
+      "pattern": "цэ / tse",
+      "title": "цэ / tse",
+      "mode": "prefix",
+      "zoom": 7,
+      "places": 10,
+      "file": "цэ_z7.json.gz",
+      "tiles": 9,
+      "score": 0.03630734332348399,
+      "entropy": 0.9848586617875463,
+      "hotspots": [
+        [
+          100,
+          44,
+          2
+        ],
+        [
+          95,
+          43,
+          1
+        ],
+        [
+          97,
+          45,
+          1
+        ],
+        [
+          98,
+          43,
+          1
+        ],
+        [
+          98,
+          44,
+          1
+        ]
+      ],
+      "points": 10,
+      "points_sampled": false
+    },
+    {
+      "pattern": "бу / bu",
+      "title": "бу / bu",
+      "mode": "prefix",
+      "zoom": 7,
+      "places": 11,
+      "file": "бу_z7.json.gz",
+      "tiles": 10,
+      "score": 0.033148757399760094,
+      "entropy": 0.9866599586738648,
+      "hotspots": [
+        [
+          96,
+          45,
+          2
+        ],
+        [
+          95,
+          44,
+          1
+        ],
+        [
+          96,
+          43,
+          1
+        ],
+        [
+          96,
+          44,
+          1
+        ],
+        [
+          97,
+          45,
+          1
+        ]
+      ],
+      "points": 11,
+      "points_sampled": false
+    },
+    {
+      "pattern": "эрд / erd",
+      "title": "эрд / erd",
+      "mode": "prefix",
+      "zoom": 7,
+      "places": 12,
+      "file": "эрд_z7.json.gz",
+      "tiles": 11,
+      "score": 0.03049957792659325,
+      "entropy": 0.9881090915741206,
+      "hotspots": [
+        [
+          100,
+          43,
+          2
+        ],
+        [
+          96,
+          44,
+          1
+        ],
+        [
+          98,
+          44,
+          1
+        ],
+        [
+          98,
+          45,
+          1
+        ],
+        [
+          99,
+          45,
+          1
+        ]
+      ],
+      "points": 12,
+      "points_sampled": false
+    },
+    {
+      "pattern": "эрдэ / erde",
+      "title": "эрдэ / erde",
+      "mode": "prefix",
+      "zoom": 7,
+      "places": 12,
+      "file": "эрдэ_z7.json.gz",
+      "tiles": 11,
+      "score": 0.03049957792659325,
+      "entropy": 0.9881090915741206,
+      "hotspots": [
+        [
+          100,
+          43,
+          2
+        ],
+        [
+          96,
+          44,
+          1
+        ],
+        [
+          98,
+          44,
+          1
+        ],
+        [
+          98,
+          45,
+          1
+        ],
+        [
+          99,
+          45,
+          1
+        ]
+      ],
+      "points": 12,
+      "points_sampled": false
+    },
+    {
+      "pattern": "эрдэн / erden",
+      "title": "эрдэн / erden",
+      "mode": "prefix",
+      "zoom": 7,
+      "places": 12,
+      "file": "эрдэн_z7.json.gz",
+      "tiles": 11,
+      "score": 0.03049957792659325,
+      "entropy": 0.9881090915741206,
+      "hotspots": [
+        [
+          100,
+          43,
+          2
+        ],
+        [
+          96,
+          44,
+          1
+        ],
+        [
+          98,
+          44,
+          1
+        ],
+        [
+          98,
+          45,
+          1
+        ],
+        [
+          99,
+          45,
+          1
+        ]
+      ],
+      "points": 12,
+      "points_sampled": false
+    },
+    {
+      "pattern": "эрдэнэ / erdene",
+      "title": "эрдэнэ / erdene",
+      "mode": "prefix",
+      "zoom": 7,
+      "places": 12,
+      "file": "эрдэнэ_z7.json.gz",
+      "tiles": 11,
+      "score": 0.03049957792659325,
+      "entropy": 0.9881090915741206,
+      "hotspots": [
+        [
+          100,
+          43,
+          2
+        ],
+        [
+          96,
+          44,
+          1
+        ],
+        [
+          98,
+          44,
+          1
+        ],
+        [
+          98,
+          45,
+          1
+        ],
+        [
+          99,
+          45,
+          1
+        ]
+      ],
+      "points": 12,
+      "points_sampled": false
+    },
+    {
+      "pattern": "эр / er",
+      "title": "эр / er",
+      "mode": "prefix",
+      "zoom": 7,
+      "places": 13,
+      "file": "эр_z7.json.gz",
+      "tiles": 12,
+      "score": 0.02824515539138356,
+      "entropy": 0.9892972558517699,
+      "hotspots": [
+        [
+          100,
+          43,
+          2
+        ],
+        [
+          96,
+          44,
+          1
+        ],
+        [
+          98,
+          44,
+          1
+        ],
+        [
+          98,
+          45,
+          1
+        ],
+        [
+          99,
+          45,
+          1
+        ]
+      ],
+      "points": 13,
+      "points_sampled": false
+    },
+    {
+      "pattern": "ал / al",
+      "title": "ал / al",
+      "mode": "prefix",
+      "zoom": 7,
+      "places": 10,
+      "file": "ал_z7.json.gz",
+      "tiles": 10,
+      "score": 5.324397085001144e-16,
+      "entropy": 0.9999999999999998,
+      "hotspots": [
+        [
+          95,
+          44,
+          1
+        ],
+        [
+          96,
+          43,
+          1
+        ],
+        [
+          96,
+          45,
+          1
+        ],
+        [
+          97,
+          46,
+          1
+        ],
+        [
+          98,
+          44,
+          1
+        ]
+      ],
+      "points": 10,
+      "points_sampled": false
+    },
+    {
+      "pattern": "гу / gu",
+      "title": "гу / gu",
+      "mode": "prefix",
+      "zoom": 7,
+      "places": 10,
+      "file": "гу_z7.json.gz",
+      "tiles": 10,
+      "score": 5.324397085001144e-16,
+      "entropy": 0.9999999999999998,
+      "hotspots": [
+        [
+          98,
+          45,
+          1
+        ],
+        [
+          99,
+          42,
+          1
+        ],
+        [
+          99,
+          44,
+          1
+        ],
+        [
+          99,
+          46,
+          1
+        ],
+        [
+          100,
+          44,
+          1
+        ]
+      ],
+      "points": 10,
+      "points_sampled": false
+    }
+  ],
+  "selection_mode": "score",
+  "min_places_for_candidate": 10,
+  "analyze_tail_token_only": true,
+  "pattern_len": [
+    2,
+    10
+  ]
+}

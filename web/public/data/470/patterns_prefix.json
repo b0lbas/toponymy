@@ -1,0 +1,78 @@
+{
+  "country_id": "470",
+  "country_name": "Malta",
+  "modes": [
+    "prefix"
+  ],
+  "default_mode": "prefix",
+  "default_zoom": 7,
+  "patterns": [
+    {
+      "pattern": "il",
+      "title": "il",
+      "mode": "prefix",
+      "zoom": 7,
+      "places": 20,
+      "file": "il_z7.json.gz",
+      "tiles": 1,
+      "score": 3.044522437723423,
+      "entropy": 0.0,
+      "hotspots": [
+        [
+          69,
+          50,
+          20
+        ]
+      ],
+      "points": 20,
+      "points_sampled": false
+    },
+    {
+      "pattern": "ħa",
+      "title": "ħa",
+      "mode": "prefix",
+      "zoom": 7,
+      "places": 12,
+      "file": "ħa_z7.json.gz",
+      "tiles": 1,
+      "score": 2.5649493574615367,
+      "entropy": 0.0,
+      "hotspots": [
+        [
+          69,
+          50,
+          12
+        ]
+      ],
+      "points": 12,
+      "points_sampled": false
+    },
+    {
+      "pattern": "ħal",
+      "title": "ħal",
+      "mode": "prefix",
+      "zoom": 7,
+      "places": 9,
+      "file": "ħal_z7.json.gz",
+      "tiles": 1,
+      "score": 2.302585092994046,
+      "entropy": 0.0,
+      "hotspots": [
+        [
+          69,
+          50,
+          9
+        ]
+      ],
+      "points": 9,
+      "points_sampled": false
+    }
+  ],
+  "selection_mode": "score",
+  "min_places_for_candidate": 9,
+  "analyze_tail_token_only": true,
+  "pattern_len": [
+    2,
+    10
+  ]
+}

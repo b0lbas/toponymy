@@ -85,6 +85,7 @@ export default function App() {
                 <div className="mt-1 text-xs text-zinc-400">
                   Added updated patterns in original scripts and non-Latin labels; refreshed site data.
                 </div>
+                <div className="mt-1 text-xs text-zinc-400">Added heatmap rendering mode.</div>
               </motion.div>
             )}
           </AnimatePresence>
